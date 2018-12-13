@@ -7,6 +7,13 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		0861B83221C29703008795E5 /* NetTools.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0861B83121C29703008795E5 /* NetTools.swift */; };
+		0861B83421C2971A008795E5 /* NetApis.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0861B83321C2971A008795E5 /* NetApis.swift */; };
+		0861B83621C297BF008795E5 /* Date+Category.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0861B83521C297BF008795E5 /* Date+Category.swift */; };
+		0861B83D21C29D0D008795E5 /* Login.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0861B83C21C29D0D008795E5 /* Login.storyboard */; };
+		0861B84021C29D74008795E5 /* BaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0861B83F21C29D74008795E5 /* BaseViewController.swift */; };
+		0861B84221C29DC0008795E5 /* BaseTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0861B84121C29DC0008795E5 /* BaseTableViewController.swift */; };
+		0861B84421C29DDE008795E5 /* RegisterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0861B84321C29DDE008795E5 /* RegisterViewController.swift */; };
 		08A3A3FC21C158CD008E071F /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08A3A3FB21C158CD008E071F /* AppDelegate.swift */; };
 		08A3A3FE21C158CD008E071F /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08A3A3FD21C158CD008E071F /* ViewController.swift */; };
 		08A3A40121C158CD008E071F /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 08A3A3FF21C158CD008E071F /* Main.storyboard */; };
@@ -53,6 +60,14 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		0861B83121C29703008795E5 /* NetTools.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetTools.swift; sourceTree = "<group>"; };
+		0861B83321C2971A008795E5 /* NetApis.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetApis.swift; sourceTree = "<group>"; };
+		0861B83521C297BF008795E5 /* Date+Category.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Date+Category.swift"; sourceTree = "<group>"; };
+		0861B83721C29807008795E5 /* xsh-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "xsh-Bridging-Header.h"; sourceTree = "<group>"; };
+		0861B83C21C29D0D008795E5 /* Login.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Login.storyboard; sourceTree = "<group>"; };
+		0861B83F21C29D74008795E5 /* BaseViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseViewController.swift; sourceTree = "<group>"; };
+		0861B84121C29DC0008795E5 /* BaseTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseTableViewController.swift; sourceTree = "<group>"; };
+		0861B84321C29DDE008795E5 /* RegisterViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterViewController.swift; sourceTree = "<group>"; };
 		08A3A3F821C158CD008E071F /* xsh.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = xsh.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		08A3A3FB21C158CD008E071F /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		08A3A3FD21C158CD008E071F /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -82,7 +97,6 @@
 		08A3A46121C168B6008E071F /* LYTabBar.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LYTabBar.swift; sourceTree = "<group>"; };
 		08A3A46221C168B6008E071F /* LYTabBarController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LYTabBarController.swift; sourceTree = "<group>"; };
 		08A3A46321C168B6008E071F /* LYNavigationController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LYNavigationController.swift; sourceTree = "<group>"; };
-		08A3A47021C168D7008E071F /* Briding-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Briding-Header.h"; sourceTree = "<group>"; };
 		222CBFCB20CE17CE8E2FBDE3 /* Pods-xsh.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-xsh.release.xcconfig"; path = "Pods/Target Support Files/Pods-xsh/Pods-xsh.release.xcconfig"; sourceTree = "<group>"; };
 		5B28B3D46E368790652851A7 /* Pods-xshTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-xshTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-xshTests/Pods-xshTests.debug.xcconfig"; sourceTree = "<group>"; };
 		6A20976A1C316D32232167B9 /* Pods-xshUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-xshUITests.release.xcconfig"; path = "Pods/Target Support Files/Pods-xshUITests/Pods-xshUITests.release.xcconfig"; sourceTree = "<group>"; };
@@ -122,6 +136,32 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		0861B83021C29690008795E5 /* net */ = {
+			isa = PBXGroup;
+			children = (
+				0861B83121C29703008795E5 /* NetTools.swift */,
+				0861B83321C2971A008795E5 /* NetApis.swift */,
+			);
+			path = net;
+			sourceTree = "<group>";
+		};
+		0861B83B21C29CC9008795E5 /* login */ = {
+			isa = PBXGroup;
+			children = (
+				0861B83E21C29D37008795E5 /* views */,
+				0861B83C21C29D0D008795E5 /* Login.storyboard */,
+			);
+			path = login;
+			sourceTree = "<group>";
+		};
+		0861B83E21C29D37008795E5 /* views */ = {
+			isa = PBXGroup;
+			children = (
+				0861B84321C29DDE008795E5 /* RegisterViewController.swift */,
+			);
+			path = views;
+			sourceTree = "<group>";
+		};
 		08A3A3EF21C158CD008E071F = {
 			isa = PBXGroup;
 			children = (
@@ -181,6 +221,7 @@
 		08A3A42E21C16405008E071F /* app */ = {
 			isa = PBXGroup;
 			children = (
+				0861B83B21C29CC9008795E5 /* login */,
 				08A3A42F21C16405008E071F /* personal */,
 				08A3A43021C16405008E071F /* shop */,
 				08A3A43121C16405008E071F /* message */,
@@ -224,8 +265,8 @@
 		08A3A45421C168B6008E071F /* helps */ = {
 			isa = PBXGroup;
 			children = (
+				0861B83021C29690008795E5 /* net */,
 				08A3A45521C168B6008E071F /* libs */,
-				08A3A47021C168D7008E071F /* Briding-Header.h */,
 			);
 			path = helps;
 			sourceTree = "<group>";
@@ -235,6 +276,7 @@
 			children = (
 				08A3A45621C168B6008E071F /* category */,
 				08A3A46021C168B6008E071F /* nav_bar */,
+				0861B83721C29807008795E5 /* xsh-Bridging-Header.h */,
 			);
 			path = libs;
 			sourceTree = "<group>";
@@ -242,6 +284,7 @@
 		08A3A45621C168B6008E071F /* category */ = {
 			isa = PBXGroup;
 			children = (
+				0861B83521C297BF008795E5 /* Date+Category.swift */,
 				08A3A45721C168B6008E071F /* UIViewController+Category.swift */,
 				08A3A45821C168B6008E071F /* UIView+Category.swift */,
 				08A3A45921C168B6008E071F /* Array+Category.swift */,
@@ -260,6 +303,8 @@
 				08A3A46121C168B6008E071F /* LYTabBar.swift */,
 				08A3A46221C168B6008E071F /* LYTabBarController.swift */,
 				08A3A46321C168B6008E071F /* LYNavigationController.swift */,
+				0861B83F21C29D74008795E5 /* BaseViewController.swift */,
+				0861B84121C29DC0008795E5 /* BaseTableViewController.swift */,
 			);
 			path = nav_bar;
 			sourceTree = "<group>";
@@ -359,6 +404,7 @@
 				TargetAttributes = {
 					08A3A3F721C158CD008E071F = {
 						CreatedOnToolsVersion = 10.1;
+						LastSwiftMigration = 1010;
 					};
 					08A3A40E21C158CF008E071F = {
 						CreatedOnToolsVersion = 10.1;
@@ -395,6 +441,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				0861B83D21C29D0D008795E5 /* Login.storyboard in Resources */,
 				08A3A40921C158CE008E071F /* LaunchScreen.storyboard in Resources */,
 				08A3A40621C158CE008E071F /* Assets.xcassets in Resources */,
 				08A3A40121C158CD008E071F /* Main.storyboard in Resources */,
@@ -495,6 +542,7 @@
 				"${SRCROOT}/Pods/Target Support Files/Pods-xsh/Pods-xsh-frameworks.sh",
 				"${BUILT_PRODUCTS_DIR}/Alamofire/Alamofire.framework",
 				"${BUILT_PRODUCTS_DIR}/AlamofireObjectMapper/AlamofireObjectMapper.framework",
+				"${BUILT_PRODUCTS_DIR}/DGElasticPullToRefresh/DGElasticPullToRefresh.framework",
 				"${BUILT_PRODUCTS_DIR}/Kingfisher/Kingfisher.framework",
 				"${BUILT_PRODUCTS_DIR}/ObjectMapper/ObjectMapper.framework",
 				"${BUILT_PRODUCTS_DIR}/SnapKit/SnapKit.framework",
@@ -506,6 +554,7 @@
 			outputPaths = (
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Alamofire.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/AlamofireObjectMapper.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/DGElasticPullToRefresh.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Kingfisher.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/ObjectMapper.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SnapKit.framework",
@@ -526,6 +575,7 @@
 				08A3A46421C168B6008E071F /* UIViewController+Category.swift in Sources */,
 				08A3A46D21C168B6008E071F /* LYTabBar.swift in Sources */,
 				08A3A46521C168B6008E071F /* UIView+Category.swift in Sources */,
+				0861B84421C29DDE008795E5 /* RegisterViewController.swift in Sources */,
 				08A3A46C21C168B6008E071F /* String+Category.swift in Sources */,
 				08A3A46F21C168B6008E071F /* LYNavigationController.swift in Sources */,
 				08A3A3FE21C158CD008E071F /* ViewController.swift in Sources */,
@@ -534,12 +584,17 @@
 				08A3A46921C168B6008E071F /* UIColor+Category.swift in Sources */,
 				08A3A46B21C168B6008E071F /* DeviceSystemHelper.swift in Sources */,
 				08A3A46821C168B6008E071F /* NSObject+Extension.swift in Sources */,
+				0861B84221C29DC0008795E5 /* BaseTableViewController.swift in Sources */,
 				08A3A46621C168B6008E071F /* Array+Category.swift in Sources */,
 				08A3A46E21C168B6008E071F /* LYTabBarController.swift in Sources */,
+				0861B84021C29D74008795E5 /* BaseViewController.swift in Sources */,
 				08A3A45121C16663008E071F /* MessageViewController.swift in Sources */,
 				08A3A44D21C1664E008E071F /* PersonalViewController.swift in Sources */,
 				08A3A40421C158CD008E071F /* xsh.xcdatamodeld in Sources */,
+				0861B83421C2971A008795E5 /* NetApis.swift in Sources */,
+				0861B83621C297BF008795E5 /* Date+Category.swift in Sources */,
 				08A3A45321C1666E008E071F /* CouponViewController.swift in Sources */,
+				0861B83221C29703008795E5 /* NetTools.swift in Sources */,
 				08A3A3FC21C158CD008E071F /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -716,6 +771,7 @@
 			baseConfigurationReference = F849972562B5ACBF3C79FEAE /* Pods-xsh.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 3BXQF9Q7GT;
@@ -729,6 +785,8 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.magicsoft.appyssh;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
+				SWIFT_OBJC_BRIDGING_HEADER = "xsh/helps/libs/xsh-Bridging-Header.h";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 4.2;
 				TARGETED_DEVICE_FAMILY = 1;
 			};
@@ -739,6 +797,7 @@
 			baseConfigurationReference = 222CBFCB20CE17CE8E2FBDE3 /* Pods-xsh.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 3BXQF9Q7GT;
@@ -752,6 +811,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.magicsoft.appyssh;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
+				SWIFT_OBJC_BRIDGING_HEADER = "xsh/helps/libs/xsh-Bridging-Header.h";
 				SWIFT_VERSION = 4.2;
 				TARGETED_DEVICE_FAMILY = 1;
 			};
