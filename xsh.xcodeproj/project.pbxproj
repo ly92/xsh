@@ -13,7 +13,8 @@
 		0861B83D21C29D0D008795E5 /* Login.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0861B83C21C29D0D008795E5 /* Login.storyboard */; };
 		0861B84021C29D74008795E5 /* BaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0861B83F21C29D74008795E5 /* BaseViewController.swift */; };
 		0861B84221C29DC0008795E5 /* BaseTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0861B84121C29DC0008795E5 /* BaseTableViewController.swift */; };
-		0861B84421C29DDE008795E5 /* RegisterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0861B84321C29DDE008795E5 /* RegisterViewController.swift */; };
+		0861B84821C52E29008795E5 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0861B84721C52E29008795E5 /* LoginViewController.swift */; };
+		0861B84A21C53EEB008795E5 /* RegisterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0861B84921C53EEB008795E5 /* RegisterViewController.swift */; };
 		08A3A3FC21C158CD008E071F /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08A3A3FB21C158CD008E071F /* AppDelegate.swift */; };
 		08A3A3FE21C158CD008E071F /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08A3A3FD21C158CD008E071F /* ViewController.swift */; };
 		08A3A40121C158CD008E071F /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 08A3A3FF21C158CD008E071F /* Main.storyboard */; };
@@ -67,7 +68,8 @@
 		0861B83C21C29D0D008795E5 /* Login.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Login.storyboard; sourceTree = "<group>"; };
 		0861B83F21C29D74008795E5 /* BaseViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseViewController.swift; sourceTree = "<group>"; };
 		0861B84121C29DC0008795E5 /* BaseTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseTableViewController.swift; sourceTree = "<group>"; };
-		0861B84321C29DDE008795E5 /* RegisterViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterViewController.swift; sourceTree = "<group>"; };
+		0861B84721C52E29008795E5 /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
+		0861B84921C53EEB008795E5 /* RegisterViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterViewController.swift; sourceTree = "<group>"; };
 		08A3A3F821C158CD008E071F /* xsh.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = xsh.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		08A3A3FB21C158CD008E071F /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		08A3A3FD21C158CD008E071F /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -157,7 +159,8 @@
 		0861B83E21C29D37008795E5 /* views */ = {
 			isa = PBXGroup;
 			children = (
-				0861B84321C29DDE008795E5 /* RegisterViewController.swift */,
+				0861B84721C52E29008795E5 /* LoginViewController.swift */,
+				0861B84921C53EEB008795E5 /* RegisterViewController.swift */,
 			);
 			path = views;
 			sourceTree = "<group>";
@@ -575,7 +578,6 @@
 				08A3A46421C168B6008E071F /* UIViewController+Category.swift in Sources */,
 				08A3A46D21C168B6008E071F /* LYTabBar.swift in Sources */,
 				08A3A46521C168B6008E071F /* UIView+Category.swift in Sources */,
-				0861B84421C29DDE008795E5 /* RegisterViewController.swift in Sources */,
 				08A3A46C21C168B6008E071F /* String+Category.swift in Sources */,
 				08A3A46F21C168B6008E071F /* LYNavigationController.swift in Sources */,
 				08A3A3FE21C158CD008E071F /* ViewController.swift in Sources */,
@@ -585,9 +587,11 @@
 				08A3A46B21C168B6008E071F /* DeviceSystemHelper.swift in Sources */,
 				08A3A46821C168B6008E071F /* NSObject+Extension.swift in Sources */,
 				0861B84221C29DC0008795E5 /* BaseTableViewController.swift in Sources */,
+				0861B84821C52E29008795E5 /* LoginViewController.swift in Sources */,
 				08A3A46621C168B6008E071F /* Array+Category.swift in Sources */,
 				08A3A46E21C168B6008E071F /* LYTabBarController.swift in Sources */,
 				0861B84021C29D74008795E5 /* BaseViewController.swift in Sources */,
+				0861B84A21C53EEB008795E5 /* RegisterViewController.swift in Sources */,
 				08A3A45121C16663008E071F /* MessageViewController.swift in Sources */,
 				08A3A44D21C1664E008E071F /* PersonalViewController.swift in Sources */,
 				08A3A40421C158CD008E071F /* xsh.xcdatamodeld in Sources */,

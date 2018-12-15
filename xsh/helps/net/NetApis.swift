@@ -25,7 +25,7 @@ let DeBug = false
 //获取验证码
 let GetCodeApi = "user/smscode"//post mobile,isnew:是否检查已注册，0不检查，1检查
 //注册
-let RegidterApi = "/user/register" //post mobile,nickname,passwd,code
+let RegidterApi = "/user/add" //post mobile,nickname,passwd,code
 //登录
 let LoginApi = "/user/login"//post mobile,ts:时间戳,sign:sign=md5(mobile+ts+passwd),device:设备的push token
 //设备校验

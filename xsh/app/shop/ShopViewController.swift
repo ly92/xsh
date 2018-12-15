@@ -33,9 +33,9 @@ class ShopViewController: UIViewController {
     
     
     @objc func loginAction() {
-        let registerVC = RegisterViewController.spwan()
+        let loginVC = LoginViewController.spwan()
         
-        self.present(registerVC, animated: true) {
+        self.present(loginVC, animated: true) {
             
         }
     }
