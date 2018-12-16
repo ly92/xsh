@@ -13,13 +13,35 @@ class LoginViewController: BaseTableViewController {
         return self.loadFromStoryBoard(storyBoard: "Login") as! LoginViewController
     }
     
-    fileprivate var secIndex = 0//0:记录了手机号，1:更改手机号，2:忘记密码，3:更改密码
+    @IBOutlet weak var loginPhoneTF: UITextField!
+    @IBOutlet weak var changePhoneBtn: UIButton!
+    @IBOutlet weak var loginPwdTF: UITextField!
+    @IBOutlet weak var codeBtn: UIButton!
+    @IBOutlet weak var codeTF: UITextField!
+    @IBOutlet weak var resetPwdPhoneLbl: UILabel!
+    @IBOutlet weak var newPwdTF: UITextField!
+    @IBOutlet weak var reNewPwdTF: UITextField!
+    @IBOutlet weak var loginBtn: UIButton!
+    @IBOutlet weak var nextBtn: UIButton!
+    @IBOutlet weak var resetBtn: UIButton!
+    
+    
+    
+    
+    
+    
+    fileprivate var secIndex = 0//0:手机号登录，1:忘记密码，2:更改密码
+    
+    
+
+    
     
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        
+        self.loginBtn.layer.contents = 25
+        self.nextBtn.layer.contents = 25
+        self.resetBtn.layer.contents = 25
     }
 
     @IBAction func getCodeAction() {
@@ -59,42 +81,40 @@ class LoginViewController: BaseTableViewController {
     @IBAction func btnAction(_ btn: UIButton) {
         switch btn.tag {
         case 11:
-            //忘记密码
-            self.secIndex = 2
-            self.tableView.reloadData()
+            //切换手机号
+            self.loginPhoneTF.text = ""
+            
         case 22:
-        //切换手机号
+        //登录
+            self.dismiss(animated: false, completion: nil)
+        case 33:
+            //忘记密码
             self.secIndex = 1
             self.tableView.reloadData()
-        case 33:
-        //登录记录的账户
-            self.dismiss(animated: false, completion: nil)
+            
+        
         case 44:
         //去注册
             let registerVC = RegisterViewController.spwan()
             self.present(registerVC, animated: true) {
-                
             }
         case 55:
-        //确认登录新手机号
-            self.dismiss(animated: false, completion: nil)
-        case 66:
-        //点击忘记密码后的返回
+            //点击忘记密码后的返回
             self.secIndex = 0
             self.tableView.reloadData()
-        case 77:
-        //获取验证码
+        case 66:
+            //获取验证码
             print("1")
-        case 88:
-        //去设置新密码
-            self.secIndex = 3
-            self.tableView.reloadData()
-        case 99:
-        //设置新密码的返回
+        case 77:
+            //去设置新密码
             self.secIndex = 2
             self.tableView.reloadData()
-        case 10:
-        //确认设置新密码
+        case 88:
+            //设置新密码的返回
+            self.secIndex = 1
+            self.tableView.reloadData()
+        case 99:
+            //确认设置新密码
             self.secIndex = 0
             self.tableView.reloadData()
         default:
@@ -107,7 +127,11 @@ class LoginViewController: BaseTableViewController {
     
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        if section == self.secIndex{
+        if section == self.secIndex && self.secIndex == 0{
+            return 4
+        }else if section == self.secIndex && self.secIndex == 1{
+            return 3
+        }else if section == self.secIndex && self.secIndex == 2{
             return 4
         }
         return 0
