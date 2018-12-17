@@ -57,7 +57,7 @@ class LYTabBarController: UITabBarController {
         let thirVC = MessageViewController()
         setUpNavRootViewController(vc: thirVC, title: titles[2], imageName: normalImgs[2], selectedImageName: selectedImgs[2])
 
-            let fourVC = PersonalViewController()
+            let fourVC = PersonalViewController.spwan()
             setUpNavRootViewController(vc: fourVC, title: titles[3], imageName: normalImgs[3], selectedImageName: selectedImgs[3])
     }
     

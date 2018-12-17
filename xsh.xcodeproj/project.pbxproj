@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		0807CA9621C7C47700967692 /* LocalData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0807CA9421C7C47700967692 /* LocalData.swift */; };
 		0807CA9721C7C47700967692 /* LYProgressHUD.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0807CA9521C7C47700967692 /* LYProgressHUD.swift */; };
+		0807CA9A21C7EC3500967692 /* Personal.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0807CA9921C7EC3500967692 /* Personal.storyboard */; };
 		0861B83221C29703008795E5 /* NetTools.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0861B83121C29703008795E5 /* NetTools.swift */; };
 		0861B83421C2971A008795E5 /* NetApis.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0861B83321C2971A008795E5 /* NetApis.swift */; };
 		0861B83621C297BF008795E5 /* Date+Category.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0861B83521C297BF008795E5 /* Date+Category.swift */; };
@@ -66,6 +67,7 @@
 		0807CA9421C7C47700967692 /* LocalData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LocalData.swift; sourceTree = "<group>"; };
 		0807CA9521C7C47700967692 /* LYProgressHUD.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LYProgressHUD.swift; sourceTree = "<group>"; };
 		0807CA9821C7D70F00967692 /* xsh.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = xsh.entitlements; sourceTree = "<group>"; };
+		0807CA9921C7EC3500967692 /* Personal.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Personal.storyboard; sourceTree = "<group>"; };
 		0861B83121C29703008795E5 /* NetTools.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetTools.swift; sourceTree = "<group>"; };
 		0861B83321C2971A008795E5 /* NetApis.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetApis.swift; sourceTree = "<group>"; };
 		0861B83521C297BF008795E5 /* Date+Category.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Date+Category.swift"; sourceTree = "<group>"; };
@@ -252,6 +254,7 @@
 			isa = PBXGroup;
 			children = (
 				08A3A44C21C1664E008E071F /* PersonalViewController.swift */,
+				0807CA9921C7EC3500967692 /* Personal.storyboard */,
 			);
 			path = personal;
 			sourceTree = "<group>";
@@ -466,6 +469,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				0861B83D21C29D0D008795E5 /* Login.storyboard in Resources */,
+				0807CA9A21C7EC3500967692 /* Personal.storyboard in Resources */,
 				08A3A40921C158CE008E071F /* LaunchScreen.storyboard in Resources */,
 				08A3A40621C158CE008E071F /* Assets.xcassets in Resources */,
 				08A3A40121C158CD008E071F /* Main.storyboard in Resources */,
