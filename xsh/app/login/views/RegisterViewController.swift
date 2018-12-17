@@ -13,61 +13,104 @@ class RegisterViewController: BaseTableViewController {
         return self.loadFromStoryBoard(storyBoard: "Login") as! RegisterViewController
     }
     
+    @IBOutlet weak var phoneTF: UITextField!
+    @IBOutlet weak var stepBtn1: UIButton!
+    @IBOutlet weak var stepBtn2: UIButton!
+    @IBOutlet weak var stepBtn3: UIButton!
+    @IBOutlet weak var stepBtn4: UIButton!
+    @IBOutlet weak var goLoginLbl: UILabel!
+    @IBOutlet weak var verifyPhoneLbl: UILabel!
+    @IBOutlet weak var codeTF: UITextField!
+    @IBOutlet weak var codeBtn: UIButton!
+    @IBOutlet weak var nameTF: UITextField!
+    @IBOutlet weak var pwdTF: UITextField!
+    @IBOutlet weak var rePwdTF: UITextField!
+    @IBOutlet weak var genderManBtn: UIButton!
+    @IBOutlet weak var genderWomanBtn: UIButton!
+    @IBOutlet weak var addressTF: UITextField!
+    @IBOutlet weak var identityTF: UITextField!
+    
+    
+    
+    
     
     fileprivate var secIndex = 0//0:记录了手机号，1:更改手机号，2:忘记密码，3:更改密码
     
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.stepBtn1.layer.cornerRadius = 25
+        self.stepBtn2.layer.cornerRadius = 25
+        self.stepBtn3.layer.cornerRadius = 25
+        self.stepBtn4.layer.cornerRadius = 25
+        
+        
 
-        // Uncomment the following line to preserve selection between presentations
-        // self.clearsSelectionOnViewWillAppear = false
-
-        // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-        // self.navigationItem.rightBarButtonItem = self.editButtonItem
+        let attrStr = NSMutableAttributedString()
+        let attrStr1 = NSMutableAttributedString.init(string: "已有账号，去", attributes: [NSAttributedString.Key.font : UIFont.systemFont(ofSize: 14), NSAttributedString.Key.foregroundColor : UIColor.RGBS(s: 166)])
+        let attrStr2 = NSMutableAttributedString.init(string: "登录", attributes: [NSAttributedString.Key.font : UIFont.systemFont(ofSize: 14), NSAttributedString.Key.foregroundColor : UIColor.RGB(r: 73, g: 205, b: 170)])
+        attrStr.append(attrStr1)
+        attrStr.append(attrStr2)
+        self.goLoginLbl.attributedText = attrStr
+        self.goLoginLbl.addTapActionBlock {
+            self.dismiss(animated: true, completion: nil)
+        }
+        
+        
     }
 
     @IBAction func btnAction(_ btn: UIButton) {
         switch btn.tag {
         case 10:
-            //注册的第一个页面，返回到登录页
-            self.dismiss(animated: true, completion: nil)
+            //注册的第一个页面，下一步
+            let phone = self.phoneTF.text
+            if phone != nil{
+                if phone!.isMobelPhone(){
+                    self.getCodeAction(1)
+                }else{
+                    LYProgressHUD.showError("请输入11位手机号！")
+                }
+            }else{
+                LYProgressHUD.showError("请输入11位手机号！")
+            }
         case 11:
-            //登录
-            self.dismiss(animated: true, completion: nil)
-        case 12:
-            //注册第一页----下一步
-            self.dismiss(animated: false, completion: nil)
-        case 13:
             //返回到第一步
             self.secIndex = 0
             self.tableView.reloadData()
-        case 14:
+        case 12:
             //获取验证码
-            print("1")
-        case 15:
-            //去填写密码
-            self.secIndex = 2
-            self.tableView.reloadData()
-        case 16:
-            //返回到第二步
+            self.getCodeAction(2)
+        case 13:
+            //下一步，去填写基本信息
+            let code = self.codeTF.text
+            if code != nil{
+                if !code!.isEmpty{
+                    self.secIndex = 2
+                    self.tableView.reloadData()
+                }else{
+                    LYProgressHUD.showError("请输入验证码")
+                }
+            }else{
+                LYProgressHUD.showError("请输入验证码")
+            }
+        case 14:
+            //返回到第一步
             self.secIndex = 1
             self.tableView.reloadData()
-        case 17:
+        case 15:
             //去填写详细信息
-            self.secIndex = 3
-            self.tableView.reloadData()
-        case 18:
-            //填写详细信息的返回
+            self.registerAction()
+        case 16:
+            //返回到第三步
             self.secIndex = 2
             self.tableView.reloadData()
-        case 19:
+        case 17:
             //男
             print("男")
-        case 20:
+        case 18:
             //女
             print("女")
-        case 21:
+        case 19:
             //完成，返回登录
             self.dismiss(animated: true, completion: nil)
         default:
@@ -78,9 +121,9 @@ class RegisterViewController: BaseTableViewController {
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         if section == self.secIndex && self.secIndex == 0{
-            return 4
+            return 3
         }else if section == self.secIndex && self.secIndex == 1{
-            return 4
+            return 3
         }else if section == self.secIndex && self.secIndex == 2{
             return 5
         }else if section == self.secIndex && self.secIndex == 3{
@@ -89,5 +132,62 @@ class RegisterViewController: BaseTableViewController {
         return 0
     }
 
+    
+    
+    //获取验证码
+    func getCodeAction(_ type : Int) {
+        let phone = self.phoneTF.text
+        var params : [String : Any] = [:]
+        params["mobile"] = phone!
+        params["isnew"] = "1"
+        NetTools.requestData(type: .post, urlString: GetCodeApi, parameters: params, succeed: { (result) in
+            if type == 1{
+                self.secIndex = 1
+                self.tableView.reloadData()
+                self.verifyPhoneLbl.text = "您正在使用" + phone! + "进行注册"
+            }
+        }) { (error) in
+            LYProgressHUD.showError(error)
+        }
+    }
+    
+    //注册
+    func registerAction() {
+        let phone = self.phoneTF.text
+        let code = self.codeTF.text
+        guard let name = self.nameTF.text else {
+            LYProgressHUD.showError("姓名输入错误")
+            return
+        }
+        guard let pwd = self.pwdTF.text else {
+            LYProgressHUD.showError("请输入密码")
+            return
+        }
+        guard let pwd2 = self.rePwdTF.text else {
+            LYProgressHUD.showError("请再次输入密码")
+            return
+        }
+        if name.isEmpty{
+            LYProgressHUD.showError("姓名输入错误")
+            return
+        }
+        if pwd != pwd2 || pwd.isEmpty || pwd2.isEmpty || pwd.count < 6{
+            LYProgressHUD.showError("请确保密码最少6位且两次输入相同")
+            return
+        }
+        
+        var params : [String : Any] = [:]
+        params["mobile"] = phone!
+        params["nickname"] = name
+        params["passwd"] = (pwd.md5String() + phone!).md5String()
+        params["code"] = code!
+        NetTools.requestData(type: .post, urlString: RegisterApi, parameters: params, succeed: { (result) in
+            self.secIndex = 3
+            self.tableView.reloadData()
+        }) { (error) in
+            LYProgressHUD.showError(error)
+        }
+        
+    }
     
 }

@@ -134,7 +134,7 @@ extension NetTools{
     ///   - parameters: 请求参数
     ///   - succeed: 请求成功时回调
     ///   - failure: 请求失败时回调
-    static func requestData(type: MethodType, urlString: String, parameters: [String : Any]? = nil, succeed: @escaping((_ result: JSON, _ error: String?) -> Swift.Void), failure: @escaping((_ error: String?) -> Swift.Void)){
+    static func requestData(type: MethodType, urlString: String, parameters: [String : Any]? = nil, succeed: @escaping((_ result: JSON) -> Swift.Void), failure: @escaping((_ error: String) -> Swift.Void)){
         
         let token_time = Date.phpTimestamp()
         var token = ("qixiaofu0ab3b4n55nca" + token_time)
@@ -157,7 +157,7 @@ extension NetTools{
             param = parameters!
         }
         param["token"] = token
-        param["token_time"] = token_time
+        param["ts"] = token_time
         
         //4.拼接url
         let URL = usedServer + urlString.trim
@@ -177,7 +177,6 @@ extension NetTools{
         }
         #endif
         
-        
         //5.获取网络请求
         NetTools.defManager.request(URL, method: method, parameters: param, encoding: URLEncoding.default, headers:headers).responseJSON { (respose) in
             //请求成功
@@ -190,13 +189,13 @@ extension NetTools{
                 #endif
 
                 
-                if json["repCode"].stringValue != "00"{
-                    failure( json["repMsg"].stringValue)
+                if json["code"].stringValue != "0"{
+                    failure( json["message"].stringValue)
                     return
                 }
                 
                 //返回正确结果
-                succeed(json["listData"],json["repMsg"].stringValue)
+                succeed(json["content"])
             }
             
             //请求失败
@@ -205,7 +204,7 @@ extension NetTools{
                 debugPrint("-----------错误数据--------")
                 debugPrint(respose.result.error ?? "请求失败！")
                 #endif
-                failure(respose.result.error as? String ?? "网络失去连接,请重试！")
+                failure(respose.result.error as? String ?? "数据获取失败,请重试！")
             }
         }
     }

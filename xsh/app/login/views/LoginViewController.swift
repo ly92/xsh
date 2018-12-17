@@ -39,9 +39,11 @@ class LoginViewController: BaseTableViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.loginBtn.layer.contents = 25
-        self.nextBtn.layer.contents = 25
-        self.resetBtn.layer.contents = 25
+        self.loginBtn.layer.cornerRadius = 25
+        self.nextBtn.layer.cornerRadius = 25
+        self.resetBtn.layer.cornerRadius = 25
+        
+        
     }
 
     @IBAction func getCodeAction() {
@@ -68,7 +70,7 @@ class LoginViewController: BaseTableViewController {
         params["nickname"] = "ly"
         params["passwd"] = ("111111".md5String() + "18811016533").md5String()
         params["code"] = "4658"
-        NetTools.requestDataTest(urlString: RegidterApi, parameters: params, succeed: { (result) in
+        NetTools.requestDataTest(urlString: RegisterApi, parameters: params, succeed: { (result) in
             
         }) { (error) in
             
@@ -138,4 +140,30 @@ class LoginViewController: BaseTableViewController {
     }
 
 
+}
+
+
+
+
+extension LoginViewController : UITextFieldDelegate{
+    func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
+        if range.length == 0{
+            //增加字符
+            if (textField.text?.count)! > 10{
+//                LYProgressHUD.showError("最多11位数字！")
+                self.changePhoneBtn.isHidden = false
+                return false
+            }else{
+                if (textField.text?.count)! == 10{
+                    self.changePhoneBtn.isHidden = false
+                }else{
+                    self.changePhoneBtn.isHidden = true
+                }
+            }
+        }else{
+            //删除字符
+            self.changePhoneBtn.isHidden = true
+        }
+        return true
+    }
 }
