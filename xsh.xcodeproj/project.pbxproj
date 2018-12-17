@@ -7,7 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		0807CA9221C74A1300967692 /* LYProgressHUD.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0807CA9121C74A1300967692 /* LYProgressHUD.swift */; };
+		0807CA9621C7C47700967692 /* LocalData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0807CA9421C7C47700967692 /* LocalData.swift */; };
+		0807CA9721C7C47700967692 /* LYProgressHUD.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0807CA9521C7C47700967692 /* LYProgressHUD.swift */; };
 		0861B83221C29703008795E5 /* NetTools.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0861B83121C29703008795E5 /* NetTools.swift */; };
 		0861B83421C2971A008795E5 /* NetApis.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0861B83321C2971A008795E5 /* NetApis.swift */; };
 		0861B83621C297BF008795E5 /* Date+Category.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0861B83521C297BF008795E5 /* Date+Category.swift */; };
@@ -62,7 +63,9 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		0807CA9121C74A1300967692 /* LYProgressHUD.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LYProgressHUD.swift; sourceTree = "<group>"; };
+		0807CA9421C7C47700967692 /* LocalData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LocalData.swift; sourceTree = "<group>"; };
+		0807CA9521C7C47700967692 /* LYProgressHUD.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LYProgressHUD.swift; sourceTree = "<group>"; };
+		0807CA9821C7D70F00967692 /* xsh.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = xsh.entitlements; sourceTree = "<group>"; };
 		0861B83121C29703008795E5 /* NetTools.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetTools.swift; sourceTree = "<group>"; };
 		0861B83321C2971A008795E5 /* NetApis.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetApis.swift; sourceTree = "<group>"; };
 		0861B83521C297BF008795E5 /* Date+Category.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Date+Category.swift"; sourceTree = "<group>"; };
@@ -140,6 +143,15 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		0807CA9321C7C47700967692 /* comment */ = {
+			isa = PBXGroup;
+			children = (
+				0807CA9421C7C47700967692 /* LocalData.swift */,
+				0807CA9521C7C47700967692 /* LYProgressHUD.swift */,
+			);
+			path = comment;
+			sourceTree = "<group>";
+		};
 		0861B83021C29690008795E5 /* net */ = {
 			isa = PBXGroup;
 			children = (
@@ -192,6 +204,7 @@
 		08A3A3FA21C158CD008E071F /* xsh */ = {
 			isa = PBXGroup;
 			children = (
+				0807CA9821C7D70F00967692 /* xsh.entitlements */,
 				08A3A45421C168B6008E071F /* helps */,
 				08A3A42E21C16405008E071F /* app */,
 				08A3A3FB21C158CD008E071F /* AppDelegate.swift */,
@@ -270,6 +283,7 @@
 		08A3A45421C168B6008E071F /* helps */ = {
 			isa = PBXGroup;
 			children = (
+				0807CA9321C7C47700967692 /* comment */,
 				0861B83021C29690008795E5 /* net */,
 				08A3A45521C168B6008E071F /* libs */,
 			);
@@ -279,7 +293,6 @@
 		08A3A45521C168B6008E071F /* libs */ = {
 			isa = PBXGroup;
 			children = (
-				0807CA9121C74A1300967692 /* LYProgressHUD.swift */,
 				08A3A45621C168B6008E071F /* category */,
 				08A3A46021C168B6008E071F /* nav_bar */,
 				0861B83721C29807008795E5 /* xsh-Bridging-Header.h */,
@@ -411,6 +424,11 @@
 					08A3A3F721C158CD008E071F = {
 						CreatedOnToolsVersion = 10.1;
 						LastSwiftMigration = 1010;
+						SystemCapabilities = {
+							com.apple.Push = {
+								enabled = 1;
+							};
+						};
 					};
 					08A3A40E21C158CF008E071F = {
 						CreatedOnToolsVersion = 10.1;
@@ -583,13 +601,14 @@
 				08A3A46521C168B6008E071F /* UIView+Category.swift in Sources */,
 				08A3A46C21C168B6008E071F /* String+Category.swift in Sources */,
 				08A3A46F21C168B6008E071F /* LYNavigationController.swift in Sources */,
+				0807CA9721C7C47700967692 /* LYProgressHUD.swift in Sources */,
 				08A3A3FE21C158CD008E071F /* ViewController.swift in Sources */,
 				08A3A46721C168B6008E071F /* UILabel+Category.swift in Sources */,
 				08A3A44F21C16659008E071F /* ShopViewController.swift in Sources */,
 				08A3A46921C168B6008E071F /* UIColor+Category.swift in Sources */,
+				0807CA9621C7C47700967692 /* LocalData.swift in Sources */,
 				08A3A46B21C168B6008E071F /* DeviceSystemHelper.swift in Sources */,
 				08A3A46821C168B6008E071F /* NSObject+Extension.swift in Sources */,
-				0807CA9221C74A1300967692 /* LYProgressHUD.swift in Sources */,
 				0861B84221C29DC0008795E5 /* BaseTableViewController.swift in Sources */,
 				0861B84821C52E29008795E5 /* LoginViewController.swift in Sources */,
 				08A3A46621C168B6008E071F /* Array+Category.swift in Sources */,
@@ -780,6 +799,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_ENTITLEMENTS = xsh/xsh.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 3BXQF9Q7GT;
@@ -806,6 +826,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_ENTITLEMENTS = xsh/xsh.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 3BXQF9Q7GT;

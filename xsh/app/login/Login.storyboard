@@ -249,7 +249,7 @@
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="请输入验证码" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="xiN-8m-jGv">
-                                                    <rect key="frame" x="24" y="12.5" width="219" height="30"/>
+                                                    <rect key="frame" x="24" y="12.5" width="199" height="30"/>
                                                     <constraints>
                                                         <constraint firstAttribute="height" constant="30" id="Oey-g3-e3Y"/>
                                                     </constraints>
@@ -264,10 +264,10 @@
                                                         <constraint firstAttribute="height" constant="1" id="3DD-pc-tAs"/>
                                                     </constraints>
                                                 </view>
-                                                <button opaque="NO" tag="66" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="xrM-IS-8JL">
-                                                    <rect key="frame" x="251" y="10.5" width="100" height="34"/>
+                                                <button opaque="NO" tag="66" contentMode="scaleToFill" contentHorizontalAlignment="right" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="xrM-IS-8JL">
+                                                    <rect key="frame" x="231" y="10.5" width="120" height="34"/>
                                                     <constraints>
-                                                        <constraint firstAttribute="width" constant="100" id="cGu-c9-iV4"/>
+                                                        <constraint firstAttribute="width" constant="120" id="cGu-c9-iV4"/>
                                                     </constraints>
                                                     <fontDescription key="fontDescription" type="system" pointSize="18"/>
                                                     <state key="normal" title="获取验证码">
@@ -646,7 +646,7 @@
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="请输入验证码" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="G7P-oT-7Uk">
-                                                    <rect key="frame" x="24" y="12.5" width="219" height="30"/>
+                                                    <rect key="frame" x="24" y="12.5" width="199" height="30"/>
                                                     <constraints>
                                                         <constraint firstAttribute="height" constant="30" id="8N1-NB-gAG"/>
                                                     </constraints>
@@ -661,10 +661,10 @@
                                                         <constraint firstAttribute="height" constant="1" id="7Kj-7q-ywX"/>
                                                     </constraints>
                                                 </view>
-                                                <button opaque="NO" tag="12" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="R2j-qw-FFF">
-                                                    <rect key="frame" x="251" y="10.5" width="100" height="34"/>
+                                                <button opaque="NO" tag="12" contentMode="scaleToFill" contentHorizontalAlignment="right" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="R2j-qw-FFF">
+                                                    <rect key="frame" x="231" y="10.5" width="120" height="34"/>
                                                     <constraints>
-                                                        <constraint firstAttribute="width" constant="100" id="DNB-7Y-SEg"/>
+                                                        <constraint firstAttribute="width" constant="120" id="DNB-7Y-SEg"/>
                                                     </constraints>
                                                     <fontDescription key="fontDescription" type="system" pointSize="18"/>
                                                     <state key="normal" title="获取验证码">

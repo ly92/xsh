@@ -4,6 +4,7 @@
 
 #import <CommonCrypto/CommonDigest.h>
 
-
+//极光推送
+#import "JPUSHService.h"
 
 

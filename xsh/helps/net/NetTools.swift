@@ -135,18 +135,23 @@ extension NetTools{
     ///   - succeed: 请求成功时回调
     ///   - failure: 请求失败时回调
     static func requestData(type: MethodType, urlString: String, parameters: [String : Any]? = nil, succeed: @escaping((_ result: JSON) -> Swift.Void), failure: @escaping((_ error: String) -> Swift.Void)){
-        
-        let token_time = Date.phpTimestamp()
-        var token = ("qixiaofu0ab3b4n55nca" + token_time)
-        token = token.md5String()
+        /**
+         cid:用户id
+         
+         ts：时间戳
+         sign：签名md5(cid+ts+cmdno+passwd)
+         cmdno：
+         */
+        let ts = Date.phpTimestamp()
+        let cmdno = String.randomStr(len: 20) + ts
+        let sign = (LocalData.getCId() + ts + cmdno + LocalData.getPwd()).md5String()
         
         //1.获取类型
         let method = type == .get ? HTTPMethod.get : HTTPMethod.post
         //2.设置请求头
         let headers : HTTPHeaders = [
-            "osType": "android",
-            "token": token
-            //            "debug" : "1"
+            "osType": "ios",
+            "token": ts
         ]
         
         //3.拼接默认参数
@@ -156,8 +161,10 @@ extension NetTools{
         }else{
             param = parameters!
         }
-        param["token"] = token
-        param["ts"] = token_time
+        param["ts"] = ts
+        param["sign"] = sign
+        param["cmdno"] = cmdno
+        param["cid"] = LocalData.getCId()
         
         //4.拼接url
         let URL = usedServer + urlString.trim
@@ -188,6 +195,64 @@ extension NetTools{
                 debugPrint(json)
                 #endif
 
+                
+                if json["code"].stringValue != "0"{
+                    failure( json["message"].stringValue)
+                    return
+                }
+                
+                //返回正确结果
+                succeed(json["content"])
+            }
+            
+            //请求失败
+            if respose.result.isFailure{
+                #if DEBUG
+                debugPrint("-----------错误数据--------")
+                debugPrint(respose.result.error ?? "请求失败！")
+                #endif
+                failure(respose.result.error as? String ?? "数据获取失败,请重试！")
+            }
+        }
+    }
+    
+    
+    //登录
+    static func normalRequest(type: MethodType, urlString: String, parameters: [String : Any], succeed: @escaping((_ result: JSON) -> Swift.Void), failure: @escaping((_ error: String) -> Swift.Void)){
+        
+        //1.获取类型
+        let method = type == .get ? HTTPMethod.get : HTTPMethod.post
+        //2.设置请求头
+        let headers : HTTPHeaders = [:]
+        //4.拼接url
+        let URL = usedServer + urlString.trim
+        
+        #if DEBUG
+        var strs : Array<String> = Array<String>()
+        for key in parameters.keys {
+            let value  = parameters[key]
+            strs.append(key + "=" + "\(value ?? "")")
+        }
+        let str = strs.joined(separator: "&")
+        debugPrint("-----------URL--------")
+        if URL.contains("?"){
+            debugPrint(URL + "&" + str)
+        }else{
+            debugPrint(URL + "?" + str)
+        }
+        #endif
+        
+        //5.获取网络请求
+        NetTools.defManager.request(URL, method: method, parameters: parameters, encoding: URLEncoding.default, headers:headers).responseJSON { (respose) in
+            //请求成功
+            if respose.result.isSuccess{
+                
+                let json = JSON(respose.result.value ?? ["error":"未请求到数据"])
+                #if DEBUG
+                debugPrint("-----------返回数据--------")
+                debugPrint(json)
+                #endif
+                
                 
                 if json["code"].stringValue != "0"{
                     failure( json["message"].stringValue)

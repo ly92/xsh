@@ -56,6 +56,17 @@ extension String{
         return textView.sizeThatFits(CGSize.init(width: width, height: height))
     }
     
+    
+    static func randomStr(len : Int) -> String{
+        let random_str_characters = "0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ"
+        var ranStr = ""
+        for _ in 0..<len {
+            let index = Int(arc4random_uniform(UInt32(random_str_characters.count)))
+            ranStr.append(random_str_characters[random_str_characters.index(random_str_characters.startIndex, offsetBy: index)])
+        }
+        return ranStr
+    }
+    
 }
 
 // MARK: - MD5

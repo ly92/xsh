@@ -22,15 +22,25 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         self.window?.makeKeyAndVisible()
         
         self.window?.rootViewController = tabBar
+        if LocalData.getYesOrNotValue(key: KIsLoginKey){
+            self.checkLogin()
+        }
         
+        
+        
+        
+        let entity = JPUSHRegisterEntity()
+        entity.types = Int(JPAuthorizationOptions.alert.rawValue)|Int(JPAuthorizationOptions.badge.rawValue)|Int(JPAuthorizationOptions.sound.rawValue)
+        DispatchQueue.main.async {
+            JPUSHService.register(forRemoteNotificationConfig: entity, delegate: nil)
+        }
         
         
         return true
     }
 
     func applicationWillResignActive(_ application: UIApplication) {
-        // Sent when the application is about to move from active to inactive state. This can occur for certain types of temporary interruptions (such as an incoming phone call or SMS message) or when the user quits the application and it begins the transition to the background state.
-        // Use this method to pause ongoing tasks, disable timers, and invalidate graphics rendering callbacks. Games should use this method to pause the game.
+        
     }
 
     func applicationDidEnterBackground(_ application: UIApplication) {
@@ -39,7 +49,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     }
 
     func applicationWillEnterForeground(_ application: UIApplication) {
-        // Called as part of the transition from the background to the active state; here you can undo many of the changes made on entering the background.
+        if LocalData.getYesOrNotValue(key: KIsLoginKey){
+            self.checkLogin()
+        }
     }
 
     func applicationDidBecomeActive(_ application: UIApplication) {
@@ -80,6 +92,12 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         })
         return container
     }()
+    
+    func application(_ application: UIApplication, didRegisterForRemoteNotificationsWithDeviceToken deviceToken: Data) {
+        
+        let token = deviceToken.description.replacingOccurrences(of: ">", with: "").replacingOccurrences(of: "<", with: "").replacingOccurrences(of: " ", with: "")
+        LocalData.saveToken(token: token)
+    }
 
     // MARK: - Core Data Saving support
 
@@ -99,3 +117,26 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
 }
 
+
+
+extension AppDelegate {
+    
+    func checkLogin() {
+        var params : [String : Any] = [:]
+        params["device"] = LocalData.getToken()
+        NetTools.requestData(type: .post, urlString: CheckTokenApi, parameters: params, succeed: { (result) in
+            //0:重新登录，1:正常
+            if result["result"].stringValue.intValue == 0{
+                guard let nav = self.tabBar.selectedViewController as? LYNavigationController else{
+                    return
+                }
+                let loginVC = LoginViewController.spwan()
+                nav.viewControllers.first?.present(loginVC, animated: true) {
+                }
+            }else if result["result"].stringValue.intValue == 1{
+            }
+        }) { (error) in
+            LYProgressHUD.showError(error)
+        }
+    }
+}

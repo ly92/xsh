@@ -35,7 +35,8 @@ class RegisterViewController: BaseTableViewController {
     
     
     fileprivate var secIndex = 0//0:记录了手机号，1:更改手机号，2:忘记密码，3:更改密码
-    
+    fileprivate var timer = Timer()//
+    fileprivate var codeTime : Int = 60
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -140,14 +141,32 @@ class RegisterViewController: BaseTableViewController {
         var params : [String : Any] = [:]
         params["mobile"] = phone!
         params["isnew"] = "1"
-        NetTools.requestData(type: .post, urlString: GetCodeApi, parameters: params, succeed: { (result) in
+        NetTools.normalRequest(type: .post, urlString: GetCodeApi, parameters: params, succeed: { (result) in
             if type == 1{
                 self.secIndex = 1
                 self.tableView.reloadData()
                 self.verifyPhoneLbl.text = "您正在使用" + phone! + "进行注册"
             }
+            self.setUpCodeTimer()
+            self.codeTF.becomeFirstResponder()
         }) { (error) in
             LYProgressHUD.showError(error)
+        }
+    }
+    func setUpCodeTimer() {
+        self.codeTime = 60
+        Timer.scheduledTimer(withTimeInterval: 1.0, repeats: true) { (timer) in
+            if self.codeTime > 0{
+                
+                self.codeBtn.isEnabled = false
+                self.codeBtn.setTitle("\(self.codeTime) 秒后重新获取", for: .disabled)
+                self.codeTime -= 1
+            }else{
+                self.codeBtn.isEnabled = true
+                self.codeBtn.setTitle("重新获取", for: .normal)
+                
+                timer.invalidate()
+            }
         }
     }
     
@@ -181,7 +200,7 @@ class RegisterViewController: BaseTableViewController {
         params["nickname"] = name
         params["passwd"] = (pwd.md5String() + phone!).md5String()
         params["code"] = code!
-        NetTools.requestData(type: .post, urlString: RegisterApi, parameters: params, succeed: { (result) in
+        NetTools.normalRequest(type: .post, urlString: RegisterApi, parameters: params, succeed: { (result) in
             self.secIndex = 3
             self.tableView.reloadData()
         }) { (error) in

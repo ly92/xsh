@@ -13,14 +13,7 @@ class ShopViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        
-        let btn = UIButton()
-        btn.setTitle("login", for: .normal)
-        btn.size = CGSize.init(width: 250, height: 100)
-        btn.center = self.view.center
-        self.view.addSubview(btn)
-        btn.backgroundColor = UIColor.red
-        btn.addTarget(self, action: #selector(ShopViewController.loginAction), for: .touchUpInside)
+     
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -32,14 +25,7 @@ class ShopViewController: UIViewController {
     }
     
     
-    @objc func loginAction() {
-        let loginVC = LoginViewController.spwan()
-        
-        self.present(loginVC, animated: true) {
-            
-        }
-    }
-    
+
 
     /*
     // MARK: - Navigation

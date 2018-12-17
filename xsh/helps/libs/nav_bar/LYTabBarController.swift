@@ -45,8 +45,8 @@ class LYTabBarController: UITabBarController {
     
     fileprivate func setUpAllChildViewControllers () {
         let titles = ["购物","优惠券","消息","我的"]
-        let normalImgs = ["shop","coupon","message","personal"]
-        let selectedImgs = ["shop-2","coupon-2","message-2","personal-2"]
+        let normalImgs = ["shop_unselect","coupon_unselect","message_unselect","personal_unselect"]
+        let selectedImgs = ["shop_select","coupon_select","message_select","personal_select"]
         
             let firstVC = ShopViewController()
             setUpNavRootViewController(vc: firstVC, title: titles[0], imageName: normalImgs[0], selectedImageName: selectedImgs[0])

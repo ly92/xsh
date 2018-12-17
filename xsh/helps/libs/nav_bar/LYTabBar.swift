@@ -30,8 +30,8 @@ class LYTabBar: UITabBar {
     
     
     func addButton() {
-        btn.setBackgroundImage(UIImage.init(named: "qrcodescan"), for: .normal)
-        btn.setBackgroundImage(UIImage.init(named: "qrcodescan-2"), for: .highlighted)
+        btn.setBackgroundImage(UIImage.init(named: "tabbar_scan"), for: .normal)
+//        btn.setBackgroundImage(UIImage.init(named: "qrcodescan-2"), for: .highlighted)
         
         btn.addTarget(self, action: #selector(LYTabBar.btnAction), for: .touchUpInside)
         self.addSubview(btn)
@@ -49,17 +49,17 @@ class LYTabBar: UITabBar {
         
         
         self.btn.center_x = self.center_x
-        self.btn.center_y = self.h * 0.5 - 1.5 * 10
+        self.btn.center_y = self.h * 0.5 - 20
         
         self.btn.size = self.btn.currentBackgroundImage?.size
         
-        self.lbl.text = "哈哈"
-        self.lbl.font = UIFont.systemFont(ofSize: 10)
-        self.lbl.textColor = UIColor.gray
-        self.lbl.sizeToFit()
-        self.lbl.center_x = self.btn.center_x
-        self.lbl.center_y = self.btn.frame.maxY + 0.5 * 10 + 0.5
-        self.addSubview(self.lbl)
+//        self.lbl.text = "哈哈"
+//        self.lbl.font = UIFont.systemFont(ofSize: 10)
+//        self.lbl.textColor = UIColor.gray
+//        self.lbl.sizeToFit()
+//        self.lbl.center_x = self.btn.center_x
+//        self.lbl.center_y = self.btn.frame.maxY + 0.5 * 10 + 0.5
+//        self.addSubview(self.lbl)
         
         var index = 0
         for view in self.subviews{
