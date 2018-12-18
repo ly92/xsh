@@ -1,18 +1,17 @@
 //
-//  GoodsCell.swift
+//  MyOrderCell.swift
 //  xsh
 //
-//  Created by ly on 2018/12/18.
+//  Created by 李勇 on 2018/12/18.
 //  Copyright © 2018年 wwzb. All rights reserved.
 //
 
 import UIKit
 
-class GoodsCell: UITableViewCell {
-    @IBOutlet weak var imgV: UIImageView!
+class MyOrderCell: UITableViewCell {
     @IBOutlet weak var nameLbl: UILabel!
-    @IBOutlet weak var priceLbl: UILabel!
-    @IBOutlet weak var saleCountLbl: UILabel!
+    @IBOutlet weak var timeLbl: UILabel!
+    @IBOutlet weak var moneyLbl: UILabel!
     
     override func awakeFromNib() {
         super.awakeFromNib()
