@@ -10,6 +10,22 @@
 		0807CA9621C7C47700967692 /* LocalData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0807CA9421C7C47700967692 /* LocalData.swift */; };
 		0807CA9721C7C47700967692 /* LYProgressHUD.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0807CA9521C7C47700967692 /* LYProgressHUD.swift */; };
 		0807CA9A21C7EC3500967692 /* Personal.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0807CA9921C7EC3500967692 /* Personal.storyboard */; };
+		0819FBAB21C8B13B0078EB8D /* PersonalViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0819FBAA21C8B13B0078EB8D /* PersonalViewController.swift */; };
+		0819FBB521C8DB550078EB8D /* BannerScrollImageCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0819FBAD21C8DB550078EB8D /* BannerScrollImageCell.swift */; };
+		0819FBB621C8DB550078EB8D /* BannerScrollImageCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0819FBAE21C8DB550078EB8D /* BannerScrollImageCell.xib */; };
+		0819FBB721C8DB550078EB8D /* BannerScrollTitleCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0819FBAF21C8DB550078EB8D /* BannerScrollTitleCell.swift */; };
+		0819FBB821C8DB550078EB8D /* BannerScrollTitleCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0819FBB021C8DB550078EB8D /* BannerScrollTitleCell.xib */; };
+		0819FBB921C8DB550078EB8D /* LYAnimateBannerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0819FBB121C8DB550078EB8D /* LYAnimateBannerView.swift */; };
+		0819FBBA21C8DB550078EB8D /* LYUpScrollBannerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0819FBB221C8DB550078EB8D /* LYUpScrollBannerView.swift */; };
+		0819FBBB21C8DB550078EB8D /* TransactionBannerCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0819FBB321C8DB550078EB8D /* TransactionBannerCell.swift */; };
+		0819FBBC21C8DB550078EB8D /* TransactionBannerCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0819FBB421C8DB550078EB8D /* TransactionBannerCell.xib */; };
+		0819FBBE21C8DDAE0078EB8D /* Shop.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0819FBBD21C8DDAE0078EB8D /* Shop.storyboard */; };
+		0819FBC221C8E3140078EB8D /* ShopViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0819FBC121C8E3140078EB8D /* ShopViewController.swift */; };
+		0819FBC721C8E3680078EB8D /* ActivityCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0819FBC521C8E3680078EB8D /* ActivityCell.swift */; };
+		0819FBC821C8E3680078EB8D /* ActivityCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0819FBC621C8E3680078EB8D /* ActivityCell.xib */; };
+		0819FBCB21C8E38A0078EB8D /* GoodsCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0819FBC921C8E38A0078EB8D /* GoodsCell.swift */; };
+		0819FBCC21C8E38A0078EB8D /* GoodsCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0819FBCA21C8E38A0078EB8D /* GoodsCell.xib */; };
+		0819FBCE21C8ED7B0078EB8D /* UIImageView+Category.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0819FBCD21C8ED7A0078EB8D /* UIImageView+Category.swift */; };
 		0861B83221C29703008795E5 /* NetTools.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0861B83121C29703008795E5 /* NetTools.swift */; };
 		0861B83421C2971A008795E5 /* NetApis.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0861B83321C2971A008795E5 /* NetApis.swift */; };
 		0861B83621C297BF008795E5 /* Date+Category.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0861B83521C297BF008795E5 /* Date+Category.swift */; };
@@ -26,8 +42,6 @@
 		08A3A40921C158CE008E071F /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 08A3A40721C158CE008E071F /* LaunchScreen.storyboard */; };
 		08A3A41421C158CF008E071F /* xshTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08A3A41321C158CF008E071F /* xshTests.swift */; };
 		08A3A41F21C158CF008E071F /* xshUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08A3A41E21C158CF008E071F /* xshUITests.swift */; };
-		08A3A44D21C1664E008E071F /* PersonalViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08A3A44C21C1664E008E071F /* PersonalViewController.swift */; };
-		08A3A44F21C16659008E071F /* ShopViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08A3A44E21C16659008E071F /* ShopViewController.swift */; };
 		08A3A45121C16663008E071F /* MessageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08A3A45021C16663008E071F /* MessageViewController.swift */; };
 		08A3A45321C1666E008E071F /* CouponViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08A3A45221C1666E008E071F /* CouponViewController.swift */; };
 		08A3A46421C168B6008E071F /* UIViewController+Category.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08A3A45721C168B6008E071F /* UIViewController+Category.swift */; };
@@ -68,6 +82,22 @@
 		0807CA9521C7C47700967692 /* LYProgressHUD.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LYProgressHUD.swift; sourceTree = "<group>"; };
 		0807CA9821C7D70F00967692 /* xsh.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = xsh.entitlements; sourceTree = "<group>"; };
 		0807CA9921C7EC3500967692 /* Personal.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Personal.storyboard; sourceTree = "<group>"; };
+		0819FBAA21C8B13B0078EB8D /* PersonalViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PersonalViewController.swift; sourceTree = "<group>"; };
+		0819FBAD21C8DB550078EB8D /* BannerScrollImageCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BannerScrollImageCell.swift; sourceTree = "<group>"; };
+		0819FBAE21C8DB550078EB8D /* BannerScrollImageCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = BannerScrollImageCell.xib; sourceTree = "<group>"; };
+		0819FBAF21C8DB550078EB8D /* BannerScrollTitleCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BannerScrollTitleCell.swift; sourceTree = "<group>"; };
+		0819FBB021C8DB550078EB8D /* BannerScrollTitleCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = BannerScrollTitleCell.xib; sourceTree = "<group>"; };
+		0819FBB121C8DB550078EB8D /* LYAnimateBannerView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LYAnimateBannerView.swift; sourceTree = "<group>"; };
+		0819FBB221C8DB550078EB8D /* LYUpScrollBannerView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LYUpScrollBannerView.swift; sourceTree = "<group>"; };
+		0819FBB321C8DB550078EB8D /* TransactionBannerCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TransactionBannerCell.swift; sourceTree = "<group>"; };
+		0819FBB421C8DB550078EB8D /* TransactionBannerCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TransactionBannerCell.xib; sourceTree = "<group>"; };
+		0819FBBD21C8DDAE0078EB8D /* Shop.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Shop.storyboard; sourceTree = "<group>"; };
+		0819FBC121C8E3140078EB8D /* ShopViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ShopViewController.swift; sourceTree = "<group>"; };
+		0819FBC521C8E3680078EB8D /* ActivityCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActivityCell.swift; sourceTree = "<group>"; };
+		0819FBC621C8E3680078EB8D /* ActivityCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ActivityCell.xib; sourceTree = "<group>"; };
+		0819FBC921C8E38A0078EB8D /* GoodsCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GoodsCell.swift; sourceTree = "<group>"; };
+		0819FBCA21C8E38A0078EB8D /* GoodsCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = GoodsCell.xib; sourceTree = "<group>"; };
+		0819FBCD21C8ED7A0078EB8D /* UIImageView+Category.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIImageView+Category.swift"; sourceTree = "<group>"; };
 		0861B83121C29703008795E5 /* NetTools.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetTools.swift; sourceTree = "<group>"; };
 		0861B83321C2971A008795E5 /* NetApis.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetApis.swift; sourceTree = "<group>"; };
 		0861B83521C297BF008795E5 /* Date+Category.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Date+Category.swift"; sourceTree = "<group>"; };
@@ -91,8 +121,6 @@
 		08A3A41A21C158CF008E071F /* xshUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = xshUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		08A3A41E21C158CF008E071F /* xshUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = xshUITests.swift; sourceTree = "<group>"; };
 		08A3A42021C158CF008E071F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		08A3A44C21C1664E008E071F /* PersonalViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PersonalViewController.swift; sourceTree = "<group>"; };
-		08A3A44E21C16659008E071F /* ShopViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShopViewController.swift; sourceTree = "<group>"; };
 		08A3A45021C16663008E071F /* MessageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageViewController.swift; sourceTree = "<group>"; };
 		08A3A45221C1666E008E071F /* CouponViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CouponViewController.swift; sourceTree = "<group>"; };
 		08A3A45721C168B6008E071F /* UIViewController+Category.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIViewController+Category.swift"; sourceTree = "<group>"; };
@@ -152,6 +180,48 @@
 				0807CA9521C7C47700967692 /* LYProgressHUD.swift */,
 			);
 			path = comment;
+			sourceTree = "<group>";
+		};
+		0819FBA921C8B13B0078EB8D /* views */ = {
+			isa = PBXGroup;
+			children = (
+				0819FBAA21C8B13B0078EB8D /* PersonalViewController.swift */,
+			);
+			path = views;
+			sourceTree = "<group>";
+		};
+		0819FBAC21C8DB550078EB8D /* banner */ = {
+			isa = PBXGroup;
+			children = (
+				0819FBAD21C8DB550078EB8D /* BannerScrollImageCell.swift */,
+				0819FBAE21C8DB550078EB8D /* BannerScrollImageCell.xib */,
+				0819FBAF21C8DB550078EB8D /* BannerScrollTitleCell.swift */,
+				0819FBB021C8DB550078EB8D /* BannerScrollTitleCell.xib */,
+				0819FBB121C8DB550078EB8D /* LYAnimateBannerView.swift */,
+				0819FBB221C8DB550078EB8D /* LYUpScrollBannerView.swift */,
+				0819FBB321C8DB550078EB8D /* TransactionBannerCell.swift */,
+				0819FBB421C8DB550078EB8D /* TransactionBannerCell.xib */,
+			);
+			path = banner;
+			sourceTree = "<group>";
+		};
+		0819FBBF21C8E3140078EB8D /* views */ = {
+			isa = PBXGroup;
+			children = (
+				0819FBC121C8E3140078EB8D /* ShopViewController.swift */,
+			);
+			path = views;
+			sourceTree = "<group>";
+		};
+		0819FBC421C8E3360078EB8D /* cells */ = {
+			isa = PBXGroup;
+			children = (
+				0819FBC521C8E3680078EB8D /* ActivityCell.swift */,
+				0819FBC621C8E3680078EB8D /* ActivityCell.xib */,
+				0819FBC921C8E38A0078EB8D /* GoodsCell.swift */,
+				0819FBCA21C8E38A0078EB8D /* GoodsCell.xib */,
+			);
+			path = cells;
 			sourceTree = "<group>";
 		};
 		0861B83021C29690008795E5 /* net */ = {
@@ -253,7 +323,7 @@
 		08A3A42F21C16405008E071F /* personal */ = {
 			isa = PBXGroup;
 			children = (
-				08A3A44C21C1664E008E071F /* PersonalViewController.swift */,
+				0819FBA921C8B13B0078EB8D /* views */,
 				0807CA9921C7EC3500967692 /* Personal.storyboard */,
 			);
 			path = personal;
@@ -262,7 +332,9 @@
 		08A3A43021C16405008E071F /* shop */ = {
 			isa = PBXGroup;
 			children = (
-				08A3A44E21C16659008E071F /* ShopViewController.swift */,
+				0819FBC421C8E3360078EB8D /* cells */,
+				0819FBBF21C8E3140078EB8D /* views */,
+				0819FBBD21C8DDAE0078EB8D /* Shop.storyboard */,
 			);
 			path = shop;
 			sourceTree = "<group>";
@@ -296,6 +368,7 @@
 		08A3A45521C168B6008E071F /* libs */ = {
 			isa = PBXGroup;
 			children = (
+				0819FBAC21C8DB550078EB8D /* banner */,
 				08A3A45621C168B6008E071F /* category */,
 				08A3A46021C168B6008E071F /* nav_bar */,
 				0861B83721C29807008795E5 /* xsh-Bridging-Header.h */,
@@ -306,6 +379,7 @@
 		08A3A45621C168B6008E071F /* category */ = {
 			isa = PBXGroup;
 			children = (
+				0819FBCD21C8ED7A0078EB8D /* UIImageView+Category.swift */,
 				0861B83521C297BF008795E5 /* Date+Category.swift */,
 				08A3A45721C168B6008E071F /* UIViewController+Category.swift */,
 				08A3A45821C168B6008E071F /* UIView+Category.swift */,
@@ -470,8 +544,14 @@
 			files = (
 				0861B83D21C29D0D008795E5 /* Login.storyboard in Resources */,
 				0807CA9A21C7EC3500967692 /* Personal.storyboard in Resources */,
+				0819FBB621C8DB550078EB8D /* BannerScrollImageCell.xib in Resources */,
+				0819FBBE21C8DDAE0078EB8D /* Shop.storyboard in Resources */,
+				0819FBB821C8DB550078EB8D /* BannerScrollTitleCell.xib in Resources */,
 				08A3A40921C158CE008E071F /* LaunchScreen.storyboard in Resources */,
+				0819FBC821C8E3680078EB8D /* ActivityCell.xib in Resources */,
 				08A3A40621C158CE008E071F /* Assets.xcassets in Resources */,
+				0819FBBC21C8DB550078EB8D /* TransactionBannerCell.xib in Resources */,
+				0819FBCC21C8E38A0078EB8D /* GoodsCell.xib in Resources */,
 				08A3A40121C158CD008E071F /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -602,25 +682,33 @@
 			files = (
 				08A3A46421C168B6008E071F /* UIViewController+Category.swift in Sources */,
 				08A3A46D21C168B6008E071F /* LYTabBar.swift in Sources */,
+				0819FBC221C8E3140078EB8D /* ShopViewController.swift in Sources */,
 				08A3A46521C168B6008E071F /* UIView+Category.swift in Sources */,
 				08A3A46C21C168B6008E071F /* String+Category.swift in Sources */,
 				08A3A46F21C168B6008E071F /* LYNavigationController.swift in Sources */,
 				0807CA9721C7C47700967692 /* LYProgressHUD.swift in Sources */,
 				08A3A3FE21C158CD008E071F /* ViewController.swift in Sources */,
 				08A3A46721C168B6008E071F /* UILabel+Category.swift in Sources */,
-				08A3A44F21C16659008E071F /* ShopViewController.swift in Sources */,
 				08A3A46921C168B6008E071F /* UIColor+Category.swift in Sources */,
 				0807CA9621C7C47700967692 /* LocalData.swift in Sources */,
 				08A3A46B21C168B6008E071F /* DeviceSystemHelper.swift in Sources */,
+				0819FBB721C8DB550078EB8D /* BannerScrollTitleCell.swift in Sources */,
 				08A3A46821C168B6008E071F /* NSObject+Extension.swift in Sources */,
+				0819FBAB21C8B13B0078EB8D /* PersonalViewController.swift in Sources */,
+				0819FBB521C8DB550078EB8D /* BannerScrollImageCell.swift in Sources */,
 				0861B84221C29DC0008795E5 /* BaseTableViewController.swift in Sources */,
 				0861B84821C52E29008795E5 /* LoginViewController.swift in Sources */,
+				0819FBBB21C8DB550078EB8D /* TransactionBannerCell.swift in Sources */,
+				0819FBCE21C8ED7B0078EB8D /* UIImageView+Category.swift in Sources */,
 				08A3A46621C168B6008E071F /* Array+Category.swift in Sources */,
 				08A3A46E21C168B6008E071F /* LYTabBarController.swift in Sources */,
 				0861B84021C29D74008795E5 /* BaseViewController.swift in Sources */,
+				0819FBC721C8E3680078EB8D /* ActivityCell.swift in Sources */,
 				0861B84A21C53EEB008795E5 /* RegisterViewController.swift in Sources */,
 				08A3A45121C16663008E071F /* MessageViewController.swift in Sources */,
-				08A3A44D21C1664E008E071F /* PersonalViewController.swift in Sources */,
+				0819FBBA21C8DB550078EB8D /* LYUpScrollBannerView.swift in Sources */,
+				0819FBCB21C8E38A0078EB8D /* GoodsCell.swift in Sources */,
+				0819FBB921C8DB550078EB8D /* LYAnimateBannerView.swift in Sources */,
 				08A3A40421C158CD008E071F /* xsh.xcdatamodeld in Sources */,
 				0861B83421C2971A008795E5 /* NetApis.swift in Sources */,
 				0861B83621C297BF008795E5 /* Date+Category.swift in Sources */,
