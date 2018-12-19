@@ -8,17 +8,18 @@
 
 import Foundation
 import UIKit
+import Kingfisher
 
 extension UIImageView{
 
     func setImageUrlStr(_ str : String){
-        self.kf.setImage(with: URL(string:str), placeholder: #imageLiteral(resourceName: "placeholder_icon"), options: nil, progressBlock: nil, completionHandler: nil)
+        self.kf.setImage(with: URL(string:str), placeholder: #imageLiteral(resourceName: "placeholder_app"), options: nil, progressBlock: nil, completionHandler: nil)
     
        
     }
     
     func setHeadImageUrlStr(_ str : String){
-        self.kf.setImage(with: URL(string:str), placeholder: #imageLiteral(resourceName: "head_placeholder"), options: nil, progressBlock: nil, completionHandler: nil)
+        self.kf.setImage(with: URL(string:str), placeholder: #imageLiteral(resourceName: "header"), options: nil, progressBlock: nil, completionHandler: nil)
     }
     
     func setImageUrlStrAndPlaceholderImg(_ str : String, _ pImg : UIImage) {

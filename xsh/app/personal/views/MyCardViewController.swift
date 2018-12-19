@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import SwiftyJSON
 
 class MyCardViewController: BaseViewController {
     class func spwan() -> MyCardViewController{
@@ -24,7 +25,26 @@ class MyCardViewController: BaseViewController {
         super.viewDidLoad()
         self.navigationItem.title = "我的一卡通"
         
+        self.checkOpenCard()
     }
+    
+    //检查是否开通了一卡通
+    func checkOpenCard() {
+        NetTools.requestData(type: .post, urlString: CheckCardApi, succeed: { (result) in
+            if result["result"].intValue == 0{
+                self.haveCard.isHidden = true
+                self.noCard.isHidden = false
+            }else if result["result"].intValue == 1{
+                self.haveCard.isHidden = false
+                self.noCard.isHidden = true
+            }
+        }) { (error) in
+            LYProgressHUD.showError(error)
+        }
+    }
+    
+    
+    
     
     @IBAction func btnAction(_ btn: UIButton) {
         if btn.tag == 1{

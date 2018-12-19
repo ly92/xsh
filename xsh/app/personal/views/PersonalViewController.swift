@@ -48,6 +48,7 @@ class PersonalViewController: BaseTableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        self.loadPersonalInfo()
     }
     //个人信息
     func loadPersonalInfo() {
@@ -56,9 +57,9 @@ class PersonalViewController: BaseTableViewController {
         NetTools.requestData(type: .post, urlString: GetPersonalInfoApi, parameters: params, succeed: { (result) in
             self.personalInfo = result
             
-            self.icon.setHeadImageUrlStr(result[""][""].stringValue)
-            self.nameLbl.text = result["nickname"].stringValue
-            let phone = result["mobile"].stringValue.trim
+            self.icon.setHeadImageUrlStr(result["user"][""].stringValue)
+            self.nameLbl.text = result["user"]["nickname"].stringValue
+            let phone = result["user"]["mobile"].stringValue.trim
             if phone.isMobelPhone(){
                 self.phoneLbl.text = phone.prefix(3) + "****" + phone.suffix(4)
             }else{
@@ -69,6 +70,7 @@ class PersonalViewController: BaseTableViewController {
             LYProgressHUD.showError(error)
         }
     }
+    
     //修改个人信息
     func updatePersonalInfo() {
         var params : [String : Any] = [:]
@@ -107,7 +109,8 @@ class PersonalViewController: BaseTableViewController {
             
         }else if indexPath.row == 2{
             //我的一卡通
-            
+            let myCardVC = MyCardViewController.spwan()
+            self.navigationController?.pushViewController(myCardVC, animated: true)
         }else if indexPath.row == 3{
             //我的交易
             

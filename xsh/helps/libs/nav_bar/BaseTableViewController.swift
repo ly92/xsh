@@ -12,7 +12,9 @@ class BaseTableViewController: UITableViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        
+        self.tableView.separatorStyle = .none
+        self.tableView.backgroundColor = BG_Color
         
     }
 

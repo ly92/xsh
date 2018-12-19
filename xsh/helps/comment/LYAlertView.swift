@@ -114,10 +114,10 @@ class LYAlertView: UIView {
             
             //        rightBtn!.setBackgroundImage( UIImage(named: "button_orange_normal") ,for:UIControlState.normal)
             //        rightBtn!.setBackgroundImage( UIImage(named: "button_orange_click") ,for:UIControlState.selected)
-            rightBtn!.setTitle(otherButtonTitle as String, for: UIControlState.normal)
+            rightBtn!.setTitle(otherButtonTitle as String, for: UIControl.State.normal)
             rightBtn!.titleLabel!.font = UIFont.boldSystemFont(ofSize: 14)
-            rightBtn!.setTitleColor(UIColor.RGBS(s: 33),for:UIControlState.normal)
-            rightBtn!.addTarget(self, action: #selector(LYAlertView.rightBtnClicked), for: UIControlEvents.touchUpInside)
+            rightBtn!.setTitleColor(UIColor.RGBS(s: 33),for:UIControl.State.normal)
+            rightBtn!.addTarget(self, action: #selector(LYAlertView.rightBtnClicked), for: UIControl.Event.touchUpInside)
             rightBtn!.layer.masksToBounds = true
             rightBtn!.layer.cornerRadius = 3.0
             backImageView?.addSubview(rightBtn!)
@@ -144,10 +144,10 @@ class LYAlertView: UIView {
         
         //            leftBtn?.setBackgroundImage(UIImage(named: "button_white_normal"), for: UIControlState.normal)
         //            leftBtn?.setBackgroundImage(UIImage(named: "button_white_clicked"), for: UIControlState.selected)
-        leftBtn!.setTitle(cancelButtonTitle as String, for: UIControlState.normal)
+        leftBtn!.setTitle(cancelButtonTitle as String, for: UIControl.State.normal)
         leftBtn!.titleLabel!.font = UIFont.boldSystemFont(ofSize: 14)
-        leftBtn!.setTitleColor(UIColor.RGBS(s: 33),for:UIControlState.normal)
-        leftBtn!.addTarget(self, action: #selector(LYAlertView.leftBtnClicked), for: UIControlEvents.touchUpInside)
+        leftBtn!.setTitleColor(UIColor.RGBS(s: 33),for:UIControl.State.normal)
+        leftBtn!.addTarget(self, action: #selector(LYAlertView.leftBtnClicked), for: UIControl.Event.touchUpInside)
         leftBtn!.layer.masksToBounds = true
         backImageView?.addSubview(leftBtn!)
         leftBtn!.layer.masksToBounds = true
@@ -192,19 +192,19 @@ class LYAlertView: UIView {
     func occur(animation:Bool) -> Void{
         
         UIApplication.shared.keyWindow?.addSubview(self)
-        UIApplication.shared.keyWindow?.bringSubview(toFront: self)
+        UIApplication.shared.keyWindow?.bringSubviewToFront(self)
         
         if animation {
             
             UIView.animate(withDuration: 0.1, delay: 0, options:
-                UIViewAnimationOptions.transitionCrossDissolve, animations: { () -> Void in
+                UIView.AnimationOptions.transitionCrossDissolve, animations: { () -> Void in
                     self.alpha = 1.0
                     self.backImageView?.layer.setAffineTransform(CGAffineTransform(scaleX: 0.9, y: 0.9))
             }) { (Bool) -> Void in
-                UIView.animate(withDuration: 0.1, delay: 0, options: UIViewAnimationOptions.transitionCrossDissolve, animations: { () -> Void in
+                UIView.animate(withDuration: 0.1, delay: 0, options: UIView.AnimationOptions.transitionCrossDissolve, animations: { () -> Void in
                     self.backImageView?.layer.setAffineTransform(CGAffineTransform(scaleX: 1.1, y: 1.1))
                 }) { (Bool) -> Void in
-                    UIView.animate(withDuration: 0.1, delay: 0, options: UIViewAnimationOptions.transitionCrossDissolve, animations: { () -> Void in
+                    UIView.animate(withDuration: 0.1, delay: 0, options: UIView.AnimationOptions.transitionCrossDissolve, animations: { () -> Void in
                         self.backImageView?.layer.setAffineTransform(CGAffineTransform(scaleX: 0.9, y: 0.9))
                     }) { (Bool) -> Void in
                         self.backImageView?.layer.setAffineTransform(CGAffineTransform(scaleX: 1.0, y: 1.0))
@@ -215,7 +215,7 @@ class LYAlertView: UIView {
     }
     
     func dismiss() -> Void{
-        UIView.animate(withDuration: 0.2, delay: 0, options: UIViewAnimationOptions.transitionCrossDissolve, animations: { () -> Void in
+        UIView.animate(withDuration: 0.2, delay: 0, options: UIView.AnimationOptions.transitionCrossDissolve, animations: { () -> Void in
             self.alpha = 0
         }) { (Bool) -> Void in
             self.removeFromSuperview()

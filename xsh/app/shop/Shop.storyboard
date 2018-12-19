@@ -31,8 +31,8 @@
                                                     <constraint firstAttribute="height" constant="150" id="EZ9-P9-8ny"/>
                                                 </constraints>
                                             </view>
-                                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="Ehj-9C-RJA">
-                                                <rect key="frame" x="0.0" y="354" width="375" height="313"/>
+                                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="Ehj-9C-RJA">
+                                                <rect key="frame" x="0.0" y="386" width="375" height="281"/>
                                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <connections>
                                                     <outlet property="dataSource" destination="cfF-Uq-8vp" id="MNV-Yb-5y4"/>
@@ -40,7 +40,7 @@
                                                 </connections>
                                             </tableView>
                                             <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="sZw-VF-NKi">
-                                                <rect key="frame" x="0.0" y="226" width="375" height="120"/>
+                                                <rect key="frame" x="0.0" y="258" width="375" height="120"/>
                                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="120" id="dhO-CX-0gj"/>
@@ -67,10 +67,10 @@
                                                 </connections>
                                             </collectionView>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="uV7-XQ-Uqf">
-                                                <rect key="frame" x="0.0" y="158" width="375" height="60"/>
+                                                <rect key="frame" x="0.0" y="158" width="375" height="92"/>
                                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <constraints>
-                                                    <constraint firstAttribute="height" constant="60" id="Q3a-bh-9Ek"/>
+                                                    <constraint firstAttribute="height" constant="92" id="Q3a-bh-9Ek"/>
                                                 </constraints>
                                             </view>
                                         </subviews>
@@ -116,6 +116,9 @@
                         <outlet property="collectionView" destination="sZw-VF-NKi" id="ujs-kT-J0g"/>
                         <outlet property="functionView" destination="uV7-XQ-Uqf" id="SoV-iO-1Gj"/>
                         <outlet property="hederView" destination="pc6-bc-uGb" id="jVX-vj-Ubs"/>
+                        <outlet property="scrollContentHeight" destination="Efr-RF-K96" id="ZBG-nI-wP5"/>
+                        <outlet property="scrollContentView" destination="cpJ-im-Jqv" id="tBN-3I-90Y"/>
+                        <outlet property="scrollView" destination="EfE-OK-7CB" id="3jg-fG-gvh"/>
                         <outlet property="tableView" destination="Ehj-9C-RJA" id="cgl-Z4-hhs"/>
                     </connections>
                 </viewController>

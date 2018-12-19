@@ -48,7 +48,7 @@ class LYTabBarController: UITabBarController {
         let normalImgs = ["shop_unselect","coupon_unselect","message_unselect","personal_unselect"]
         let selectedImgs = ["shop_select","coupon_select","message_select","personal_select"]
         
-            let firstVC = ShopViewController()
+            let firstVC = ShopViewController.spwan()
             setUpNavRootViewController(vc: firstVC, title: titles[0], imageName: normalImgs[0], selectedImageName: selectedImgs[0])
         
         let secVC = CouponViewController()

@@ -74,4 +74,22 @@ let NoticeDetailApi = "notice/get"//post id
 
 
 
+/************************************ 一卡通 ********************************************/
+//检查是否开通
+let CheckCardApi = "card/check" // post
+//开通一卡通
+let OpenCardApi = "card/open" // post passwd
+//绑定实体卡
+let BindCardApi = "card/bindHardCard" // post cardno, code, passwd
+//一卡通详情
+let CardDetailApi = "card/get" // post
+//修改支付密码
+let CardChangePwdApi = "user/updatePaypwd" // post oldpasswd, newpasswd
+//交易记录
+let CardOrderListApi = "card/listTransaction" // post starttime, stoptime, skip, limit
+//查询充值方式
+let CardRechargeTypeApi = "card/depositType" // post
+//充值
+let CardRechargeApi = "card/deposit" // post ptid:支付方式, atid货币id, anos：收款账户, money
+
 

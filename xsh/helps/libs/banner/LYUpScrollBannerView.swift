@@ -81,7 +81,7 @@ class LYUpScrollBannerView: UIView {
     func addTimer()  {
         self.removeTimer()
         self.timer = Timer(timeInterval: 3.0, target: self, selector: #selector(LYUpScrollBannerView.nextPage), userInfo: nil, repeats: true)
-        RunLoop.main.add(self.timer!, forMode: .defaultRunLoopMode)
+        RunLoop.main.add(self.timer!, forMode: .default)
         timer!.fire()
         self.isAutoScrolling = true
     }

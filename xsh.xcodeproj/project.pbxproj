@@ -12,6 +12,14 @@
 		0807CA9A21C7EC3500967692 /* Personal.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0807CA9921C7EC3500967692 /* Personal.storyboard */; };
 		08169D6B21C943B10030D863 /* MyOrderCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08169D6921C943B10030D863 /* MyOrderCell.swift */; };
 		08169D6C21C943B10030D863 /* MyOrderCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 08169D6A21C943B10030D863 /* MyOrderCell.xib */; };
+		08169D7221CA83D30030D863 /* BaseWebViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08169D7121CA83D30030D863 /* BaseWebViewController.swift */; };
+		08169D7421CA840E0030D863 /* UIBUtton+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08169D7321CA840E0030D863 /* UIBUtton+Extension.swift */; };
+		08169D7621CA846D0030D863 /* UIBarButtonItem+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08169D7521CA846D0030D863 /* UIBarButtonItem+Extension.swift */; };
+		08169D7821CA94CF0030D863 /* NoticeTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08169D7721CA94CF0030D863 /* NoticeTableViewController.swift */; };
+		08169D7B21CA94F10030D863 /* NoticeCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08169D7921CA94F10030D863 /* NoticeCell.swift */; };
+		08169D7C21CA94F10030D863 /* NoticeCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 08169D7A21CA94F10030D863 /* NoticeCell.xib */; };
+		08169D7E21CAA0A80030D863 /* BindCardTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08169D7D21CAA0A80030D863 /* BindCardTableViewController.swift */; };
+		08169D8021CAA1030030D863 /* OpenCardViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08169D7F21CAA1030030D863 /* OpenCardViewController.swift */; };
 		0819FBAB21C8B13B0078EB8D /* PersonalViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0819FBAA21C8B13B0078EB8D /* PersonalViewController.swift */; };
 		0819FBB521C8DB550078EB8D /* BannerScrollImageCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0819FBAD21C8DB550078EB8D /* BannerScrollImageCell.swift */; };
 		0819FBB621C8DB550078EB8D /* BannerScrollImageCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0819FBAE21C8DB550078EB8D /* BannerScrollImageCell.xib */; };
@@ -37,7 +45,7 @@
 		0861B84821C52E29008795E5 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0861B84721C52E29008795E5 /* LoginViewController.swift */; };
 		0861B84A21C53EEB008795E5 /* RegisterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0861B84921C53EEB008795E5 /* RegisterViewController.swift */; };
 		086E2CF621C9E6CF00896F25 /* MyCouponTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 086E2CF521C9E6CF00896F25 /* MyCouponTableViewController.swift */; };
-		086E2CF821C9E6F600896F25 /* ChangeLoginPwdViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 086E2CF721C9E6F600896F25 /* ChangeLoginPwdViewController.swift */; };
+		086E2CF821C9E6F600896F25 /* ChangeCardPwdViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 086E2CF721C9E6F600896F25 /* ChangeCardPwdViewController.swift */; };
 		086E2CFA21C9E71C00896F25 /* MyQrcodeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 086E2CF921C9E71C00896F25 /* MyQrcodeViewController.swift */; };
 		086E2CFC21C9E75900896F25 /* MyOrderTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 086E2CFB21C9E75900896F25 /* MyOrderTableViewController.swift */; };
 		086E2CFE21C9E78000896F25 /* MyCardViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 086E2CFD21C9E78000896F25 /* MyCardViewController.swift */; };
@@ -95,6 +103,14 @@
 		0807CA9921C7EC3500967692 /* Personal.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Personal.storyboard; sourceTree = "<group>"; };
 		08169D6921C943B10030D863 /* MyOrderCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyOrderCell.swift; sourceTree = "<group>"; };
 		08169D6A21C943B10030D863 /* MyOrderCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MyOrderCell.xib; sourceTree = "<group>"; };
+		08169D7121CA83D30030D863 /* BaseWebViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BaseWebViewController.swift; sourceTree = "<group>"; };
+		08169D7321CA840E0030D863 /* UIBUtton+Extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIBUtton+Extension.swift"; sourceTree = "<group>"; };
+		08169D7521CA846D0030D863 /* UIBarButtonItem+Extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIBarButtonItem+Extension.swift"; sourceTree = "<group>"; };
+		08169D7721CA94CF0030D863 /* NoticeTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoticeTableViewController.swift; sourceTree = "<group>"; };
+		08169D7921CA94F10030D863 /* NoticeCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoticeCell.swift; sourceTree = "<group>"; };
+		08169D7A21CA94F10030D863 /* NoticeCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = NoticeCell.xib; sourceTree = "<group>"; };
+		08169D7D21CAA0A80030D863 /* BindCardTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BindCardTableViewController.swift; sourceTree = "<group>"; };
+		08169D7F21CAA1030030D863 /* OpenCardViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OpenCardViewController.swift; sourceTree = "<group>"; };
 		0819FBAA21C8B13B0078EB8D /* PersonalViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PersonalViewController.swift; sourceTree = "<group>"; };
 		0819FBAD21C8DB550078EB8D /* BannerScrollImageCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BannerScrollImageCell.swift; sourceTree = "<group>"; };
 		0819FBAE21C8DB550078EB8D /* BannerScrollImageCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = BannerScrollImageCell.xib; sourceTree = "<group>"; };
@@ -121,7 +137,7 @@
 		0861B84721C52E29008795E5 /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		0861B84921C53EEB008795E5 /* RegisterViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterViewController.swift; sourceTree = "<group>"; };
 		086E2CF521C9E6CF00896F25 /* MyCouponTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyCouponTableViewController.swift; sourceTree = "<group>"; };
-		086E2CF721C9E6F600896F25 /* ChangeLoginPwdViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChangeLoginPwdViewController.swift; sourceTree = "<group>"; };
+		086E2CF721C9E6F600896F25 /* ChangeCardPwdViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChangeCardPwdViewController.swift; sourceTree = "<group>"; };
 		086E2CF921C9E71C00896F25 /* MyQrcodeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyQrcodeViewController.swift; sourceTree = "<group>"; };
 		086E2CFB21C9E75900896F25 /* MyOrderTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyOrderTableViewController.swift; sourceTree = "<group>"; };
 		086E2CFD21C9E78000896F25 /* MyCardViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyCardViewController.swift; sourceTree = "<group>"; };
@@ -221,10 +237,12 @@
 			children = (
 				0819FBAA21C8B13B0078EB8D /* PersonalViewController.swift */,
 				086E2CF521C9E6CF00896F25 /* MyCouponTableViewController.swift */,
-				086E2CF721C9E6F600896F25 /* ChangeLoginPwdViewController.swift */,
+				086E2CF721C9E6F600896F25 /* ChangeCardPwdViewController.swift */,
 				086E2CF921C9E71C00896F25 /* MyQrcodeViewController.swift */,
 				086E2CFB21C9E75900896F25 /* MyOrderTableViewController.swift */,
 				086E2CFD21C9E78000896F25 /* MyCardViewController.swift */,
+				08169D7D21CAA0A80030D863 /* BindCardTableViewController.swift */,
+				08169D7F21CAA1030030D863 /* OpenCardViewController.swift */,
 			);
 			path = views;
 			sourceTree = "<group>";
@@ -248,6 +266,7 @@
 			isa = PBXGroup;
 			children = (
 				0819FBC121C8E3140078EB8D /* ShopViewController.swift */,
+				08169D7721CA94CF0030D863 /* NoticeTableViewController.swift */,
 			);
 			path = views;
 			sourceTree = "<group>";
@@ -259,6 +278,8 @@
 				0819FBC621C8E3680078EB8D /* ActivityCell.xib */,
 				0819FBC921C8E38A0078EB8D /* GoodsCell.swift */,
 				0819FBCA21C8E38A0078EB8D /* GoodsCell.xib */,
+				08169D7921CA94F10030D863 /* NoticeCell.swift */,
+				08169D7A21CA94F10030D863 /* NoticeCell.xib */,
 			);
 			path = cells;
 			sourceTree = "<group>";
@@ -437,11 +458,14 @@
 		08A3A46021C168B6008E071F /* nav_bar */ = {
 			isa = PBXGroup;
 			children = (
+				08169D7521CA846D0030D863 /* UIBarButtonItem+Extension.swift */,
+				08169D7321CA840E0030D863 /* UIBUtton+Extension.swift */,
 				08A3A46121C168B6008E071F /* LYTabBar.swift */,
 				08A3A46221C168B6008E071F /* LYTabBarController.swift */,
 				08A3A46321C168B6008E071F /* LYNavigationController.swift */,
 				0861B83F21C29D74008795E5 /* BaseViewController.swift */,
 				0861B84121C29DC0008795E5 /* BaseTableViewController.swift */,
+				08169D7121CA83D30030D863 /* BaseWebViewController.swift */,
 			);
 			path = nav_bar;
 			sourceTree = "<group>";
@@ -594,6 +618,7 @@
 				08A3A40621C158CE008E071F /* Assets.xcassets in Resources */,
 				0819FBBC21C8DB550078EB8D /* TransactionBannerCell.xib in Resources */,
 				086E2D0121C9EEBF00896F25 /* CouponCell.xib in Resources */,
+				08169D7C21CA94F10030D863 /* NoticeCell.xib in Resources */,
 				0819FBCC21C8E38A0078EB8D /* GoodsCell.xib in Resources */,
 				08A3A40121C158CD008E071F /* Main.storyboard in Resources */,
 			);
@@ -723,8 +748,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				08169D7221CA83D30030D863 /* BaseWebViewController.swift in Sources */,
 				08A3A46421C168B6008E071F /* UIViewController+Category.swift in Sources */,
 				08A3A46D21C168B6008E071F /* LYTabBar.swift in Sources */,
+				08169D7821CA94CF0030D863 /* NoticeTableViewController.swift in Sources */,
 				0819FBC221C8E3140078EB8D /* ShopViewController.swift in Sources */,
 				08A3A46521C168B6008E071F /* UIView+Category.swift in Sources */,
 				08A3A46C21C168B6008E071F /* String+Category.swift in Sources */,
@@ -733,7 +760,9 @@
 				08A3A3FE21C158CD008E071F /* ViewController.swift in Sources */,
 				086E2D0221C9EEBF00896F25 /* CouponCell.swift in Sources */,
 				08A3A46721C168B6008E071F /* UILabel+Category.swift in Sources */,
+				08169D8021CAA1030030D863 /* OpenCardViewController.swift in Sources */,
 				08A3A46921C168B6008E071F /* UIColor+Category.swift in Sources */,
+				08169D7B21CA94F10030D863 /* NoticeCell.swift in Sources */,
 				086E2D0421CA2CB800896F25 /* Config.swift in Sources */,
 				0807CA9621C7C47700967692 /* LocalData.swift in Sources */,
 				08A3A46B21C168B6008E071F /* DeviceSystemHelper.swift in Sources */,
@@ -755,12 +784,15 @@
 				086E2CFC21C9E75900896F25 /* MyOrderTableViewController.swift in Sources */,
 				0861B84A21C53EEB008795E5 /* RegisterViewController.swift in Sources */,
 				08A3A45121C16663008E071F /* MessageViewController.swift in Sources */,
+				08169D7421CA840E0030D863 /* UIBUtton+Extension.swift in Sources */,
+				08169D7E21CAA0A80030D863 /* BindCardTableViewController.swift in Sources */,
 				0819FBBA21C8DB550078EB8D /* LYUpScrollBannerView.swift in Sources */,
-				086E2CF821C9E6F600896F25 /* ChangeLoginPwdViewController.swift in Sources */,
+				086E2CF821C9E6F600896F25 /* ChangeCardPwdViewController.swift in Sources */,
 				0819FBCB21C8E38A0078EB8D /* GoodsCell.swift in Sources */,
 				0819FBB921C8DB550078EB8D /* LYAnimateBannerView.swift in Sources */,
 				08A3A40421C158CD008E071F /* xsh.xcdatamodeld in Sources */,
 				0861B83421C2971A008795E5 /* NetApis.swift in Sources */,
+				08169D7621CA846D0030D863 /* UIBarButtonItem+Extension.swift in Sources */,
 				086E2CFA21C9E71C00896F25 /* MyQrcodeViewController.swift in Sources */,
 				0861B83621C297BF008795E5 /* Date+Category.swift in Sources */,
 				08A3A45321C1666E008E071F /* CouponViewController.swift in Sources */,

@@ -1,5 +1,5 @@
 //
-//  ChangeLoginPwdViewController.swift
+//  ChangeCardPwdViewController.swift
 //  xsh
 //
 //  Created by ly on 2018/12/19.
@@ -8,9 +8,9 @@
 
 import UIKit
 
-class ChangeLoginPwdViewController: BaseTableViewController {
-    class func spwan() -> ChangeLoginPwdViewController{
-        return self.loadFromStoryBoard(storyBoard: "Personal") as! ChangeLoginPwdViewController
+class ChangeCardPwdViewController: BaseTableViewController {
+    class func spwan() -> ChangeCardPwdViewController{
+        return self.loadFromStoryBoard(storyBoard: "Personal") as! ChangeCardPwdViewController
     }
     
     @IBOutlet weak var pwdTF1: UITextField!
@@ -40,7 +40,7 @@ class ChangeLoginPwdViewController: BaseTableViewController {
         var params : [String : Any] = [:]
         params["oldpasswd"] = pwd1
         params["newpasswd"] = pwd2
-        NetTools.requestData(type: .post, urlString: ChangePwdApi, parameters: params, succeed: { (result) in
+        NetTools.requestData(type: .post, urlString: CardChangePwdApi, parameters: params, succeed: { (result) in
             LYProgressHUD.showSuccess("密码更改成功！")
             LocalData.savePwd(pwd: pwd2)
             self.navigationController?.popViewController(animated: true)
