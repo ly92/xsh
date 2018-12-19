@@ -121,6 +121,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
 extension AppDelegate {
     
+    //检测是否需要重新登录
     func checkLogin() {
         var params : [String : Any] = [:]
         params["device"] = LocalData.getToken()
@@ -139,4 +140,20 @@ extension AppDelegate {
             LYProgressHUD.showError(error)
         }
     }
+    
+    
+    //检测版本号
+    func checkVersion() {
+        var params : [String : Any] = [:]
+        params["platform"] = "ios"
+        NetTools.requestData(type: .post, urlString: CheckVersionApi, parameters: params, succeed: { (result) in
+
+        }) { (error) in
+            LYProgressHUD.showError(error)
+        }
+    }
+    
+    
+    
+    
 }

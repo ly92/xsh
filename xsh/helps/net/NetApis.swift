@@ -46,7 +46,8 @@ let GetPersonalInfoApi = "user/get" //post id
 let ChangePersonalInfoApi = "user/modify" //post cid,nickname, communityid:所在小区id
 //修改手机号
 let ChangePhoneApi = "user/mobile" //post cid:用户内部id，mobile:手机号，code:验证码，passwd:验证密码md5(md5(密码)+手机号)
-
+//查询最新版本
+let CheckVersionApi = "ver" //post platform:终端类型
 
 /************************************ 功能栏 ********************************************/
 //首页功能栏
