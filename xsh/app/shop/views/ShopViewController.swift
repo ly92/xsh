@@ -106,7 +106,7 @@ class ShopViewController: UIViewController {
         }
     }
     
-    //查询广告位广告
+    //查询广告位广告详情
     func loadAdsDetail() {
         var params : [String : Any] = [:]
         params["id"] = ""
@@ -117,6 +117,31 @@ class ShopViewController: UIViewController {
         }
     }
 
+    
+    //公告列表
+    func loadNoticesData() {
+        var params : [String : Any] = [:]
+        params["skip"] = self.adList.count
+        params["limit"] = "10"
+        NetTools.requestData(type: .post, urlString: NoticeListApi, parameters: params, succeed: { (result) in
+            
+        }) { (error) in
+            LYProgressHUD.showError(error)
+        }
+    }
+    
+    //查询广告位广告详情
+    func loadNoticeDetail() {
+        var params : [String : Any] = [:]
+        params["id"] = ""
+        NetTools.requestData(type: .post, urlString: NoticeDetailApi, parameters: params, succeed: { (result) in
+            
+        }) { (error) in
+            LYProgressHUD.showError(error)
+        }
+    }
+
+    
 }
 
 

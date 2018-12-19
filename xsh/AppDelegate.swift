@@ -147,7 +147,34 @@ extension AppDelegate {
         var params : [String : Any] = [:]
         params["platform"] = "ios"
         NetTools.requestData(type: .post, urlString: CheckVersionApi, parameters: params, succeed: { (result) in
-
+            let localVersion = appVersion().replacingOccurrences(of: ".", with: "").intValue
+            let netVersion = result["new_version_num"].stringValue.intValue
+            let isForce = result["version_force"].stringValue.intValue
+            var message = result["version_msg"].stringValue
+            var url = result["version_url"].stringValue
+            if message.trim.isEmpty{
+                message = "APP有新版本更新，为了您的使用体验，请到App Store下载更新"
+            }
+            if url.trim.isEmpty{
+                url = "itms-apps://itunes.apple.com/cn/app/id1171281585?mt=8"
+            }
+            if localVersion < netVersion{
+                if isForce == 1{
+                    LYAlertView.show("提示", message,"去更新",{
+                        let urlStr = url
+                        if UIApplication.shared.canOpenURL(URL(string:urlStr)!){
+                            UIApplication.shared.open(URL(string:urlStr)!, options: [:], completionHandler: nil)
+                        }
+                    })
+                }else{
+                    LYAlertView.show("提示", message,"下次再说","去更新",{
+                        let urlStr = url
+                        if UIApplication.shared.canOpenURL(URL(string:urlStr)!){
+                            UIApplication.shared.open(URL(string:urlStr)!, options: [:], completionHandler: nil)
+                        }
+                    })
+                }
+            }
         }) { (error) in
             LYProgressHUD.showError(error)
         }

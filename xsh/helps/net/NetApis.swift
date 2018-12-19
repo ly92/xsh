@@ -10,11 +10,6 @@ import UIKit
 class NetApis: NSObject {
     
 }
-//屏幕尺寸
-let kScreenSize = UIScreen.main.bounds.size
-let kScreenW = UIScreen.main.bounds.width
-let kScreenH = UIScreen.main.bounds.height
-
 
 
 
