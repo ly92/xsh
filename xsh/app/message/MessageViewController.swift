@@ -16,15 +16,20 @@ class MessageViewController: UIViewController {
         // Do any additional setup after loading the view.
     }
     
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
+    //消息列表
+    func loadMessageData() {
+        var params : [String : Any] = [:]
+        params["type"] = "0"
+        params["lastid"] = "0"
+        params["skip"] = "0"
+        params["limit"] = "10"
+        NetTools.requestData(type: .post, urlString: FunctionListApi, parameters: params, succeed: { (result) in
+            
+        }) { (error) in
+            LYProgressHUD.showError(error)
+        }
     }
-    */
+
+
 
 }
