@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import SwiftyJSON
 
 class PersonalViewController: BaseTableViewController {
     class func spwan() -> PersonalViewController{
@@ -18,7 +19,7 @@ class PersonalViewController: BaseTableViewController {
     @IBOutlet weak var phoneLbl: UILabel!
     @IBOutlet weak var addressLbl: UILabel!
     
-    
+    fileprivate var personalInfo = JSON()
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
@@ -48,6 +49,27 @@ class PersonalViewController: BaseTableViewController {
         super.viewDidLoad()
 
     }
+    //个人信息
+    func loadPersonalInfo() {
+        var params : [String : Any] = [:]
+        params["id"] = LocalData.getCId()
+        NetTools.requestData(type: .post, urlString: GetPersonalInfoApi, parameters: params, succeed: { (result) in
+            self.personalInfo = result
+            
+            self.icon.setHeadImageUrlStr(result[""][""].stringValue)
+            self.nameLbl.text = result["nickname"].stringValue
+            let phone = result["mobile"].stringValue.trim
+            if phone.isMobelPhone(){
+                self.phoneLbl.text = phone.prefix(3) + "****" + phone.suffix(4)
+            }else{
+                self.phoneLbl.text = "***********"
+            }
+            
+        }) { (error) in
+            LYProgressHUD.showError(error)
+        }
+    }
+    
     
     
     

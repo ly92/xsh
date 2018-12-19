@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import SwiftyJSON
 
 class ShopViewController: UIViewController {
     class func spwan() -> ShopViewController{
@@ -18,6 +19,8 @@ class ShopViewController: UIViewController {
     @IBOutlet weak var functionView: UIView!
     @IBOutlet weak var collectionView: UICollectionView!
     @IBOutlet weak var tableView: UITableView!
+    
+    fileprivate var adList : Array<JSON> = []
     
 
     fileprivate lazy var bannerView : LYAnimateBannerView = {
@@ -46,6 +49,17 @@ class ShopViewController: UIViewController {
         
     }
     
+    
+    //功能栏数据
+    func loadFunctionData() {
+        var params : [String : Any] = [:]
+        params["userid"] = LocalData.getCId()
+        NetTools.requestData(type: .post, urlString: FunctionListApi, parameters: params, succeed: { (result) in
+            
+        }) { (error) in
+            LYProgressHUD.showError(error)
+        }
+    }
     
     //设置功能栏
     func setUpFunctionViews() {
@@ -78,6 +92,30 @@ class ShopViewController: UIViewController {
     @objc func functionClickAction( _ btn : UIButton) {
         
     }
+    
+    //查询广告位广告
+    func loadAdsData() {
+        var params : [String : Any] = [:]
+        params["location"] = LocalData.getCId()
+        params["skip"] = self.adList.count
+        params["limit"] = "10"
+        NetTools.requestData(type: .post, urlString: AdListApi, parameters: params, succeed: { (result) in
+            
+        }) { (error) in
+            LYProgressHUD.showError(error)
+        }
+    }
+    
+    //查询广告位广告
+    func loadAdsDetail() {
+        var params : [String : Any] = [:]
+        params["id"] = ""
+        NetTools.requestData(type: .post, urlString: AdDetailApi, parameters: params, succeed: { (result) in
+            
+        }) { (error) in
+            LYProgressHUD.showError(error)
+        }
+    }
 
 }
 
@@ -86,17 +124,7 @@ class ShopViewController: UIViewController {
 //LYBannerViewDelegate
 extension ShopViewController : LYAnimateBannerViewDelegate{
     func LY_AnimateBannerViewClick(banner:LYAnimateBannerView, index: NSInteger) {
-        NetTools.qxfClickCount("4")
-        if self.banner_list.count > index{
-            let subJson = self.banner_list[index]
-            if subJson["url"].stringValue.trim.isEmpty{
-                return
-            }
-            let webVC = BaseWebViewController.spwan()
-            webVC.urlStr = subJson["banner_jump"].stringValue
-            webVC.titleStr = subJson["banner_name"].stringValue
-            self.navigationController?.pushViewController(webVC, animated: true)
-        }
+        
     }
     
 }

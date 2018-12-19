@@ -12,8 +12,6 @@
 		0807CA9A21C7EC3500967692 /* Personal.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0807CA9921C7EC3500967692 /* Personal.storyboard */; };
 		08169D6B21C943B10030D863 /* MyOrderCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08169D6921C943B10030D863 /* MyOrderCell.swift */; };
 		08169D6C21C943B10030D863 /* MyOrderCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 08169D6A21C943B10030D863 /* MyOrderCell.xib */; };
-		08169D6F21C945C00030D863 /* CouponCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08169D6D21C945C00030D863 /* CouponCell.swift */; };
-		08169D7021C945C00030D863 /* CouponCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 08169D6E21C945C00030D863 /* CouponCell.xib */; };
 		0819FBAB21C8B13B0078EB8D /* PersonalViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0819FBAA21C8B13B0078EB8D /* PersonalViewController.swift */; };
 		0819FBB521C8DB550078EB8D /* BannerScrollImageCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0819FBAD21C8DB550078EB8D /* BannerScrollImageCell.swift */; };
 		0819FBB621C8DB550078EB8D /* BannerScrollImageCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0819FBAE21C8DB550078EB8D /* BannerScrollImageCell.xib */; };
@@ -38,6 +36,13 @@
 		0861B84221C29DC0008795E5 /* BaseTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0861B84121C29DC0008795E5 /* BaseTableViewController.swift */; };
 		0861B84821C52E29008795E5 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0861B84721C52E29008795E5 /* LoginViewController.swift */; };
 		0861B84A21C53EEB008795E5 /* RegisterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0861B84921C53EEB008795E5 /* RegisterViewController.swift */; };
+		086E2CF621C9E6CF00896F25 /* MyCouponTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 086E2CF521C9E6CF00896F25 /* MyCouponTableViewController.swift */; };
+		086E2CF821C9E6F600896F25 /* ChangeLoginPwdViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 086E2CF721C9E6F600896F25 /* ChangeLoginPwdViewController.swift */; };
+		086E2CFA21C9E71C00896F25 /* MyQrcodeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 086E2CF921C9E71C00896F25 /* MyQrcodeViewController.swift */; };
+		086E2CFC21C9E75900896F25 /* MyOrderTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 086E2CFB21C9E75900896F25 /* MyOrderTableViewController.swift */; };
+		086E2CFE21C9E78000896F25 /* MyCardViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 086E2CFD21C9E78000896F25 /* MyCardViewController.swift */; };
+		086E2D0121C9EEBF00896F25 /* CouponCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 086E2CFF21C9EEBF00896F25 /* CouponCell.xib */; };
+		086E2D0221C9EEBF00896F25 /* CouponCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 086E2D0021C9EEBF00896F25 /* CouponCell.swift */; };
 		08A3A3FC21C158CD008E071F /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08A3A3FB21C158CD008E071F /* AppDelegate.swift */; };
 		08A3A3FE21C158CD008E071F /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08A3A3FD21C158CD008E071F /* ViewController.swift */; };
 		08A3A40121C158CD008E071F /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 08A3A3FF21C158CD008E071F /* Main.storyboard */; };
@@ -88,8 +93,6 @@
 		0807CA9921C7EC3500967692 /* Personal.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Personal.storyboard; sourceTree = "<group>"; };
 		08169D6921C943B10030D863 /* MyOrderCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyOrderCell.swift; sourceTree = "<group>"; };
 		08169D6A21C943B10030D863 /* MyOrderCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MyOrderCell.xib; sourceTree = "<group>"; };
-		08169D6D21C945C00030D863 /* CouponCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CouponCell.swift; sourceTree = "<group>"; };
-		08169D6E21C945C00030D863 /* CouponCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CouponCell.xib; sourceTree = "<group>"; };
 		0819FBAA21C8B13B0078EB8D /* PersonalViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PersonalViewController.swift; sourceTree = "<group>"; };
 		0819FBAD21C8DB550078EB8D /* BannerScrollImageCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BannerScrollImageCell.swift; sourceTree = "<group>"; };
 		0819FBAE21C8DB550078EB8D /* BannerScrollImageCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = BannerScrollImageCell.xib; sourceTree = "<group>"; };
@@ -115,6 +118,13 @@
 		0861B84121C29DC0008795E5 /* BaseTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseTableViewController.swift; sourceTree = "<group>"; };
 		0861B84721C52E29008795E5 /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		0861B84921C53EEB008795E5 /* RegisterViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterViewController.swift; sourceTree = "<group>"; };
+		086E2CF521C9E6CF00896F25 /* MyCouponTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyCouponTableViewController.swift; sourceTree = "<group>"; };
+		086E2CF721C9E6F600896F25 /* ChangeLoginPwdViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChangeLoginPwdViewController.swift; sourceTree = "<group>"; };
+		086E2CF921C9E71C00896F25 /* MyQrcodeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyQrcodeViewController.swift; sourceTree = "<group>"; };
+		086E2CFB21C9E75900896F25 /* MyOrderTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyOrderTableViewController.swift; sourceTree = "<group>"; };
+		086E2CFD21C9E78000896F25 /* MyCardViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyCardViewController.swift; sourceTree = "<group>"; };
+		086E2CFF21C9EEBF00896F25 /* CouponCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CouponCell.xib; sourceTree = "<group>"; };
+		086E2D0021C9EEBF00896F25 /* CouponCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CouponCell.swift; sourceTree = "<group>"; };
 		08A3A3F821C158CD008E071F /* xsh.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = xsh.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		08A3A3FB21C158CD008E071F /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		08A3A3FD21C158CD008E071F /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -193,6 +203,8 @@
 		08169D6821C943930030D863 /* cells */ = {
 			isa = PBXGroup;
 			children = (
+				086E2D0021C9EEBF00896F25 /* CouponCell.swift */,
+				086E2CFF21C9EEBF00896F25 /* CouponCell.xib */,
 				08169D6921C943B10030D863 /* MyOrderCell.swift */,
 				08169D6A21C943B10030D863 /* MyOrderCell.xib */,
 			);
@@ -203,6 +215,11 @@
 			isa = PBXGroup;
 			children = (
 				0819FBAA21C8B13B0078EB8D /* PersonalViewController.swift */,
+				086E2CF521C9E6CF00896F25 /* MyCouponTableViewController.swift */,
+				086E2CF721C9E6F600896F25 /* ChangeLoginPwdViewController.swift */,
+				086E2CF921C9E71C00896F25 /* MyQrcodeViewController.swift */,
+				086E2CFB21C9E75900896F25 /* MyOrderTableViewController.swift */,
+				086E2CFD21C9E78000896F25 /* MyCardViewController.swift */,
 			);
 			path = views;
 			sourceTree = "<group>";
@@ -237,8 +254,6 @@
 				0819FBC621C8E3680078EB8D /* ActivityCell.xib */,
 				0819FBC921C8E38A0078EB8D /* GoodsCell.swift */,
 				0819FBCA21C8E38A0078EB8D /* GoodsCell.xib */,
-				08169D6D21C945C00030D863 /* CouponCell.swift */,
-				08169D6E21C945C00030D863 /* CouponCell.xib */,
 			);
 			path = cells;
 			sourceTree = "<group>";
@@ -567,12 +582,12 @@
 				0819FBB621C8DB550078EB8D /* BannerScrollImageCell.xib in Resources */,
 				0819FBBE21C8DDAE0078EB8D /* Shop.storyboard in Resources */,
 				0819FBB821C8DB550078EB8D /* BannerScrollTitleCell.xib in Resources */,
-				08169D7021C945C00030D863 /* CouponCell.xib in Resources */,
 				08A3A40921C158CE008E071F /* LaunchScreen.storyboard in Resources */,
 				08169D6C21C943B10030D863 /* MyOrderCell.xib in Resources */,
 				0819FBC821C8E3680078EB8D /* ActivityCell.xib in Resources */,
 				08A3A40621C158CE008E071F /* Assets.xcassets in Resources */,
 				0819FBBC21C8DB550078EB8D /* TransactionBannerCell.xib in Resources */,
+				086E2D0121C9EEBF00896F25 /* CouponCell.xib in Resources */,
 				0819FBCC21C8E38A0078EB8D /* GoodsCell.xib in Resources */,
 				08A3A40121C158CD008E071F /* Main.storyboard in Resources */,
 			);
@@ -710,30 +725,35 @@
 				08A3A46F21C168B6008E071F /* LYNavigationController.swift in Sources */,
 				0807CA9721C7C47700967692 /* LYProgressHUD.swift in Sources */,
 				08A3A3FE21C158CD008E071F /* ViewController.swift in Sources */,
+				086E2D0221C9EEBF00896F25 /* CouponCell.swift in Sources */,
 				08A3A46721C168B6008E071F /* UILabel+Category.swift in Sources */,
 				08A3A46921C168B6008E071F /* UIColor+Category.swift in Sources */,
 				0807CA9621C7C47700967692 /* LocalData.swift in Sources */,
 				08A3A46B21C168B6008E071F /* DeviceSystemHelper.swift in Sources */,
 				0819FBB721C8DB550078EB8D /* BannerScrollTitleCell.swift in Sources */,
 				08A3A46821C168B6008E071F /* NSObject+Extension.swift in Sources */,
-				08169D6F21C945C00030D863 /* CouponCell.swift in Sources */,
 				0819FBAB21C8B13B0078EB8D /* PersonalViewController.swift in Sources */,
+				086E2CFE21C9E78000896F25 /* MyCardViewController.swift in Sources */,
 				0819FBB521C8DB550078EB8D /* BannerScrollImageCell.swift in Sources */,
 				0861B84221C29DC0008795E5 /* BaseTableViewController.swift in Sources */,
 				0861B84821C52E29008795E5 /* LoginViewController.swift in Sources */,
+				086E2CF621C9E6CF00896F25 /* MyCouponTableViewController.swift in Sources */,
 				0819FBBB21C8DB550078EB8D /* TransactionBannerCell.swift in Sources */,
 				0819FBCE21C8ED7B0078EB8D /* UIImageView+Category.swift in Sources */,
 				08A3A46621C168B6008E071F /* Array+Category.swift in Sources */,
 				08A3A46E21C168B6008E071F /* LYTabBarController.swift in Sources */,
 				0861B84021C29D74008795E5 /* BaseViewController.swift in Sources */,
 				0819FBC721C8E3680078EB8D /* ActivityCell.swift in Sources */,
+				086E2CFC21C9E75900896F25 /* MyOrderTableViewController.swift in Sources */,
 				0861B84A21C53EEB008795E5 /* RegisterViewController.swift in Sources */,
 				08A3A45121C16663008E071F /* MessageViewController.swift in Sources */,
 				0819FBBA21C8DB550078EB8D /* LYUpScrollBannerView.swift in Sources */,
+				086E2CF821C9E6F600896F25 /* ChangeLoginPwdViewController.swift in Sources */,
 				0819FBCB21C8E38A0078EB8D /* GoodsCell.swift in Sources */,
 				0819FBB921C8DB550078EB8D /* LYAnimateBannerView.swift in Sources */,
 				08A3A40421C158CD008E071F /* xsh.xcdatamodeld in Sources */,
 				0861B83421C2971A008795E5 /* NetApis.swift in Sources */,
+				086E2CFA21C9E71C00896F25 /* MyQrcodeViewController.swift in Sources */,
 				0861B83621C297BF008795E5 /* Date+Category.swift in Sources */,
 				08A3A45321C1666E008E071F /* CouponViewController.swift in Sources */,
 				0861B83221C29703008795E5 /* NetTools.swift in Sources */,
