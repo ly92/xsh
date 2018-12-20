@@ -36,18 +36,7 @@ class NoticeTableViewController: BaseTableViewController {
         }
     }
     
-    //查询广告位广告详情
-    func loadNoticeDetail() {
-        var params : [String : Any] = [:]
-        params["id"] = ""
-        NetTools.requestData(type: .post, urlString: NoticeDetailApi, parameters: params, succeed: { (result) in
-            
-        }) { (error) in
-            LYProgressHUD.showError(error)
-        }
-    }
 
-    
     
     
     // MARK: - Table view data source
@@ -69,5 +58,16 @@ class NoticeTableViewController: BaseTableViewController {
         return 120
     }
     
+    
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        tableView.deselectRow(at: indexPath, animated: false)
+        
+        if self.noticeList.count > indexPath.row{
+            let json = self.noticeList[indexPath.row]
+            let detailVC = NoticeDetailViewController.spwan()
+            detailVC.noticeId = json[""].stringValue
+            self.navigationController?.pushViewController(detailVC, animated: true)
+        }
+    }
 
 }

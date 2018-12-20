@@ -25,7 +25,14 @@ class MyCardViewController: BaseViewController {
         super.viewDidLoad()
         self.navigationItem.title = "我的一卡通"
         
+        self.navigationItem.rightBarButtonItem = UIBarButtonItem.init(title: "", target: self, action: #selector(MyCardViewController.rightItemAction))
+        
         self.checkOpenCard()
+    }
+    
+    //一卡通历史
+    @objc func rightItemAction() {
+        
     }
     
     //检查是否开通了一卡通
@@ -47,7 +54,7 @@ class MyCardViewController: BaseViewController {
     
     
     @IBAction func btnAction(_ btn: UIButton) {
-        if btn.tag == 1{
+        if btn.tag == 11{
             //充值
             let rechargeAlert = UIAlertController.init(title: "充值", message: "请输入充值金额", preferredStyle: .alert)
             let cancel = UIAlertAction.init(title: "取消", style: .cancel) { (action) in
@@ -63,12 +70,14 @@ class MyCardViewController: BaseViewController {
                 tf.placeholder = "请输入整数"
             }
             self.present(rechargeAlert, animated: true, completion: nil)
-        }else if btn.tag == 2{
+        }else if btn.tag == 22{
             //修改密码
-            
-        }else if btn.tag == 2{
+            let changePwdVC = ChangeCardPwdViewController.spwan()
+            self.navigationController?.pushViewController(changePwdVC, animated: true)
+        }else if btn.tag == 33{
             //绑定卡
-            
+            let bindVC = BindCardTableViewController.spwan()
+            self.navigationController?.pushViewController(bindVC, animated: true)
         }
     }
     

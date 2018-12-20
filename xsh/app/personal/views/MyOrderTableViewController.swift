@@ -9,9 +9,8 @@
 import UIKit
 
 class MyOrderTableViewController: BaseTableViewController {
-    class func spwan() -> MyOrderTableViewController{
-        return self.loadFromStoryBoard(storyBoard: "Personal") as! MyOrderTableViewController
-    }
+
+    var orderType = 1 // 1:我的订单，2:一卡通消费记录
     
     
     override func viewDidLoad() {
@@ -20,6 +19,25 @@ class MyOrderTableViewController: BaseTableViewController {
         
         self.tableView.register(UINib.init(nibName: "MyOrderCell", bundle: Bundle.main), forCellReuseIdentifier: "MyOrderCell")
     }
+    
+    
+    //加载消费订单
+    func loadShopOrder() {
+        
+    }
+    
+    
+    //加载一卡通消费记录
+    func loadCardOrder() {
+        NetTools.requestData(type: .post, urlString: CardOrderListApi, succeed: { (result) in
+            
+        }) { (error) in
+            LYProgressHUD.showError(error)
+        }
+    }
+    
+    
+    
     
     // MARK: - Table view data source
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {

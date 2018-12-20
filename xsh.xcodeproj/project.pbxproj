@@ -53,6 +53,7 @@
 		086E2D0221C9EEBF00896F25 /* CouponCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 086E2D0021C9EEBF00896F25 /* CouponCell.swift */; };
 		086E2D0421CA2CB800896F25 /* Config.swift in Sources */ = {isa = PBXBuildFile; fileRef = 086E2D0321CA2CB800896F25 /* Config.swift */; };
 		086E2D0921CA2E0D00896F25 /* LYAlertView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 086E2D0821CA2E0D00896F25 /* LYAlertView.swift */; };
+		086EBD8121CB8A8800C4CE12 /* NoticeDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 086EBD8021CB8A8800C4CE12 /* NoticeDetailViewController.swift */; };
 		08A3A3FC21C158CD008E071F /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08A3A3FB21C158CD008E071F /* AppDelegate.swift */; };
 		08A3A3FE21C158CD008E071F /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08A3A3FD21C158CD008E071F /* ViewController.swift */; };
 		08A3A40121C158CD008E071F /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 08A3A3FF21C158CD008E071F /* Main.storyboard */; };
@@ -145,6 +146,7 @@
 		086E2D0021C9EEBF00896F25 /* CouponCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CouponCell.swift; sourceTree = "<group>"; };
 		086E2D0321CA2CB800896F25 /* Config.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Config.swift; sourceTree = "<group>"; };
 		086E2D0821CA2E0D00896F25 /* LYAlertView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LYAlertView.swift; sourceTree = "<group>"; };
+		086EBD8021CB8A8800C4CE12 /* NoticeDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoticeDetailViewController.swift; sourceTree = "<group>"; };
 		08A3A3F821C158CD008E071F /* xsh.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = xsh.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		08A3A3FB21C158CD008E071F /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		08A3A3FD21C158CD008E071F /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -267,6 +269,7 @@
 			children = (
 				0819FBC121C8E3140078EB8D /* ShopViewController.swift */,
 				08169D7721CA94CF0030D863 /* NoticeTableViewController.swift */,
+				086EBD8021CB8A8800C4CE12 /* NoticeDetailViewController.swift */,
 			);
 			path = views;
 			sourceTree = "<group>";
@@ -758,6 +761,7 @@
 				08A3A46F21C168B6008E071F /* LYNavigationController.swift in Sources */,
 				0807CA9721C7C47700967692 /* LYProgressHUD.swift in Sources */,
 				08A3A3FE21C158CD008E071F /* ViewController.swift in Sources */,
+				086EBD8121CB8A8800C4CE12 /* NoticeDetailViewController.swift in Sources */,
 				086E2D0221C9EEBF00896F25 /* CouponCell.swift in Sources */,
 				08A3A46721C168B6008E071F /* UILabel+Category.swift in Sources */,
 				08169D8021CAA1030030D863 /* OpenCardViewController.swift in Sources */,
@@ -978,7 +982,7 @@
 				CODE_SIGN_ENTITLEMENTS = xsh/xsh.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = 3BXQF9Q7GT;
+				DEVELOPMENT_TEAM = 6FL788Y979;
 				ENABLE_BITCODE = NO;
 				INFOPLIST_FILE = xsh/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
@@ -1005,7 +1009,7 @@
 				CODE_SIGN_ENTITLEMENTS = xsh/xsh.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = 3BXQF9Q7GT;
+				DEVELOPMENT_TEAM = 6FL788Y979;
 				ENABLE_BITCODE = NO;
 				INFOPLIST_FILE = xsh/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 10.0;

@@ -28,6 +28,7 @@ class BaseWebViewController: BaseViewController {
         
         self.webView.frame = self.view.bounds
         self.webView.delegate = self
+        self.webView.scalesPageToFit = true
         self.view.addSubview(self.webView)
         
         
