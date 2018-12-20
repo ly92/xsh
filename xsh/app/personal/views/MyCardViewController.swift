@@ -19,6 +19,12 @@ class MyCardViewController: BaseViewController {
     
     @IBOutlet weak var haveCardImgV: UIImageView!
     @IBOutlet weak var noCardImgV: UIImageView!
+    @IBOutlet weak var cardNumLbl: UILabel!
+    @IBOutlet weak var cardCountLbl: UILabel!
+    @IBOutlet weak var moneyLbl: UILabel!
+    @IBOutlet weak var creditLbl: UILabel!
+    @IBOutlet weak var rechargeBtn: UIButton!
+    @IBOutlet weak var changePwdBtn: UIButton!
     
     
     override func viewDidLoad() {
@@ -75,6 +81,10 @@ class MyCardViewController: BaseViewController {
             let changePwdVC = ChangeCardPwdViewController.spwan()
             self.navigationController?.pushViewController(changePwdVC, animated: true)
         }else if btn.tag == 33{
+            //去开通
+            let openVC = OpenCardViewController.spwan()
+            self.navigationController?.pushViewController(openVC, animated: true)
+        }else if btn.tag == 44{
             //绑定卡
             let bindVC = BindCardTableViewController.spwan()
             self.navigationController?.pushViewController(bindVC, animated: true)

@@ -168,6 +168,10 @@ class ShopViewController: UIViewController {
                 self.navigationController?.pushViewController(webVC, animated: true)
             }else if json["actiontype"].intValue == 1{
                 //跳转内部页面
+                if json["actionios"].stringValue == "NoticeViewController"{
+                    let noticeVC = NoticeTableViewController()
+                    self.navigationController?.pushViewController(noticeVC, animated: true)
+                }
                 
             }else if json["actiontype"].intValue == 2{
                 //第三方应用

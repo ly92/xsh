@@ -12,25 +12,41 @@ import SwiftyJSON
 class NoticeTableViewController: BaseTableViewController {
 
     fileprivate var noticeList : Array<JSON> = []
-    
+    fileprivate var haveMore = true
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        self.navigationItem.title = ""
+        self.navigationItem.title = "公告"
         
         self.tableView.register(UINib.init(nibName: "NoticeCell", bundle: Bundle.main), forCellReuseIdentifier: "NoticeCell")
         
+        
+        self.loadNoticesData()
+        
+        self.setUpRefre {
+            self.noticeList.removeAll()
+            self.loadNoticesData()
+        }
     }
+    
+    
 
     
     
     //公告列表
     func loadNoticesData() {
         var params : [String : Any] = [:]
-        params["skip"] = 0
+        params["skip"] = self.noticeList.count
         params["limit"] = "10"
         NetTools.requestData(type: .post, urlString: NoticeListApi, parameters: params, succeed: { (result) in
-            
+            for json in result["list"]["list"].arrayValue{
+                self.noticeList.append(json)
+            }
+            if self.noticeList.count < result["list"]["total"].intValue{
+                self.haveMore = true
+            }else{
+                self.haveMore = false
+            }
         }) { (error) in
             LYProgressHUD.showError(error)
         }
@@ -41,7 +57,6 @@ class NoticeTableViewController: BaseTableViewController {
     
     // MARK: - Table view data source
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        // #warning Incomplete implementation, return the number of rows
         return self.noticeList.count
     }
 
@@ -49,7 +64,10 @@ class NoticeTableViewController: BaseTableViewController {
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "NoticeCell", for: indexPath) as! NoticeCell
 
-
+        if self.noticeList.count > indexPath.row{
+            let json = self.noticeList[indexPath.row]
+            cell.subJson = json
+        }
         
         return cell
     }
@@ -65,9 +83,17 @@ class NoticeTableViewController: BaseTableViewController {
         if self.noticeList.count > indexPath.row{
             let json = self.noticeList[indexPath.row]
             let detailVC = NoticeDetailViewController.spwan()
-            detailVC.noticeId = json[""].stringValue
+            detailVC.noticeId = json["id"].stringValue
             self.navigationController?.pushViewController(detailVC, animated: true)
+        }
+    }
+    
+    
+    override func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
+        if indexPath.row == self.noticeList.count - 1 && self.haveMore{
+            self.loadNoticesData()
         }
     }
 
 }
+

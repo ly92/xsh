@@ -16,15 +16,25 @@ class BindCardTableViewController: BaseTableViewController {
     @IBOutlet weak var cardTF: UITextField!
     @IBOutlet weak var codeTF: UITextField!
     @IBOutlet weak var pwdTF: UITextField!
+    @IBOutlet weak var bindBtn: UIButton!
+    @IBOutlet weak var codeBtn: UIButton!
+    
+    fileprivate var timer = Timer()//
+    fileprivate var codeTime : Int = 60
+    
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        self.navigationItem.title = "绑定实体卡"
         
+        self.bindBtn.layer.cornerRadius = 25
     }
+    
+    
 
     //绑定卡
-    func bindCardAction() {
+    @IBAction func bindCardAction() {
         guard let cardNo = self.cardTF.text else {
             LYProgressHUD.showError("请输入卡号")
             return
@@ -64,12 +74,35 @@ class BindCardTableViewController: BaseTableViewController {
     }
     
     
-    // MARK: - Table view data source
-    override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        // #warning Incomplete implementation, return the number of rows
-        return 0
+    //获取验证码
+    @IBAction func getCodeAction(_ type : Int) {
+        var params : [String : Any] = [:]
+        params["mobile"] = LocalData.getUserPhone()
+        NetTools.normalRequest(type: .post, urlString: GetCodeApi, parameters: params, succeed: { (result) in
+            self.setUpCodeTimer()
+            self.codeTF.becomeFirstResponder()
+        }) { (error) in
+            LYProgressHUD.showError(error)
+        }
     }
-
+    
+    func setUpCodeTimer() {
+        self.codeTime = 60
+        Timer.scheduledTimer(withTimeInterval: 1.0, repeats: true) { (timer) in
+            if self.codeTime > 0{
+                
+                self.codeBtn.isEnabled = false
+                self.codeBtn.setTitle("\(self.codeTime) 秒后重新获取", for: .disabled)
+                self.codeTime -= 1
+            }else{
+                self.codeBtn.isEnabled = true
+                self.codeBtn.setTitle("重新获取", for: .normal)
+                
+                timer.invalidate()
+            }
+        }
+    }
+    
     
     
 }

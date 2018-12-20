@@ -286,7 +286,7 @@ extension Date{
         return "yyyy-MM-dd"
     }
     static func dateChineseFormatString() -> String {
-        return "yyyy年MM月dd日"
+        return "yyyy年MM月dd日 HH:mm"
     }
     static func datesChineseFormatString() -> String {
         return "yyyy年MM月dd日HH时"

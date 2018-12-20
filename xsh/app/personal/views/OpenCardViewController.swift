@@ -9,6 +9,11 @@
 import UIKit
 
 class OpenCardViewController: BaseViewController {
+    class func spwan() -> OpenCardViewController{
+        return self.loadFromStoryBoard(storyBoard: "Personal") as! OpenCardViewController
+    }
+    
+    
     @IBOutlet weak var pwdTF: UITextField!
     @IBOutlet weak var tf1: UITextField!
     @IBOutlet weak var tf2: UITextField!
@@ -16,12 +21,13 @@ class OpenCardViewController: BaseViewController {
     @IBOutlet weak var tf4: UITextField!
     @IBOutlet weak var tf5: UITextField!
     @IBOutlet weak var tf6: UITextField!
+    @IBOutlet weak var openBtn: UIButton!
     
     fileprivate var sourceArray : Array<UITextField> = Array<UITextField>()
     override func viewDidLoad() {
         super.viewDidLoad()
 
-
+        self.navigationItem.title = "开通一卡通"
 
         self.sourceArray.append(tf1)
         self.sourceArray.append(tf2)
@@ -29,11 +35,18 @@ class OpenCardViewController: BaseViewController {
         self.sourceArray.append(tf4)
         self.sourceArray.append(tf5)
         self.sourceArray.append(tf6)
-
+        
+        tf1.layer.borderColor = UIColor.RGBS(s: 191).cgColor
+        tf2.layer.borderColor = UIColor.RGBS(s: 191).cgColor
+        tf3.layer.borderColor = UIColor.RGBS(s: 191).cgColor
+        tf4.layer.borderColor = UIColor.RGBS(s: 191).cgColor
+        tf5.layer.borderColor = UIColor.RGBS(s: 191).cgColor
+        tf6.layer.borderColor = UIColor.RGBS(s: 191).cgColor
+        
+        self.openBtn.layer.cornerRadius = 25
     }
     
-
-    func openCard() {
+    @IBAction func openCardAction() {
         guard let pwd = self.pwdTF.text else {
             LYProgressHUD.showError("请输入密码！")
             return
@@ -49,7 +62,6 @@ class OpenCardViewController: BaseViewController {
         }
     }
     
-
 
 }
 

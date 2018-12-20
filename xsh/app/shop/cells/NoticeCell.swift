@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import SwiftyJSON
 
 class NoticeCell: UITableViewCell {
     @IBOutlet weak var timeLb: UILabel!
@@ -18,13 +19,29 @@ class NoticeCell: UITableViewCell {
     
     override func awakeFromNib() {
         super.awakeFromNib()
-        // Initialization code
+        self.subView.layer.cornerRadius = 5
     }
 
     override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
 
         // Configure the view for the selected state
+    }
+    
+    var subJson = JSON(){
+        didSet{
+            self.timeLb.text = Date.dateStringFromDate(format: Date.dateChineseFormatString(), timeStamps: self.subJson["creationtime"].stringValue)
+            self.titleLbl.text = self.subJson["title"].stringValue
+            self.descLbl.text = self.subJson["content"].stringValue
+            if self.subJson["thumb"].stringValue.isEmpty{
+                self.imgVW.constant = 0
+            }else{
+                self.imgVW.constant = 75
+                self.imgV.setImageUrlStr(self.subJson["thumb"].stringValue)
+            }
+            
+            
+        }
     }
     
 }
