@@ -23,7 +23,7 @@ class NoticeTableViewController: BaseTableViewController {
         
         self.loadNoticesData()
         
-        self.setUpRefre {
+        self.pullToRefre {
             self.noticeList.removeAll()
             self.loadNoticesData()
         }

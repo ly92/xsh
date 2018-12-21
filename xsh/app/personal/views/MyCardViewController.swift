@@ -38,7 +38,9 @@ class MyCardViewController: BaseViewController {
     
     //一卡通历史
     @objc func rightItemAction() {
-        
+        let orderVC = MyOrderTableViewController()
+        orderVC.orderType = 2
+        self.navigationController?.pushViewController(orderVC, animated: true)
     }
     
     //检查是否开通了一卡通
@@ -50,7 +52,20 @@ class MyCardViewController: BaseViewController {
             }else if result["result"].intValue == 1{
                 self.haveCard.isHidden = false
                 self.noCard.isHidden = true
+                
+                self.loadCardDetail()
             }
+        }) { (error) in
+            LYProgressHUD.showError(error)
+        }
+    }
+    
+    
+    //一卡通详情
+    func loadCardDetail() {
+        NetTools.requestData(type: .post, urlString: CardDetailApi, succeed: { (result) in
+            self.cardNumLbl.text = result["ano"].stringValue
+            self.cardCountLbl.text = result["hardcount"].stringValue
         }) { (error) in
             LYProgressHUD.showError(error)
         }
@@ -67,7 +82,22 @@ class MyCardViewController: BaseViewController {
                 
             }
             let recharge = UIAlertAction.init(title: "充值", style: .default) { (action) in
-                let text = rechargeAlert.textFields?.first?.text
+                guard let text = rechargeAlert.textFields?.first?.text else{
+                    LYProgressHUD.showError("请输入有效充值金额!")
+                    return
+                }
+                if text.intValue == 0{
+                    LYProgressHUD.showError("输入的金额无效!")
+                    return
+                }
+                //创建订单
+                NetTools.requestData(type: .post, urlString: CardRechargeApi, succeed: { (result) in
+                    let payVC = PayViewController.spwan()
+                    payVC.orderNo = result["orderno"].stringValue
+                    self.navigationController?.pushViewController(payVC, animated: true)
+                }, failure: { (error) in
+                    LYProgressHUD.showError(error)
+                })
                 
             }
             rechargeAlert.addAction(recharge)

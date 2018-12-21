@@ -86,10 +86,25 @@ let CardDetailApi = "card/get" // post
 //修改支付密码
 let CardChangePwdApi = "user/updatePaypwd" // post oldpasswd, newpasswd
 //交易记录
-let CardOrderListApi = "card/listTransaction" // post starttime, stoptime, skip, limit
+let ShopOrderListApi = "card/listTransaction" // post starttime, stoptime, skip, limit
+//创建交易
+let ShopAddOrderApi = "transaction/order" // post money,bid
 //查询充值方式
 let CardRechargeTypeApi = "card/depositType" // post
 //充值
-let CardRechargeApi = "card/deposit" // post ptid:支付方式, atid货币id, anos：收款账户, money
+let CardRechargeApi = "card/order" // post , money
+//支付方式
+let PayTypeApi = "transaction/paytype" //post orderno
+//创建预付单
+let PrePayOrderApi = "transaction/prepay" // post ptid:支付方式,atid:货币ID,ano:收款账户,orderno:订单号,money:付款金额,points:积分抵消费金额,coupons:使用优惠券，逗号分隔优惠券码
+//检查支付密码
+let CheckPwdApi = "transaction/checkpwd" // post paysign md5(cid+ts+cmdno+passwd)
+//一卡通交易列表
+let CardTransactionListApi = "transaction/list"
+//一卡通交易详情
+let CardTransactionDetailApi = "transaction/get"
+
+
+
 
 

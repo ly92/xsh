@@ -75,6 +75,7 @@
 		08A3A46D21C168B6008E071F /* LYTabBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08A3A46121C168B6008E071F /* LYTabBar.swift */; };
 		08A3A46E21C168B6008E071F /* LYTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08A3A46221C168B6008E071F /* LYTabBarController.swift */; };
 		08A3A46F21C168B6008E071F /* LYNavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08A3A46321C168B6008E071F /* LYNavigationController.swift */; };
+		08D7B63021CC9C5B007D191F /* PayViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08D7B62F21CC9C5B007D191F /* PayViewController.swift */; };
 		1C023EFB7E640A320BF3D511 /* Pods_xshUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8B41FC1B3E51B3DF767FDD7E /* Pods_xshUITests.framework */; };
 		B51518A09651DE7E368B4C17 /* Pods_xshTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6D820356A581154B9C009BF4 /* Pods_xshTests.framework */; };
 		D172ACE60C20138662B56A49 /* Pods_xsh.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 74ED8112C2C49640BC0E8A1E /* Pods_xsh.framework */; };
@@ -174,6 +175,7 @@
 		08A3A46121C168B6008E071F /* LYTabBar.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LYTabBar.swift; sourceTree = "<group>"; };
 		08A3A46221C168B6008E071F /* LYTabBarController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LYTabBarController.swift; sourceTree = "<group>"; };
 		08A3A46321C168B6008E071F /* LYNavigationController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LYNavigationController.swift; sourceTree = "<group>"; };
+		08D7B62F21CC9C5B007D191F /* PayViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PayViewController.swift; sourceTree = "<group>"; };
 		222CBFCB20CE17CE8E2FBDE3 /* Pods-xsh.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-xsh.release.xcconfig"; path = "Pods/Target Support Files/Pods-xsh/Pods-xsh.release.xcconfig"; sourceTree = "<group>"; };
 		5B28B3D46E368790652851A7 /* Pods-xshTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-xshTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-xshTests/Pods-xshTests.debug.xcconfig"; sourceTree = "<group>"; };
 		6A20976A1C316D32232167B9 /* Pods-xshUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-xshUITests.release.xcconfig"; path = "Pods/Target Support Files/Pods-xshUITests/Pods-xshUITests.release.xcconfig"; sourceTree = "<group>"; };
@@ -239,12 +241,13 @@
 			children = (
 				0819FBAA21C8B13B0078EB8D /* PersonalViewController.swift */,
 				086E2CF521C9E6CF00896F25 /* MyCouponTableViewController.swift */,
-				086E2CF721C9E6F600896F25 /* ChangeCardPwdViewController.swift */,
 				086E2CF921C9E71C00896F25 /* MyQrcodeViewController.swift */,
 				086E2CFB21C9E75900896F25 /* MyOrderTableViewController.swift */,
 				086E2CFD21C9E78000896F25 /* MyCardViewController.swift */,
+				086E2CF721C9E6F600896F25 /* ChangeCardPwdViewController.swift */,
 				08169D7D21CAA0A80030D863 /* BindCardTableViewController.swift */,
 				08169D7F21CAA1030030D863 /* OpenCardViewController.swift */,
+				08D7B62F21CC9C5B007D191F /* PayViewController.swift */,
 			);
 			path = views;
 			sourceTree = "<group>";
@@ -798,6 +801,7 @@
 				0861B83421C2971A008795E5 /* NetApis.swift in Sources */,
 				08169D7621CA846D0030D863 /* UIBarButtonItem+Extension.swift in Sources */,
 				086E2CFA21C9E71C00896F25 /* MyQrcodeViewController.swift in Sources */,
+				08D7B63021CC9C5B007D191F /* PayViewController.swift in Sources */,
 				0861B83621C297BF008795E5 /* Date+Category.swift in Sources */,
 				08A3A45321C1666E008E071F /* CouponViewController.swift in Sources */,
 				0861B83221C29703008795E5 /* NetTools.swift in Sources */,

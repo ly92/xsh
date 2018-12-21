@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import SwiftyJSON
 
 class NoticeDetailViewController: BaseTableViewController {
     class func spwan() -> NoticeDetailViewController{
@@ -20,7 +21,7 @@ class NoticeDetailViewController: BaseTableViewController {
     @IBOutlet weak var contentImgV: UIImageView!
     
     @IBOutlet weak var authorLbl: UILabel!
-    @IBOutlet weak var perpleLbl: UILabel!
+    @IBOutlet weak var peopleLbl: UILabel!
     @IBOutlet weak var phoneBtn: UIButton!
     
     
@@ -28,10 +29,13 @@ class NoticeDetailViewController: BaseTableViewController {
     
     var noticeId = ""
     
+    fileprivate var noticeJson = JSON()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        self.navigationItem.title = "公告详情"
         
+        self.loadNoticeDetail()
     }
 
     
@@ -40,13 +44,37 @@ class NoticeDetailViewController: BaseTableViewController {
         var params : [String : Any] = [:]
         params["id"] = self.noticeId
         NetTools.requestData(type: .post, urlString: NoticeDetailApi, parameters: params, succeed: { (result) in
-            
+            self.noticeJson = result
+            self.setUpUIData()
         }) { (error) in
             LYProgressHUD.showError(error)
         }
     }
     
     
+    func setUpUIData() {
+        
+        self.titleLbl.text = self.noticeJson["title"].stringValue
+        self.timeLbl.text = Date.dateStringFromDate(format: Date.dateChineseFormatString(), timeStamps: self.noticeJson["creationtime"].stringValue)
+        self.readCountLbl.text = "阅读量：" + self.noticeJson["title"].stringValue
+        self.contentLbl.text = self.noticeJson["content"].stringValue
+        if !self.noticeJson["thumb"].stringValue.isEmpty{
+            self.contentImgV.setImageUrlStr(self.noticeJson["thumb"].stringValue)
+        }
+        self.authorLbl.text = self.noticeJson["title"].stringValue + Date.dateStringFromDate(format: Date.dateFormatString(), timeStamps: self.noticeJson["creationtime"].stringValue)
+        self.peopleLbl.text = self.noticeJson["title"].stringValue
+        self.phoneBtn.setTitle(self.noticeJson["title"].stringValue, for: .normal)
+        
+        
+        self.tableView.reloadData()
+    }
+    
 
 
+}
+
+extension NoticeDetailViewController{
+    override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        return 100
+    }
 }
