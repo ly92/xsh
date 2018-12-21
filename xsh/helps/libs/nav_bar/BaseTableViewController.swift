@@ -19,7 +19,13 @@ class BaseTableViewController: UITableViewController {
         self.tableView.separatorStyle = .none
         self.tableView.backgroundColor = BG_Color
         
-        
+        //视图在导航器中显示默认四边距离
+        self.edgesForExtendedLayout = []
+        if #available(iOS 11.0, *){
+            self.tableView.contentInsetAdjustmentBehavior = .never
+        }else{
+            self.automaticallyAdjustsScrollViewInsets = false
+        }
     }
 
     

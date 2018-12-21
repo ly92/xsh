@@ -54,7 +54,7 @@ class OpenCardViewController: BaseViewController {
         if pwd.count != 6 || pwd.intValue == 0{
             LYProgressHUD.showError("密码必须为6位不同数字")
         }
-        let params : [String : Any] = ["passwd" : pwd]
+        let params : [String : Any] = ["passwd" : (LocalData.getUserPhone() + Date.phpTimestamp() + (pwd.md5String() + LocalData.getUserPhone()).md5String()).md5String()]
         NetTools.requestData(type: .post, urlString: OpenCardApi, parameters: params, succeed: { (result) in
             
         }) { (error) in

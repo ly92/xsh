@@ -90,6 +90,18 @@
 		08D7B6A421CCC310007D191F /* libWeChatSDK.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 08D7B69421CCC310007D191F /* libWeChatSDK.a */; };
 		08D7B6A521CCC310007D191F /* README.txt in Resources */ = {isa = PBXBuildFile; fileRef = 08D7B69521CCC310007D191F /* README.txt */; };
 		08D7B6A721CCEB60007D191F /* MoreFunctionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08D7B6A621CCEB60007D191F /* MoreFunctionViewController.swift */; };
+		08E0D45A21CD2A970015992B /* libsqlite3.0.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 08E0D45921CD2A970015992B /* libsqlite3.0.tbd */; };
+		08E0D45C21CD43FD0015992B /* CoreMotion.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 08E0D45B21CD43FD0015992B /* CoreMotion.framework */; };
+		08E0D45E21CD44370015992B /* libc++.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 08E0D45D21CD44370015992B /* libc++.tbd */; };
+		08E0D46021CD44400015992B /* libz.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 08E0D45F21CD44400015992B /* libz.tbd */; };
+		08E0D46221CD44490015992B /* CFNetwork.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 08E0D46121CD44490015992B /* CFNetwork.framework */; };
+		08E0D46421CD44510015992B /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 08E0D46321CD44510015992B /* Foundation.framework */; };
+		08E0D46621CD44580015992B /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 08E0D46521CD44580015992B /* UIKit.framework */; };
+		08E0D46821CD44610015992B /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 08E0D46721CD44610015992B /* CoreGraphics.framework */; };
+		08E0D46A21CD446A0015992B /* CoreText.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 08E0D46921CD446A0015992B /* CoreText.framework */; };
+		08E0D46C21CD44740015992B /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 08E0D46B21CD44740015992B /* QuartzCore.framework */; };
+		08E0D46E21CD447E0015992B /* CoreTelephony.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 08E0D46D21CD447E0015992B /* CoreTelephony.framework */; };
+		08E0D47021CD44860015992B /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 08E0D46F21CD44850015992B /* SystemConfiguration.framework */; };
 		1C023EFB7E640A320BF3D511 /* Pods_xshUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8B41FC1B3E51B3DF767FDD7E /* Pods_xshUITests.framework */; };
 		B51518A09651DE7E368B4C17 /* Pods_xshTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6D820356A581154B9C009BF4 /* Pods_xshTests.framework */; };
 		D172ACE60C20138662B56A49 /* Pods_xsh.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 74ED8112C2C49640BC0E8A1E /* Pods_xsh.framework */; };
@@ -290,6 +302,18 @@
 		08D7B69721CCC310007D191F /* WXApi.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WXApi.h; sourceTree = "<group>"; };
 		08D7B69821CCC310007D191F /* WXApiObject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WXApiObject.h; sourceTree = "<group>"; };
 		08D7B6A621CCEB60007D191F /* MoreFunctionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MoreFunctionViewController.swift; sourceTree = "<group>"; };
+		08E0D45921CD2A970015992B /* libsqlite3.0.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libsqlite3.0.tbd; path = usr/lib/libsqlite3.0.tbd; sourceTree = SDKROOT; };
+		08E0D45B21CD43FD0015992B /* CoreMotion.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreMotion.framework; path = System/Library/Frameworks/CoreMotion.framework; sourceTree = SDKROOT; };
+		08E0D45D21CD44370015992B /* libc++.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = "libc++.tbd"; path = "usr/lib/libc++.tbd"; sourceTree = SDKROOT; };
+		08E0D45F21CD44400015992B /* libz.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libz.tbd; path = usr/lib/libz.tbd; sourceTree = SDKROOT; };
+		08E0D46121CD44490015992B /* CFNetwork.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CFNetwork.framework; path = System/Library/Frameworks/CFNetwork.framework; sourceTree = SDKROOT; };
+		08E0D46321CD44510015992B /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
+		08E0D46521CD44580015992B /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
+		08E0D46721CD44610015992B /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
+		08E0D46921CD446A0015992B /* CoreText.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreText.framework; path = System/Library/Frameworks/CoreText.framework; sourceTree = SDKROOT; };
+		08E0D46B21CD44740015992B /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
+		08E0D46D21CD447E0015992B /* CoreTelephony.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreTelephony.framework; path = System/Library/Frameworks/CoreTelephony.framework; sourceTree = SDKROOT; };
+		08E0D46F21CD44850015992B /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
 		222CBFCB20CE17CE8E2FBDE3 /* Pods-xsh.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-xsh.release.xcconfig"; path = "Pods/Target Support Files/Pods-xsh/Pods-xsh.release.xcconfig"; sourceTree = "<group>"; };
 		5B28B3D46E368790652851A7 /* Pods-xshTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-xshTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-xshTests/Pods-xshTests.debug.xcconfig"; sourceTree = "<group>"; };
 		6A20976A1C316D32232167B9 /* Pods-xshUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-xshUITests.release.xcconfig"; path = "Pods/Target Support Files/Pods-xshUITests/Pods-xshUITests.release.xcconfig"; sourceTree = "<group>"; };
@@ -306,6 +330,18 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				08E0D47021CD44860015992B /* SystemConfiguration.framework in Frameworks */,
+				08E0D46E21CD447E0015992B /* CoreTelephony.framework in Frameworks */,
+				08E0D46C21CD44740015992B /* QuartzCore.framework in Frameworks */,
+				08E0D46A21CD446A0015992B /* CoreText.framework in Frameworks */,
+				08E0D46821CD44610015992B /* CoreGraphics.framework in Frameworks */,
+				08E0D46621CD44580015992B /* UIKit.framework in Frameworks */,
+				08E0D46421CD44510015992B /* Foundation.framework in Frameworks */,
+				08E0D46221CD44490015992B /* CFNetwork.framework in Frameworks */,
+				08E0D46021CD44400015992B /* libz.tbd in Frameworks */,
+				08E0D45E21CD44370015992B /* libc++.tbd in Frameworks */,
+				08E0D45C21CD43FD0015992B /* CoreMotion.framework in Frameworks */,
+				08E0D45A21CD2A970015992B /* libsqlite3.0.tbd in Frameworks */,
 				08D7B69E21CCC310007D191F /* libssl.a in Frameworks */,
 				D172ACE60C20138662B56A49 /* Pods_xsh.framework in Frameworks */,
 				08D7B69A21CCC310007D191F /* AlipaySDK.framework in Frameworks */,
@@ -737,6 +773,18 @@
 		58751821874EFABE7E7CB9A3 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				08E0D46F21CD44850015992B /* SystemConfiguration.framework */,
+				08E0D46D21CD447E0015992B /* CoreTelephony.framework */,
+				08E0D46B21CD44740015992B /* QuartzCore.framework */,
+				08E0D46921CD446A0015992B /* CoreText.framework */,
+				08E0D46721CD44610015992B /* CoreGraphics.framework */,
+				08E0D46521CD44580015992B /* UIKit.framework */,
+				08E0D46321CD44510015992B /* Foundation.framework */,
+				08E0D46121CD44490015992B /* CFNetwork.framework */,
+				08E0D45F21CD44400015992B /* libz.tbd */,
+				08E0D45D21CD44370015992B /* libc++.tbd */,
+				08E0D45B21CD43FD0015992B /* CoreMotion.framework */,
+				08E0D45921CD2A970015992B /* libsqlite3.0.tbd */,
 				74ED8112C2C49640BC0E8A1E /* Pods_xsh.framework */,
 				6D820356A581154B9C009BF4 /* Pods_xshTests.framework */,
 				8B41FC1B3E51B3DF767FDD7E /* Pods_xshUITests.framework */,
@@ -1260,6 +1308,13 @@
 					"$(inherited)",
 					"$(PROJECT_DIR)/xsh/helps/libs/AliPay",
 				);
+				HEADER_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"${PODS_ROOT}/Headers/Public\"",
+					"\"${PODS_ROOT}/Headers/Public/JPush\"",
+					"$(PROJECT_DIR)/xsh/helps/libs/AliPay/RES",
+					"$(PROJECT_DIR)/xsh/helps/libs/WeiXin",
+				);
 				INFOPLIST_FILE = xsh/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -1278,6 +1333,8 @@
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 4.2;
 				TARGETED_DEVICE_FAMILY = 1;
+				VALID_ARCHS = "arm64 arm64e armv7 armv7s";
+				"VALID_ARCHS[sdk=*]" = "arm64 arm64e armv7 armv7s";
 			};
 			name = Debug;
 		};
@@ -1296,6 +1353,13 @@
 					"$(inherited)",
 					"$(PROJECT_DIR)/xsh/helps/libs/AliPay",
 				);
+				HEADER_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"${PODS_ROOT}/Headers/Public\"",
+					"\"${PODS_ROOT}/Headers/Public/JPush\"",
+					"$(PROJECT_DIR)/xsh/helps/libs/AliPay/RES",
+					"$(PROJECT_DIR)/xsh/helps/libs/WeiXin",
+				);
 				INFOPLIST_FILE = xsh/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -1313,6 +1377,8 @@
 				SWIFT_OBJC_BRIDGING_HEADER = "xsh/helps/libs/xsh-Bridging-Header.h";
 				SWIFT_VERSION = 4.2;
 				TARGETED_DEVICE_FAMILY = 1;
+				VALID_ARCHS = "arm64 arm64e armv7 armv7s";
+				"VALID_ARCHS[sdk=*]" = "arm64 arm64e armv7 armv7s";
 			};
 			name = Release;
 		};

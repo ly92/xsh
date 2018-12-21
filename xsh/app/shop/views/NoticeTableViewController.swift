@@ -47,6 +47,7 @@ class NoticeTableViewController: BaseTableViewController {
             }else{
                 self.haveMore = false
             }
+            self.tableView.reloadData()
         }) { (error) in
             LYProgressHUD.showError(error)
         }
@@ -73,7 +74,7 @@ class NoticeTableViewController: BaseTableViewController {
     }
    
     override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return 120
+        return 160
     }
     
     

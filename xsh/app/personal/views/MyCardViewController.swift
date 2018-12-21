@@ -33,7 +33,7 @@ class MyCardViewController: BaseViewController {
         
         self.navigationItem.rightBarButtonItem = UIBarButtonItem.init(title: "", target: self, action: #selector(MyCardViewController.rightItemAction))
         
-        self.checkOpenCard()
+        self.loadCardDetail()
     }
     
     //一卡通历史
@@ -45,19 +45,27 @@ class MyCardViewController: BaseViewController {
     
     //检查是否开通了一卡通
     func checkOpenCard() {
-        NetTools.requestData(type: .post, urlString: CheckCardApi, succeed: { (result) in
-            if result["result"].intValue == 0{
-                self.haveCard.isHidden = true
-                self.noCard.isHidden = false
-            }else if result["result"].intValue == 1{
-                self.haveCard.isHidden = false
-                self.noCard.isHidden = true
-                
-                self.loadCardDetail()
-            }
+        
+        NetTools.requestData(type: .post, urlString: CardDetailApi, succeed: { (result) in
+            
         }) { (error) in
-            LYProgressHUD.showError(error)
+            self.haveCard.isHidden = true
+            self.noCard.isHidden = false
         }
+        
+//        NetTools.requestData(type: .post, urlString: CheckCardApi, succeed: { (result) in
+//            if result["result"].intValue == 0{
+//                self.haveCard.isHidden = true
+//                self.noCard.isHidden = false
+//            }else if result["result"].intValue == 1{
+//                self.haveCard.isHidden = false
+//                self.noCard.isHidden = true
+//
+//                self.loadCardDetail()
+//            }
+//        }) { (error) in
+//            LYProgressHUD.showError(error)
+//        }
     }
     
     
@@ -67,7 +75,8 @@ class MyCardViewController: BaseViewController {
             self.cardNumLbl.text = result["ano"].stringValue
             self.cardCountLbl.text = result["hardcount"].stringValue
         }) { (error) in
-            LYProgressHUD.showError(error)
+            self.haveCard.isHidden = true
+            self.noCard.isHidden = false
         }
     }
     

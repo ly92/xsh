@@ -46,6 +46,7 @@ class LYNavigationController : UINavigationController {
         //3.禁止系统的局部返回手势
         self.interactivePopGestureRecognizer?.isEnabled = false;
         
+        
         self.delegate = self
     }
     

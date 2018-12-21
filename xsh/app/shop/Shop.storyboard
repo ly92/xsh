@@ -282,7 +282,7 @@
                         <outlet property="authorLbl" destination="Vml-S3-wdW" id="N9M-Dh-alc"/>
                         <outlet property="contentImgV" destination="UeH-Xr-t0w" id="pUc-RY-THn"/>
                         <outlet property="contentLbl" destination="Mtg-cQ-WMP" id="ScO-jB-2Un"/>
-                        <outlet property="perpleLbl" destination="i15-MK-WAS" id="Zs3-ou-9PY"/>
+                        <outlet property="peopleLbl" destination="i15-MK-WAS" id="YkN-U4-JFF"/>
                         <outlet property="phoneBtn" destination="9yO-4a-Nd1" id="xbC-Q9-FXg"/>
                         <outlet property="readCountLbl" destination="jub-ec-48Z" id="xEg-nK-dbC"/>
                         <outlet property="timeLbl" destination="jcR-LG-O0A" id="c6P-Kc-mBu"/>

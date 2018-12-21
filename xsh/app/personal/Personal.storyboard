@@ -722,7 +722,7 @@
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="请输入验证码" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="dug-3D-J9A">
-                                                    <rect key="frame" x="99" y="7.5" width="164" height="30"/>
+                                                    <rect key="frame" x="99" y="7.5" width="134" height="30"/>
                                                     <constraints>
                                                         <constraint firstAttribute="height" constant="30" id="by8-Yb-QNe"/>
                                                     </constraints>
@@ -738,9 +738,9 @@
                                                     </constraints>
                                                 </view>
                                                 <button opaque="NO" tag="11" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="vkW-Rq-gYE">
-                                                    <rect key="frame" x="271" y="7.5" width="80" height="30"/>
+                                                    <rect key="frame" x="241" y="7.5" width="110" height="30"/>
                                                     <constraints>
-                                                        <constraint firstAttribute="width" constant="80" id="zs0-CW-aRs"/>
+                                                        <constraint firstAttribute="width" constant="110" id="zs0-CW-aRs"/>
                                                     </constraints>
                                                     <fontDescription key="fontDescription" type="system" pointSize="15"/>
                                                     <state key="normal" title="获取验证码">

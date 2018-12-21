@@ -171,6 +171,9 @@ class ShopViewController: UIViewController {
                 if json["actionios"].stringValue == "NoticeViewController"{
                     let noticeVC = NoticeTableViewController()
                     self.navigationController?.pushViewController(noticeVC, animated: true)
+                }else if json["actionios"].stringValue == "MoreViewController"{
+                    let moreFuncVC = MoreFunctionViewController()
+                    self.navigationController?.pushViewController(moreFuncVC, animated: true)
                 }
                 
             }else if json["actiontype"].intValue == 2{

@@ -44,7 +44,7 @@ class NoticeDetailViewController: BaseTableViewController {
         var params : [String : Any] = [:]
         params["id"] = self.noticeId
         NetTools.requestData(type: .post, urlString: NoticeDetailApi, parameters: params, succeed: { (result) in
-            self.noticeJson = result
+            self.noticeJson = result["notice"]
             self.setUpUIData()
         }) { (error) in
             LYProgressHUD.showError(error)
@@ -61,9 +61,9 @@ class NoticeDetailViewController: BaseTableViewController {
         if !self.noticeJson["thumb"].stringValue.isEmpty{
             self.contentImgV.setImageUrlStr(self.noticeJson["thumb"].stringValue)
         }
-        self.authorLbl.text = self.noticeJson["title"].stringValue + Date.dateStringFromDate(format: Date.dateFormatString(), timeStamps: self.noticeJson["creationtime"].stringValue)
-        self.peopleLbl.text = self.noticeJson["title"].stringValue
-        self.phoneBtn.setTitle(self.noticeJson["title"].stringValue, for: .normal)
+        self.authorLbl.text = self.noticeJson["publisher"].stringValue + "  " + Date.dateStringFromDate(format: Date.dateFormatString(), timeStamps: self.noticeJson["creationtime"].stringValue)
+        self.peopleLbl.text = self.noticeJson["contact"].stringValue
+        self.phoneBtn.setTitle(self.noticeJson["tel"].stringValue, for: .normal)
         
         
         self.tableView.reloadData()

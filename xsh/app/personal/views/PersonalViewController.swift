@@ -49,6 +49,7 @@ class PersonalViewController: BaseTableViewController {
         super.viewDidLoad()
 
         self.loadPersonalInfo()
+        
     }
     //个人信息
     func loadPersonalInfo() {
