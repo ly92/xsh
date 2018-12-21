@@ -32,6 +32,11 @@ func isMessageNotificationServiceOpen() -> Bool{
 }
 
 
+func functionClickAction(type:String,controller:UIViewController){
+    
+    
+}
+
 
 
 

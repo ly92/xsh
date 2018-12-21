@@ -8,12 +8,16 @@
 
 import UIKit
 
-class MessageViewController: UIViewController {
+class MessageViewController: BaseTableViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
 
         
+        
+        self.pullToRefre {
+            
+        }
     }
     
     //消息列表
@@ -23,7 +27,7 @@ class MessageViewController: UIViewController {
         params["lastid"] = "0"
         params["skip"] = "0"
         params["limit"] = "10"
-        NetTools.requestData(type: .post, urlString: FunctionListApi, parameters: params, succeed: { (result) in
+        NetTools.requestData(type: .post, urlString: MessageListApi, parameters: params, succeed: { (result) in
             
         }) { (error) in
             LYProgressHUD.showError(error)
@@ -31,5 +35,7 @@ class MessageViewController: UIViewController {
     }
 
 
+    
+    
 
 }
