@@ -15,6 +15,7 @@ class MyOrderTableViewController: BaseTableViewController {
     
     fileprivate var shopOrderList : Array<JSON> = []
     fileprivate var cardOrderList : Array<JSON> = []
+    fileprivate var haveMore = true
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -103,12 +104,19 @@ class MyOrderTableViewController: BaseTableViewController {
     
     
     override func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
-        if indexPath.row == self.noticeList.count - 1 && self.haveMore{
-            if self.orderType == 1{
+        if self.orderType == 1{
+            if indexPath.row == self.shopOrderList.count - 1 && self.haveMore{
                 self.loadShopOrder()
-            }else if self.orderType == 2{
+            }
+        }else if self.orderType == 2{
+            if indexPath.row == self.cardOrderList.count - 1 && self.haveMore{
                 self.loadCardOrder()
             }
         }
     }
+    
+    
+    
+    
+    
 }
