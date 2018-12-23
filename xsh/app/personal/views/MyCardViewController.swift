@@ -112,14 +112,17 @@ class MyCardViewController: BaseViewController {
                     LYProgressHUD.showError("请输入有效充值金额!")
                     return
                 }
-                if text.intValue == 0{
-                    LYProgressHUD.showError("输入的金额无效!")
-                    return
-                }
+//                if text.intValue == 0{
+//                    LYProgressHUD.showError("输入的金额无效!")
+//                    return
+//                }
                 //创建订单
-                NetTools.requestData(type: .post, urlString: CardRechargeApi, succeed: { (result) in
+                let params : [String : Any] = ["money" : text]
+                NetTools.requestData(type: .post, urlString: CardRechargeApi, parameters: params, succeed: { (result) in
                     let payVC = PayViewController.spwan()
                     payVC.orderNo = result["orderno"].stringValue
+                    payVC.money = text
+                    payVC.titleStr = "一卡通充值"
                     self.navigationController?.pushViewController(payVC, animated: true)
                 }, failure: { (error) in
                     LYProgressHUD.showError(error)

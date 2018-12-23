@@ -199,7 +199,7 @@ extension NetTools{
                 if json["code"].stringValue == "0"{
                     //返回正确结果
                     succeed(json["content"])
-                }else if json["code"].stringValue == "1228"{
+                }else if json["code"].stringValue == "1228" || json["code"].stringValue == "1227"{
                     guard let nav = AppDelegate.sharedInstance.tabBar.selectedViewController as? LYNavigationController else{
                         return
                     }
