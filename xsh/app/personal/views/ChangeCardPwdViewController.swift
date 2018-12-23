@@ -23,16 +23,26 @@ class ChangeCardPwdViewController: BaseTableViewController {
     @IBOutlet weak var pwdTF5: UITextField!
     @IBOutlet weak var pwdTF6: UITextField!
     @IBOutlet weak var modifyBtn2: UIButton!
+    @IBOutlet weak var forgetBtn: UIButton!
     
+    
+    var isChangeLogin = false
     
     fileprivate var forgetType = false
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.navigationItem.title = "修改支付密码"
+        
         
         self.modifyBtn.layer.cornerRadius = 25
         self.modifyBtn2.layer.cornerRadius = 25
+        
+        if self.isChangeLogin{
+            self.forgetBtn.isHidden = true
+            self.navigationItem.title = "修改登录密码"
+        }else{
+            self.navigationItem.title = "修改支付密码"
+        }
     }
     
     
@@ -41,7 +51,7 @@ class ChangeCardPwdViewController: BaseTableViewController {
         self.tableView.reloadData()
     }
     
-
+    
     @IBAction func changeCardPayPwd() {
         if self.forgetType{
             
@@ -67,6 +77,8 @@ class ChangeCardPwdViewController: BaseTableViewController {
                 LYProgressHUD.showError("密码不可为空，且不可相同")
                 return
             }
+            
+            
             var params : [String : Any] = [:]
             params["paypsw"] = (pwd2.md5String() + LocalData.getUserPhone()).md5String()
             params["passwd"] = (LocalData.getUserPhone() + Date.phpTimestamp() + (loginPwd.md5String() + LocalData.getUserPhone()).md5String()).md5String()
@@ -77,7 +89,7 @@ class ChangeCardPwdViewController: BaseTableViewController {
                 LYProgressHUD.showError(error)
             }
         }else{
-          
+            
             guard let pwd1 = self.pwdTF1.text else {
                 LYProgressHUD.showError("请输入旧密码")
                 return
@@ -100,14 +112,27 @@ class ChangeCardPwdViewController: BaseTableViewController {
                 LYProgressHUD.showError("新旧密码不可为空，且不可相同")
                 return
             }
-            var params : [String : Any] = [:]
-            params["oldpasswd"] = (pwd1.md5String() + LocalData.getUserPhone()).md5String()
-            params["newpasswd"] = (pwd2.md5String() + LocalData.getUserPhone()).md5String()
-            NetTools.requestData(type: .post, urlString: CardChangePwdApi, parameters: params, succeed: { (result) in
-                LYProgressHUD.showSuccess("密码更改成功！")
-                self.navigationController?.popViewController(animated: true)
-            }) { (error) in
-                LYProgressHUD.showError(error)
+            
+            if self.isChangeLogin{
+                var params : [String : Any] = [:]
+                params["oldpasswd"] = (LocalData.getUserPhone() + Date.phpTimestamp() + (pwd1.md5String() + LocalData.getUserPhone()).md5String()).md5String()
+                params["newpasswd"] = (LocalData.getUserPhone() + Date.phpTimestamp() + (pwd2.md5String() + LocalData.getUserPhone()).md5String()).md5String()
+                NetTools.requestData(type: .post, urlString: ChangeLoginPwdApi, parameters: params, succeed: { (result) in
+                    LYProgressHUD.showSuccess("密码更改成功！")
+                    self.navigationController?.popViewController(animated: true)
+                }) { (error) in
+                    LYProgressHUD.showError(error)
+                }
+            }else{
+                var params : [String : Any] = [:]
+                params["oldpasswd"] = (pwd1.md5String() + LocalData.getUserPhone()).md5String()
+                params["newpasswd"] = (pwd2.md5String() + LocalData.getUserPhone()).md5String()
+                NetTools.requestData(type: .post, urlString: CardChangePwdApi, parameters: params, succeed: { (result) in
+                    LYProgressHUD.showSuccess("密码更改成功！")
+                    self.navigationController?.popViewController(animated: true)
+                }) { (error) in
+                    LYProgressHUD.showError(error)
+                }
             }
         }
         

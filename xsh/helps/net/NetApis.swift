@@ -32,7 +32,7 @@ let LoginApi = "user/login"//post mobile,ts:时间戳,sign:sign=md5(mobile+ts+pa
 //设备校验
 let CheckTokenApi = "user/checktoken"//post device
 //修改密码
-let ChangePwdApi = "user/updatepwd" //post id,oldpasswd,newpasswd
+let ChangeLoginPwdApi = "user/updatepwd" //post id,oldpasswd,newpasswd
 //修改密码-忘记密码
 let ForgetPwdApi = "user/resetpwd" // post mobile,code,passwd
 //获取个人信息

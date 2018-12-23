@@ -31,7 +31,7 @@ class MyQrcodeViewController: BaseViewController {
         self.view.addSubview(bg)
         //3、标题
         let lbl = UILabel()
-        lbl.text = ""
+        lbl.text = "扫描二维码"
         lbl.font = UIFont.systemFont(ofSize: 14.0)
         lbl.textColor = UIColor.RGBS(s: 33)
         bg.addSubview(lbl)
@@ -44,7 +44,7 @@ class MyQrcodeViewController: BaseViewController {
         bg.snp.makeConstraints { (make) in
             make.top.leading.equalTo(20)
             make.trailing.equalTo(-20)
-            make.height.equalTo(kScreenW - 40)
+            make.height.equalTo(kScreenW)
         }
         
         lbl.snp.makeConstraints { (make) in
@@ -56,7 +56,9 @@ class MyQrcodeViewController: BaseViewController {
             make.top.equalTo(lbl.snp.bottom).offset(10)
             make.leading.equalTo(15)
             make.trailing.equalTo(-15)
-            make.height.equalTo(bg.w - 30)
+            make.height.equalTo(kScreenW-70)
+//            make.center.equalToSuperview()
+//            make.width.height.equalTo(kScreenW-70)
         }
     }
     

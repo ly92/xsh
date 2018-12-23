@@ -119,10 +119,13 @@ class PersonalViewController: BaseTableViewController {
             self.navigationController?.pushViewController(myOrderVC, animated: true)
         }else if indexPath.row == 4{
             //我的二维码
-            
+            let codeVC = MyQrcodeViewController()
+            self.navigationController?.pushViewController(codeVC, animated: true)
         }else if indexPath.row == 5{
             //修改密码
-            
+            let changePwd = ChangeCardPwdViewController.spwan()
+            changePwd.isChangeLogin = true
+            self.navigationController?.pushViewController(changePwd, animated: true)
         }else if indexPath.row == 6{
             //设置
             let loginVC = LoginViewController.spwan()

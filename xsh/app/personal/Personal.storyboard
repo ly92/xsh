@@ -789,7 +789,7 @@
                                                     </constraints>
                                                     <color key="textColor" red="0.12941176469999999" green="0.12941176469999999" blue="0.12941176469999999" alpha="1" colorSpace="calibratedRGB"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                                    <textInputTraits key="textInputTraits"/>
+                                                    <textInputTraits key="textInputTraits" secureTextEntry="YES"/>
                                                 </textField>
                                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="eUg-T6-5Mp">
                                                     <rect key="frame" x="8" y="43.5" width="359" height="1"/>
@@ -1038,7 +1038,7 @@
                                                     </constraints>
                                                     <color key="textColor" red="0.12941176469999999" green="0.12941176469999999" blue="0.12941176469999999" alpha="1" colorSpace="calibratedRGB"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                                    <textInputTraits key="textInputTraits"/>
+                                                    <textInputTraits key="textInputTraits" secureTextEntry="YES"/>
                                                 </textField>
                                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="RXN-sc-Zun">
                                                     <rect key="frame" x="8" y="43.5" width="359" height="1"/>
@@ -1083,7 +1083,7 @@
                                                     </constraints>
                                                     <color key="textColor" red="0.12941176469999999" green="0.12941176469999999" blue="0.12941176469999999" alpha="1" colorSpace="calibratedRGB"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                                    <textInputTraits key="textInputTraits"/>
+                                                    <textInputTraits key="textInputTraits" secureTextEntry="YES"/>
                                                 </textField>
                                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Fnd-WD-Ub4">
                                                     <rect key="frame" x="8" y="43.5" width="359" height="1"/>
@@ -1128,7 +1128,7 @@
                                                     </constraints>
                                                     <color key="textColor" red="0.12941176469999999" green="0.12941176469999999" blue="0.12941176469999999" alpha="1" colorSpace="calibratedRGB"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                                    <textInputTraits key="textInputTraits"/>
+                                                    <textInputTraits key="textInputTraits" secureTextEntry="YES"/>
                                                 </textField>
                                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="bAE-HJ-8lm">
                                                     <rect key="frame" x="8" y="43.5" width="359" height="1"/>
@@ -1220,7 +1220,7 @@
                                                     </constraints>
                                                     <color key="textColor" red="0.12941176469999999" green="0.12941176469999999" blue="0.12941176469999999" alpha="1" colorSpace="calibratedRGB"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                                    <textInputTraits key="textInputTraits"/>
+                                                    <textInputTraits key="textInputTraits" secureTextEntry="YES"/>
                                                 </textField>
                                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Dnn-Jt-rJt">
                                                     <rect key="frame" x="8" y="43.5" width="359" height="1"/>
@@ -1265,7 +1265,7 @@
                                                     </constraints>
                                                     <color key="textColor" red="0.12941176469999999" green="0.12941176469999999" blue="0.12941176469999999" alpha="1" colorSpace="calibratedRGB"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                                    <textInputTraits key="textInputTraits"/>
+                                                    <textInputTraits key="textInputTraits" secureTextEntry="YES"/>
                                                 </textField>
                                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="kIn-Rm-hoe">
                                                     <rect key="frame" x="8" y="43.5" width="359" height="1"/>
@@ -1310,7 +1310,7 @@
                                                     </constraints>
                                                     <color key="textColor" red="0.12941176469999999" green="0.12941176469999999" blue="0.12941176469999999" alpha="1" colorSpace="calibratedRGB"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                                    <textInputTraits key="textInputTraits"/>
+                                                    <textInputTraits key="textInputTraits" secureTextEntry="YES"/>
                                                 </textField>
                                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="msq-q6-8Zc">
                                                     <rect key="frame" x="8" y="43.5" width="359" height="1"/>
@@ -1372,6 +1372,7 @@
                         </connections>
                     </tableView>
                     <connections>
+                        <outlet property="forgetBtn" destination="15T-Ba-I6D" id="h1a-2B-E88"/>
                         <outlet property="modifyBtn" destination="lc4-Ry-jmL" id="vaH-F6-nFx"/>
                         <outlet property="modifyBtn2" destination="qEx-cC-jps" id="rKp-3j-IXH"/>
                         <outlet property="pwdTF1" destination="Nho-qL-3b0" id="yBH-G9-tbx"/>
