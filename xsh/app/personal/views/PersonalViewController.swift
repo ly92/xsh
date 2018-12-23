@@ -114,7 +114,9 @@ class PersonalViewController: BaseTableViewController {
             self.navigationController?.pushViewController(myCardVC, animated: true)
         }else if indexPath.row == 3{
             //我的交易
-            
+            let myOrderVC = MyOrderTableViewController()
+            myOrderVC.orderType = 1
+            self.navigationController?.pushViewController(myOrderVC, animated: true)
         }else if indexPath.row == 4{
             //我的二维码
             

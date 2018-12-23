@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import SwiftyJSON
 
 class MyOrderCell: UITableViewCell {
     @IBOutlet weak var nameLbl: UILabel!
@@ -22,6 +23,16 @@ class MyOrderCell: UITableViewCell {
         super.setSelected(selected, animated: animated)
 
         // Configure the view for the selected state
+    }
+    
+    
+    var subJson = JSON(){
+        didSet{
+            self.nameLbl.text = self.subJson["content"].stringValue
+            self.timeLbl.text = Date.dateStringFromDate(format: Date.timestampFormatString(), timeStamps: self.subJson["creationtime"].stringValue)
+            self.moneyLbl.text = "¥" + self.subJson["money"].stringValue
+            
+        }
     }
     
 }

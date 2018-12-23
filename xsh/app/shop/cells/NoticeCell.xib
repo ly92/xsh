@@ -32,9 +32,9 @@
                         <rect key="frame" x="15" y="56" width="290" height="104"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="123" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="FaC-nE-J4j">
-                                <rect key="frame" x="8" y="8" width="191" height="19.5"/>
+                                <rect key="frame" x="8" y="8" width="191" height="40"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" relation="lessThanOrEqual" constant="37" id="SFT-Ro-CUy"/>
+                                    <constraint firstAttribute="height" constant="40" id="3Fy-b8-pLj"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" type="system" pointSize="16"/>
                                 <color key="textColor" red="0.12941176469999999" green="0.12941176469999999" blue="0.12941176469999999" alpha="1" colorSpace="calibratedRGB"/>
@@ -47,11 +47,14 @@
                                     <constraint firstAttribute="height" constant="75" id="tlW-Yu-Wtt"/>
                                 </constraints>
                             </imageView>
-                            <webView contentMode="scaleToFill" scalesPageToFit="YES" translatesAutoresizingMaskIntoConstraints="NO" id="MJa-zw-AHy">
-                                <rect key="frame" x="8" y="35.5" width="191" height="60.5"/>
+                            <webView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="MJa-zw-AHy">
+                                <rect key="frame" x="16" y="56" width="183" height="35"/>
                                 <color key="backgroundColor" red="0.36078431370000003" green="0.38823529410000002" blue="0.4039215686" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="35" id="nb9-Y7-FGK"/>
+                                </constraints>
                                 <connections>
-                                    <outlet property="delegate" destination="KGk-i7-Jjw" id="Vzg-rc-lVM"/>
+                                    <outlet property="delegate" destination="KGk-i7-Jjw" id="WmV-ik-fbC"/>
                                 </connections>
                             </webView>
                         </subviews>
@@ -60,12 +63,11 @@
                             <constraint firstAttribute="trailing" secondItem="vju-2o-1Rk" secondAttribute="trailing" constant="8" id="9Zw-Ne-EC0"/>
                             <constraint firstItem="vju-2o-1Rk" firstAttribute="leading" secondItem="MJa-zw-AHy" secondAttribute="trailing" constant="8" id="D1a-NX-fC0"/>
                             <constraint firstItem="vju-2o-1Rk" firstAttribute="centerY" secondItem="Mrq-9E-afK" secondAttribute="centerY" id="EZY-8h-wOQ"/>
-                            <constraint firstItem="MJa-zw-AHy" firstAttribute="leading" secondItem="Mrq-9E-afK" secondAttribute="leading" constant="8" id="JyP-ZD-UK3"/>
+                            <constraint firstItem="MJa-zw-AHy" firstAttribute="leading" secondItem="Mrq-9E-afK" secondAttribute="leading" constant="16" id="JyP-ZD-UK3"/>
                             <constraint firstItem="FaC-nE-J4j" firstAttribute="top" secondItem="Mrq-9E-afK" secondAttribute="top" constant="8" id="V8R-lf-BHF"/>
                             <constraint firstItem="vju-2o-1Rk" firstAttribute="leading" secondItem="FaC-nE-J4j" secondAttribute="trailing" constant="8" id="ZyL-q1-v2m"/>
                             <constraint firstItem="FaC-nE-J4j" firstAttribute="leading" secondItem="Mrq-9E-afK" secondAttribute="leading" constant="8" id="aKL-fJ-838"/>
                             <constraint firstItem="MJa-zw-AHy" firstAttribute="top" secondItem="FaC-nE-J4j" secondAttribute="bottom" constant="8" id="jGl-ri-ooc"/>
-                            <constraint firstAttribute="bottom" secondItem="MJa-zw-AHy" secondAttribute="bottom" constant="8" id="r8g-7q-6ZA"/>
                         </constraints>
                     </view>
                 </subviews>
@@ -81,7 +83,7 @@
             </tableViewCellContentView>
             <viewLayoutGuide key="safeArea" id="njF-e1-oar"/>
             <connections>
-                <outlet property="descWeb" destination="MJa-zw-AHy" id="QQ6-7t-TGe"/>
+                <outlet property="descWeb" destination="MJa-zw-AHy" id="xOy-Sc-Mrj"/>
                 <outlet property="imgV" destination="vju-2o-1Rk" id="qjC-gV-Ky4"/>
                 <outlet property="imgVW" destination="Uo8-B6-xht" id="cEV-1G-yge"/>
                 <outlet property="subView" destination="Mrq-9E-afK" id="7lB-oa-gmH"/>

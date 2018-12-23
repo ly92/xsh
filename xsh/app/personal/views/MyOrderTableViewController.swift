@@ -23,6 +23,12 @@ class MyOrderTableViewController: BaseTableViewController {
         
         self.tableView.register(UINib.init(nibName: "MyOrderCell", bundle: Bundle.main), forCellReuseIdentifier: "MyOrderCell")
         
+        if self.orderType == 1{
+            self.loadShopOrder()
+        }else if self.orderType == 2{
+            self.loadCardOrder()
+        }
+        
         
         self.pullToRefre {
             if self.orderType == 1{
@@ -41,11 +47,11 @@ class MyOrderTableViewController: BaseTableViewController {
     func loadShopOrder() {
         var params : [String : Any] = [:]
         params["starttime"] = ""
-        params["stoptime"] = ""
+        params["stoptime"] = Date.phpTimestamp()
         params["skip"] = self.shopOrderList.count
         params["limit"] = 10
-        NetTools.requestData(type: .post, urlString: ShopOrderListApi, succeed: { (result) in
-            for json in result[""].arrayValue{
+        NetTools.requestData(type: .post, urlString: ShopOrderListApi, parameters: params, succeed: { (result) in
+            for json in result["list"].arrayValue{
                 self.shopOrderList.append(json)
                 self.tableView.reloadData()
             }
@@ -58,7 +64,7 @@ class MyOrderTableViewController: BaseTableViewController {
     //加载一卡通消费记录
     func loadCardOrder() {
         NetTools.requestData(type: .post, urlString: CardTransactionListApi, succeed: { (result) in
-            for json in result[""].arrayValue{
+            for json in result["list"].arrayValue{
                 self.cardOrderList.append(json)
                 self.tableView.reloadData()
             }
@@ -87,8 +93,18 @@ class MyOrderTableViewController: BaseTableViewController {
         }else if self.orderType == 2{
             var cell = tableView.dequeueReusableCell(withIdentifier: "CardOrderCell")
             if cell == nil{
-                cell = UITableViewCell.init(style: .default, reuseIdentifier: "CardOrderCell")
+                cell = UITableViewCell.init(style: .value1, reuseIdentifier: "CardOrderCell")
             }
+            cell?.textLabel?.font = UIFont.systemFont(ofSize: 14.0)
+            cell?.textLabel?.textColor = UIColor.RGBS(s: 102)
+            cell?.detailTextLabel?.font = UIFont.systemFont(ofSize: 17.0)
+            cell?.detailTextLabel?.textColor = UIColor.RGBS(s: 51)
+            if self.cardOrderList.count > indexPath.row{
+                let json = self.cardOrderList[indexPath.row]
+                cell?.textLabel?.text = Date.dateStringFromDate(format: Date.timestampFormatString(), timeStamps: json["creationtime"].stringValue)
+                cell?.detailTextLabel?.text = "¥" + json["money"].stringValue
+            }
+            
             return cell!
         }
         return UITableViewCell()
