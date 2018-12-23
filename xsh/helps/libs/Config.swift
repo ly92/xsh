@@ -15,6 +15,12 @@ let kScreenW = UIScreen.main.bounds.width
 let kScreenH = UIScreen.main.bounds.height
 
 
+let KWechatPayNotiName = "WechatPayResultNotificationName"
+let KWechatLoginNotiName = "WechatLoginResultNotificationName"
+let KAliPayScheme = "alipayappyssh111"
+let KWechatKey = "wx01e4c37152e4b98f"
+
+
 let NAV_Color = UIColor.white
 let Text_Color = UIColor.RGBS(s: 33)
 let BG_Color = UIColor.RGBS(s: 240)

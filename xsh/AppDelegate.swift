@@ -37,7 +37,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         }
         self.checkVersion()
         
-        
+        WXApi.registerApp(KWechatKey)
         
         
         let entity = JPUSHRegisterEntity()
@@ -75,6 +75,38 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         // Saves changes in the application's managed object context before the application terminates.
         self.saveContext()
     }
+    
+    //iOS 9以上的回调
+    func application(_ app: UIApplication, open url: URL, options: [UIApplication.OpenURLOptionsKey : Any] = [:]) -> Bool {
+        let urlStr = url.absoluteString
+       
+        //微信支付
+        if urlStr.hasPrefix(KWechatKey){
+            return WXApi.handleOpen(url, delegate: self)
+        }
+        //支付宝
+        //如果极简开发包不可用，会跳转支付宝钱包进行支付，需要将支付宝钱包的支付结果回传给开发包
+        if url.host == "safepay" {
+            AlipaySDK.defaultService().processOrder(withPaymentResult: url, standbyCallback: { (resultDict) in
+                //处理支付结果
+               self.aliPayResult(resultDict)
+            })
+        }
+        //支付宝
+        //支付宝钱包快登授权返回authCode
+        //【由于在跳转支付宝客户端支付的过程中，商户app在后台很可能被系统kill了，所以pay接口的callback就会失效，请商户对standbyCallback返回的回调结果进行处理,就是在这个方法里面处理跟callback一样的逻辑】
+        if url.host == "platformapi" {
+            AlipaySDK.defaultService().processAuthResult(url, standbyCallback: { (resultDict) in
+                //处理支付结果
+                self.aliPayResult(resultDict)
+            })
+        }
+        
+        
+        return true
+    }
+    
+    
 
     // MARK: - Core Data stack
 
@@ -200,5 +232,51 @@ extension AppDelegate {
     
     
     
+    
+}
+
+
+
+
+//MARK: - 支付
+extension AppDelegate : WXApiDelegate{
+    //微信支付结果
+    func onResp(_ resp: BaseResp!) {
+        
+        if resp.isKind(of: PayResp.self){
+            var dict = [String:String]()
+            dict["code"] = "\(resp.errCode)"
+            dict["error"] = resp.errStr
+            //处理支付结果
+            NotificationCenter.default.post(name: NSNotification.Name(rawValue: KWechatPayNotiName), object: nil, userInfo: dict)
+        }else if resp.isKind(of: SendAuthResp.self){
+            let authResp = resp as! SendAuthResp
+            var dict = [String:String]()
+            dict["errCode"] = "\(authResp.errCode)"
+            dict["code"] = authResp.code
+            dict["state"] = authResp.state
+            dict["lang"] = authResp.lang
+            dict["country"] = authResp.country
+            //处理登录结果
+            NotificationCenter.default.post(name: NSNotification.Name(rawValue: KWechatLoginNotiName), object: nil, userInfo: dict)
+        }
+    }
+    
+    //支付宝支付结果
+    func aliPayResult(_ resultDict:[AnyHashable:Any]?) {
+        guard let dict = resultDict as? [AnyHashable:String] else {
+            return
+        }
+        if dict["resultStatus"] == "9000"{
+            //支付成功
+            LYProgressHUD.showInfo("支付宝支付成功！")
+        }else if dict["resultStatus"] == "6001"{
+            //支付取消
+            LYProgressHUD.showInfo("用户取消了支付")
+        }else{
+            //支付失败
+            LYProgressHUD.showInfo("支付失败！")
+        }
+    }
     
 }

@@ -27,6 +27,13 @@ class MessageViewController: BaseTableViewController {
         self.pullToRefre {
             self.messageList.removeAll()
             self.loadMessageData()
+            
+            
+            if WXApi.isWXAppInstalled(){
+                LYProgressHUD.showError("安装")
+            }else{
+                LYProgressHUD.showError("请先安装微信客户端！")
+            }
         }
     }
     

@@ -56,6 +56,22 @@ class PayViewController: BaseTableViewController {
     }
     
     
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        self.removeNoti()
+        //微信支付结果通知
+        NotificationCenter.default.addObserver(self, selector: #selector(PayViewController.wechatPayResult(_:)), name: NSNotification.Name(rawValue: KWechatPayNotiName), object: nil)
+    }
+    
+    func removeNoti() {
+        //移除微信支付结果通知
+        NotificationCenter.default.removeObserver(self, name: NSNotification.Name(rawValue: KWechatPayNotiName), object: nil)
+    }
+    override func viewDidDisappear(_ animated: Bool) {
+        super.viewDidDisappear(animated)
+        self.removeNoti()
+    }
+    
     
     //支付方式
     func getPayWay() {
@@ -114,12 +130,84 @@ class PayViewController: BaseTableViewController {
         params["money"] = self.money
         //ptid:支付方式,atid:货币ID,orgaccount:付款账户,destaccount:收款账户,orderno:订单号,money:付款金额,points:积分抵消费金额,coupons:使用优惠券，逗号分隔优惠券码
         NetTools.requestData(type: .post, urlString: PrePayOrderApi, parameters: params, succeed: { (result) in
+            let type = result["payinfo"]["paytype"].stringValue
+            if type == "alipay"{
+                self.payByAli(result["payinfo"]["orderInfo"].stringValue)
+            }else if type == "weixin"{
+                self.payByWechat(result["payinfo"])
+            }
             
         }) { (error) in
             LYProgressHUD.showError(error)
         }
     }
 
+    
+    
+    //使用支付宝付款
+    func payByAli(_ orderString : String) {
+        AlipaySDK.defaultService().payOrder(orderString, fromScheme: KAliPayScheme) { (resultDict) in
+            self.aliPayResult(resultDict)
+        }
+    }
+    
+    
+    func aliPayResult(_ resultDict:[AnyHashable:Any]?) {
+        if resultDict == nil{
+            return
+        }
+        if resultDict!["resultStatus"] as! String == "9000"{
+            //返回首页
+            LYAlertView.show("提示", "支付成功，快去发货吧！", "知道了", {
+                
+            })
+        }else if resultDict!["resultStatus"] as! String == "6001"{
+            //支付取消
+            LYProgressHUD.showInfo("用户取消了支付")
+        }else{
+            //支付失败
+            LYProgressHUD.showInfo("支付失败！")
+        }
+        
+    }
+    
+    
+    //使用微信付款
+    func payByWechat(_ reqJson : JSON) {
+        if WXApi.isWXAppInstalled(){
+            let req = PayReq()
+            req.openID = reqJson["appId"].stringValue
+            req.partnerId = reqJson["partnerId"].stringValue
+            req.prepayId = reqJson["prepayId"].stringValue
+            req.nonceStr = reqJson["nonceStr"].stringValue
+            req.timeStamp = UInt32(reqJson["timeStamp"].stringValue)!
+            req.package = reqJson["packageValue"].stringValue
+            req.sign = reqJson["sign"].stringValue
+            print(WXApi.send(req))
+        }else{
+            LYProgressHUD.showError("请先安装微信客户端！")
+        }
+    }
+    //微信支付结果
+    @objc func wechatPayResult(_ noti:Notification) {
+        guard let resultDict = noti.userInfo as? [String:String] else {
+            return
+        }
+        if resultDict["code"] == "0"{
+            //返回首页
+            LYAlertView.show("提示", "支付成功，快去发货吧！", "知道了", {
+                
+            })
+        }else if resultDict["code"] == "-2"{
+            //取消支付
+            LYProgressHUD.showInfo("用户取消了支付")
+        }else{
+            //支付失败
+            LYProgressHUD.showInfo(resultDict["error"]!)
+        }
+    }
+    
+    
 
     override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         if indexPath.row == 0{

@@ -55,6 +55,10 @@ class ShopViewController: UIViewController {
         self.scrollView.dg_addPullToRefreshWithActionHandler({
             self.loadFunctionData()
             self.loadAdsData()
+            
+            
+            
+            
         }, loadingView: nil)
         
         
