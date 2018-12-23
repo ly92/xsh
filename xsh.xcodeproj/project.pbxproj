@@ -62,7 +62,6 @@
 		08A3A40921C158CE008E071F /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 08A3A40721C158CE008E071F /* LaunchScreen.storyboard */; };
 		08A3A41421C158CF008E071F /* xshTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08A3A41321C158CF008E071F /* xshTests.swift */; };
 		08A3A41F21C158CF008E071F /* xshUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08A3A41E21C158CF008E071F /* xshUITests.swift */; };
-		08A3A45121C16663008E071F /* MessageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08A3A45021C16663008E071F /* MessageViewController.swift */; };
 		08A3A45321C1666E008E071F /* CouponViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08A3A45221C1666E008E071F /* CouponViewController.swift */; };
 		08A3A46421C168B6008E071F /* UIViewController+Category.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08A3A45721C168B6008E071F /* UIViewController+Category.swift */; };
 		08A3A46521C168B6008E071F /* UIView+Category.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08A3A45821C168B6008E071F /* UIView+Category.swift */; };
@@ -102,6 +101,9 @@
 		08E0D46C21CD44740015992B /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 08E0D46B21CD44740015992B /* QuartzCore.framework */; };
 		08E0D46E21CD447E0015992B /* CoreTelephony.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 08E0D46D21CD447E0015992B /* CoreTelephony.framework */; };
 		08E0D47021CD44860015992B /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 08E0D46F21CD44850015992B /* SystemConfiguration.framework */; };
+		08E0D47421CF23370015992B /* MessageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08E0D47221CF23370015992B /* MessageViewController.swift */; };
+		08E0D47721CF23500015992B /* MessageCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08E0D47521CF23500015992B /* MessageCell.swift */; };
+		08E0D47821CF23500015992B /* MessageCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 08E0D47621CF23500015992B /* MessageCell.xib */; };
 		1C023EFB7E640A320BF3D511 /* Pods_xshUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8B41FC1B3E51B3DF767FDD7E /* Pods_xshUITests.framework */; };
 		B51518A09651DE7E368B4C17 /* Pods_xshTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6D820356A581154B9C009BF4 /* Pods_xshTests.framework */; };
 		D172ACE60C20138662B56A49 /* Pods_xsh.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 74ED8112C2C49640BC0E8A1E /* Pods_xsh.framework */; };
@@ -188,7 +190,6 @@
 		08A3A41A21C158CF008E071F /* xshUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = xshUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		08A3A41E21C158CF008E071F /* xshUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = xshUITests.swift; sourceTree = "<group>"; };
 		08A3A42021C158CF008E071F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		08A3A45021C16663008E071F /* MessageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageViewController.swift; sourceTree = "<group>"; };
 		08A3A45221C1666E008E071F /* CouponViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CouponViewController.swift; sourceTree = "<group>"; };
 		08A3A45721C168B6008E071F /* UIViewController+Category.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIViewController+Category.swift"; sourceTree = "<group>"; };
 		08A3A45821C168B6008E071F /* UIView+Category.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIView+Category.swift"; sourceTree = "<group>"; };
@@ -314,6 +315,9 @@
 		08E0D46B21CD44740015992B /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
 		08E0D46D21CD447E0015992B /* CoreTelephony.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreTelephony.framework; path = System/Library/Frameworks/CoreTelephony.framework; sourceTree = SDKROOT; };
 		08E0D46F21CD44850015992B /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
+		08E0D47221CF23370015992B /* MessageViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MessageViewController.swift; sourceTree = "<group>"; };
+		08E0D47521CF23500015992B /* MessageCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageCell.swift; sourceTree = "<group>"; };
+		08E0D47621CF23500015992B /* MessageCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MessageCell.xib; sourceTree = "<group>"; };
 		222CBFCB20CE17CE8E2FBDE3 /* Pods-xsh.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-xsh.release.xcconfig"; path = "Pods/Target Support Files/Pods-xsh/Pods-xsh.release.xcconfig"; sourceTree = "<group>"; };
 		5B28B3D46E368790652851A7 /* Pods-xshTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-xshTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-xshTests/Pods-xshTests.debug.xcconfig"; sourceTree = "<group>"; };
 		6A20976A1C316D32232167B9 /* Pods-xshUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-xshUITests.release.xcconfig"; path = "Pods/Target Support Files/Pods-xshUITests/Pods-xshUITests.release.xcconfig"; sourceTree = "<group>"; };
@@ -564,7 +568,8 @@
 		08A3A43121C16405008E071F /* message */ = {
 			isa = PBXGroup;
 			children = (
-				08A3A45021C16663008E071F /* MessageViewController.swift */,
+				08E0D47321CF23370015992B /* cells */,
+				08E0D47121CF23370015992B /* views */,
 			);
 			path = message;
 			sourceTree = "<group>";
@@ -770,6 +775,23 @@
 			path = WeiXin;
 			sourceTree = "<group>";
 		};
+		08E0D47121CF23370015992B /* views */ = {
+			isa = PBXGroup;
+			children = (
+				08E0D47221CF23370015992B /* MessageViewController.swift */,
+			);
+			path = views;
+			sourceTree = "<group>";
+		};
+		08E0D47321CF23370015992B /* cells */ = {
+			isa = PBXGroup;
+			children = (
+				08E0D47521CF23500015992B /* MessageCell.swift */,
+				08E0D47621CF23500015992B /* MessageCell.xib */,
+			);
+			path = cells;
+			sourceTree = "<group>";
+		};
 		58751821874EFABE7E7CB9A3 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
@@ -931,6 +953,7 @@
 				0819FBC821C8E3680078EB8D /* ActivityCell.xib in Resources */,
 				08A3A40621C158CE008E071F /* Assets.xcassets in Resources */,
 				0819FBBC21C8DB550078EB8D /* TransactionBannerCell.xib in Resources */,
+				08E0D47821CF23500015992B /* MessageCell.xib in Resources */,
 				086E2D0121C9EEBF00896F25 /* CouponCell.xib in Resources */,
 				08169D7C21CA94F10030D863 /* NoticeCell.xib in Resources */,
 				0819FBCC21C8E38A0078EB8D /* GoodsCell.xib in Resources */,
@@ -1069,6 +1092,7 @@
 				08169D7821CA94CF0030D863 /* NoticeTableViewController.swift in Sources */,
 				0819FBC221C8E3140078EB8D /* ShopViewController.swift in Sources */,
 				08A3A46521C168B6008E071F /* UIView+Category.swift in Sources */,
+				08E0D47721CF23500015992B /* MessageCell.swift in Sources */,
 				08A3A46C21C168B6008E071F /* String+Category.swift in Sources */,
 				08A3A46F21C168B6008E071F /* LYNavigationController.swift in Sources */,
 				0807CA9721C7C47700967692 /* LYProgressHUD.swift in Sources */,
@@ -1105,7 +1129,6 @@
 				086E2CFC21C9E75900896F25 /* MyOrderTableViewController.swift in Sources */,
 				08D7B6A321CCC310007D191F /* RSADataVerifier.m in Sources */,
 				0861B84A21C53EEB008795E5 /* RegisterViewController.swift in Sources */,
-				08A3A45121C16663008E071F /* MessageViewController.swift in Sources */,
 				08169D7421CA840E0030D863 /* UIBUtton+Extension.swift in Sources */,
 				08169D7E21CAA0A80030D863 /* BindCardTableViewController.swift in Sources */,
 				0819FBBA21C8DB550078EB8D /* LYUpScrollBannerView.swift in Sources */,
@@ -1118,6 +1141,7 @@
 				086E2CFA21C9E71C00896F25 /* MyQrcodeViewController.swift in Sources */,
 				08D7B6A221CCC310007D191F /* RSADataSigner.m in Sources */,
 				08D7B63021CC9C5B007D191F /* PayViewController.swift in Sources */,
+				08E0D47421CF23370015992B /* MessageViewController.swift in Sources */,
 				0861B83621C297BF008795E5 /* Date+Category.swift in Sources */,
 				08A3A45321C1666E008E071F /* CouponViewController.swift in Sources */,
 				0861B83221C29703008795E5 /* NetTools.swift in Sources */,

@@ -316,7 +316,7 @@ extension Date{
         return "yyyy/MM/dd"
     }
     static func datesPointFormatString() -> String {
-        return "yyyy.MM.dd HH:mm"
+        return "MM-dd HH:mm:ss"
     }
     static func dateHPointFormatString() -> String {
         return "yyyy.MM.dd HH:00"
