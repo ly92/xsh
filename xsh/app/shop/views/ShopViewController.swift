@@ -10,25 +10,16 @@ import UIKit
 import SwiftyJSON
 import DGElasticPullToRefresh
 
-class ShopViewController: UIViewController {
-    class func spwan() -> ShopViewController{
-        return self.loadFromStoryBoard(storyBoard: "Shop") as! ShopViewController
-    }
-    
-    
-    @IBOutlet weak var hederView: UIView!
-    @IBOutlet weak var headerViewH: NSLayoutConstraint!
-    @IBOutlet weak var functionView: UIView!
-    @IBOutlet weak var collectionView: UICollectionView!
-    @IBOutlet weak var tableView: UITableView!
-    @IBOutlet weak var scrollContentView: UIView!
-    @IBOutlet weak var scrollView: UIScrollView!
-    @IBOutlet weak var scrollContentHeight: NSLayoutConstraint!
+class ShopViewController: BaseTableViewController {
+   
     
     fileprivate var bannerList : Array<JSON> = []
     
     fileprivate var functionList : Array<JSON> = []
     
+    
+    fileprivate let functionView = UIView(frame: CGRect(x: 0, y: 0, width: kScreenW, height: 92))
+    fileprivate let activityView = UIView(frame: CGRect(x: 0, y: 0, width: kScreenW, height: 150))
 
     fileprivate lazy var bannerView : LYAnimateBannerView = {
         let bannerView = LYAnimateBannerView.init(frame: CGRect(x: 0, y: 0, width: kScreenW, height: kScreenW * 190 / 375), delegate: self)
@@ -42,33 +33,19 @@ class ShopViewController: UIViewController {
         super.viewDidLoad()
         
         self.tableView.register(UINib.init(nibName: "GoodsCell", bundle: Bundle.main), forCellReuseIdentifier: "GoodsCell")
-        self.collectionView.register(UINib.init(nibName: "ActivityCell", bundle: Bundle.main), forCellWithReuseIdentifier: "ActivityCell")
+//        self.collectionView.register(UINib.init(nibName: "ActivityCell", bundle: Bundle.main), forCellWithReuseIdentifier: "ActivityCell")
         
-        self.hederView.addSubview(self.bannerView)
-
-        self.headerViewH.constant = kScreenW * 190 / 375
-        self.scrollContentHeight.constant = kScreenH + 236 + self.headerViewH.constant
-        
+       
         self.loadFunctionData()
         self.loadAdsData()
         
-        self.scrollView.dg_addPullToRefreshWithActionHandler({
+        self.pullToRefre {
             self.loadFunctionData()
             self.loadAdsData()
-            
-            
-            
-            
-        }, loadingView: nil)
-        
-        
-        //视图在导航器中显示默认四边距离
-        self.edgesForExtendedLayout = []
-        if #available(iOS 11.0, *){
-            self.scrollView.contentInsetAdjustmentBehavior = .never
-        }else{
-            self.automaticallyAdjustsScrollViewInsets = false
         }
+        
+        
+        
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -154,7 +131,6 @@ class ShopViewController: UIViewController {
     func createfunction(_ title : String, _ img : String, _ index : Int, _ frame : CGRect) {
         let view = UIView.init(frame: frame)
         self.functionView.addSubview(view)
-
         let imgV = UIImageView()
         imgV.setImageUrlStr(img)
         view.addSubview(imgV)
@@ -252,55 +228,102 @@ extension ShopViewController : LYAnimateBannerViewDelegate{
 }
 
 //UITableView--商品列表
-extension ShopViewController : UITableViewDelegate, UITableViewDataSource{
-    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 10
+extension ShopViewController{
+    
+   override func numberOfSections(in tableView: UITableView) -> Int {
+        return 4
     }
     
-    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "GoodsCell", for: indexPath)
+    override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        if section == 3{
+            return 10
+        }
+        return 1
+    }
+    
+    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        if indexPath.section == 0{
+            var cell = tableView.dequeueReusableCell(withIdentifier: "shop-headerbannerview")
+            if cell == nil{
+                cell = UITableViewCell.init(style: .default, reuseIdentifier: "shop-headerbannerview")
+            }
+            cell?.contentView.addSubview(self.bannerView)
+            
+            return cell!
+        }else if indexPath.section == 1{
+            var cell = tableView.dequeueReusableCell(withIdentifier: "shop-functionview")
+            if cell == nil{
+                cell = UITableViewCell.init(style: .default, reuseIdentifier: "shop-functionview")
+            }
+            cell?.contentView.addSubview(self.functionView)
+            
+            return cell!
+        }else if indexPath.section == 2{
+            var cell = tableView.dequeueReusableCell(withIdentifier: "shop-activityview")
+            if cell == nil{
+                cell = UITableViewCell.init(style: .default, reuseIdentifier: "shop-activityview")
+            }
+            cell?.contentView.addSubview(self.activityView)
+            
+            return cell!
+        }else if indexPath.section == 3{
+            let cell = tableView.dequeueReusableCell(withIdentifier: "GoodsCell", for: indexPath) as! GoodsCell
+            
+            return cell
+        }
         
-        return cell
+        return UITableViewCell()
     }
     
-    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return 120
+    override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        if indexPath.section == 0{
+            return 190 / 375 * kScreenW
+        }else if indexPath.section == 1{
+            return 92
+        }else if indexPath.section == 2{
+            return 150
+        }else if indexPath.section == 3{
+           return 120
+        }
+        return 0
     }
     
-    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
         
         
     }
 }
 
-//活动列表
-extension ShopViewController : UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout{
-    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return 0
-    }
-    
-    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "ActivityCell", for: indexPath)
-        
-        return cell
-    }
-    
-    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        return CGSize.init(width: 60, height: 60)
-    }
-    
-    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        collectionView.deselectItem(at: indexPath, animated: true)
-        
-    }
-    
-    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
-        return 0
-    }
-    
-    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumInteritemSpacingForSectionAt section: Int) -> CGFloat {
-        return 0
-    }
-    
-}
+
+//
+////活动列表
+//extension ShopViewController : UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout{
+//    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+//        return 0
+//    }
+//
+//    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+//        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "ActivityCell", for: indexPath)
+//
+//        return cell
+//    }
+//
+//    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+//        return CGSize.init(width: 60, height: 60)
+//    }
+//
+//    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+//        collectionView.deselectItem(at: indexPath, animated: true)
+//
+//    }
+//
+//    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
+//        return 0
+//    }
+//
+//    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumInteritemSpacingForSectionAt section: Int) -> CGFloat {
+//        return 0
+//    }
+//
+//}
