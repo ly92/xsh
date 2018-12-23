@@ -85,6 +85,8 @@ let BindCardApi = "card/bindHardCard" // post cardno, code, passwd
 let CardDetailApi = "card/get" // post
 //修改支付密码
 let CardChangePwdApi = "user/updatePaypwd" // post oldpasswd, newpasswd
+//
+let CardResetPayPwdApi = "user/resetPaypwd" // post paypsw, passwd
 //交易记录
 let ShopOrderListApi = "card/listTransaction" // post starttime, stoptime, skip, limit
 //创建交易

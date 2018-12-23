@@ -8,6 +8,7 @@
 
 import UIKit
 import SwiftyJSON
+import DGElasticPullToRefresh
 
 class ShopViewController: UIViewController {
     class func spwan() -> ShopViewController{
@@ -16,6 +17,7 @@ class ShopViewController: UIViewController {
     
     
     @IBOutlet weak var hederView: UIView!
+    @IBOutlet weak var headerViewH: NSLayoutConstraint!
     @IBOutlet weak var functionView: UIView!
     @IBOutlet weak var collectionView: UICollectionView!
     @IBOutlet weak var tableView: UITableView!
@@ -29,7 +31,7 @@ class ShopViewController: UIViewController {
     
 
     fileprivate lazy var bannerView : LYAnimateBannerView = {
-        let bannerView = LYAnimateBannerView.init(frame: CGRect(x: 0, y: 0, width: kScreenW, height: kScreenW * 320 / 750), delegate: self)
+        let bannerView = LYAnimateBannerView.init(frame: CGRect(x: 0, y: 0, width: kScreenW, height: kScreenW * 190 / 375), delegate: self)
         bannerView.backgroundColor = UIColor.white
         bannerView.showPageControl = true
         return bannerView
@@ -43,27 +45,55 @@ class ShopViewController: UIViewController {
         self.collectionView.register(UINib.init(nibName: "ActivityCell", bundle: Bundle.main), forCellWithReuseIdentifier: "ActivityCell")
         
         self.hederView.addSubview(self.bannerView)
-        
+
+        self.headerViewH.constant = kScreenW * 190 / 375
+        self.scrollContentHeight.constant = kScreenH + 236 + self.headerViewH.constant
         
         self.loadFunctionData()
-        
-        self.scrollContentHeight.constant = kScreenH + 386
-        
         self.loadAdsData()
         
+        self.scrollView.dg_addPullToRefreshWithActionHandler({
+            self.loadFunctionData()
+            self.loadAdsData()
+        }, loadingView: nil)
+        
+        
+        //视图在导航器中显示默认四边距离
+        self.edgesForExtendedLayout = []
+        if #available(iOS 11.0, *){
+            self.scrollView.contentInsetAdjustmentBehavior = .never
+        }else{
+            self.automaticallyAdjustsScrollViewInsets = false
+        }
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        self.navigationController?.navigationBar.isTranslucent = true
+        self.navigationController?.navigationBar.setBackgroundImage(UIImage(), for: .default)
+        self.navigationController?.navigationBar.shadowImage = UIImage()
+        self.edgesForExtendedLayout = UIRectEdge.top
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        self.navigationController?.setNavigationBarHidden(true, animated: false)
+        UIApplication.shared.statusBarStyle = .lightContent
     }
     
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
         self.bannerView.timer?.invalidate()
+        
+        self.navigationController?.setNavigationBarHidden(false, animated: false)
+        UIApplication.shared.statusBarStyle = .default
+        self.edgesForExtendedLayout = []
+        self.navigationController?.navigationBar.isTranslucent = false
+        self.navigationController?.navigationBar.setBackgroundImage(nil, for: .default)
+        self.navigationController?.navigationBar.shadowImage = nil
     }
     
-    override func viewDidAppear(_ animated: Bool) {
-        super.viewDidAppear(animated)
-        
-    }
     //MARK:--banner
-    //查询广告位广告
     func loadAdsData() {
         var params : [String : Any] = [:]
         params["location"] = "maintop"
@@ -73,7 +103,7 @@ class ShopViewController: UIViewController {
             //banner
             var urlArray : Array<String> = []
             
-            for json in result["list"].arrayValue{
+            for json in result["list"]["list"].arrayValue{
                 self.bannerList.append(json)
                 urlArray.append(json["imageurl"].stringValue)
             }

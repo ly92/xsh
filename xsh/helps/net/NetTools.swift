@@ -196,13 +196,20 @@ extension NetTools{
                 #endif
 
                 
-                if json["code"].stringValue != "0"{
+                if json["code"].stringValue == "0"{
+                    //返回正确结果
+                    succeed(json["content"])
+                }else if json["code"].stringValue == "1228"{
+                    guard let nav = AppDelegate.sharedInstance.tabBar.selectedViewController as? LYNavigationController else{
+                        return
+                    }
+                    let loginVC = LoginViewController.spwan()
+                    nav.viewControllers.first?.present(loginVC, animated: true) {
+                    }
+                }else{
                     failure( json["message"].stringValue)
-                    return
                 }
                 
-                //返回正确结果
-                succeed(json["content"])
             }
             
             //请求失败

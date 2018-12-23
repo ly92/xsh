@@ -13,6 +13,7 @@ class OpenCardViewController: BaseViewController {
         return self.loadFromStoryBoard(storyBoard: "Personal") as! OpenCardViewController
     }
     
+    var openSucBlock : (() -> Void)?
     
     @IBOutlet weak var pwdTF: UITextField!
     @IBOutlet weak var tf1: UITextField!
@@ -54,9 +55,18 @@ class OpenCardViewController: BaseViewController {
         if pwd.count != 6 || pwd.intValue == 0{
             LYProgressHUD.showError("密码必须为6位不同数字")
         }
-        let params : [String : Any] = ["passwd" : (LocalData.getUserPhone() + Date.phpTimestamp() + (pwd.md5String() + LocalData.getUserPhone()).md5String()).md5String()]
+        let ts = Date.phpTimestamp()
+        let cmdno = String.randomStr(len: 20) + ts
+        var params : [String : Any] = [:]
+        params["passwd"] = (LocalData.getUserPhone() + ts + cmdno + (pwd.md5String() + LocalData.getUserPhone()).md5String()).md5String()
+        params["cmdno"] = cmdno
+        params["ts"] = ts
         NetTools.requestData(type: .post, urlString: OpenCardApi, parameters: params, succeed: { (result) in
-            
+            LYProgressHUD.showSuccess("开卡成功！")
+            if self.openSucBlock != nil{
+                self.openSucBlock!()
+            }
+            self.navigationController?.popViewController(animated: true)
         }) { (error) in
             LYProgressHUD.showError(error)
         }

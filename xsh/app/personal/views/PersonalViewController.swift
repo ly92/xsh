@@ -123,7 +123,9 @@ class PersonalViewController: BaseTableViewController {
             
         }else if indexPath.row == 6{
             //设置
-            
+            let loginVC = LoginViewController.spwan()
+            self.present(loginVC, animated: true) {
+            }
         }
     }
     

@@ -19,8 +19,8 @@
                 <rect key="frame" x="0.0" y="0.0" width="320" height="160.5"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="mFM-fA-BaK">
-                        <rect key="frame" x="144.5" y="20" width="31" height="21"/>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="mFM-fA-BaK">
+                        <rect key="frame" x="160" y="25" width="0.0" height="21"/>
                         <constraints>
                             <constraint firstAttribute="height" constant="21" id="W6b-ry-LhK"/>
                         </constraints>
@@ -31,7 +31,7 @@
                     <view clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Mrq-9E-afK">
                         <rect key="frame" x="15" y="56" width="290" height="104"/>
                         <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="FaC-nE-J4j">
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="123" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="FaC-nE-J4j">
                                 <rect key="frame" x="8" y="8" width="191" height="19.5"/>
                                 <constraints>
                                     <constraint firstAttribute="height" relation="lessThanOrEqual" constant="37" id="SFT-Ro-CUy"/>
@@ -47,42 +47,41 @@
                                     <constraint firstAttribute="height" constant="75" id="tlW-Yu-Wtt"/>
                                 </constraints>
                             </imageView>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="enh-58-GnV">
-                                <rect key="frame" x="8" y="37.5" width="191" height="17"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" relation="lessThanOrEqual" constant="37" id="xdg-nh-OWF"/>
-                                </constraints>
-                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <color key="textColor" red="0.23137254900000001" green="0.2784313725" blue="0.35686274509999999" alpha="1" colorSpace="calibratedRGB"/>
-                                <nil key="highlightedColor"/>
-                            </label>
+                            <webView contentMode="scaleToFill" scalesPageToFit="YES" translatesAutoresizingMaskIntoConstraints="NO" id="MJa-zw-AHy">
+                                <rect key="frame" x="8" y="35.5" width="191" height="60.5"/>
+                                <color key="backgroundColor" red="0.36078431370000003" green="0.38823529410000002" blue="0.4039215686" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <connections>
+                                    <outlet property="delegate" destination="KGk-i7-Jjw" id="Vzg-rc-lVM"/>
+                                </connections>
+                            </webView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
                             <constraint firstAttribute="trailing" secondItem="vju-2o-1Rk" secondAttribute="trailing" constant="8" id="9Zw-Ne-EC0"/>
+                            <constraint firstItem="vju-2o-1Rk" firstAttribute="leading" secondItem="MJa-zw-AHy" secondAttribute="trailing" constant="8" id="D1a-NX-fC0"/>
                             <constraint firstItem="vju-2o-1Rk" firstAttribute="centerY" secondItem="Mrq-9E-afK" secondAttribute="centerY" id="EZY-8h-wOQ"/>
-                            <constraint firstItem="vju-2o-1Rk" firstAttribute="leading" secondItem="enh-58-GnV" secondAttribute="trailing" constant="8" id="FEo-Zx-zXA"/>
+                            <constraint firstItem="MJa-zw-AHy" firstAttribute="leading" secondItem="Mrq-9E-afK" secondAttribute="leading" constant="8" id="JyP-ZD-UK3"/>
                             <constraint firstItem="FaC-nE-J4j" firstAttribute="top" secondItem="Mrq-9E-afK" secondAttribute="top" constant="8" id="V8R-lf-BHF"/>
                             <constraint firstItem="vju-2o-1Rk" firstAttribute="leading" secondItem="FaC-nE-J4j" secondAttribute="trailing" constant="8" id="ZyL-q1-v2m"/>
                             <constraint firstItem="FaC-nE-J4j" firstAttribute="leading" secondItem="Mrq-9E-afK" secondAttribute="leading" constant="8" id="aKL-fJ-838"/>
-                            <constraint firstItem="enh-58-GnV" firstAttribute="top" secondItem="FaC-nE-J4j" secondAttribute="bottom" constant="10" id="bov-Lg-FT7"/>
-                            <constraint firstItem="enh-58-GnV" firstAttribute="leading" secondItem="Mrq-9E-afK" secondAttribute="leading" constant="8" id="wPi-T1-sRI"/>
+                            <constraint firstItem="MJa-zw-AHy" firstAttribute="top" secondItem="FaC-nE-J4j" secondAttribute="bottom" constant="8" id="jGl-ri-ooc"/>
+                            <constraint firstAttribute="bottom" secondItem="MJa-zw-AHy" secondAttribute="bottom" constant="8" id="r8g-7q-6ZA"/>
                         </constraints>
                     </view>
                 </subviews>
                 <color key="backgroundColor" red="0.94117647059999998" green="0.94117647059999998" blue="0.94117647059999998" alpha="1" colorSpace="calibratedRGB"/>
                 <constraints>
-                    <constraint firstItem="mFM-fA-BaK" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="20" id="I0J-CI-k4d"/>
+                    <constraint firstItem="mFM-fA-BaK" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="25" id="I0J-CI-k4d"/>
                     <constraint firstItem="mFM-fA-BaK" firstAttribute="centerX" secondItem="H2p-sc-9uM" secondAttribute="centerX" id="Ny0-nm-ZXx"/>
                     <constraint firstItem="Mrq-9E-afK" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="15" id="Oqp-gm-rgl"/>
                     <constraint firstAttribute="bottom" secondItem="Mrq-9E-afK" secondAttribute="bottom" constant="0.5" id="Wde-C8-Ies"/>
                     <constraint firstAttribute="trailing" secondItem="Mrq-9E-afK" secondAttribute="trailing" constant="15" id="j2C-aR-2TQ"/>
-                    <constraint firstItem="Mrq-9E-afK" firstAttribute="top" secondItem="mFM-fA-BaK" secondAttribute="bottom" constant="15" id="tLn-dx-Snj"/>
+                    <constraint firstItem="Mrq-9E-afK" firstAttribute="top" secondItem="mFM-fA-BaK" secondAttribute="bottom" constant="10" id="tLn-dx-Snj"/>
                 </constraints>
             </tableViewCellContentView>
             <viewLayoutGuide key="safeArea" id="njF-e1-oar"/>
             <connections>
-                <outlet property="descLbl" destination="enh-58-GnV" id="8gY-X5-o39"/>
+                <outlet property="descWeb" destination="MJa-zw-AHy" id="QQ6-7t-TGe"/>
                 <outlet property="imgV" destination="vju-2o-1Rk" id="qjC-gV-Ky4"/>
                 <outlet property="imgVW" destination="Uo8-B6-xht" id="cEV-1G-yge"/>
                 <outlet property="subView" destination="Mrq-9E-afK" id="7lB-oa-gmH"/>

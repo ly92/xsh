@@ -19,7 +19,7 @@ class MyOrderTableViewController: BaseTableViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.navigationItem.title = ""
+        self.navigationItem.title = "交易记录"
         
         self.tableView.register(UINib.init(nibName: "MyOrderCell", bundle: Bundle.main), forCellReuseIdentifier: "MyOrderCell")
         

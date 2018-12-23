@@ -25,15 +25,26 @@ class MyCardViewController: BaseViewController {
     @IBOutlet weak var creditLbl: UILabel!
     @IBOutlet weak var rechargeBtn: UIButton!
     @IBOutlet weak var changePwdBtn: UIButton!
+    @IBOutlet weak var cardNumView: UIView!
     
     
     override func viewDidLoad() {
         super.viewDidLoad()
         self.navigationItem.title = "我的一卡通"
         
-        self.navigationItem.rightBarButtonItem = UIBarButtonItem.init(title: "", target: self, action: #selector(MyCardViewController.rightItemAction))
+        
+        
+        self.rechargeBtn.layer.cornerRadius = 25
+        self.changePwdBtn.layer.cornerRadius = 25
         
         self.loadCardDetail()
+        
+        
+        self.cardNumView.addTapActionBlock {
+            //绑定卡
+            let bindVC = BindCardTableViewController.spwan()
+            self.navigationController?.pushViewController(bindVC, animated: true)
+        }
     }
     
     //一卡通历史
@@ -72,8 +83,14 @@ class MyCardViewController: BaseViewController {
     //一卡通详情
     func loadCardDetail() {
         NetTools.requestData(type: .post, urlString: CardDetailApi, succeed: { (result) in
-            self.cardNumLbl.text = result["ano"].stringValue
-            self.cardCountLbl.text = result["hardcount"].stringValue
+            self.haveCard.isHidden = false
+            self.noCard.isHidden = true
+            self.navigationItem.rightBarButtonItem = UIBarButtonItem.init(title: "记录", target: self, action: #selector(MyCardViewController.rightItemAction))
+            
+            self.cardNumLbl.text = result["card"]["ano"].stringValue
+            self.cardCountLbl.text = result["card"]["hardcount"].stringValue
+            self.creditLbl.text = result["card"]["points"].stringValue
+            self.moneyLbl.text = "¥" + result["card"]["money"].stringValue
         }) { (error) in
             self.haveCard.isHidden = true
             self.noCard.isHidden = false
@@ -122,6 +139,9 @@ class MyCardViewController: BaseViewController {
         }else if btn.tag == 33{
             //去开通
             let openVC = OpenCardViewController.spwan()
+            openVC.openSucBlock = {() in
+                self.loadCardDetail()
+            }
             self.navigationController?.pushViewController(openVC, animated: true)
         }else if btn.tag == 44{
             //绑定卡

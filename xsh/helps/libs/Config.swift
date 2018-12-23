@@ -18,7 +18,7 @@ let kScreenH = UIScreen.main.bounds.height
 let NAV_Color = UIColor.white
 let Text_Color = UIColor.RGBS(s: 33)
 let BG_Color = UIColor.RGBS(s: 240)
-let Normal_Color = UIColor.RGB(r: 205, g: 56, b: 37)
+let Normal_Color = UIColor.RGB(r: 73, g: 205, b: 170)
 
 //版本号
 func appVersion() -> String {

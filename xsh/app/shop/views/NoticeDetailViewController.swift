@@ -17,7 +17,7 @@ class NoticeDetailViewController: BaseTableViewController {
     @IBOutlet weak var titleLbl: UILabel!
     @IBOutlet weak var timeLbl: UILabel!
     @IBOutlet weak var readCountLbl: UILabel!
-    @IBOutlet weak var contentLbl: UILabel!
+    @IBOutlet weak var descWeb: UIWebView!
     @IBOutlet weak var contentImgV: UIImageView!
     
     @IBOutlet weak var authorLbl: UILabel!
@@ -57,7 +57,8 @@ class NoticeDetailViewController: BaseTableViewController {
         self.titleLbl.text = self.noticeJson["title"].stringValue
         self.timeLbl.text = Date.dateStringFromDate(format: Date.dateChineseFormatString(), timeStamps: self.noticeJson["creationtime"].stringValue)
         self.readCountLbl.text = "阅读量：" + self.noticeJson["title"].stringValue
-        self.contentLbl.text = self.noticeJson["content"].stringValue
+        let html = "<html> <body> " + self.noticeJson["content"].stringValue + "</body> </html>"
+        self.descWeb.loadHTMLString(html, baseURL: URL(string:"www.baidu.com"))
         if !self.noticeJson["thumb"].stringValue.isEmpty{
             self.contentImgV.setImageUrlStr(self.noticeJson["thumb"].stringValue)
         }
@@ -73,8 +74,29 @@ class NoticeDetailViewController: BaseTableViewController {
 
 }
 
-extension NoticeDetailViewController{
+extension NoticeDetailViewController : UIWebViewDelegate{
     override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return 100
+        if indexPath.row == 0{
+            return self.titleLbl.resizeHeight() + 60
+        }else if indexPath.row == 1{
+            return self.descWeb.scrollView.contentSize.height + 22
+        }else if indexPath.row == 2{
+            if self.noticeJson["thumb"].stringValue.isEmpty{
+                return 0
+            }else{
+                guard let img = self.contentImgV.image else{
+                    return 0
+                }
+                return img.size.height / img.size.width * self.contentImgV.w
+            }
+        }else if indexPath.row == 3{
+            return 75
+        }
+        return 0
+    }
+    
+    
+    func webViewDidFinishLoad(_ webView: UIWebView) {
+        self.tableView.reloadData()
     }
 }

@@ -14,18 +14,18 @@ class LYTabBarController: UITabBarController {
     override func viewDidLoad() {
         super.viewDidLoad()
         let tabBarAppear = UITabBarItem.appearance()
-        tabBarAppear.setTitleTextAttributes([NSAttributedString.Key.foregroundColor:UIColor.orange], for: UIControl.State.selected)
+        tabBarAppear.setTitleTextAttributes([NSAttributedString.Key.foregroundColor:Normal_Color], for: UIControl.State.selected)
         
         self.setUpAllChildViewControllers()
         
-        tabBar.isTranslucent = false
+        
         
         
         let lyTabBar = LYTabBar()
         lyTabBar.lyTabBarDelegate = self
         self.setValue(lyTabBar, forKey: "tabBar")
         
-        
+        tabBar.isTranslucent = false
     }
     
     
