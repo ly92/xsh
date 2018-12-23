@@ -50,6 +50,10 @@ class PersonalViewController: BaseTableViewController {
 
         self.loadPersonalInfo()
         
+        //登录通知
+        NotificationCenter.default.addObserver(forName: NSNotification.Name(rawValue: KLoginSuccessNotiName), object: nil, queue: nil) { (noti) in
+            self.loadPersonalInfo()
+        }
     }
     //个人信息
     func loadPersonalInfo() {

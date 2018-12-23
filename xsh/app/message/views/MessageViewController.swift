@@ -23,8 +23,14 @@ class MessageViewController: BaseTableViewController {
         
         self.navigationItem.rightBarButtonItem = UIBarButtonItem.init(title: "全部已读", target: self, action: #selector(MessageViewController.rightItemAction))
         
-        self.loadMessageData()
         self.pullToRefre {
+            self.messageList.removeAll()
+            self.loadMessageData()
+        }
+        
+        
+        //登录通知
+        NotificationCenter.default.addObserver(forName: NSNotification.Name(rawValue: KLoginSuccessNotiName), object: nil, queue: nil) { (noti) in
             self.messageList.removeAll()
             self.loadMessageData()
         }
@@ -41,8 +47,22 @@ class MessageViewController: BaseTableViewController {
     @objc func rightItemAction() {
         NetTools.requestData(type: .post, urlString: MessageAllReadApi, succeed: { (result) in
             LYProgressHUD.showSuccess("标记成功！")
+            self.tabBarItem.badgeValue = nil
         }) { (error) in
             LYProgressHUD.showError(error)
+        }
+    }
+    
+    //新消息数量
+    func getNewMessage(){
+        NetTools.requestData(type: .post, urlString: MessageNewCountApi, succeed: { (result) in
+            let total = result["total"].stringValue.intValue
+            if total > 0 {
+                self.tabBarItem.badgeValue = "\(total)"
+            }else{
+                self.tabBarItem.badgeValue = nil
+            }
+        }) { (error) in
         }
     }
     

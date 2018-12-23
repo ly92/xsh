@@ -120,6 +120,10 @@ class LoginViewController: BaseTableViewController {
             LocalData.savePwd(pwd: (pwd.md5String() + phone).md5String())
             LocalData.saveCId(cid: result["user"]["cid"].stringValue)
             LocalData.saveYesOrNotValue(value: "1", key: KIsLoginKey)
+            
+            //发出通知
+            NotificationCenter.default.post(name: NSNotification.Name(rawValue: KLoginSuccessNotiName), object: nil, userInfo: nil)
+            
             self.dismiss(animated: true, completion: nil)
         }) { (error) in
             LYProgressHUD.showError(error)

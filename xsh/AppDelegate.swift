@@ -36,6 +36,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             self.checkLogin()
         }
         self.checkVersion()
+        self.getNewMessage()
         
         WXApi.registerApp(KWechatKey)
         
@@ -64,6 +65,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             self.checkLogin()
         }
         self.checkVersion()
+        self.getNewMessage()
     }
 
     func applicationDidBecomeActive(_ application: UIApplication) {
@@ -230,7 +232,18 @@ extension AppDelegate {
         }
     }
     
-    
+    //新消息数量
+    func getNewMessage(){
+        NetTools.requestData(type: .post, urlString: MessageNewCountApi, succeed: { (result) in
+            let total = result["total"].stringValue.intValue
+            if total > 0 {
+                self.tabBar.children[2].tabBarItem.badgeValue = "\(total)"
+            }else{
+                self.tabBar.children[2].tabBarItem.badgeValue = nil
+            }
+        }) { (error) in
+        }
+    }
     
     
 }

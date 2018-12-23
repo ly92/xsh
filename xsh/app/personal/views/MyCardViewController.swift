@@ -125,6 +125,18 @@ class MyCardViewController: BaseViewController {
                     payVC.orderNo = result["orderno"].stringValue
                     payVC.money = text
                     payVC.titleStr = "一卡通充值"
+                    payVC.payResultBlock = {(type) in
+                        if type == 1{
+                            //成功
+                            self.loadCardDetail()
+                        }else if type == 2{
+                            //取消
+                            
+                        }else if type == 3{
+                            //失败
+                            
+                        }
+                    }
                     self.navigationController?.pushViewController(payVC, animated: true)
                 }, failure: { (error) in
                     LYProgressHUD.showError(error)

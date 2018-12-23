@@ -13,14 +13,8 @@ import DGElasticPullToRefresh
 class ShopViewController: BaseTableViewController {
    
     
+    
     fileprivate var bannerList : Array<JSON> = []
-    
-    fileprivate var functionList : Array<JSON> = []
-    
-    
-    fileprivate let functionView = UIView(frame: CGRect(x: 0, y: 0, width: kScreenW, height: 92))
-    fileprivate let activityView = UIView(frame: CGRect(x: 0, y: 0, width: kScreenW, height: 150))
-
     fileprivate lazy var bannerView : LYAnimateBannerView = {
         let bannerView = LYAnimateBannerView.init(frame: CGRect(x: 0, y: 0, width: kScreenW, height: kScreenW * 190 / 375), delegate: self)
         bannerView.backgroundColor = UIColor.white
@@ -28,22 +22,47 @@ class ShopViewController: BaseTableViewController {
         return bannerView
     }()
     
+    fileprivate var functionList : Array<JSON> = []
+    fileprivate let functionView = UIView(frame: CGRect(x: 0, y: 0, width: kScreenW, height: 92))
+    
+    fileprivate var activityList : Array<JSON> = []
+    fileprivate var collectionView : UICollectionView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        self.tableView.register(UINib.init(nibName: "GoodsCell", bundle: Bundle.main), forCellReuseIdentifier: "GoodsCell")
-//        self.collectionView.register(UINib.init(nibName: "ActivityCell", bundle: Bundle.main), forCellWithReuseIdentifier: "ActivityCell")
+        //setup collectionview
+        let layout = UICollectionViewFlowLayout()
+        layout.itemSize = CGSize.init(width: 140, height: 125)
+        layout.scrollDirection = .horizontal
+        layout.minimumLineSpacing = 0
+        layout.minimumInteritemSpacing = 0
+        self.collectionView = UICollectionView.init(frame: CGRect.init(x: 0, y: 0, width: kScreenW, height: 120), collectionViewLayout: layout)
+        self.collectionView.backgroundColor = UIColor.white
+        self.collectionView.delegate = self
+        self.collectionView.dataSource = self
         
-       
+        
+        self.tableView.register(UINib.init(nibName: "GoodsCell", bundle: Bundle.main), forCellReuseIdentifier: "GoodsCell")
+       self.collectionView.register(UINib.init(nibName: "ActivityCell", bundle: Bundle.main), forCellWithReuseIdentifier: "ActivityCell")
+        
+        
         self.loadFunctionData()
         self.loadAdsData()
+        self.loadActivity()
         
         self.pullToRefre {
             self.loadFunctionData()
             self.loadAdsData()
+            self.loadActivity()
         }
         
+        //登录通知
+        NotificationCenter.default.addObserver(forName: NSNotification.Name(rawValue: KLoginSuccessNotiName), object: nil, queue: nil) { (noti) in
+            self.loadFunctionData()
+            self.loadAdsData()
+            self.loadActivity()
+        }
         
         
     }
@@ -55,10 +74,6 @@ class ShopViewController: BaseTableViewController {
         self.navigationController?.navigationBar.shadowImage = UIImage()
         self.edgesForExtendedLayout = UIRectEdge.top
         
-        if self.bannerList.count == 0 || self.functionList.count == 0{
-            self.loadFunctionData()
-            self.loadAdsData()
-        }
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -79,7 +94,7 @@ class ShopViewController: BaseTableViewController {
         self.navigationController?.navigationBar.shadowImage = nil
     }
     
-    //MARK:--banner
+    //MARK:- banner
     func loadAdsData() {
         var params : [String : Any] = [:]
         params["location"] = "maintop"
@@ -88,7 +103,7 @@ class ShopViewController: BaseTableViewController {
         NetTools.requestData(type: .post, urlString: AdListApi, parameters: params, succeed: { (result) in
             //banner
             var urlArray : Array<String> = []
-            
+            self.bannerList.removeAll()
             for json in result["list"]["list"].arrayValue{
                 self.bannerList.append(json)
                 urlArray.append(json["imageurl"].stringValue)
@@ -101,7 +116,7 @@ class ShopViewController: BaseTableViewController {
     }
 
     
-    //MARK:--功能栏
+    //MARK:- 功能栏
     //功能栏数据
     func loadFunctionData() {
         var params : [String : Any] = [:]
@@ -204,8 +219,6 @@ class ShopViewController: BaseTableViewController {
         }
     }
     
-   
-    
     
 }
 
@@ -232,7 +245,7 @@ extension ShopViewController : LYAnimateBannerViewDelegate{
     
 }
 
-//UITableView--商品列表
+//MARK:- UITableView--商品列表
 extension ShopViewController{
     
    override func numberOfSections(in tableView: UITableView) -> Int {
@@ -268,8 +281,7 @@ extension ShopViewController{
             if cell == nil{
                 cell = UITableViewCell.init(style: .default, reuseIdentifier: "shop-activityview")
             }
-            cell?.contentView.addSubview(self.activityView)
-            
+            cell?.contentView.addSubview(self.collectionView)
             return cell!
         }else if indexPath.section == 3{
             let cell = tableView.dequeueReusableCell(withIdentifier: "GoodsCell", for: indexPath) as! GoodsCell
@@ -286,7 +298,7 @@ extension ShopViewController{
         }else if indexPath.section == 1{
             return 92
         }else if indexPath.section == 2{
-            return 150
+            return 120
         }else if indexPath.section == 3{
            return 120
         }
@@ -300,35 +312,45 @@ extension ShopViewController{
     }
 }
 
+//MARK:- 中部活动
+extension ShopViewController : UICollectionViewDelegate, UICollectionViewDataSource{
+    
+    
+    func loadActivity() {
+        var params : [String : Any] = [:]
+        params["location"] = "mainmiddle"
+        params["skip"] = 0
+        params["limit"] = 100
+        NetTools.requestData(type: .post, urlString: AdListApi, parameters: params, succeed: { (result) in
+            self.activityList.removeAll()
+            for json in result["list"]["list"].arrayValue{
+                self.activityList.append(json)
+            }
+            self.collectionView.reloadData()
+        }) { (error) in
+            LYProgressHUD.showError(error)
+        }
+    }
 
-//
-////活动列表
-//extension ShopViewController : UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout{
-//    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-//        return 0
-//    }
-//
-//    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-//        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "ActivityCell", for: indexPath)
-//
-//        return cell
-//    }
-//
-//    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-//        return CGSize.init(width: 60, height: 60)
-//    }
-//
-//    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-//        collectionView.deselectItem(at: indexPath, animated: true)
-//
-//    }
-//
-//    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
-//        return 0
-//    }
-//
-//    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumInteritemSpacingForSectionAt section: Int) -> CGFloat {
-//        return 0
-//    }
-//
-//}
+    
+    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        return self.activityList.count
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "ActivityCell", for: indexPath) as! ActivityCell
+        if self.activityList.count > indexPath.row{
+            let json = self.activityList[indexPath.row]
+            cell.subJson = json
+        }
+        return cell
+    }
+    
+    
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        collectionView.deselectItem(at: indexPath, animated: true)
+        
+    }
+    
+    
+}

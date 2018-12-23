@@ -37,6 +37,8 @@ class PayViewController: BaseTableViewController {
     var money = ""
     var titleStr = ""
     
+    var payResultBlock : ((Int) -> Void)? // 1:成功，2:取消，3:失败
+    
     fileprivate var payType : [String : JSON] = [:]
     
     
@@ -157,16 +159,29 @@ class PayViewController: BaseTableViewController {
             return
         }
         if resultDict!["resultStatus"] as! String == "9000"{
-            //返回首页
+            //返回
             LYAlertView.show("提示", "支付成功！", "知道了", {
-                
+                if self.payResultBlock != nil{
+                    self.payResultBlock!(1)
+                }
+                self.navigationController?.popViewController(animated: true)
             })
         }else if resultDict!["resultStatus"] as! String == "6001"{
             //支付取消
-            LYProgressHUD.showInfo("用户取消了支付")
+            LYAlertView.show("提示", "支付取消！", "知道了", {
+                if self.payResultBlock != nil{
+                    self.payResultBlock!(2)
+                }
+                self.navigationController?.popViewController(animated: true)
+            })
         }else{
             //支付失败
-            LYProgressHUD.showInfo("支付失败！")
+            LYAlertView.show("提示", "支付失败！", "知道了", {
+                if self.payResultBlock != nil{
+                    self.payResultBlock!(3)
+                }
+                self.navigationController?.popViewController(animated: true)
+            })
         }
         
     }
@@ -194,16 +209,29 @@ class PayViewController: BaseTableViewController {
             return
         }
         if resultDict["code"] == "0"{
-            //返回首页
+            //返回
             LYAlertView.show("提示", "支付成功！", "知道了", {
-                
+                if self.payResultBlock != nil{
+                    self.payResultBlock!(1)
+                }
+                self.navigationController?.popViewController(animated: true)
             })
         }else if resultDict["code"] == "-2"{
             //取消支付
-            LYProgressHUD.showInfo("用户取消了支付")
+            LYAlertView.show("提示", "支付取消！", "知道了", {
+                if self.payResultBlock != nil{
+                    self.payResultBlock!(2)
+                }
+                self.navigationController?.popViewController(animated: true)
+            })
         }else{
             //支付失败
-            LYProgressHUD.showInfo(resultDict["error"]!)
+            LYAlertView.show("提示", "支付失败！", "知道了", {
+                if self.payResultBlock != nil{
+                    self.payResultBlock!(3)
+                }
+                self.navigationController?.popViewController(animated: true)
+            })
         }
     }
     
