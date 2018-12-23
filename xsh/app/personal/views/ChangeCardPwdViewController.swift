@@ -115,8 +115,11 @@ class ChangeCardPwdViewController: BaseTableViewController {
             
             if self.isChangeLogin{
                 var params : [String : Any] = [:]
-                params["oldpasswd"] = (LocalData.getUserPhone() + Date.phpTimestamp() + (pwd1.md5String() + LocalData.getUserPhone()).md5String()).md5String()
-                params["newpasswd"] = (LocalData.getUserPhone() + Date.phpTimestamp() + (pwd2.md5String() + LocalData.getUserPhone()).md5String()).md5String()
+                
+//                params["oldpasswd"] = (LocalData.getUserPhone() + Date.phpTimestamp() + (pwd1.md5String() + LocalData.getUserPhone()).md5String()).md5String()
+//                params["newpasswd"] = (LocalData.getUserPhone() + Date.phpTimestamp() + (pwd2.md5String() + LocalData.getUserPhone()).md5String()).md5String()
+                params["oldpasswd"] = (pwd1.md5String() + LocalData.getUserPhone()).md5String()
+                params["newpasswd"] = (pwd2.md5String() + LocalData.getUserPhone()).md5String()
                 NetTools.requestData(type: .post, urlString: ChangeLoginPwdApi, parameters: params, succeed: { (result) in
                     LYProgressHUD.showSuccess("密码更改成功！")
                     self.navigationController?.popViewController(animated: true)
