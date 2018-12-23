@@ -48,6 +48,8 @@ class OpenCardViewController: BaseViewController {
     }
     
     @IBAction func openCardAction() {
+        self.view.endEditing(true)
+        
         guard let pwd = self.pwdTF.text else {
             LYProgressHUD.showError("请输入密码！")
             return

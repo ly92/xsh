@@ -249,16 +249,6 @@ extension AppDelegate : WXApiDelegate{
             dict["error"] = resp.errStr
             //处理支付结果
             NotificationCenter.default.post(name: NSNotification.Name(rawValue: KWechatPayNotiName), object: nil, userInfo: dict)
-        }else if resp.isKind(of: SendAuthResp.self){
-            let authResp = resp as! SendAuthResp
-            var dict = [String:String]()
-            dict["errCode"] = "\(authResp.errCode)"
-            dict["code"] = authResp.code
-            dict["state"] = authResp.state
-            dict["lang"] = authResp.lang
-            dict["country"] = authResp.country
-            //处理登录结果
-            NotificationCenter.default.post(name: NSNotification.Name(rawValue: KWechatLoginNotiName), object: nil, userInfo: dict)
         }
     }
     

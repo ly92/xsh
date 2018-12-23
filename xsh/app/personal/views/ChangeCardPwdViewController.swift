@@ -53,6 +53,8 @@ class ChangeCardPwdViewController: BaseTableViewController {
     
     
     @IBAction func changeCardPayPwd() {
+        self.view.endEditing(true)
+        
         if self.forgetType{
             
             guard let loginPwd = self.pwdTF4.text else {
@@ -115,13 +117,11 @@ class ChangeCardPwdViewController: BaseTableViewController {
             
             if self.isChangeLogin{
                 var params : [String : Any] = [:]
-                
-//                params["oldpasswd"] = (LocalData.getUserPhone() + Date.phpTimestamp() + (pwd1.md5String() + LocalData.getUserPhone()).md5String()).md5String()
-//                params["newpasswd"] = (LocalData.getUserPhone() + Date.phpTimestamp() + (pwd2.md5String() + LocalData.getUserPhone()).md5String()).md5String()
                 params["oldpasswd"] = (pwd1.md5String() + LocalData.getUserPhone()).md5String()
                 params["newpasswd"] = (pwd2.md5String() + LocalData.getUserPhone()).md5String()
                 NetTools.requestData(type: .post, urlString: ChangeLoginPwdApi, parameters: params, succeed: { (result) in
                     LYProgressHUD.showSuccess("密码更改成功！")
+                    LocalData.savePwd(pwd: pwd2)
                     self.navigationController?.popViewController(animated: true)
                 }) { (error) in
                     LYProgressHUD.showError(error)
@@ -155,5 +155,9 @@ class ChangeCardPwdViewController: BaseTableViewController {
         return 0
     }
     
+    
+    override func scrollViewDidScroll(_ scrollView: UIScrollView) {
+        self.view.endEditing(true)
+    }
     
 }

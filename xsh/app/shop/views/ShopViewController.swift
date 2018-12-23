@@ -54,6 +54,11 @@ class ShopViewController: BaseTableViewController {
         self.navigationController?.navigationBar.setBackgroundImage(UIImage(), for: .default)
         self.navigationController?.navigationBar.shadowImage = UIImage()
         self.edgesForExtendedLayout = UIRectEdge.top
+        
+        if self.bannerList.count == 0 || self.functionList.count == 0{
+            self.loadFunctionData()
+            self.loadAdsData()
+        }
     }
     
     override func viewDidAppear(_ animated: Bool) {

@@ -35,6 +35,8 @@ class BindCardTableViewController: BaseTableViewController {
 
     //绑定卡
     @IBAction func bindCardAction() {
+        self.view.endEditing(true)
+        
         guard let cardNo = self.cardTF.text else {
             LYProgressHUD.showError("请输入卡号")
             return
@@ -104,5 +106,8 @@ class BindCardTableViewController: BaseTableViewController {
     }
     
     
+    override func scrollViewDidScroll(_ scrollView: UIScrollView) {
+        self.view.endEditing(true)
+    }
     
 }

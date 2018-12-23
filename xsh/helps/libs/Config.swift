@@ -16,7 +16,10 @@ let kScreenH = UIScreen.main.bounds.height
 
 
 let KWechatPayNotiName = "WechatPayResultNotificationName"
-let KWechatLoginNotiName = "WechatLoginResultNotificationName"
+let KLoginSuccessNotiName = "KLoginSuccessNotiName"
+
+
+
 let KAliPayScheme = "alipayappyssh111"
 let KWechatKey = "wx01e4c37152e4b98f"
 

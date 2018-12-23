@@ -31,7 +31,7 @@ class BaseTableViewController: UITableViewController {
     
     func pullToRefre(_ hander : @escaping RefreshBlock) {
         let loadingView = DGElasticPullToRefreshLoadingViewCircle()
-        loadingView.tintColor = Normal_Color
+        loadingView.tintColor = UIColor.white
         self.tableView.dg_addPullToRefreshWithActionHandler({
             hander()
             self.tableView.dg_stopLoading()

@@ -96,6 +96,8 @@ class LoginViewController: BaseTableViewController {
     
     //登录
     func loginAction() {
+        self.view.endEditing(true)
+        
         guard let phone = self.loginPhoneTF.text else {
             return
         }
@@ -168,6 +170,8 @@ class LoginViewController: BaseTableViewController {
     
     //重置密码
     func resetPwdAction() {
+        self.view.endEditing(true)
+        
         guard let pwd = self.newPwdTF.text else {
             LYProgressHUD.showError("请输入密码")
             return
@@ -239,5 +243,10 @@ extension LoginViewController : UITextFieldDelegate{
             self.changePhoneBtn.isHidden = true
         }
         return true
+    }
+    
+    
+    override func scrollViewDidScroll(_ scrollView: UIScrollView) {
+        self.view.endEditing(true)
     }
 }

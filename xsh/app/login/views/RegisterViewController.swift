@@ -172,6 +172,8 @@ class RegisterViewController: BaseTableViewController {
     
     //注册
     func registerAction() {
+        self.view.endEditing(true)
+        
         let phone = self.phoneTF.text
         let code = self.codeTF.text
         guard let name = self.nameTF.text else {
@@ -201,12 +203,18 @@ class RegisterViewController: BaseTableViewController {
         params["passwd"] = (pwd.md5String() + phone!).md5String()
         params["code"] = code!
         NetTools.normalRequest(type: .post, urlString: RegisterApi, parameters: params, succeed: { (result) in
-            self.secIndex = 3
-            self.tableView.reloadData()
+            LYProgressHUD.showSuccess("注册成功！")
+            self.dismiss(animated: true, completion: nil)
+//            self.secIndex = 3
+//            self.tableView.reloadData()
         }) { (error) in
             LYProgressHUD.showError(error)
         }
         
     }
     
+    
+    override func scrollViewDidScroll(_ scrollView: UIScrollView) {
+        self.view.endEditing(true)
+    }
 }

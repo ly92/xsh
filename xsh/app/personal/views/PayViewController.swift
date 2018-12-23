@@ -158,7 +158,7 @@ class PayViewController: BaseTableViewController {
         }
         if resultDict!["resultStatus"] as! String == "9000"{
             //返回首页
-            LYAlertView.show("提示", "支付成功，快去发货吧！", "知道了", {
+            LYAlertView.show("提示", "支付成功！", "知道了", {
                 
             })
         }else if resultDict!["resultStatus"] as! String == "6001"{
@@ -195,7 +195,7 @@ class PayViewController: BaseTableViewController {
         }
         if resultDict["code"] == "0"{
             //返回首页
-            LYAlertView.show("提示", "支付成功，快去发货吧！", "知道了", {
+            LYAlertView.show("提示", "支付成功！", "知道了", {
                 
             })
         }else if resultDict["code"] == "-2"{

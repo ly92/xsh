@@ -30,6 +30,14 @@ class MessageViewController: BaseTableViewController {
         }
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        if self.messageList.count == 0{
+            self.messageList.removeAll()
+            self.loadMessageData()
+        }
+    }
+    
     @objc func rightItemAction() {
         NetTools.requestData(type: .post, urlString: MessageAllReadApi, succeed: { (result) in
             LYProgressHUD.showSuccess("标记成功！")
@@ -78,4 +86,16 @@ class MessageViewController: BaseTableViewController {
         return 75
     }
 
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        if self.messageList.count > indexPath.row{
+            let json = self.messageList[indexPath.row]
+            let params : [String : Any] = ["id" : json["id"].stringValue]
+            NetTools.requestData(type: .post, urlString: MessageDetailApi, parameters: params, succeed: { (result) in
+                
+            }) { (error) in
+                LYProgressHUD.showError(error)
+            }
+        }
+    }
+    
 }
