@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import SwiftyJSON
 
 
 //屏幕尺寸
@@ -41,8 +42,35 @@ func isMessageNotificationServiceOpen() -> Bool{
 }
 
 
-func functionClickAction(type:String,controller:UIViewController){
-    
+func globalFunctionClickAction(_ json : JSON, _ vc : UIViewController){
+    if json["actiontype"].intValue == 0{
+        //跳转外部链接
+        let webVC = BaseWebViewController()
+        webVC.titleStr = json["name"].stringValue
+        let url = json["actionurl"].stringValue.replacingOccurrences(of: "$cid$", with: LocalData.getCId())
+        print(url)
+        webVC.urlStr = url
+        vc.navigationController?.pushViewController(webVC, animated: true)
+    }else if json["actiontype"].intValue == 1{
+        //跳转内部页面
+        if json["actionios"].stringValue == "NoticeViewController"{
+            let noticeVC = NoticeTableViewController()
+            vc.navigationController?.pushViewController(noticeVC, animated: true)
+        }else if json["actionios"].stringValue == "MoreViewController"{
+            let moreFuncVC = MoreFunctionViewController()
+            vc.navigationController?.pushViewController(moreFuncVC, animated: true)
+        }
+        
+    }else if json["actiontype"].intValue == 2{
+        //第三方应用
+        
+    }else if json["actiontype"].intValue == 3{
+        //保留
+        
+    }else if json["actiontype"].intValue == 4{
+        //详情页
+        
+    }
     
 }
 

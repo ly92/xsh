@@ -36,6 +36,7 @@
 		0819FBCB21C8E38A0078EB8D /* GoodsCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0819FBC921C8E38A0078EB8D /* GoodsCell.swift */; };
 		0819FBCC21C8E38A0078EB8D /* GoodsCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0819FBCA21C8E38A0078EB8D /* GoodsCell.xib */; };
 		0819FBCE21C8ED7B0078EB8D /* UIImageView+Category.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0819FBCD21C8ED7A0078EB8D /* UIImageView+Category.swift */; };
+		083F8F8321D0A4020026341A /* AdView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 083F8F8221D0A4020026341A /* AdView.swift */; };
 		0861B83221C29703008795E5 /* NetTools.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0861B83121C29703008795E5 /* NetTools.swift */; };
 		0861B83421C2971A008795E5 /* NetApis.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0861B83321C2971A008795E5 /* NetApis.swift */; };
 		0861B83621C297BF008795E5 /* Date+Category.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0861B83521C297BF008795E5 /* Date+Category.swift */; };
@@ -157,6 +158,7 @@
 		0819FBC921C8E38A0078EB8D /* GoodsCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GoodsCell.swift; sourceTree = "<group>"; };
 		0819FBCA21C8E38A0078EB8D /* GoodsCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = GoodsCell.xib; sourceTree = "<group>"; };
 		0819FBCD21C8ED7A0078EB8D /* UIImageView+Category.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIImageView+Category.swift"; sourceTree = "<group>"; };
+		083F8F8221D0A4020026341A /* AdView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AdView.swift; sourceTree = "<group>"; };
 		0861B83121C29703008795E5 /* NetTools.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetTools.swift; sourceTree = "<group>"; };
 		0861B83321C2971A008795E5 /* NetApis.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetApis.swift; sourceTree = "<group>"; };
 		0861B83521C297BF008795E5 /* Date+Category.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Date+Category.swift"; sourceTree = "<group>"; };
@@ -379,6 +381,7 @@
 				086E2D0821CA2E0D00896F25 /* LYAlertView.swift */,
 				0807CA9421C7C47700967692 /* LocalData.swift */,
 				0807CA9521C7C47700967692 /* LYProgressHUD.swift */,
+				083F8F8221D0A4020026341A /* AdView.swift */,
 			);
 			path = comment;
 			sourceTree = "<group>";
@@ -1109,6 +1112,7 @@
 				0819FBB721C8DB550078EB8D /* BannerScrollTitleCell.swift in Sources */,
 				08D7B6A021CCC310007D191F /* NSDataEx.m in Sources */,
 				08A3A46821C168B6008E071F /* NSObject+Extension.swift in Sources */,
+				083F8F8321D0A4020026341A /* AdView.swift in Sources */,
 				086E2D0921CA2E0D00896F25 /* LYAlertView.swift in Sources */,
 				0819FBAB21C8B13B0078EB8D /* PersonalViewController.swift in Sources */,
 				086E2CFE21C9E78000896F25 /* MyCardViewController.swift in Sources */,
@@ -1327,98 +1331,6 @@
 				CODE_SIGN_ENTITLEMENTS = xsh/xsh.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CODE_SIGN_STYLE = Manual;
-				DEVELOPMENT_TEAM = NBHLFYA79A;
-				ENABLE_BITCODE = NO;
-				FRAMEWORK_SEARCH_PATHS = (
-					"$(inherited)",
-					"$(PROJECT_DIR)/xsh/helps/libs/AliPay",
-				);
-				HEADER_SEARCH_PATHS = (
-					"$(inherited)",
-					"\"${PODS_ROOT}/Headers/Public\"",
-					"\"${PODS_ROOT}/Headers/Public/JPush\"",
-					"$(PROJECT_DIR)/xsh/helps/libs/AliPay/RES",
-					"$(PROJECT_DIR)/xsh/helps/libs/WeiXin",
-					"$(PROJECT_DIR)/xsh/helps/libs/AliPay",
-				);
-				INFOPLIST_FILE = xsh/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-				);
-				LIBRARY_SEARCH_PATHS = (
-					"$(inherited)",
-					"$(PROJECT_DIR)/xsh/helps/libs/AliPay/RES",
-					"$(PROJECT_DIR)/xsh/helps/libs/WeiXin",
-					"$(PROJECT_DIR)/xsh/helps/libs/AliPay",
-				);
-				OTHER_LDFLAGS = (
-					"$(inherited)",
-					"-ObjC",
-					"-l\"WeChatSDK\"",
-					"-l\"c++\"",
-					"-l\"jcore-ios-1.2.5\"",
-					"-l\"jpush-ios-3.1.1\"",
-					"-l\"resolv\"",
-					"-l\"z\"",
-					"-framework",
-					"\"Alamofire\"",
-					"-framework",
-					"\"AlamofireObjectMapper\"",
-					"-framework",
-					"\"Bugly\"",
-					"-framework",
-					"\"CFNetwork\"",
-					"-framework",
-					"\"CoreFoundation\"",
-					"-framework",
-					"\"CoreGraphics\"",
-					"-framework",
-					"\"CoreTelephony\"",
-					"-framework",
-					"\"DGElasticPullToRefresh\"",
-					"-framework",
-					"\"Foundation\"",
-					"-framework",
-					"\"Kingfisher\"",
-					"-framework",
-					"\"ObjectMapper\"",
-					"-framework",
-					"\"Security\"",
-					"-framework",
-					"\"SnapKit\"",
-					"-framework",
-					"\"SwiftyJSON\"",
-					"-framework",
-					"\"SystemConfiguration\"",
-					"-framework",
-					"\"UIKit\"",
-					"-weak_framework",
-					"\"UserNotifications\"",
-				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.magicsoft.appyssh;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE_SPECIFIER = APPysshDev;
-				SWIFT_OBJC_BRIDGING_HEADER = "xsh/helps/libs/xsh-Bridging-Header.h";
-				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
-				SWIFT_VERSION = 4.2;
-				TARGETED_DEVICE_FAMILY = 1;
-				VALID_ARCHS = "arm64 arm64e armv7 armv7s";
-				"VALID_ARCHS[sdk=*]" = "arm64 arm64e armv7 armv7s";
-			};
-			name = Debug;
-		};
-		08A3A42521C158CF008E071F /* Release */ = {
-			isa = XCBuildConfiguration;
-			baseConfigurationReference = 222CBFCB20CE17CE8E2FBDE3 /* Pods-xsh.release.xcconfig */;
-			buildSettings = {
-				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
-				CLANG_ENABLE_MODULES = YES;
-				CODE_SIGN_ENTITLEMENTS = xsh/xsh.entitlements;
-				CODE_SIGN_IDENTITY = "iPhone Developer";
-				CODE_SIGN_STYLE = Manual;
 				DEVELOPMENT_TEAM = 3BXQF9Q7GT;
 				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = (
@@ -1450,8 +1362,8 @@
 					"-ObjC",
 					"-l\"WeChatSDK\"",
 					"-l\"c++\"",
-					"-l\"jcore-ios-1.2.5\"",
-					"-l\"jpush-ios-3.1.1\"",
+					"-l\"jcore-ios-1.2.6\"",
+					"-l\"jpush-ios-3.1.2\"",
 					"-l\"resolv\"",
 					"-l\"z\"",
 					"-framework",
@@ -1492,6 +1404,98 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.magicsoft.appyssh;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = xsh_dev;
+				SWIFT_OBJC_BRIDGING_HEADER = "xsh/helps/libs/xsh-Bridging-Header.h";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 4.2;
+				TARGETED_DEVICE_FAMILY = 1;
+				VALID_ARCHS = "arm64 arm64e armv7 armv7s";
+				"VALID_ARCHS[sdk=*]" = "arm64 arm64e armv7 armv7s";
+			};
+			name = Debug;
+		};
+		08A3A42521C158CF008E071F /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 222CBFCB20CE17CE8E2FBDE3 /* Pods-xsh.release.xcconfig */;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_ENTITLEMENTS = xsh/xsh.entitlements;
+				CODE_SIGN_IDENTITY = "iPhone Distribution";
+				CODE_SIGN_STYLE = Manual;
+				DEVELOPMENT_TEAM = 3BXQF9Q7GT;
+				ENABLE_BITCODE = NO;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/xsh/helps/libs/AliPay",
+				);
+				HEADER_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"${PODS_ROOT}/Headers/Public\"",
+					"\"${PODS_ROOT}/Headers/Public/JPush\"",
+					"$(PROJECT_DIR)/xsh/helps/libs/AliPay/RES",
+					"$(PROJECT_DIR)/xsh/helps/libs/WeiXin",
+					"$(PROJECT_DIR)/xsh/helps/libs/AliPay",
+				);
+				INFOPLIST_FILE = xsh/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/xsh/helps/libs/AliPay/RES",
+					"$(PROJECT_DIR)/xsh/helps/libs/WeiXin",
+					"$(PROJECT_DIR)/xsh/helps/libs/AliPay",
+				);
+				OTHER_LDFLAGS = (
+					"$(inherited)",
+					"-ObjC",
+					"-l\"WeChatSDK\"",
+					"-l\"c++\"",
+					"-l\"jcore-ios-1.2.6\"",
+					"-l\"jpush-ios-3.1.2\"",
+					"-l\"resolv\"",
+					"-l\"z\"",
+					"-framework",
+					"\"Alamofire\"",
+					"-framework",
+					"\"AlamofireObjectMapper\"",
+					"-framework",
+					"\"Bugly\"",
+					"-framework",
+					"\"CFNetwork\"",
+					"-framework",
+					"\"CoreFoundation\"",
+					"-framework",
+					"\"CoreGraphics\"",
+					"-framework",
+					"\"CoreTelephony\"",
+					"-framework",
+					"\"DGElasticPullToRefresh\"",
+					"-framework",
+					"\"Foundation\"",
+					"-framework",
+					"\"Kingfisher\"",
+					"-framework",
+					"\"ObjectMapper\"",
+					"-framework",
+					"\"Security\"",
+					"-framework",
+					"\"SnapKit\"",
+					"-framework",
+					"\"SwiftyJSON\"",
+					"-framework",
+					"\"SystemConfiguration\"",
+					"-framework",
+					"\"UIKit\"",
+					"-weak_framework",
+					"\"UserNotifications\"",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.magicsoft.appyssh;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = xsh_adhoc;
 				SWIFT_OBJC_BRIDGING_HEADER = "xsh/helps/libs/xsh-Bridging-Header.h";
 				SWIFT_VERSION = 4.2;
 				TARGETED_DEVICE_FAMILY = 1;

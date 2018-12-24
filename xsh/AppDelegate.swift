@@ -32,11 +32,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         self.window?.makeKeyAndVisible()
         
         self.window?.rootViewController = tabBar
-        if LocalData.getYesOrNotValue(key: KIsLoginKey){
-            self.checkLogin()
-        }
-        self.checkVersion()
-        self.getNewMessage()
+        
+        self.launchOperation()
+        
+        
+        //广告页
         
         WXApi.registerApp(KWechatKey)
         
@@ -61,11 +61,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     }
 
     func applicationWillEnterForeground(_ application: UIApplication) {
-        if LocalData.getYesOrNotValue(key: KIsLoginKey){
-            self.checkLogin()
-        }
-        self.checkVersion()
-        self.getNewMessage()
+        self.launchOperation()
     }
 
     func applicationDidBecomeActive(_ application: UIApplication) {
@@ -167,6 +163,17 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
 extension AppDelegate {
     
+    //启动时需要执行的动作
+    func launchOperation() {
+        if LocalData.getYesOrNotValue(key: KIsLoginKey){
+            self.checkLogin()
+        }
+        self.checkVersion()
+        self.getNewMessage()
+        self.getAdData()
+    }
+    
+    
     //检测是否需要重新登录
     func checkLogin() {
         var params : [String : Any] = [:]
@@ -245,6 +252,19 @@ extension AppDelegate {
         }
     }
     
+    //启动广告
+    func getAdData() {
+        var params : [String : Any] = [:]
+        params["location"] = "start"
+        NetTools.requestData(type: .post, urlString: AdLaunchApi, parameters: params, succeed: { (result) in
+            
+            DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + 0.5, execute: {
+                AdView.showWithJson(result["ads"])
+            })
+        }) { (error) in
+            LYProgressHUD.showError(error)
+        }
+    }
     
 }
 

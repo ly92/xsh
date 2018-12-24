@@ -84,7 +84,7 @@ class ShopViewController: BaseTableViewController {
     
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
-        self.bannerView.timer?.invalidate()
+//        self.bannerView.timer?.invalidate()
         
         self.navigationController?.setNavigationBarHidden(false, animated: false)
         UIApplication.shared.statusBarStyle = .default
@@ -188,34 +188,7 @@ class ShopViewController: BaseTableViewController {
     @objc func functionClickAction( _ btn : UIButton) {
         if self.functionList.count > btn.tag{
             let json = self.functionList[btn.tag]
-            if json["actiontype"].intValue == 0{
-                //跳转外部链接
-                let webVC = BaseWebViewController()
-                webVC.titleStr = json["name"].stringValue
-                var url = json["actionurl"].stringValue
-                url = url.replacingOccurrences(of: "$cid$", with: LocalData.getCId())
-                webVC.urlStr = url
-                self.navigationController?.pushViewController(webVC, animated: true)
-            }else if json["actiontype"].intValue == 1{
-                //跳转内部页面
-                if json["actionios"].stringValue == "NoticeViewController"{
-                    let noticeVC = NoticeTableViewController()
-                    self.navigationController?.pushViewController(noticeVC, animated: true)
-                }else if json["actionios"].stringValue == "MoreViewController"{
-                    let moreFuncVC = MoreFunctionViewController()
-                    self.navigationController?.pushViewController(moreFuncVC, animated: true)
-                }
-                
-            }else if json["actiontype"].intValue == 2{
-                //第三方应用
-                
-            }else if json["actiontype"].intValue == 3{
-                //保留
-                
-            }else if json["actiontype"].intValue == 4{
-                //详情页
-                
-            }
+            globalFunctionClickAction(json, self)
         }
     }
     
@@ -229,17 +202,17 @@ extension ShopViewController : LYAnimateBannerViewDelegate{
     func LY_AnimateBannerViewClick(banner:LYAnimateBannerView, index: NSInteger) {
         if self.bannerList.count > index{
             let json = self.bannerList[index]
-            
-            //查询广告位广告详情
-            func loadAdsDetail() {
-                var params : [String : Any] = [:]
-                params["id"] = json["id"]
-                NetTools.requestData(type: .post, urlString: AdDetailApi, parameters: params, succeed: { (result) in
-                    
-                }) { (error) in
-                    LYProgressHUD.showError(error)
-                }
-            }
+            globalFunctionClickAction(json, self)
+//            //查询广告位广告详情
+//            func loadAdsDetail() {
+//                var params : [String : Any] = [:]
+//                params["id"] = json["id"]
+//                NetTools.requestData(type: .post, urlString: AdDetailApi, parameters: params, succeed: { (result) in
+//
+//                }) { (error) in
+//                    LYProgressHUD.showError(error)
+//                }
+//            }
         }
     }
     
@@ -349,7 +322,10 @@ extension ShopViewController : UICollectionViewDelegate, UICollectionViewDataSou
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         collectionView.deselectItem(at: indexPath, animated: true)
-        
+        if self.activityList.count > indexPath.row{
+            let json = self.activityList[indexPath.row]
+            globalFunctionClickAction(json, self)
+        }
     }
     
     

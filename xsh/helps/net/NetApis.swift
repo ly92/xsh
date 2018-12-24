@@ -71,7 +71,8 @@ let AdDetailApi = "ads/get" //post id
 let NoticeListApi = "notice/list"//post skip, limit
 //公告详情
 let NoticeDetailApi = "notice/get"//post id
-
+//启动广告
+let AdLaunchApi = "ads/last" //post location:广告位
 
 
 /************************************ 一卡通 ********************************************/

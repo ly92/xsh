@@ -46,6 +46,33 @@
 	</array>
 	<key>CFBundleVersion</key>
 	<string>1280</string>
+	<key>LSApplicationQueriesSchemes</key>
+	<array>
+		<string>mqzone</string>
+		<string>mqq</string>
+		<string>mqqapi</string>
+		<string>wtloginmqq2</string>
+		<string>mqqopensdkapiV4</string>
+		<string>mqqopensdkapiV3</string>
+		<string>mqqopensdkapiV2</string>
+		<string>mqqOpensdkSSoLogin</string>
+		<string>mqzoneopensdkapiV2</string>
+		<string>mqzoneopensdkapi19</string>
+		<string>mqzoneopensdkapi</string>
+		<string>mqzoneopensdk</string>
+		<string>wechat</string>
+		<string>weixin</string>
+		<string>tencentweiboSdkv2</string>
+		<string>TencentWeibo</string>
+		<string>weibosdk2.5</string>
+		<string>weibosdk</string>
+		<string>sinaweibo</string>
+		<string>sinaweibohd</string>
+		<string>sinaweibohdsso</string>
+		<string>sinaweibosso</string>
+		<string>mqqwpa</string>
+		<string>alipay</string>
+	</array>
 	<key>LSRequiresIPhoneOS</key>
 	<true/>
 	<key>NSAppTransportSecurity</key>
@@ -53,33 +80,6 @@
 		<key>NSAllowsArbitraryLoads</key>
 		<true/>
 	</dict>
-    <key>LSApplicationQueriesSchemes</key>
-    <array>
-        <string>mqzone</string>
-        <string>mqq</string>
-        <string>mqqapi</string>
-        <string>wtloginmqq2</string>
-        <string>mqqopensdkapiV4</string>
-        <string>mqqopensdkapiV3</string>
-        <string>mqqopensdkapiV2</string>
-        <string>mqqOpensdkSSoLogin</string>
-        <string>mqzoneopensdkapiV2</string>
-        <string>mqzoneopensdkapi19</string>
-        <string>mqzoneopensdkapi</string>
-        <string>mqzoneopensdk</string>
-        <string>wechat</string>
-        <string>weixin</string>
-        <string>tencentweiboSdkv2</string>
-        <string>TencentWeibo</string>
-        <string>weibosdk2.5</string>
-        <string>weibosdk</string>
-        <string>sinaweibo</string>
-        <string>sinaweibohd</string>
-        <string>sinaweibohdsso</string>
-        <string>sinaweibosso</string>
-        <string>mqqwpa</string>
-        <string>alipay</string>
-    </array>
 	<key>NSAppleMusicUsageDescription</key>
 	<string>App需要您的同意,才能访问媒体资料库</string>
 	<key>NSBluetoothPeripheralUsageDescription</key>
@@ -114,8 +114,6 @@
 	<string>App需要您的同意,才能访问提醒事项</string>
 	<key>NSSpeechRecognitionUsageDescription</key>
 	<string>App需要您的同意,才能访问语音识别权限</string>
-	<key>UILaunchStoryboardName</key>
-	<string>LaunchScreen</string>
 	<key>UIMainStoryboardFile</key>
 	<string>Main</string>
 	<key>UIRequiredDeviceCapabilities</key>

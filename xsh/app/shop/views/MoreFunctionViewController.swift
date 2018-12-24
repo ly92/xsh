@@ -36,7 +36,7 @@ class MoreFunctionViewController: BaseViewController {
     func setUpCollectionView() {
         let flowLayout = UICollectionViewFlowLayout()
         let w = (kScreenW - 20) / 4 - 10
-        flowLayout.itemSize = CGSize.init(width: w, height: w + 10)
+        flowLayout.itemSize = CGSize.init(width: w, height: 90)
         flowLayout.minimumLineSpacing = 2
         flowLayout.minimumInteritemSpacing = 2
         flowLayout.headerReferenceSize = CGSize.init(width: kScreenW, height: 40)
@@ -102,7 +102,7 @@ extension MoreFunctionViewController : UICollectionViewDataSource, UICollectionV
             let modules = self.resultList[indexPath.section]["modules"].arrayValue
             if modules.count > indexPath.row{
                 let json = modules[indexPath.row]
-                functionClickAction(type: json["actiontype"].stringValue , controller: self)
+                globalFunctionClickAction(json, self)
             }
         }
     }

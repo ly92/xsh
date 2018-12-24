@@ -74,7 +74,7 @@ class NoticeTableViewController: BaseTableViewController {
     }
    
     override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return 160
+        return 200
     }
     
     

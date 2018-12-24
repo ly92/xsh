@@ -26,7 +26,7 @@ class BaseWebViewController: BaseViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        self.webView.frame = self.view.bounds
+        self.webView.frame = CGRect.init(x: 0, y: 0, width: kScreenW, height: kScreenH-64)
         self.webView.delegate = self
         self.webView.scalesPageToFit = true
         self.view.addSubview(self.webView)
@@ -100,6 +100,50 @@ extension BaseWebViewController : UIWebViewDelegate{
     }
     
     func webView(_ webView: UIWebView, shouldStartLoadWith request: URLRequest, navigationType: UIWebView.NavigationType) -> Bool {
+        
+        guard let requestUrl = request.url?.absoluteString else {
+            return false
+        }
+        //去支付
+        if requestUrl.contains("*payFromHtml5"){
+            //http://39.108.218.19:8085/html/*payFromHtml5*1812_9c6bba0a4b09874a9a71a865f1e0*%E7%89%A9%E4%B8%9A%E8%B4%B9*0.01
+            let arr = requestUrl.components(separatedBy: "*")
+            if arr.count == 5{
+                let orderNo = arr[2]
+                let title = arr[3]
+                let money = arr[4]
+                let payVC = PayViewController.spwan()
+                payVC.orderNo = orderNo
+                payVC.money = money
+                payVC.titleStr = title
+                payVC.payResultBlock = {(type) in
+                    if type == 1{
+                        //成功
+                        self.navigationController?.popViewController(animated: true)
+                    }else if type == 2{
+                        //取消
+                    }else if type == 3{
+                        //失败
+                    }
+                }
+                self.navigationController?.pushViewController(payVC, animated: true)
+                
+                return false
+            }else{
+                LYProgressHUD.showError("订单信息错误！")
+            }
+            
+        }
+        
+        
+        
+        
+        
+        
+        
+        print("-----------------------------------------------+++++++++++++++++++++++++++++++++---------------------------")
+        print(requestUrl)
+        
         LYProgressHUD.showLoading()
         return true
     }
