@@ -82,6 +82,7 @@ class PayViewController: BaseTableViewController {
             for json in result["list"].arrayValue{
                 self.payType[json["name"].stringValue] = json
             }
+            
             self.tableView.reloadData()
         }) { (error) in
             LYProgressHUD.showError(error)

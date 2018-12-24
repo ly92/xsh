@@ -33,13 +33,13 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         self.window?.rootViewController = tabBar
         
+        //启动操作
         self.launchOperation()
-        
-        
         //广告页
+        self.getAdData()
         
+        //注册微信
         WXApi.registerApp(KWechatKey)
-        
         
         let entity = JPUSHRegisterEntity()
         entity.types = Int(JPAuthorizationOptions.alert.rawValue)|Int(JPAuthorizationOptions.badge.rawValue)|Int(JPAuthorizationOptions.sound.rawValue)
@@ -170,7 +170,6 @@ extension AppDelegate {
         }
         self.checkVersion()
         self.getNewMessage()
-        self.getAdData()
     }
     
     
