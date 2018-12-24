@@ -121,7 +121,7 @@ class MyCardViewController: BaseViewController {
                 //创建订单
                 let params : [String : Any] = ["money" : text]
                 NetTools.requestData(type: .post, urlString: CardRechargeApi, parameters: params, succeed: { (result) in
-                    let payVC = PayViewController.spwan()
+                    let payVC = PayViewController()
                     payVC.orderNo = result["orderno"].stringValue
                     payVC.money = text
                     payVC.titleStr = "一卡通充值"

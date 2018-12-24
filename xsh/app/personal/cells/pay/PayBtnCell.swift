@@ -10,6 +10,8 @@ import UIKit
 
 class PayBtnCell: UITableViewCell {
 
+    var payBlock : (() -> Void)?
+    
     @IBOutlet weak var payBtn: UIButton!
     @IBOutlet weak var moneyLbl: UILabel!
     override func awakeFromNib() {
@@ -23,7 +25,11 @@ class PayBtnCell: UITableViewCell {
 
         // Configure the view for the selected state
     }
+    
     @IBAction func payAction() {
+        if self.payBlock != nil{
+            self.payBlock!()
+        }
     }
     
 }

@@ -107,7 +107,8 @@ let CardTransactionListApi = "transaction/list"
 //一卡通交易详情
 let CardTransactionDetailApi = "transaction/get"
 
-
-
+/************************************ 一卡通 ********************************************/
+//首页推荐商品
+let RecommendGoodsApi = "shop/recommend" //post
 
 

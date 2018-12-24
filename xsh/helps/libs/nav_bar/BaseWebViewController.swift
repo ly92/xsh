@@ -101,7 +101,7 @@ extension BaseWebViewController : UIWebViewDelegate{
     
     func webView(_ webView: UIWebView, shouldStartLoadWith request: URLRequest, navigationType: UIWebView.NavigationType) -> Bool {
         
-        guard let requestUrl = request.url?.absoluteString else {
+        guard let requestUrl = request.url?.absoluteString.removingPercentEncoding else {
             return false
         }
         //去支付
@@ -112,7 +112,7 @@ extension BaseWebViewController : UIWebViewDelegate{
                 let orderNo = arr[2]
                 let title = arr[3]
                 let money = arr[4]
-                let payVC = PayViewController.spwan()
+                let payVC = PayViewController()
                 payVC.orderNo = orderNo
                 payVC.money = money
                 payVC.titleStr = title

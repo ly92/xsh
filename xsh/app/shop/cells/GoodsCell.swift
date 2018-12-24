@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import SwiftyJSON
 
 class GoodsCell: UITableViewCell {
     @IBOutlet weak var imgV: UIImageView!
@@ -23,6 +24,15 @@ class GoodsCell: UITableViewCell {
         super.setSelected(selected, animated: animated)
 
         // Configure the view for the selected state
+    }
+    
+    var subJson = JSON(){
+        didSet{
+            self.imgV.setImageUrlStr(self.subJson["picurl"].stringValue)
+            self.nameLbl.text = self.subJson["title"].stringValue
+            self.priceLbl.text = self.subJson["price"].stringValue
+            self.saleCountLbl.text = "已卖出" + self.subJson["salecount"].stringValue + self.subJson["unit"].stringValue
+        }
     }
     
 }

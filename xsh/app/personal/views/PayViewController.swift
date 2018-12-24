@@ -10,36 +10,21 @@ import UIKit
 import SwiftyJSON
 
 class PayViewController: BaseTableViewController {
-    class func spwan() -> PayViewController{
-        return self.loadFromStoryBoard(storyBoard: "Personal") as! PayViewController
-    }
-    
-    @IBOutlet weak var titleLbl: UILabel!
-    @IBOutlet weak var moneyLbl: UILabel!
-    
-    @IBOutlet weak var wechatBtn: UIButton!
-    @IBOutlet weak var aliBtn: UIButton!
-    @IBOutlet weak var cardBtn: UIButton!
-    
-    @IBOutlet weak var couponBtn: UIButton!
-    @IBOutlet weak var couponLbl: UILabel!
-    @IBOutlet weak var pointsBtn: UIButton!
-    @IBOutlet weak var pointsLbl: UILabel!
-    @IBOutlet weak var totalMoneyLbl: UILabel!
-    @IBOutlet weak var payBtn: UIButton!
-    
-    @IBOutlet weak var cardMoneyLbl: UILabel!
-    @IBOutlet weak var couponCanUseLbl: UILabel!
-    @IBOutlet weak var pointsCanUseLbl: UILabel!
+
     
     
     var orderNo = ""
     var money = ""
     var titleStr = ""
-    
+
     var payResultBlock : ((Int) -> Void)? // 1:成功，2:取消，3:失败
     
-    fileprivate var payType : [String : JSON] = [:]
+    
+    
+    fileprivate var selectedPayWay1 = JSON()
+    fileprivate var selectedPayWay2 : [String : JSON] = [:]
+    fileprivate var payWayArray1 : Array<JSON> = []
+    fileprivate var payWayArray2 : Array<JSON> = []
     
     
     
@@ -47,14 +32,15 @@ class PayViewController: BaseTableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         self.navigationItem.title = "支付"
-        self.payBtn.layer.cornerRadius = 25
+        
+        self.tableView.register(UINib.init(nibName: "PayWayCell", bundle: Bundle.main), forCellReuseIdentifier: "PayWayCell")
+        self.tableView.register(UINib.init(nibName: "PayToCell", bundle: Bundle.main), forCellReuseIdentifier: "PayToCell")
+        self.tableView.register(UINib.init(nibName: "PayBtnCell", bundle: Bundle.main), forCellReuseIdentifier: "PayBtnCell")
+        
         
         self.getPayWay()
         
-        
-        self.titleLbl.text = self.titleStr
-        self.moneyLbl.text =  self.money
-        self.totalMoneyLbl.text = "¥" + self.money
+       
     }
     
     
@@ -80,57 +66,42 @@ class PayViewController: BaseTableViewController {
         let params : [String : Any] = ["orderno" : self.orderNo]
         NetTools.requestData(type: .post, urlString: PayTypeApi, parameters: params, succeed: { (result) in
             for json in result["list"].arrayValue{
-                self.payType[json["name"].stringValue] = json
+                if json["mutex"].intValue == 1{
+                    self.payWayArray1.append(json)
+                }else{
+                    self.payWayArray2.append(json)
+                }
             }
-            
+            if self.payWayArray1.count > 0{
+                self.selectedPayWay1 = self.payWayArray1.first!
+            }
             self.tableView.reloadData()
         }) { (error) in
             LYProgressHUD.showError(error)
         }
     }
     
-    @IBAction func payWayAction(_ btn : UIButton){
-        if btn.tag == 11{
-            self.wechatBtn.isSelected = true
-            self.aliBtn.isSelected = false
-            self.cardBtn.isSelected = false
-        }else if btn.tag == 22{
-            self.wechatBtn.isSelected = false
-            self.aliBtn.isSelected = true
-            self.cardBtn.isSelected = false
-        }else if btn.tag == 33{
-            self.wechatBtn.isSelected = false
-            self.aliBtn.isSelected = false
-            self.cardBtn.isSelected = true
-        }else if btn.tag == 44{
-            self.couponBtn.isSelected = !self.couponBtn.isSelected
-        }else if btn.tag == 55{
-            self.pointsBtn.isSelected = !self.pointsBtn.isSelected
-        }
-//        self.tableView.reloadData()
-    }
+    
     
     
     //生成预付单
     @IBAction func prePayAction() {
         var params : [String : Any] = [:]
-        
-        var payJson = JSON()
-        if self.wechatBtn.isSelected{
-            payJson = self.payType["微信支付"]!
-        }else if self.aliBtn.isSelected{
-           payJson = self.payType["支付宝"]!
-        }else if self.cardBtn.isSelected{
-            payJson = self.payType["一卡通"]!
+        if self.selectedPayWay1["atid"].stringValue.isEmpty{
+            LYProgressHUD.showError("请选择支付方式！")
+            return
         }
-        params["ptid"] = payJson["ptid"].stringValue
-        params["atid"] = payJson["atid"].stringValue
-        params["destaccount"] = payJson["destaccount"].stringValue
-        if !payJson["orgaccount"].stringValue.isEmpty{
-            params["orgaccount"] = payJson["orgaccount"].stringValue
-        }
+        params["ptid"] = self.selectedPayWay1["ptid"].stringValue
+        params["atid"] = self.selectedPayWay1["atid"].stringValue
+        params["destaccount"] = self.selectedPayWay1["destaccount"].stringValue
+        params["orgaccount"] = self.selectedPayWay1["orgaccount"].stringValue
         params["orderno"] = self.orderNo
-        params["money"] = self.money
+        
+        var discount : Float = 0
+        for (_, value) in self.selectedPayWay2{
+            discount += value["money"].floatValue
+        }
+        params["money"] = self.money.floatValue - discount
         //ptid:支付方式,atid:货币ID,orgaccount:付款账户,destaccount:收款账户,orderno:订单号,money:付款金额,points:积分抵消费金额,coupons:使用优惠券，逗号分隔优惠券码
         NetTools.requestData(type: .post, urlString: PrePayOrderApi, parameters: params, succeed: { (result) in
             let type = result["payinfo"]["paytype"].stringValue
@@ -237,65 +208,124 @@ class PayViewController: BaseTableViewController {
     }
     
     
+    
+    
 
-    override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        if indexPath.row == 0{
-            return 140
-        }else if indexPath.row == 1{
-            return 55
-        }else if indexPath.row == 2{
-            if self.payType.keys.contains("微信支付"){
-                return 45
-            }
-        }else if indexPath.row == 3{
-            if self.payType.keys.contains("支付宝"){
-                return 45
-            }
-        }else if indexPath.row == 4{
-            if self.payType.keys.contains("一卡通"){
-                return 45
-            }
-        }else if indexPath.row == 5{
-            if self.payType.keys.contains("优惠券"){
-                return 45
-            }
-        }else if indexPath.row == 6{
-            if self.payType.keys.contains("积分"){
-                return 45
-            }
-        }else if indexPath.row == 7{
-            return 55
-        }else if indexPath.row == 8{
-            return 140
+}
+
+extension PayViewController{
+    
+    override func numberOfSections(in tableView: UITableView) -> Int {
+        return 4
+    }
+    
+    override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        if section == 0 || section == 3{
+            return 1
+        }else if section == 1{
+            return self.payWayArray1.count
+        }else if section == 2{
+            return self.payWayArray2.count
         }
         return 0
     }
     
-    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        tableView.deselectRow(at: indexPath, animated: false)
-        
-        if indexPath.row == 2{
-            let btn = UIButton()
-            btn.tag = 11
-            self.payWayAction(btn)
-        }else if indexPath.row == 3{
-            let btn = UIButton()
-            btn.tag = 22
-            self.payWayAction(btn)
-        }else if indexPath.row == 4{
-            let btn = UIButton()
-            btn.tag = 33
-            self.payWayAction(btn)
-        }else if indexPath.row == 5{
-            let btn = UIButton()
-            btn.tag = 44
-            self.payWayAction(btn)
-        }else if indexPath.row == 6{
-            let btn = UIButton()
-            btn.tag = 55
-            self.payWayAction(btn)
+    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        if indexPath.section == 0{
+            let cell1 = tableView.dequeueReusableCell(withIdentifier: "PayToCell", for: indexPath) as! PayToCell
+            cell1.titleLbl.text = self.titleStr
+            cell1.priceLbl.text = self.money
+            return cell1
+        }else if indexPath.section == 1{
+            let cell2 = tableView.dequeueReusableCell(withIdentifier: "PayWayCell", for: indexPath) as! PayWayCell
+            if self.payWayArray1.count > indexPath.row{
+                let json = self.payWayArray1[indexPath.row]
+                cell2.subJson = json
+                if self.selectedPayWay1["atid"].stringValue == json["atid"].stringValue{
+                    cell2.selectedBtn.isSelected = true
+                }else{
+                    cell2.selectedBtn.isSelected = false
+                }
+            }
+            return cell2
+        }else if indexPath.section == 2{
+            let cell3 = tableView.dequeueReusableCell(withIdentifier: "PayWayCell", for: indexPath) as! PayWayCell
+            if self.payWayArray2.count > indexPath.row{
+                let json = self.payWayArray2[indexPath.row]
+                cell3.subJson = json
+                if self.selectedPayWay2.keys.contains(json["atid"].stringValue){
+                    cell3.selectedBtn.isSelected = true
+                    cell3.useLbl.text = "-¥" + json["money"].stringValue
+                }else{
+                    cell3.selectedBtn.isSelected = false
+                    cell3.useLbl.text = ""
+                }
+            }
+            return cell3
+        }else if indexPath.section == 3{
+            let cell4 = tableView.dequeueReusableCell(withIdentifier: "PayBtnCell", for: indexPath) as! PayBtnCell
+            var discount : Float = 0
+            for (_, value) in self.selectedPayWay2{
+                discount += value["money"].floatValue
+            }
+            cell4.moneyLbl.text = "¥" + String.init(format: "%.2f", (self.money.floatValue - discount))
+            cell4.payBlock = {() in
+                self.prePayAction()
+            }
+            return cell4
         }
+        return UITableViewCell()
     }
     
-
+    
+    override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        if indexPath.section == 0{
+            return 140
+        }else if indexPath.section == 1 || indexPath.section == 2{
+            return 45
+        }else if indexPath.section == 3{
+            return 200
+        }
+        return 0
+    }
+    
+    override func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+        if section == 2{
+            return 5
+        }
+        return 0.0001
+    }
+    override func tableView(_ tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
+        return 0.0001
+    }
+    
+    
+    override func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+        let view = UIView.init(frame: CGRect.init(x: 0, y: 0, width: kScreenW, height: 5))
+        view.backgroundColor = BG_Color
+        return view
+    }
+    
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        tableView.deselectRow(at: indexPath, animated: false)
+        if indexPath.section == 1{
+            if self.payWayArray1.count > indexPath.row{
+                let json = self.payWayArray1[indexPath.row]
+                if self.selectedPayWay1["atid"].stringValue != json["atid"].stringValue{
+                    self.selectedPayWay1 = json
+                    self.tableView.reloadData()
+                }
+            }
+        }else if indexPath.section == 2{
+            if self.payWayArray2.count > indexPath.row{
+                let json = self.payWayArray2[indexPath.row]
+                if self.selectedPayWay2.keys.contains(json["atid"].stringValue){
+                    self.selectedPayWay2.removeValue(forKey: json["atid"].stringValue)
+                }else{
+                    self.selectedPayWay2[json["atid"].stringValue] = json
+                }
+                self.tableView.reloadData()
+            }
+        }
+    }
 }

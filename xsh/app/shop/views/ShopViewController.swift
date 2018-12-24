@@ -28,6 +28,8 @@ class ShopViewController: BaseTableViewController {
     fileprivate var activityList : Array<JSON> = []
     fileprivate var collectionView : UICollectionView!
     
+    fileprivate var goodsList : Array<JSON> = []
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -47,24 +49,25 @@ class ShopViewController: BaseTableViewController {
        self.collectionView.register(UINib.init(nibName: "ActivityCell", bundle: Bundle.main), forCellWithReuseIdentifier: "ActivityCell")
         
         
-        self.loadFunctionData()
-        self.loadAdsData()
-        self.loadActivity()
+        self.loadData()
         
         self.pullToRefre {
-            self.loadFunctionData()
-            self.loadAdsData()
-            self.loadActivity()
+            self.loadData()
         }
         
         //登录通知
         NotificationCenter.default.addObserver(forName: NSNotification.Name(rawValue: KLoginSuccessNotiName), object: nil, queue: nil) { (noti) in
-            self.loadFunctionData()
-            self.loadAdsData()
-            self.loadActivity()
+            self.loadData()
         }
-        
-        
+
+    }
+    
+    //加载数据
+    func loadData() {
+        self.loadFunctionData()
+        self.loadAdsData()
+        self.loadActivity()
+        self.loadRcommendGoods()
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -193,6 +196,18 @@ class ShopViewController: BaseTableViewController {
     }
     
     
+    //MARK:- 推荐商品
+    func loadRcommendGoods() {
+        NetTools.requestData(type: .post, urlString: RecommendGoodsApi, succeed: { (result) in
+            for json in result["list"].arrayValue{
+                self.goodsList.append(json)
+            }
+            self.tableView.reloadData()
+        }) { (error) in
+            LYProgressHUD.showError(error)
+        }
+    }
+    
 }
 
 
@@ -202,7 +217,13 @@ extension ShopViewController : LYAnimateBannerViewDelegate{
     func LY_AnimateBannerViewClick(banner:LYAnimateBannerView, index: NSInteger) {
         if self.bannerList.count > index{
             let json = self.bannerList[index]
-            globalFunctionClickAction(json, self)
+//            globalFunctionClickAction(json, self)
+            let webVC = BaseWebViewController()
+            webVC.titleStr = json["title"].stringValue
+            let url = json["outerurl"].stringValue
+            webVC.urlStr = url
+            self.navigationController?.pushViewController(webVC, animated: true)
+            
 //            //查询广告位广告详情
 //            func loadAdsDetail() {
 //                var params : [String : Any] = [:]
@@ -218,7 +239,7 @@ extension ShopViewController : LYAnimateBannerViewDelegate{
     
 }
 
-//MARK:- UITableView--商品列表
+//MARK:- UITableView
 extension ShopViewController{
     
    override func numberOfSections(in tableView: UITableView) -> Int {
@@ -227,7 +248,7 @@ extension ShopViewController{
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         if section == 3{
-            return 10
+            return self.goodsList.count
         }
         return 1
     }
@@ -258,7 +279,10 @@ extension ShopViewController{
             return cell!
         }else if indexPath.section == 3{
             let cell = tableView.dequeueReusableCell(withIdentifier: "GoodsCell", for: indexPath) as! GoodsCell
-            
+            if self.goodsList.count > indexPath.row{
+                let json = self.goodsList[indexPath.row]
+                cell.subJson = json
+            }
             return cell
         }
         
@@ -280,7 +304,16 @@ extension ShopViewController{
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
-        
+        if indexPath.section == 3{
+            if self.goodsList.count > indexPath.row{
+                let json = self.goodsList[indexPath.row]
+                let webVC = BaseWebViewController()
+                webVC.titleStr = "商品详情"
+                let url = "http://kkt.wwwcity.net/production/xing_production_frontend/index.html?bid=" + json["bid"].stringValue + "&appid=111&token=10000122#92d00187dce05131265fd02afd582f8d"
+                webVC.urlStr = url
+                self.navigationController?.pushViewController(webVC, animated: true)
+            }
+        }
         
     }
 }
@@ -324,7 +357,12 @@ extension ShopViewController : UICollectionViewDelegate, UICollectionViewDataSou
         collectionView.deselectItem(at: indexPath, animated: true)
         if self.activityList.count > indexPath.row{
             let json = self.activityList[indexPath.row]
-            globalFunctionClickAction(json, self)
+//            globalFunctionClickAction(json, self)
+            let webVC = BaseWebViewController()
+            webVC.titleStr = json["title"].stringValue
+            let url = json["outerurl"].stringValue
+            webVC.urlStr = url
+            self.navigationController?.pushViewController(webVC, animated: true)
         }
     }
     
