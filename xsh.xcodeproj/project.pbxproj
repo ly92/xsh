@@ -37,6 +37,12 @@
 		0819FBCC21C8E38A0078EB8D /* GoodsCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0819FBCA21C8E38A0078EB8D /* GoodsCell.xib */; };
 		0819FBCE21C8ED7B0078EB8D /* UIImageView+Category.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0819FBCD21C8ED7A0078EB8D /* UIImageView+Category.swift */; };
 		083F8F8321D0A4020026341A /* AdView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 083F8F8221D0A4020026341A /* AdView.swift */; };
+		083F8F8721D0D6DB0026341A /* PayWayCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 083F8F8521D0D6DB0026341A /* PayWayCell.swift */; };
+		083F8F8821D0D6DB0026341A /* PayWayCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 083F8F8621D0D6DB0026341A /* PayWayCell.xib */; };
+		083F8F8B21D0D7120026341A /* PayToCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 083F8F8921D0D7120026341A /* PayToCell.swift */; };
+		083F8F8C21D0D7120026341A /* PayToCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 083F8F8A21D0D7120026341A /* PayToCell.xib */; };
+		083F8F8F21D0D7220026341A /* PayBtnCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 083F8F8D21D0D7220026341A /* PayBtnCell.swift */; };
+		083F8F9021D0D7220026341A /* PayBtnCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 083F8F8E21D0D7220026341A /* PayBtnCell.xib */; };
 		0861B83221C29703008795E5 /* NetTools.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0861B83121C29703008795E5 /* NetTools.swift */; };
 		0861B83421C2971A008795E5 /* NetApis.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0861B83321C2971A008795E5 /* NetApis.swift */; };
 		0861B83621C297BF008795E5 /* Date+Category.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0861B83521C297BF008795E5 /* Date+Category.swift */; };
@@ -159,6 +165,12 @@
 		0819FBCA21C8E38A0078EB8D /* GoodsCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = GoodsCell.xib; sourceTree = "<group>"; };
 		0819FBCD21C8ED7A0078EB8D /* UIImageView+Category.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIImageView+Category.swift"; sourceTree = "<group>"; };
 		083F8F8221D0A4020026341A /* AdView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AdView.swift; sourceTree = "<group>"; };
+		083F8F8521D0D6DB0026341A /* PayWayCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PayWayCell.swift; sourceTree = "<group>"; };
+		083F8F8621D0D6DB0026341A /* PayWayCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = PayWayCell.xib; sourceTree = "<group>"; };
+		083F8F8921D0D7120026341A /* PayToCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PayToCell.swift; sourceTree = "<group>"; };
+		083F8F8A21D0D7120026341A /* PayToCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = PayToCell.xib; sourceTree = "<group>"; };
+		083F8F8D21D0D7220026341A /* PayBtnCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PayBtnCell.swift; sourceTree = "<group>"; };
+		083F8F8E21D0D7220026341A /* PayBtnCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = PayBtnCell.xib; sourceTree = "<group>"; };
 		0861B83121C29703008795E5 /* NetTools.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetTools.swift; sourceTree = "<group>"; };
 		0861B83321C2971A008795E5 /* NetApis.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetApis.swift; sourceTree = "<group>"; };
 		0861B83521C297BF008795E5 /* Date+Category.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Date+Category.swift"; sourceTree = "<group>"; };
@@ -389,6 +401,7 @@
 		08169D6821C943930030D863 /* cells */ = {
 			isa = PBXGroup;
 			children = (
+				083F8F8421D0D6B70026341A /* pay */,
 				086E2D0021C9EEBF00896F25 /* CouponCell.swift */,
 				086E2CFF21C9EEBF00896F25 /* CouponCell.xib */,
 				08169D6921C943B10030D863 /* MyOrderCell.swift */,
@@ -450,6 +463,19 @@
 				08169D7A21CA94F10030D863 /* NoticeCell.xib */,
 			);
 			path = cells;
+			sourceTree = "<group>";
+		};
+		083F8F8421D0D6B70026341A /* pay */ = {
+			isa = PBXGroup;
+			children = (
+				083F8F8521D0D6DB0026341A /* PayWayCell.swift */,
+				083F8F8621D0D6DB0026341A /* PayWayCell.xib */,
+				083F8F8921D0D7120026341A /* PayToCell.swift */,
+				083F8F8A21D0D7120026341A /* PayToCell.xib */,
+				083F8F8D21D0D7220026341A /* PayBtnCell.swift */,
+				083F8F8E21D0D7220026341A /* PayBtnCell.xib */,
+			);
+			path = pay;
 			sourceTree = "<group>";
 		};
 		0861B83021C29690008795E5 /* net */ = {
@@ -946,6 +972,7 @@
 			files = (
 				08D7B69921CCC310007D191F /* AlipaySDK.bundle in Resources */,
 				0861B83D21C29D0D008795E5 /* Login.storyboard in Resources */,
+				083F8F8821D0D6DB0026341A /* PayWayCell.xib in Resources */,
 				0807CA9A21C7EC3500967692 /* Personal.storyboard in Resources */,
 				0819FBB621C8DB550078EB8D /* BannerScrollImageCell.xib in Resources */,
 				0819FBBE21C8DDAE0078EB8D /* Shop.storyboard in Resources */,
@@ -953,8 +980,10 @@
 				08D7B6A521CCC310007D191F /* README.txt in Resources */,
 				08A3A40921C158CE008E071F /* LaunchScreen.storyboard in Resources */,
 				08169D6C21C943B10030D863 /* MyOrderCell.xib in Resources */,
+				083F8F8C21D0D7120026341A /* PayToCell.xib in Resources */,
 				0819FBC821C8E3680078EB8D /* ActivityCell.xib in Resources */,
 				08A3A40621C158CE008E071F /* Assets.xcassets in Resources */,
+				083F8F9021D0D7220026341A /* PayBtnCell.xib in Resources */,
 				0819FBBC21C8DB550078EB8D /* TransactionBannerCell.xib in Resources */,
 				08E0D47821CF23500015992B /* MessageCell.xib in Resources */,
 				086E2D0121C9EEBF00896F25 /* CouponCell.xib in Resources */,
@@ -1094,6 +1123,7 @@
 				08A3A46D21C168B6008E071F /* LYTabBar.swift in Sources */,
 				08169D7821CA94CF0030D863 /* NoticeTableViewController.swift in Sources */,
 				0819FBC221C8E3140078EB8D /* ShopViewController.swift in Sources */,
+				083F8F8721D0D6DB0026341A /* PayWayCell.swift in Sources */,
 				08A3A46521C168B6008E071F /* UIView+Category.swift in Sources */,
 				08E0D47721CF23500015992B /* MessageCell.swift in Sources */,
 				08A3A46C21C168B6008E071F /* String+Category.swift in Sources */,
@@ -1106,6 +1136,7 @@
 				08169D8021CAA1030030D863 /* OpenCardViewController.swift in Sources */,
 				08A3A46921C168B6008E071F /* UIColor+Category.swift in Sources */,
 				08169D7B21CA94F10030D863 /* NoticeCell.swift in Sources */,
+				083F8F8F21D0D7220026341A /* PayBtnCell.swift in Sources */,
 				086E2D0421CA2CB800896F25 /* Config.swift in Sources */,
 				0807CA9621C7C47700967692 /* LocalData.swift in Sources */,
 				08A3A46B21C168B6008E071F /* DeviceSystemHelper.swift in Sources */,
@@ -1129,6 +1160,7 @@
 				08A3A46E21C168B6008E071F /* LYTabBarController.swift in Sources */,
 				0861B84021C29D74008795E5 /* BaseViewController.swift in Sources */,
 				0819FBC721C8E3680078EB8D /* ActivityCell.swift in Sources */,
+				083F8F8B21D0D7120026341A /* PayToCell.swift in Sources */,
 				08D7B69B21CCC310007D191F /* APAuthV2Info.m in Sources */,
 				086E2CFC21C9E75900896F25 /* MyOrderTableViewController.swift in Sources */,
 				08D7B6A321CCC310007D191F /* RSADataVerifier.m in Sources */,
