@@ -308,14 +308,51 @@ extension ShopViewController{
             if self.goodsList.count > indexPath.row{
                 let json = self.goodsList[indexPath.row]
                 let webVC = BaseWebViewController()
-                webVC.titleStr = "商品详情"
+                webVC.titleStr = "商品"
                 let url = "http://kkt.wwwcity.net/production/xing_production_frontend/index.html?bid=" + json["bid"].stringValue + "&appid=111&token=10000122#92d00187dce05131265fd02afd582f8d"
                 webVC.urlStr = url
                 self.navigationController?.pushViewController(webVC, animated: true)
             }
         }
-        
     }
+    
+    override func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+        
+        if section == 0 || section == 1{
+            return nil
+        }
+        
+        let view = UIView.init(frame: CGRect.init(x: 0, y: 0, width: kScreenW, height: 50))
+        view.backgroundColor = UIColor.white
+        let subView = UIView.init(frame: CGRect.init(x: 12, y: 20, width: 3, height: 20))
+        subView.backgroundColor = Normal_Color
+        view.addSubview(subView)
+        let lbl = UILabel(frame: CGRect.init(x: 20, y: 20, width: kScreenW - 20, height: 20))
+        lbl.textColor = UIColor.RGB(r: 59, g: 71, b: 91)
+        lbl.font = UIFont.systemFont(ofSize: 17.0)
+        view.addSubview(lbl)
+        if section == 2{
+            lbl.text = "入门活动"
+            return view
+        }else if section == 3{
+            lbl.text = "精品推荐"
+            return view
+        }
+        return nil
+    }
+    
+    override func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+        if section == 2 || section == 3{
+            return 50
+        }
+        return 0.001
+    }
+    
+    override func tableView(_ tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
+        return 0.001
+    }
+    
+    
 }
 
 //MARK:- 中部活动

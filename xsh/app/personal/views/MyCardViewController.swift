@@ -42,8 +42,8 @@ class MyCardViewController: BaseViewController {
         
         self.cardNumView.addTapActionBlock {
             //绑定卡
-            let bindVC = BindCardTableViewController.spwan()
-            self.navigationController?.pushViewController(bindVC, animated: true)
+//            let bindVC = BindCardTableViewController.spwan()
+//            self.navigationController?.pushViewController(bindVC, animated: true)
         }
     }
     

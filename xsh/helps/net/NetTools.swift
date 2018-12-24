@@ -142,8 +142,17 @@ extension NetTools{
          sign：签名md5(cid+ts+cmdno+passwd)
          cmdno：
          */
-        let ts = Date.phpTimestamp()
-        let cmdno = String.randomStr(len: 20) + ts
+        var ts = Date.phpTimestamp()
+        var cmdno = String.randomStr(len: 20) + ts
+        if parameters != nil{
+            if parameters!.keys.contains("ts"){
+                ts = parameters!["ts"] as! String
+            }
+            if parameters!.keys.contains("cmdno"){
+                cmdno = parameters!["cmdno"] as! String
+            }
+        }
+        
         let sign = (LocalData.getCId() + ts + cmdno + LocalData.getPwd()).md5String()
         
         //1.获取类型

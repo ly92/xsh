@@ -102,6 +102,10 @@ class PayViewController: BaseTableViewController {
             discount += value["money"].floatValue
         }
         params["money"] = self.money.floatValue - discount
+        //积分
+        if self.selectedPayWay2.keys.contains("98"){
+            params["points"] = self.selectedPayWay2["98"]!["money"].stringValue
+        }
         //ptid:支付方式,atid:货币ID,orgaccount:付款账户,destaccount:收款账户,orderno:订单号,money:付款金额,points:积分抵消费金额,coupons:使用优惠券，逗号分隔优惠券码
         NetTools.requestData(type: .post, urlString: PrePayOrderApi, parameters: params, succeed: { (result) in
             let type = result["payinfo"]["paytype"].stringValue
@@ -109,6 +113,8 @@ class PayViewController: BaseTableViewController {
                 self.payByAli(result["payinfo"]["orderInfo"].stringValue)
             }else if type == "weixin"{
                 self.payByWechat(result["payinfo"])
+            }else{
+                self.payByCard(result["payinfo"]["tno"].stringValue)
             }
             
         }) { (error) in
@@ -172,7 +178,12 @@ class PayViewController: BaseTableViewController {
             req.sign = reqJson["sign"].stringValue
             print(WXApi.send(req))
         }else{
-            LYProgressHUD.showError("请先安装微信客户端！")
+            LYAlertView.show("提示", "请先安装微信客户端后重试！", "知道了", {
+                if self.payResultBlock != nil{
+                    self.payResultBlock!(3)
+                }
+                self.navigationController?.popViewController(animated: true)
+            })
         }
     }
     //微信支付结果
@@ -207,7 +218,48 @@ class PayViewController: BaseTableViewController {
         }
     }
     
-    
+    //使用一卡通付款
+    func payByCard(_ tno : String) {
+        
+        let pwdView = PayPasswordView()
+        pwdView.parentVC = self
+        pwdView.show { (pwd) in
+            
+            let ts = Date.phpTimestamp()
+            let cmdno = String.randomStr(len: 20) + ts
+            
+            var params : [String : Any] = [:]
+            params["orderno"] = self.orderNo
+            params["ts"] = ts
+            params["cmdno"] = cmdno
+            let psw = (pwd.md5String() + LocalData.getUserPhone()).md5String()
+            params["paysign"] = (LocalData.getCId() + ts + cmdno + psw).md5String()
+//            print("-----------------------")
+//            print("ts：" + ts)
+//            print("cmdno: " + cmdno)
+//            print("pwd: " + pwd)
+//            print("cid: " + LocalData.getCId())
+//            print(psw)
+//            print((LocalData.getCId() + ts + cmdno + psw).md5String())
+//            print("-----------------------")
+            NetTools.requestData(type: .post, urlString: CardPayApi, parameters: params, succeed: { (result) in
+                //返回
+                LYAlertView.show("提示", "支付成功！", "知道了", {
+                    if self.payResultBlock != nil{
+                        self.payResultBlock!(1)
+                    }
+                    self.navigationController?.popViewController(animated: true)
+                })
+            }) { (error) in
+                LYAlertView.show("提示", "支付失败，请重试！", "知道了", {
+                    if self.payResultBlock != nil{
+                        self.payResultBlock!(3)
+                    }
+                    self.navigationController?.popViewController(animated: true)
+                })
+            }
+        }
+    }
     
     
 
@@ -326,6 +378,8 @@ extension PayViewController{
                 }
                 self.tableView.reloadData()
             }
+        }else if indexPath.section == 3{
+            self.prePayAction()
         }
     }
 }

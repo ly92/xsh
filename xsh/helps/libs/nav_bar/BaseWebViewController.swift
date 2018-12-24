@@ -36,7 +36,18 @@ class BaseWebViewController: BaseViewController {
             titleStr = "广告详情"
         }
         self.navigationItem.title = titleStr
-
+        self.loadRequest()
+        
+        
+        //返回按钮
+        self.navigationItem.leftBarButtonItem = UIBarButtonItem.init(backTarget: self, action: #selector(BaseWebViewController.backClick))
+        
+        self.navigationItem.rightBarButtonItem = UIBarButtonItem.init(image: #imageLiteral(resourceName: "delete_icon"), target: self, action: #selector(BaseWebViewController.closeClick))
+        
+        // Do any additional setup after loading the view.
+    }
+    
+    func loadRequest() {
         LYProgressHUD.showLoading()
         if !urlStr.isEmpty{
             if !urlStr.hasPrefix("http://") && !urlStr.hasPrefix("https://"){
@@ -47,13 +58,6 @@ class BaseWebViewController: BaseViewController {
             let request = URLRequest.init(url: URL(string:urlStr)!)
             self.webView.loadRequest(request)
         }
-        
-        //返回按钮
-        self.navigationItem.leftBarButtonItem = UIBarButtonItem.init(backTarget: self, action: #selector(BaseWebViewController.backClick))
-        
-        self.navigationItem.rightBarButtonItem = UIBarButtonItem.init(image: #imageLiteral(resourceName: "delete_icon"), target: self, action: #selector(BaseWebViewController.closeClick))
-        
-        // Do any additional setup after loading the view.
     }
     
     
@@ -119,11 +123,13 @@ extension BaseWebViewController : UIWebViewDelegate{
                 payVC.payResultBlock = {(type) in
                     if type == 1{
                         //成功
-                        self.navigationController?.popViewController(animated: true)
+                        self.loadRequest()
                     }else if type == 2{
                         //取消
+                        
                     }else if type == 3{
                         //失败
+                        
                     }
                 }
                 self.navigationController?.pushViewController(payVC, animated: true)
@@ -134,15 +140,6 @@ extension BaseWebViewController : UIWebViewDelegate{
             }
             
         }
-        
-        
-        
-        
-        
-        
-        
-        print("-----------------------------------------------+++++++++++++++++++++++++++++++++---------------------------")
-        print(requestUrl)
         
         LYProgressHUD.showLoading()
         return true
