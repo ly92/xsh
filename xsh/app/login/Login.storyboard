@@ -875,7 +875,7 @@
                                                     <constraints>
                                                         <constraint firstAttribute="height" constant="50" id="yMF-1a-eZn"/>
                                                     </constraints>
-                                                    <state key="normal" title="下一步"/>
+                                                    <state key="normal" title="注册"/>
                                                     <connections>
                                                         <action selector="btnAction:" destination="3wa-iJ-5Bw" eventType="touchUpInside" id="N7Y-qb-jg6"/>
                                                     </connections>

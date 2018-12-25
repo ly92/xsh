@@ -82,6 +82,8 @@
 		08A3A46D21C168B6008E071F /* LYTabBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08A3A46121C168B6008E071F /* LYTabBar.swift */; };
 		08A3A46E21C168B6008E071F /* LYTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08A3A46221C168B6008E071F /* LYTabBarController.swift */; };
 		08A3A46F21C168B6008E071F /* LYNavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08A3A46321C168B6008E071F /* LYNavigationController.swift */; };
+		08C9027421D214E50020441E /* Message.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 08C9027321D214E50020441E /* Message.storyboard */; };
+		08C9027621D216AC0020441E /* BillPayDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08C9027521D216AC0020441E /* BillPayDetailViewController.swift */; };
 		08D7B63021CC9C5B007D191F /* PayViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08D7B62F21CC9C5B007D191F /* PayViewController.swift */; };
 		08D7B69921CCC310007D191F /* AlipaySDK.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 08D7B63221CCC310007D191F /* AlipaySDK.bundle */; };
 		08D7B69A21CCC310007D191F /* AlipaySDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 08D7B63321CCC310007D191F /* AlipaySDK.framework */; };
@@ -218,6 +220,8 @@
 		08A3A46121C168B6008E071F /* LYTabBar.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LYTabBar.swift; sourceTree = "<group>"; };
 		08A3A46221C168B6008E071F /* LYTabBarController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LYTabBarController.swift; sourceTree = "<group>"; };
 		08A3A46321C168B6008E071F /* LYNavigationController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LYNavigationController.swift; sourceTree = "<group>"; };
+		08C9027321D214E50020441E /* Message.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Message.storyboard; sourceTree = "<group>"; };
+		08C9027521D216AC0020441E /* BillPayDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BillPayDetailViewController.swift; sourceTree = "<group>"; };
 		08D7B62F21CC9C5B007D191F /* PayViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PayViewController.swift; sourceTree = "<group>"; };
 		08D7B63221CCC310007D191F /* AlipaySDK.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = AlipaySDK.bundle; sourceTree = "<group>"; };
 		08D7B63321CCC310007D191F /* AlipaySDK.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = AlipaySDK.framework; sourceTree = "<group>"; };
@@ -602,6 +606,7 @@
 			children = (
 				08E0D47321CF23370015992B /* cells */,
 				08E0D47121CF23370015992B /* views */,
+				08C9027321D214E50020441E /* Message.storyboard */,
 			);
 			path = message;
 			sourceTree = "<group>";
@@ -811,6 +816,7 @@
 			isa = PBXGroup;
 			children = (
 				08E0D47221CF23370015992B /* MessageViewController.swift */,
+				08C9027521D216AC0020441E /* BillPayDetailViewController.swift */,
 			);
 			path = views;
 			sourceTree = "<group>";
@@ -986,6 +992,7 @@
 				083F8F8C21D0D7120026341A /* PayToCell.xib in Resources */,
 				0819FBC821C8E3680078EB8D /* ActivityCell.xib in Resources */,
 				08A3A40621C158CE008E071F /* Assets.xcassets in Resources */,
+				08C9027421D214E50020441E /* Message.storyboard in Resources */,
 				083F8F9021D0D7220026341A /* PayBtnCell.xib in Resources */,
 				0819FBBC21C8DB550078EB8D /* TransactionBannerCell.xib in Resources */,
 				08E0D47821CF23500015992B /* MessageCell.xib in Resources */,
@@ -1157,6 +1164,7 @@
 				0861B84821C52E29008795E5 /* LoginViewController.swift in Sources */,
 				086E2CF621C9E6CF00896F25 /* MyCouponTableViewController.swift in Sources */,
 				0819FBBB21C8DB550078EB8D /* TransactionBannerCell.swift in Sources */,
+				08C9027621D216AC0020441E /* BillPayDetailViewController.swift in Sources */,
 				0819FBCE21C8ED7B0078EB8D /* UIImageView+Category.swift in Sources */,
 				08A3A46621C168B6008E071F /* Array+Category.swift in Sources */,
 				08D7B69C21CCC310007D191F /* Order.m in Sources */,
