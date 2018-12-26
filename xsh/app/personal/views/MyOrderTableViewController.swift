@@ -25,6 +25,7 @@ class MyOrderTableViewController: BaseTableViewController {
         
         if self.orderType == 1{
             self.loadShopOrder()
+            self.tableView.separatorStyle = .none
         }else if self.orderType == 2{
             self.loadCardOrder()
         }
@@ -89,12 +90,17 @@ class MyOrderTableViewController: BaseTableViewController {
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         if self.orderType == 1{
             let cell = tableView.dequeueReusableCell(withIdentifier: "MyOrderCell", for: indexPath) as! MyOrderCell
+            if self.shopOrderList.count > 0{
+                let json = self.shopOrderList[indexPath.row]
+                cell.subJson = json
+            }
             return cell
         }else if self.orderType == 2{
             var cell = tableView.dequeueReusableCell(withIdentifier: "CardOrderCell")
             if cell == nil{
                 cell = UITableViewCell.init(style: .value1, reuseIdentifier: "CardOrderCell")
             }
+            cell?.selectionStyle = .none
             cell?.textLabel?.font = UIFont.systemFont(ofSize: 14.0)
             cell?.textLabel?.textColor = UIColor.RGBS(s: 102)
             cell?.detailTextLabel?.font = UIFont.systemFont(ofSize: 17.0)
@@ -112,10 +118,29 @@ class MyOrderTableViewController: BaseTableViewController {
     
     override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         if self.orderType == 1{
+            return 100
         }else if self.orderType == 2{
+            return 44
         }
-        return 100
+        return 0
     }
+    
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        if self.orderType == 1{
+            if self.shopOrderList.count > 0{
+                let json = self.shopOrderList[indexPath.row]
+                
+            }
+        }else if self.orderType == 2{
+            if self.cardOrderList.count > indexPath.row{
+                let json = self.cardOrderList[indexPath.row]
+                let billdetailVC = BillPayDetailViewController.spwan()
+                billdetailVC.billJson = json
+                self.navigationController?.pushViewController(billdetailVC, animated: true)
+            }
+        }
+    }
+    
     
     
     
@@ -130,8 +155,6 @@ class MyOrderTableViewController: BaseTableViewController {
             }
         }
     }
-    
-    
     
     
     

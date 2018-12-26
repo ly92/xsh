@@ -10,13 +10,14 @@ import UIKit
 import SwiftyJSON
 
 class MyOrderCell: UITableViewCell {
+    @IBOutlet weak var subView: UIView!
     @IBOutlet weak var nameLbl: UILabel!
     @IBOutlet weak var timeLbl: UILabel!
     @IBOutlet weak var moneyLbl: UILabel!
     
     override func awakeFromNib() {
         super.awakeFromNib()
-        // Initialization code
+        self.subView.layer.cornerRadius = 5
     }
 
     override func setSelected(_ selected: Bool, animated: Bool) {

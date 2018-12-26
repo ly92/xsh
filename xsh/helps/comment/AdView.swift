@@ -79,11 +79,20 @@ class AdView: UIView {
         if #available(iOS 11.0, *){
             webView.scrollView.contentInsetAdjustmentBehavior = .never
         }
+        
+        DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + 5) {
+            self.skipAction()
+        }
+        
     }
 
     //跳过
     @objc func skipAction(){
-        self.removeFromSuperview()
+        UIView.animate(withDuration: 1, animations: {
+            self.alpha = 0.3
+        }) { (comp) in
+            self.removeFromSuperview()
+        }
     }
     
 //    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {

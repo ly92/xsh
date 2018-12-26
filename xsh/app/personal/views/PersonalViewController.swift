@@ -54,13 +54,17 @@ class PersonalViewController: BaseTableViewController {
         NotificationCenter.default.addObserver(forName: NSNotification.Name(rawValue: KLoginSuccessNotiName), object: nil, queue: nil) { (noti) in
             self.loadPersonalInfo()
         }
+        //下拉刷新
+        self.pullToRefre {
+            self.loadPersonalInfo()
+        }
     }
     //个人信息
     func loadPersonalInfo() {
         var params : [String : Any] = [:]
         params["id"] = LocalData.getCId()
         NetTools.requestData(type: .post, urlString: GetPersonalInfoApi, parameters: params, succeed: { (result) in
-            self.personalInfo = result
+            self.personalInfo = result["user"]
             
             self.icon.setHeadImageUrlStr(result["user"][""].stringValue)
             self.nameLbl.text = result["user"]["nickname"].stringValue
@@ -76,39 +80,14 @@ class PersonalViewController: BaseTableViewController {
         }
     }
     
-    //修改个人信息
-    func updatePersonalInfo() {
-        var params : [String : Any] = [:]
-        params["cid"] = LocalData.getCId()
-        params["nickname"] = LocalData.getCId()
-        params["idcard"] = LocalData.getCId()
-        params["communityid"] = LocalData.getCId()
-        NetTools.requestData(type: .post, urlString: ChangePersonalInfoApi, parameters: params, succeed: { (result) in
-           
-        }) { (error) in
-            LYProgressHUD.showError(error)
-        }
-    }
-    
-    //修改手机号信息
-    func updatePersonalPhone() {
-        var params : [String : Any] = [:]
-        params["cid"] = LocalData.getCId()
-        params["mobile"] = LocalData.getCId()
-        params["code"] = LocalData.getCId()
-        params["passwd"] = LocalData.getCId()
-        NetTools.requestData(type: .post, urlString: ChangePhoneApi, parameters: params, succeed: { (result) in
-            
-        }) { (error) in
-            LYProgressHUD.showError(error)
-        }
-    }
     
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         if indexPath.row == 0{
             //个人信息
-            
+            let personalVC = PersonalInfoViewController.spwan()
+            personalVC.personalInfo = self.personalInfo
+            self.navigationController?.pushViewController(personalVC, animated: true)
         }else if indexPath.row == 1{
             //我的优惠券
             
