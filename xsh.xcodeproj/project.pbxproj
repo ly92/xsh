@@ -84,6 +84,8 @@
 		08A3A46D21C168B6008E071F /* LYTabBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08A3A46121C168B6008E071F /* LYTabBar.swift */; };
 		08A3A46E21C168B6008E071F /* LYTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08A3A46221C168B6008E071F /* LYTabBarController.swift */; };
 		08A3A46F21C168B6008E071F /* LYNavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08A3A46321C168B6008E071F /* LYNavigationController.swift */; };
+		08B0DE9321D4B65400EE7BA8 /* ChanegInfoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08B0DE9221D4B65400EE7BA8 /* ChanegInfoViewController.swift */; };
+		08B0DE9521D4C9E900EE7BA8 /* ScanActionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08B0DE9421D4C9E900EE7BA8 /* ScanActionViewController.swift */; };
 		08C9027421D214E50020441E /* Message.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 08C9027321D214E50020441E /* Message.storyboard */; };
 		08C9027621D216AC0020441E /* BillPayDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08C9027521D216AC0020441E /* BillPayDetailViewController.swift */; };
 		08D7B63021CC9C5B007D191F /* PayViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08D7B62F21CC9C5B007D191F /* PayViewController.swift */; };
@@ -224,6 +226,8 @@
 		08A3A46121C168B6008E071F /* LYTabBar.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LYTabBar.swift; sourceTree = "<group>"; };
 		08A3A46221C168B6008E071F /* LYTabBarController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LYTabBarController.swift; sourceTree = "<group>"; };
 		08A3A46321C168B6008E071F /* LYNavigationController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LYNavigationController.swift; sourceTree = "<group>"; };
+		08B0DE9221D4B65400EE7BA8 /* ChanegInfoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChanegInfoViewController.swift; sourceTree = "<group>"; };
+		08B0DE9421D4C9E900EE7BA8 /* ScanActionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScanActionViewController.swift; sourceTree = "<group>"; };
 		08C9027321D214E50020441E /* Message.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Message.storyboard; sourceTree = "<group>"; };
 		08C9027521D216AC0020441E /* BillPayDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BillPayDetailViewController.swift; sourceTree = "<group>"; };
 		08D7B62F21CC9C5B007D191F /* PayViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PayViewController.swift; sourceTree = "<group>"; };
@@ -427,6 +431,7 @@
 			children = (
 				0819FBAA21C8B13B0078EB8D /* PersonalViewController.swift */,
 				085D6CF321D3B9A600155895 /* PersonalInfoViewController.swift */,
+				08B0DE9221D4B65400EE7BA8 /* ChanegInfoViewController.swift */,
 				086E2CF521C9E6CF00896F25 /* MyCouponTableViewController.swift */,
 				086E2CF921C9E71C00896F25 /* MyQrcodeViewController.swift */,
 				086E2CFB21C9E75900896F25 /* MyOrderTableViewController.swift */,
@@ -677,6 +682,7 @@
 				0861B83F21C29D74008795E5 /* BaseViewController.swift */,
 				0861B84121C29DC0008795E5 /* BaseTableViewController.swift */,
 				08169D7121CA83D30030D863 /* BaseWebViewController.swift */,
+				08B0DE9421D4C9E900EE7BA8 /* ScanActionViewController.swift */,
 			);
 			path = nav_bar;
 			sourceTree = "<group>";
@@ -1136,6 +1142,7 @@
 				08169D7221CA83D30030D863 /* BaseWebViewController.swift in Sources */,
 				08A3A46421C168B6008E071F /* UIViewController+Category.swift in Sources */,
 				08D7B6A121CCC310007D191F /* openssl_wrapper.m in Sources */,
+				08B0DE9521D4C9E900EE7BA8 /* ScanActionViewController.swift in Sources */,
 				085D6CF621D3C4BB00155895 /* LYPickerView.swift in Sources */,
 				08A3A46D21C168B6008E071F /* LYTabBar.swift in Sources */,
 				08169D7821CA94CF0030D863 /* NoticeTableViewController.swift in Sources */,
@@ -1176,6 +1183,7 @@
 				08A3A46621C168B6008E071F /* Array+Category.swift in Sources */,
 				08D7B69C21CCC310007D191F /* Order.m in Sources */,
 				08A3A46E21C168B6008E071F /* LYTabBarController.swift in Sources */,
+				08B0DE9321D4B65400EE7BA8 /* ChanegInfoViewController.swift in Sources */,
 				0861B84021C29D74008795E5 /* BaseViewController.swift in Sources */,
 				0819FBC721C8E3680078EB8D /* ActivityCell.swift in Sources */,
 				083F8F8B21D0D7120026341A /* PayToCell.swift in Sources */,

@@ -105,6 +105,10 @@ extension LYTabBarController{
 
 extension LYTabBarController : LYTabBarDelegate{
     func clickAction(tabbar: LYTabBar) {
-        print("12345678954321`12345678987654322345678987654321234567")
+        let scanVC = ScanActionViewController()
+        scanVC.scanResultBlock = {(result) in
+            
+        }
+        self.navigationController?.pushViewController(scanVC, animated: true)
     }
 }

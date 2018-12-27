@@ -76,20 +76,56 @@ class PersonalInfoViewController: BaseTableViewController {
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         if indexPath.row == 1{
-            self.changeMessage(1)
+             //名字
+            let changeVC = ChanegInfoViewController()
+            changeVC.changeType = 1
+            changeVC.editTextBlock = {(nickName) in
+                var params : [String : Any] = [:]
+                params["cid"] = self.personalInfo["cid"].stringValue
+                params["nickname"] = LocalData.getCId()
+                params["idcard"] = LocalData.getCId()
+                params["communityid"] = LocalData.getCId()
+                NetTools.requestData(type: .post, urlString: ChangePersonalInfoApi, parameters: params, succeed: { (result) in
+                    
+                }) { (error) in
+                    LYProgressHUD.showError(error)
+                }
+            }
+            self.navigationController?.pushViewController(changeVC, animated: true)
         }else if indexPath.row == 2{
-            self.changeMessage(2)
+             //性别
+            LYPickerView.show(titles: ["男", "女"]) { (str, index) in
+                var params : [String : Any] = [:]
+                params["cid"] = self.personalInfo["cid"].stringValue
+                params["nickname"] = LocalData.getCId()
+                params["idcard"] = LocalData.getCId()
+                params["communityid"] = LocalData.getCId()
+                NetTools.requestData(type: .post, urlString: ChangePersonalInfoApi, parameters: params, succeed: { (result) in
+                    
+                }) { (error) in
+                    LYProgressHUD.showError(error)
+                }
+            }
         }else if indexPath.row == 4{
-            self.changeMessage(3)
+             //身份证号
+            let changeVC = ChanegInfoViewController()
+            changeVC.changeType = 2
+            changeVC.editTextBlock = {(idStr) in
+                var params : [String : Any] = [:]
+                params["cid"] = self.personalInfo["cid"].stringValue
+                params["nickname"] = LocalData.getCId()
+                params["idcard"] = LocalData.getCId()
+                params["communityid"] = LocalData.getCId()
+                NetTools.requestData(type: .post, urlString: ChangePersonalInfoApi, parameters: params, succeed: { (result) in
+                    
+                }) { (error) in
+                    LYProgressHUD.showError(error)
+                }
+            }
+            self.navigationController?.pushViewController(changeVC, animated: true)
         }
     }
-    
-    
-    func changeMessage(_ type : Int) {
-        //1:名字 2:性别 3:身份证号
-        
-    }
-    
+
     
     override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         if indexPath.row == 0{

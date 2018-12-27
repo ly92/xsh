@@ -27,7 +27,7 @@ class BillPayDetailViewController: BaseTableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        self..navigationItem.title = "缴费详情"
+        self.navigationItem.title = "缴费详情"
         
         self.addressLbl.text = self.billJson["memo"].stringValue
         self.timelbl.text = self.billJson["creationtime"].stringValue
