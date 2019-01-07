@@ -97,11 +97,8 @@ extension LYNavigationController : UIGestureRecognizerDelegate{
 extension LYNavigationController {
     fileprivate func setupNavAppearance() {
         let navBar = UINavigationBar.appearance()
-        if (Double(UIDevice.current.systemVersion)) > 8.0{
-            navBar.isTranslucent = true
-        }else{
-            self.navigationBar.isTranslucent = true
-        }
+        navBar.isTranslucent = true
+        
         //导航栏字体颜色
         //        navBar.tintColor = UIColor(red: 1, green: 1, blue: 1, alpha: 1)
         //        navBar.titleTextAttributes = [NSForegroundColorAttributeName: UIColor.RGBS(s: 150), NSFontAttributeName:UIFont.boldSystemFont(ofSize: 18)]

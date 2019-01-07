@@ -27,6 +27,7 @@ class PersonalViewController: BaseTableViewController {
         self.navigationController?.navigationBar.setBackgroundImage(UIImage(), for: .default)
         self.navigationController?.navigationBar.shadowImage = UIImage()
         self.edgesForExtendedLayout = UIRectEdge.top
+        self.navigationController?.navigationBar.titleTextAttributes = [NSAttributedString.Key.foregroundColor: UIColor.clear, NSAttributedString.Key.font:UIFont.italicSystemFont(ofSize: 18.0)]
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -43,6 +44,7 @@ class PersonalViewController: BaseTableViewController {
         self.navigationController?.navigationBar.isTranslucent = false
         self.navigationController?.navigationBar.setBackgroundImage(nil, for: .default)
         self.navigationController?.navigationBar.shadowImage = nil
+        self.navigationController?.navigationBar.titleTextAttributes = [NSAttributedString.Key.foregroundColor: UIColor.RGBS(s: 33), NSAttributedString.Key.font:UIFont.italicSystemFont(ofSize: 18.0)]
     }
     
     override func viewDidLoad() {
@@ -58,6 +60,8 @@ class PersonalViewController: BaseTableViewController {
         self.pullToRefre {
             self.loadPersonalInfo()
         }
+        
+
     }
     //个人信息
     func loadPersonalInfo() {
