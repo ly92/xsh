@@ -22,8 +22,12 @@ target 'xsh' do
 
   #极光推送
   pod 'JPush'
-  #腾讯bugly，app异常检测r
+  #腾讯bugly，app异常检测
   pod 'Bugly'
+  
+  #百度地图 “, '~> 4.1.0'”
+  pod 'BaiduMapKit'
+
 
   target 'xshTests' do
     inherit! :search_paths
