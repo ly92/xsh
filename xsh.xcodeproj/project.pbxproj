@@ -46,6 +46,7 @@
 		085D6CF221D1348600155895 /* PayPasswordView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 085D6CF121D1348600155895 /* PayPasswordView.swift */; };
 		085D6CF421D3B9A600155895 /* PersonalInfoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 085D6CF321D3B9A600155895 /* PersonalInfoViewController.swift */; };
 		085D6CF621D3C4BB00155895 /* LYPickerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 085D6CF521D3C4BB00155895 /* LYPickerView.swift */; };
+		085D6CF821E4F37200155895 /* SelectCommunityViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 085D6CF721E4F37200155895 /* SelectCommunityViewController.swift */; };
 		0861B83221C29703008795E5 /* NetTools.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0861B83121C29703008795E5 /* NetTools.swift */; };
 		0861B83421C2971A008795E5 /* NetApis.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0861B83321C2971A008795E5 /* NetApis.swift */; };
 		0861B83621C297BF008795E5 /* Date+Category.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0861B83521C297BF008795E5 /* Date+Category.swift */; };
@@ -181,6 +182,7 @@
 		085D6CF121D1348600155895 /* PayPasswordView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PayPasswordView.swift; sourceTree = "<group>"; };
 		085D6CF321D3B9A600155895 /* PersonalInfoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PersonalInfoViewController.swift; sourceTree = "<group>"; };
 		085D6CF521D3C4BB00155895 /* LYPickerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LYPickerView.swift; sourceTree = "<group>"; };
+		085D6CF721E4F37200155895 /* SelectCommunityViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectCommunityViewController.swift; sourceTree = "<group>"; };
 		0861B83121C29703008795E5 /* NetTools.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetTools.swift; sourceTree = "<group>"; };
 		0861B83321C2971A008795E5 /* NetApis.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetApis.swift; sourceTree = "<group>"; };
 		0861B83521C297BF008795E5 /* Date+Category.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Date+Category.swift"; sourceTree = "<group>"; };
@@ -440,6 +442,7 @@
 				08169D7D21CAA0A80030D863 /* BindCardTableViewController.swift */,
 				08169D7F21CAA1030030D863 /* OpenCardViewController.swift */,
 				08D7B62F21CC9C5B007D191F /* PayViewController.swift */,
+				085D6CF721E4F37200155895 /* SelectCommunityViewController.swift */,
 			);
 			path = views;
 			sourceTree = "<group>";
@@ -1182,6 +1185,7 @@
 				08A3A46721C168B6008E071F /* UILabel+Category.swift in Sources */,
 				08169D8021CAA1030030D863 /* OpenCardViewController.swift in Sources */,
 				08A3A46921C168B6008E071F /* UIColor+Category.swift in Sources */,
+				085D6CF821E4F37200155895 /* SelectCommunityViewController.swift in Sources */,
 				08169D7B21CA94F10030D863 /* NoticeCell.swift in Sources */,
 				083F8F8F21D0D7220026341A /* PayBtnCell.swift in Sources */,
 				086E2D0421CA2CB800896F25 /* Config.swift in Sources */,

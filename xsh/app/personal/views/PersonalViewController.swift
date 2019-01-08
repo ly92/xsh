@@ -32,6 +32,8 @@ class PersonalViewController: BaseTableViewController {
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
+        self.loadPersonalInfo()
+        
         self.navigationController?.setNavigationBarHidden(true, animated: false)
         UIApplication.shared.statusBarStyle = .lightContent
     }
@@ -49,8 +51,6 @@ class PersonalViewController: BaseTableViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        self.loadPersonalInfo()
         
         //登录通知
         NotificationCenter.default.addObserver(forName: NSNotification.Name(rawValue: KLoginSuccessNotiName), object: nil, queue: nil) { (noti) in

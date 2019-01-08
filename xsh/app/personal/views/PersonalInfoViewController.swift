@@ -16,18 +16,23 @@ class PersonalInfoViewController: BaseTableViewController {
     
     @IBOutlet weak var iconImgV: UIImageView!
     @IBOutlet weak var nameLbl: UILabel!
+    @IBOutlet weak var genderLbl: UILabel!
     @IBOutlet weak var addressLbl: UILabel!
     @IBOutlet weak var phoneLbl: UILabel!
     @IBOutlet weak var idLbl: UILabel!
     
     
+    
     var personalInfo = JSON()
     
+    fileprivate var gender = "1"
+    fileprivate var areaId = ""
+    fileprivate var communityId = ""
     
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        self.navigationItem.title = "个人信息"
         
     }
     
@@ -36,9 +41,14 @@ class PersonalInfoViewController: BaseTableViewController {
         
         self.iconImgV.setImageUrlStr(self.personalInfo[""].stringValue)
         self.nameLbl.text = self.personalInfo["nickname"].stringValue
+        self.genderLbl.text = self.personalInfo["gender"].stringValue.intValue == 1 ? "男" : "女"
         self.addressLbl.text = self.personalInfo["community"].stringValue + self.personalInfo["area"].stringValue
         self.phoneLbl.text = self.personalInfo["mobile"].stringValue
         self.idLbl.text = self.personalInfo["identityid"].stringValue
+        self.gender = self.personalInfo["gender"].stringValue
+        self.areaId = self.personalInfo["areaid"].stringValue
+        self.communityId = self.personalInfo["communityid"].stringValue
+        
         self.tableView.reloadData()
         
     }
@@ -48,11 +58,13 @@ class PersonalInfoViewController: BaseTableViewController {
     func updatePersonalInfo() {
         var params : [String : Any] = [:]
         params["cid"] = self.personalInfo["cid"].stringValue
-        params["nickname"] = LocalData.getCId()
-        params["idcard"] = LocalData.getCId()
-        params["communityid"] = LocalData.getCId()
+        params["nickname"] = self.nameLbl.text
+        params["idcard"] = self.idLbl.text
+        params["gender"] = self.gender
+        params["areaid"] = self.areaId
+        params["communityid"] = self.communityId
         NetTools.requestData(type: .post, urlString: ChangePersonalInfoApi, parameters: params, succeed: { (result) in
-            
+
         }) { (error) in
             LYProgressHUD.showError(error)
         }
@@ -80,47 +92,34 @@ class PersonalInfoViewController: BaseTableViewController {
             let changeVC = ChanegInfoViewController()
             changeVC.changeType = 1
             changeVC.editTextBlock = {(nickName) in
-                var params : [String : Any] = [:]
-                params["cid"] = self.personalInfo["cid"].stringValue
-                params["nickname"] = LocalData.getCId()
-                params["idcard"] = LocalData.getCId()
-                params["communityid"] = LocalData.getCId()
-                NetTools.requestData(type: .post, urlString: ChangePersonalInfoApi, parameters: params, succeed: { (result) in
-                    
-                }) { (error) in
-                    LYProgressHUD.showError(error)
-                }
+                self.nameLbl.text = nickName
+                self.updatePersonalInfo()
             }
             self.navigationController?.pushViewController(changeVC, animated: true)
         }else if indexPath.row == 2{
              //性别
             LYPickerView.show(titles: ["男", "女"]) { (str, index) in
-                var params : [String : Any] = [:]
-                params["cid"] = self.personalInfo["cid"].stringValue
-                params["nickname"] = LocalData.getCId()
-                params["idcard"] = LocalData.getCId()
-                params["communityid"] = LocalData.getCId()
-                NetTools.requestData(type: .post, urlString: ChangePersonalInfoApi, parameters: params, succeed: { (result) in
-                    
-                }) { (error) in
-                    LYProgressHUD.showError(error)
-                }
+                self.genderLbl.text = str
+                self.gender = index == 0 ? "1" : "2"
+                self.updatePersonalInfo()
             }
-        }else if indexPath.row == 4{
+        }else if indexPath.row == 3{
+            //地址
+            let selectVC = SelectCommunityViewController.spwan()
+            selectVC.selectBlok = {(area, community) in
+                self.areaId = area
+                self.communityId = community
+                self.updatePersonalInfo()
+            }
+            self.navigationController?.pushViewController(selectVC, animated: true)
+            
+        }else if indexPath.row == 5{
              //身份证号
             let changeVC = ChanegInfoViewController()
             changeVC.changeType = 2
             changeVC.editTextBlock = {(idStr) in
-                var params : [String : Any] = [:]
-                params["cid"] = self.personalInfo["cid"].stringValue
-                params["nickname"] = LocalData.getCId()
-                params["idcard"] = LocalData.getCId()
-                params["communityid"] = LocalData.getCId()
-                NetTools.requestData(type: .post, urlString: ChangePersonalInfoApi, parameters: params, succeed: { (result) in
-                    
-                }) { (error) in
-                    LYProgressHUD.showError(error)
-                }
+                self.idLbl.text = idStr
+                self.updatePersonalInfo()
             }
             self.navigationController?.pushViewController(changeVC, animated: true)
         }

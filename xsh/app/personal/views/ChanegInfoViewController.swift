@@ -27,6 +27,10 @@ class ChanegInfoViewController: BaseViewController {
             self.navigationItem.title = "身份证"
             self.textTF.placeholder = "请输入身份证号"
         }
+        self.textTF.delegate = self
+        self.textTF.returnKeyType = .done
+        
+        
         self.navigationItem.rightBarButtonItem = UIBarButtonItem.init(title: "完成", target: self, action: #selector(ChanegInfoViewController.rightItemAction))
         self.setMainUI()
     }
@@ -73,4 +77,11 @@ class ChanegInfoViewController: BaseViewController {
     }
     
     
+}
+
+extension ChanegInfoViewController : UITextFieldDelegate{
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        textTF.resignFirstResponder()
+        return true
+    }
 }
