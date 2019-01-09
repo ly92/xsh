@@ -56,7 +56,7 @@ class NoticeDetailViewController: BaseTableViewController {
         
         self.titleLbl.text = self.noticeJson["title"].stringValue
         self.timeLbl.text = Date.dateStringFromDate(format: Date.dateChineseFormatString(), timeStamps: self.noticeJson["creationtime"].stringValue)
-        self.readCountLbl.text = "阅读量：" + self.noticeJson["title"].stringValue
+        self.readCountLbl.text = "阅读量：" + self.noticeJson["readcount"].stringValue
         let html = "<html> <body> " + self.noticeJson["content"].stringValue + "</body> </html>"
         self.descWeb.loadHTMLString(html, baseURL: URL(string:"www.baidu.com"))
         if !self.noticeJson["thumb"].stringValue.isEmpty{
