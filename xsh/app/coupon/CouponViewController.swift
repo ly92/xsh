@@ -7,27 +7,47 @@
 //
 
 import UIKit
+import SwiftyJSON
 
-class CouponViewController: UIViewController {
+class CouponViewController: BaseTableViewController {
 
+    fileprivate var couponList : Array<JSON> = []
+    
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        self.tableView.register(UINib.init(nibName: "CouponGetCell", bundle: Bundle.main), forCellReuseIdentifier: "CouponGetCell")
+        
+        
+        
         //登录通知
         NotificationCenter.default.addObserver(forName: NSNotification.Name(rawValue: KLoginSuccessNotiName), object: nil, queue: nil) { (noti) in
             
         }
     }
     
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
+    
+    func loadCouponData() {
+        
     }
-    */
 
+}
+
+
+extension CouponViewController{
+    
+    override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return 10
+    }
+    
+    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCell(withIdentifier: "CouponGetCell", for: indexPath)
+        
+        return cell
+    }
+    
+    override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        return 105
+    }
 }

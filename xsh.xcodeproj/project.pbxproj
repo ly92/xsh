@@ -47,6 +47,8 @@
 		085D6CF421D3B9A600155895 /* PersonalInfoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 085D6CF321D3B9A600155895 /* PersonalInfoViewController.swift */; };
 		085D6CF621D3C4BB00155895 /* LYPickerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 085D6CF521D3C4BB00155895 /* LYPickerView.swift */; };
 		085D6CF821E4F37200155895 /* SelectCommunityViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 085D6CF721E4F37200155895 /* SelectCommunityViewController.swift */; };
+		085D6CFE21E6300600155895 /* CouponGetCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 085D6CFC21E6300600155895 /* CouponGetCell.swift */; };
+		085D6CFF21E6300600155895 /* CouponGetCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 085D6CFD21E6300600155895 /* CouponGetCell.xib */; };
 		0861B83221C29703008795E5 /* NetTools.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0861B83121C29703008795E5 /* NetTools.swift */; };
 		0861B83421C2971A008795E5 /* NetApis.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0861B83321C2971A008795E5 /* NetApis.swift */; };
 		0861B83621C297BF008795E5 /* Date+Category.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0861B83521C297BF008795E5 /* Date+Category.swift */; };
@@ -183,6 +185,8 @@
 		085D6CF321D3B9A600155895 /* PersonalInfoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PersonalInfoViewController.swift; sourceTree = "<group>"; };
 		085D6CF521D3C4BB00155895 /* LYPickerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LYPickerView.swift; sourceTree = "<group>"; };
 		085D6CF721E4F37200155895 /* SelectCommunityViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectCommunityViewController.swift; sourceTree = "<group>"; };
+		085D6CFC21E6300600155895 /* CouponGetCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CouponGetCell.swift; sourceTree = "<group>"; };
+		085D6CFD21E6300600155895 /* CouponGetCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CouponGetCell.xib; sourceTree = "<group>"; };
 		0861B83121C29703008795E5 /* NetTools.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetTools.swift; sourceTree = "<group>"; };
 		0861B83321C2971A008795E5 /* NetApis.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetApis.swift; sourceTree = "<group>"; };
 		0861B83521C297BF008795E5 /* Date+Category.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Date+Category.swift"; sourceTree = "<group>"; };
@@ -499,6 +503,22 @@
 			path = pay;
 			sourceTree = "<group>";
 		};
+		085D6CFA21E62F1B00155895 /* views */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = views;
+			sourceTree = "<group>";
+		};
+		085D6CFB21E62F2E00155895 /* cells */ = {
+			isa = PBXGroup;
+			children = (
+				085D6CFC21E6300600155895 /* CouponGetCell.swift */,
+				085D6CFD21E6300600155895 /* CouponGetCell.xib */,
+			);
+			path = cells;
+			sourceTree = "<group>";
+		};
 		0861B83021C29690008795E5 /* net */ = {
 			isa = PBXGroup;
 			children = (
@@ -628,6 +648,8 @@
 		08A3A43221C16405008E071F /* coupon */ = {
 			isa = PBXGroup;
 			children = (
+				085D6CFB21E62F2E00155895 /* cells */,
+				085D6CFA21E62F1B00155895 /* views */,
 				08A3A45221C1666E008E071F /* CouponViewController.swift */,
 			);
 			path = coupon;
@@ -1007,6 +1029,7 @@
 				08169D6C21C943B10030D863 /* MyOrderCell.xib in Resources */,
 				083F8F8C21D0D7120026341A /* PayToCell.xib in Resources */,
 				0819FBC821C8E3680078EB8D /* ActivityCell.xib in Resources */,
+				085D6CFF21E6300600155895 /* CouponGetCell.xib in Resources */,
 				08A3A40621C158CE008E071F /* Assets.xcassets in Resources */,
 				08C9027421D214E50020441E /* Message.storyboard in Resources */,
 				083F8F9021D0D7220026341A /* PayBtnCell.xib in Resources */,
@@ -1225,6 +1248,7 @@
 				086E2CF821C9E6F600896F25 /* ChangeCardPwdViewController.swift in Sources */,
 				0819FBCB21C8E38A0078EB8D /* GoodsCell.swift in Sources */,
 				0819FBB921C8DB550078EB8D /* LYAnimateBannerView.swift in Sources */,
+				085D6CFE21E6300600155895 /* CouponGetCell.swift in Sources */,
 				08A3A40421C158CD008E071F /* xsh.xcdatamodeld in Sources */,
 				0861B83421C2971A008795E5 /* NetApis.swift in Sources */,
 				08169D7621CA846D0030D863 /* UIBarButtonItem+Extension.swift in Sources */,
