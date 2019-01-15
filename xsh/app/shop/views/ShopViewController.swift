@@ -11,7 +11,7 @@ import SwiftyJSON
 import DGElasticPullToRefresh
 
 class ShopViewController: BaseTableViewController {
-   
+    
     
     
     fileprivate var bannerList : Array<JSON> = []
@@ -28,25 +28,26 @@ class ShopViewController: BaseTableViewController {
     fileprivate var activityList : Array<JSON> = []
     fileprivate var collectionView : UICollectionView!
     
-    fileprivate var goodsList : Array<JSON> = []
+    fileprivate var recommendList : Array<JSON> = []
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
         //setup collectionview
         let layout = UICollectionViewFlowLayout()
-        layout.itemSize = CGSize.init(width: 140, height: 125)
+        layout.itemSize = CGSize.init(width: 140, height: 95)
         layout.scrollDirection = .horizontal
         layout.minimumLineSpacing = 0
         layout.minimumInteritemSpacing = 0
-        self.collectionView = UICollectionView.init(frame: CGRect.init(x: 0, y: 0, width: kScreenW, height: 120), collectionViewLayout: layout)
+        self.collectionView = UICollectionView.init(frame: CGRect.init(x: 0, y: 0, width: kScreenW, height: 95), collectionViewLayout: layout)
         self.collectionView.backgroundColor = UIColor.white
         self.collectionView.delegate = self
         self.collectionView.dataSource = self
+        self.collectionView.showsHorizontalScrollIndicator = false
         
         
         self.tableView.register(UINib.init(nibName: "GoodsCell", bundle: Bundle.main), forCellReuseIdentifier: "GoodsCell")
-       self.collectionView.register(UINib.init(nibName: "ActivityCell", bundle: Bundle.main), forCellWithReuseIdentifier: "ActivityCell")
+        self.collectionView.register(UINib.init(nibName: "ActivityCell", bundle: Bundle.main), forCellWithReuseIdentifier: "ActivityCell")
         
         
         self.loadData()
@@ -59,7 +60,7 @@ class ShopViewController: BaseTableViewController {
         NotificationCenter.default.addObserver(forName: NSNotification.Name(rawValue: KLoginSuccessNotiName), object: nil, queue: nil) { (noti) in
             self.loadData()
         }
-
+        
     }
     
     //加载数据
@@ -88,7 +89,7 @@ class ShopViewController: BaseTableViewController {
     
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
-//        self.bannerView.timer?.invalidate()
+        //        self.bannerView.timer?.invalidate()
         
         self.navigationController?.setNavigationBarHidden(false, animated: false)
         UIApplication.shared.statusBarStyle = .default
@@ -98,7 +99,7 @@ class ShopViewController: BaseTableViewController {
         self.navigationController?.navigationBar.shadowImage = nil
         
         self.navigationController?.navigationBar.titleTextAttributes = [NSAttributedString.Key.foregroundColor: UIColor.RGBS(s: 33), NSAttributedString.Key.font:UIFont.italicSystemFont(ofSize: 18.0)]
-
+        
     }
     
     //MARK:- banner
@@ -121,7 +122,7 @@ class ShopViewController: BaseTableViewController {
             LYProgressHUD.showError(error)
         }
     }
-
+    
     
     //MARK:- 功能栏
     //功能栏数据
@@ -203,9 +204,9 @@ class ShopViewController: BaseTableViewController {
     //MARK:- 推荐商品
     func loadRcommendGoods() {
         NetTools.requestData(type: .post, urlString: RecommendGoodsApi, succeed: { (result) in
-            self.goodsList.removeAll()
+            self.recommendList.removeAll()
             for json in result["list"].arrayValue{
-                self.goodsList.append(json)
+                self.recommendList.append(json)
             }
             self.tableView.reloadData()
         }) { (error) in
@@ -222,23 +223,23 @@ extension ShopViewController : LYAnimateBannerViewDelegate{
     func LY_AnimateBannerViewClick(banner:LYAnimateBannerView, index: NSInteger) {
         if self.bannerList.count > index{
             let json = self.bannerList[index]
-//            globalFunctionClickAction(json, self)
+            //            globalFunctionClickAction(json, self)
             let webVC = BaseWebViewController()
             webVC.titleStr = json["title"].stringValue
             let url = json["outerurl"].stringValue
             webVC.urlStr = url
             self.navigationController?.pushViewController(webVC, animated: true)
             
-//            //查询广告位广告详情
-//            func loadAdsDetail() {
-//                var params : [String : Any] = [:]
-//                params["id"] = json["id"]
-//                NetTools.requestData(type: .post, urlString: AdDetailApi, parameters: params, succeed: { (result) in
-//
-//                }) { (error) in
-//                    LYProgressHUD.showError(error)
-//                }
-//            }
+            //            //查询广告位广告详情
+            //            func loadAdsDetail() {
+            //                var params : [String : Any] = [:]
+            //                params["id"] = json["id"]
+            //                NetTools.requestData(type: .post, urlString: AdDetailApi, parameters: params, succeed: { (result) in
+            //
+            //                }) { (error) in
+            //                    LYProgressHUD.showError(error)
+            //                }
+            //            }
         }
     }
     
@@ -247,13 +248,17 @@ extension ShopViewController : LYAnimateBannerViewDelegate{
 //MARK:- UITableView
 extension ShopViewController{
     
-   override func numberOfSections(in tableView: UITableView) -> Int {
-        return 4
+    override func numberOfSections(in tableView: UITableView) -> Int {
+        return 3 + self.recommendList.count
     }
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        if section == 3{
-            return self.goodsList.count
+        if section > 2{
+            if self.recommendList.count > section - 3{
+                let recommendJson = self.recommendList[section-3]
+                return recommendJson["productions"].arrayValue.count
+            }
+            return 0
         }
         return 1
     }
@@ -282,11 +287,14 @@ extension ShopViewController{
             }
             cell?.contentView.addSubview(self.collectionView)
             return cell!
-        }else if indexPath.section == 3{
+        }else if indexPath.section > 2{
             let cell = tableView.dequeueReusableCell(withIdentifier: "GoodsCell", for: indexPath) as! GoodsCell
-            if self.goodsList.count > indexPath.row{
-                let json = self.goodsList[indexPath.row]
-                cell.subJson = json
+            if self.recommendList.count > indexPath.section - 3{
+                let productions = self.recommendList[indexPath.section-3]["productions"].arrayValue
+                if productions.count > indexPath.row{
+                    let json = productions[indexPath.row]
+                    cell.subJson = json
+                }
             }
             return cell
         }
@@ -300,24 +308,29 @@ extension ShopViewController{
         }else if indexPath.section == 1{
             return 92
         }else if indexPath.section == 2{
+            return 95
+        }else if indexPath.section > 2{
             return 120
-        }else if indexPath.section == 3{
-           return 120
         }
         return 0
     }
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
-        if indexPath.section == 3{
-            if self.goodsList.count > indexPath.row{
-                let json = self.goodsList[indexPath.row]
-                let webVC = BaseWebViewController()
-                webVC.titleStr = "商品"
-                let url = "http://kkt.wwwcity.net/production/xing_production_frontend/index.html?bid=" + json["bid"].stringValue + "&appid=111&token=10000122#92d00187dce05131265fd02afd582f8d"
-                webVC.urlStr = url
-                self.navigationController?.pushViewController(webVC, animated: true)
+        if indexPath.section > 2{
+            if self.recommendList.count > indexPath.section - 3{
+                let productions = self.recommendList[indexPath.section-3]["productions"].arrayValue
+                if productions.count > indexPath.row{
+                    let json = productions[indexPath.row]
+                    let webVC = BaseWebViewController()
+                    webVC.titleStr = "商品"
+                    let url = "http://kkt.wwwcity.net/production/xing_production_frontend/index.html?bid=" + json["bid"].stringValue + "&appid=111&token=10000122#92d00187dce05131265fd02afd582f8d"
+                    webVC.urlStr = url
+                    self.navigationController?.pushViewController(webVC, animated: true)
+                }
             }
+            
+            
         }
     }
     
@@ -339,15 +352,21 @@ extension ShopViewController{
         if section == 2{
             lbl.text = "最热门"
             return view
-        }else if section == 3{
-            lbl.text = "精品推荐"
+        }else if section > 2{
+            if section > 2{
+                if self.recommendList.count > section - 3{
+                    let recommendJson = self.recommendList[section-3]
+                    lbl.text = recommendJson["name"].stringValue
+                }
+            }
+            
             return view
         }
         return nil
     }
     
     override func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
-        if section == 2 || section == 3{
+        if section >= 2 {
             return 50
         }
         return 0.001
@@ -379,7 +398,7 @@ extension ShopViewController : UICollectionViewDelegate, UICollectionViewDataSou
             LYProgressHUD.showError(error)
         }
     }
-
+    
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return self.activityList.count
@@ -399,7 +418,7 @@ extension ShopViewController : UICollectionViewDelegate, UICollectionViewDataSou
         collectionView.deselectItem(at: indexPath, animated: true)
         if self.activityList.count > indexPath.row{
             let json = self.activityList[indexPath.row]
-//            globalFunctionClickAction(json, self)
+            //            globalFunctionClickAction(json, self)
             let webVC = BaseWebViewController()
             webVC.titleStr = json["title"].stringValue
             let url = json["outerurl"].stringValue

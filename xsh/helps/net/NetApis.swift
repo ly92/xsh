@@ -106,6 +106,8 @@ let CardRechargeApi = "card/order" // post , money
 let PayTypeApi = "transaction/paytype" //post orderno
 //创建预付单
 let PrePayOrderApi = "transaction/prepay" // post ptid:支付方式,atid:货币ID,orgaccount:付款账户,destaccount:收款账户,orderno:订单号,money:付款金额,points:积分抵消费金额,coupons:使用优惠券，逗号分隔优惠券码
+//取消预支付单
+let CancelPrePayOrderApi = "transaction/cancel"//post orderno
 //一卡通支付
 let CardPayApi = "transaction/pay" //post paysign:md5(cid + ts + cmdno + paypsw),orderno
 //检查支付密码

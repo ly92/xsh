@@ -146,6 +146,7 @@ class PayViewController: BaseTableViewController {
             })
         }else if resultDict!["resultStatus"] as! String == "6001"{
             //支付取消
+            self.cancelOrder()
             LYAlertView.show("提示", "支付取消！", "知道了", {
                 if self.payResultBlock != nil{
                     self.payResultBlock!(2)
@@ -201,6 +202,7 @@ class PayViewController: BaseTableViewController {
             })
         }else if resultDict["code"] == "-2"{
             //取消支付
+            self.cancelOrder()
             LYAlertView.show("提示", "支付取消！", "知道了", {
                 if self.payResultBlock != nil{
                     self.payResultBlock!(2)
@@ -258,6 +260,14 @@ class PayViewController: BaseTableViewController {
                     self.navigationController?.popViewController(animated: true)
                 })
             }
+        }
+    }
+    
+    //取消单
+    func cancelOrder() {
+        let params : [String : Any] = ["orderno" : self.orderNo]
+        NetTools.requestData(type: .post, urlString: CancelPrePayOrderApi, parameters: params, succeed: { (result) in
+        }) { (error) in
         }
     }
     
