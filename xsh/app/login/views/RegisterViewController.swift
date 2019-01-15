@@ -32,7 +32,11 @@ class RegisterViewController: BaseTableViewController {
     
     
     
-    
+    fileprivate var gender = "男"
+    fileprivate var areaId = ""
+    fileprivate var communityId = ""
+    fileprivate var areaStr = ""
+    fileprivate var communityStr = ""
     
     fileprivate var secIndex = 0//0:记录了手机号，1:更改手机号，2:忘记密码，3:更改密码
     fileprivate var timer = Timer()//
@@ -99,7 +103,7 @@ class RegisterViewController: BaseTableViewController {
             self.secIndex = 1
             self.tableView.reloadData()
         case 15:
-            //去填写详细信息
+            //注册并去填写详细信息
             self.registerAction()
         case 16:
             //返回到第三步
@@ -108,12 +112,14 @@ class RegisterViewController: BaseTableViewController {
         case 17:
             //男
             print("男")
+            self.gender = "男"
         case 18:
             //女
             print("女")
+            self.gender = "女"
         case 19:
             //完成，返回登录
-            self.dismiss(animated: true, completion: nil)
+            self.updatePersonalInfo()
         default:
             print("bug")
         }
@@ -205,14 +211,69 @@ class RegisterViewController: BaseTableViewController {
         NetTools.normalRequest(type: .post, urlString: RegisterApi, parameters: params, succeed: { (result) in
             LYProgressHUD.showSuccess("注册成功！")
             self.dismiss(animated: true, completion: nil)
-//            self.secIndex = 3
-//            self.tableView.reloadData()
+            self.secIndex = 3
+            self.tableView.reloadData()
         }) { (error) in
             LYProgressHUD.showError(error)
         }
         
     }
     
+    
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        tableView.deselectRow(at: indexPath, animated: true)
+        if indexPath.section == 3{
+            if indexPath.row == 2{
+                //地址
+                let selectVC = SelectCommunityViewController.spwan()
+                selectVC.areaId = self.areaId
+                selectVC.areaStr = self.areaStr
+                selectVC.communityId = self.communityId
+                selectVC.communityStr = self.communityStr
+                selectVC.selectBlok = {(areaId, areaStr, communityId, communityStr) in
+                    self.areaId = areaId
+                    self.communityId = communityId
+                    self.areaStr = areaStr
+                    self.communityStr = communityStr
+                    self.addressTF.text = areaStr + communityStr
+                }
+                self.navigationController?.pushViewController(selectVC, animated: true)
+            }
+        }
+    }
+
+    //修改个人信息
+    func updatePersonalInfo() {
+        guard let name = self.nameTF.text else {
+            LYProgressHUD.showError("姓名输入错误")
+            return
+        }
+        if name.isEmpty{
+            LYProgressHUD.showError("姓名输入错误")
+            return
+        }
+        guard let idcard = self.identityTF.text else {
+            LYProgressHUD.showError("请输入身份证号")
+            return
+        }
+        if !idcard.isIdCard(){
+            LYProgressHUD.showError("身份证号错误")
+            return
+        }
+        
+        var params : [String : Any] = [:]
+        params["cid"] = LocalData.getCId()
+        params["nickname"] = name
+        params["idcard"] = idcard
+        params["gender"] = self.gender
+        params["areaid"] = self.areaId
+        params["communityid"] = self.communityId
+        NetTools.requestData(type: .post, urlString: ChangePersonalInfoApi, parameters: params, succeed: { (result) in
+            self.dismiss(animated: true, completion: nil)
+        }) { (error) in
+            LYProgressHUD.showError(error)
+        }
+    }
     
     override func scrollViewDidScroll(_ scrollView: UIScrollView) {
         self.view.endEditing(true)

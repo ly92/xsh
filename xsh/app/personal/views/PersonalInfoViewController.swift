@@ -25,24 +25,22 @@ class PersonalInfoViewController: BaseTableViewController {
     
     var personalInfo = JSON()
     
-    fileprivate var gender = "1"
     fileprivate var areaId = ""
     fileprivate var communityId = ""
+    fileprivate var areaStr = ""
+    fileprivate var communityStr = ""
     
+    fileprivate var gender = "1"
+
     
     override func viewDidLoad() {
         super.viewDidLoad()
         self.navigationItem.title = "个人信息"
         
-    }
-    
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
-        
         self.iconImgV.setImageUrlStr(self.personalInfo[""].stringValue)
         self.nameLbl.text = self.personalInfo["nickname"].stringValue
         self.genderLbl.text = self.personalInfo["gender"].stringValue.intValue == 1 ? "男" : "女"
-        self.addressLbl.text = self.personalInfo["community"].stringValue + self.personalInfo["area"].stringValue
+        self.addressLbl.text = self.personalInfo["area"].stringValue + " " + self.personalInfo["community"].stringValue
         self.phoneLbl.text = self.personalInfo["mobile"].stringValue
         self.idLbl.text = self.personalInfo["identityid"].stringValue
         self.gender = self.personalInfo["gender"].stringValue
@@ -51,6 +49,10 @@ class PersonalInfoViewController: BaseTableViewController {
         
         self.tableView.reloadData()
         
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
     }
 
     
@@ -106,13 +108,24 @@ class PersonalInfoViewController: BaseTableViewController {
         }else if indexPath.row == 3{
             //地址
             let selectVC = SelectCommunityViewController.spwan()
-            selectVC.selectBlok = {(area, community) in
-                self.areaId = area
-                self.communityId = community
+            selectVC.areaId = self.personalInfo["areaid"].stringValue
+            selectVC.areaStr = self.personalInfo["area"].stringValue
+            selectVC.communityId = self.personalInfo["communityid"].stringValue
+            selectVC.communityStr = self.personalInfo["community"].stringValue
+            selectVC.selectBlok = {(areaId, areaStr, communityId, communityStr) in
+                self.areaId = areaId
+                self.communityId = communityId
+                self.areaStr = areaStr
+                self.communityStr = communityStr
+                self.addressLbl.text = areaStr + " " + communityStr
                 self.updatePersonalInfo()
             }
             self.navigationController?.pushViewController(selectVC, animated: true)
             
+        }else if indexPath.row == 4{
+            //绑定手机号
+            let changePhoneVC = ChangePhoneViewController.spwan()
+            self.navigationController?.pushViewController(changePhoneVC, animated: true)
         }else if indexPath.row == 5{
              //身份证号
             let changeVC = ChanegInfoViewController()
@@ -130,7 +143,10 @@ class PersonalInfoViewController: BaseTableViewController {
         if indexPath.row == 0{
             return 60
         }else if indexPath.row == 3{
-            return self.addressLbl.resizeHeight() + 30
+            if self.addressLbl.resizeHeight() > 14{
+                return self.addressLbl.resizeHeight() + 30
+            }
+            return 44
         }else{
             return 44
         }

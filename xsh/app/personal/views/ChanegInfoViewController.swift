@@ -20,6 +20,12 @@ class ChanegInfoViewController: BaseViewController {
         super.viewDidLoad()
  
         
+        
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        
         if self.changeType == 1{
             self.navigationItem.title = "昵称"
             self.textTF.placeholder = "请输入昵称"

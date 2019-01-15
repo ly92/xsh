@@ -203,6 +203,7 @@ class ShopViewController: BaseTableViewController {
     //MARK:- 推荐商品
     func loadRcommendGoods() {
         NetTools.requestData(type: .post, urlString: RecommendGoodsApi, succeed: { (result) in
+            self.goodsList.removeAll()
             for json in result["list"].arrayValue{
                 self.goodsList.append(json)
             }
@@ -336,7 +337,7 @@ extension ShopViewController{
         lbl.font = UIFont.systemFont(ofSize: 17.0)
         view.addSubview(lbl)
         if section == 2{
-            lbl.text = "入门活动"
+            lbl.text = "热门活动"
             return view
         }else if section == 3{
             lbl.text = "精品推荐"

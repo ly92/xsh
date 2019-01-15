@@ -14,7 +14,7 @@ class SelectCommunityViewController: BaseViewController {
         return self.loadFromStoryBoard(storyBoard: "Personal") as! SelectCommunityViewController
     }
     
-    var selectBlok : ((String, String) -> Void)?
+    var selectBlok : ((String, String, String, String) -> Void)?
     
     
     @IBOutlet weak var tableViewLeft: UITableView!
@@ -22,13 +22,17 @@ class SelectCommunityViewController: BaseViewController {
     
     fileprivate var areaList : Array<JSON> = []
     fileprivate var communityList : Array<JSON> = []
-    fileprivate var areaId = "1"
-    fileprivate var communityId = ""
+    
+    var areaId = ""
+    var communityId = ""
+    var areaStr = ""
+    var communityStr = ""
+
     
     override func viewDidLoad() {
         super.viewDidLoad()
         self.navigationItem.title = "选择地址"
-        self.navigationItem.rightBarButtonItem = UIBarButtonItem.init(title: "", target: self, action: #selector(SelectCommunityViewController.rightItemAction))
+        self.navigationItem.rightBarButtonItem = UIBarButtonItem.init(title: "确定", target: self, action: #selector(SelectCommunityViewController.rightItemAction))
         
         self.loadAreaData()
     }
@@ -40,18 +44,17 @@ class SelectCommunityViewController: BaseViewController {
             return
         }
         if self.selectBlok != nil{
-            self.selectBlok!(self.areaId, self.communityId)
+            self.selectBlok!(self.areaId, self.areaStr, self.communityId, self.communityStr)
         }
+        self.navigationController?.popViewController(animated: true)
     }
     
     
     func loadAreaData() {
         NetTools.requestData(type: .post, urlString: AreaListApi, succeed: { (result) in
             self.areaList = result["list"].arrayValue
-            self.areaId = result["list"].arrayValue.first?["id"].stringValue ?? "0"
             self.tableViewLeft.reloadData()
             self.loadCommunityData()
-            
         }) { (error) in
             LYProgressHUD.showError(error)
         }
@@ -87,6 +90,7 @@ extension SelectCommunityViewController : UITableViewDelegate, UITableViewDataSo
         if cell == nil{
             cell = UITableViewCell.init(style: .default, reuseIdentifier: "area-community-cell")
         }
+        cell?.selectionStyle = .none
         cell?.textLabel?.textColor = UIColor.RGBS(s: 51)
         cell?.textLabel?.font = UIFont.systemFont(ofSize: 14.0)
         
@@ -120,6 +124,8 @@ extension SelectCommunityViewController : UITableViewDelegate, UITableViewDataSo
                 let json = self.areaList[indexPath.row]
                 if self.areaId != json["id"].stringValue{
                     self.areaId = json["id"].stringValue
+                    self.areaStr = json["name"].stringValue
+                    self.tableViewLeft.reloadData()
                     self.loadCommunityData()
                 }
             }
@@ -128,6 +134,7 @@ extension SelectCommunityViewController : UITableViewDelegate, UITableViewDataSo
                 let json = self.communityList[indexPath.row]
                 if self.communityId != json["communityid"].stringValue{
                     self.communityId = json["communityid"].stringValue
+                    self.communityStr = json["name"].stringValue
                     self.tableViewRight.reloadData()
                 }
             }
