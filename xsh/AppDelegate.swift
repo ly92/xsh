@@ -30,11 +30,12 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         self.window = UIWindow(frame: UIScreen.main.bounds)
         self.window?.backgroundColor = UIColor.white
         self.window?.makeKeyAndVisible()
-        
+
         self.window?.rootViewController = tabBar
         
         //启动操作
         self.launchOperation()
+        
         //广告页
         self.getAdData()
         
@@ -253,13 +254,16 @@ extension AppDelegate {
     
     //启动广告
     func getAdData() {
+        let oldAd = LocalData.getAdJson()
+        if !oldAd["imageurl"].stringValue.isEmpty{
+            AdView.showWithJson(oldAd)
+        }
+        
         var params : [String : Any] = [:]
         params["location"] = "start"
         NetTools.requestData(type: .post, urlString: AdLaunchApi, parameters: params, succeed: { (result) in
+            LocalData.saveAdJson(json: result["ads"])
             
-            DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + 0.5, execute: {
-                AdView.showWithJson(result["ads"])
-            })
         }) { (error) in
             LYProgressHUD.showError(error)
         }

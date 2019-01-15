@@ -16,7 +16,17 @@ class AdView: UIView {
         self.frame = CGRect.init(x: 0, y: 0, width: kScreenW, height: kScreenH)
         UIApplication.shared.keyWindow?.addSubview(self)
         UIApplication.shared.keyWindow?.bringSubviewToFront(self)
-
+        
+        //imageview
+        let imgV = UIImageView.init(frame: CGRect.init(x: 0, y: 0, width: kScreenW, height: kScreenH))
+        var url = json["imageurl"].stringValue
+        if url.isEmpty{
+            url = "http://starlife3c.test.upcdn.net/ads/201812/154544684745.img"
+        }
+        imgV.setImageUrlStrAndPlaceholderImg(url, #imageLiteral(resourceName: "ad_placeholder"))
+        self.addSubview(imgV)
+        
+        /**20190115
         //webview
         let webView = UIWebView.init(frame: CGRect.init(x: 0, y: 0, width: kScreenW, height: kScreenH))
         webView.delegate = self
@@ -35,7 +45,7 @@ class AdView: UIView {
             webView.loadHTMLString(html, baseURL: URL(string:"www.baidu.com"))
         }
         self.addSubview(webView)
-        
+        */
         
         //跳过btn
         let skipBtn = UIButton(frame:CGRect.init(x: kScreenW - 100, y: 40, width: 80, height: 30))
@@ -58,10 +68,11 @@ class AdView: UIView {
             guard let nav = AppDelegate.sharedInstance.tabBar.selectedViewController as? LYNavigationController else{
                 return
             }
-            nav.viewControllers.first?.present(webVC, animated: true) {
-            }
+            nav.viewControllers.first?.navigationController?.pushViewController(webVC, animated: true)
         }
         
+        
+        /*20190115
         webView.addTapActionBlock {
             //详情
             //跳转外部链接
@@ -79,6 +90,8 @@ class AdView: UIView {
         if #available(iOS 11.0, *){
             webView.scrollView.contentInsetAdjustmentBehavior = .never
         }
+        */
+        
         
         DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + 5) {
             self.skipAction()

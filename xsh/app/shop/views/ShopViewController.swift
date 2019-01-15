@@ -337,7 +337,7 @@ extension ShopViewController{
         lbl.font = UIFont.systemFont(ofSize: 17.0)
         view.addSubview(lbl)
         if section == 2{
-            lbl.text = "热门活动"
+            lbl.text = "最热门"
             return view
         }else if section == 3{
             lbl.text = "精品推荐"

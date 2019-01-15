@@ -18,7 +18,7 @@ class ChanegInfoViewController: BaseViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
- 
+        self.view.backgroundColor = BG_Color
         
         
     }
@@ -46,6 +46,7 @@ class ChanegInfoViewController: BaseViewController {
         //view
         let topView = UIView()
         topView.addSubview(self.textTF)
+        topView.backgroundColor = UIColor.white
         self.view.addSubview(topView)
         
         topView.snp.makeConstraints { (make) in

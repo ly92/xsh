@@ -136,6 +136,23 @@ class LocalData: NSObject {
         }
     }
     
+    
+    // MARK: - 广告地址
+    class func saveAdJson(json: JSON){
+        UserDefaults.standard.setValue(json.description, forKey: "KAdJson")
+        UserDefaults.standard.synchronize()
+    }
+    class func getAdJson() -> JSON{
+        let jsonStr = UserDefaults.standard.value(forKey : "KAdJson")
+        if (jsonStr == nil){
+            return JSON()
+        }else{
+            let json = JSON.init(parseJSON: jsonStr! as! String)
+            return json
+        }
+    }
+    
+    
 }
 
 
