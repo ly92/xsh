@@ -113,6 +113,17 @@
                                 <color key="textColor" red="0.40000000000000002" green="0.40000000000000002" blue="0.40000000000000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Yd1-LH-JNd">
+                                <rect key="frame" x="78.5" y="20" width="5" height="5"/>
+                                <color key="backgroundColor" red="0.28627450980000002" green="0.80392156859999997" blue="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="5" id="4t8-A1-lxa"/>
+                                    <constraint firstAttribute="width" constant="5" id="zW9-hh-VQC"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                                <color key="textColor" red="0.28627450980000002" green="0.80392156859999997" blue="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
@@ -130,6 +141,7 @@
                             <constraint firstItem="bVk-sh-vZ5" firstAttribute="width" secondItem="3lo-dm-zdq" secondAttribute="width" multiplier="0.245" id="SGm-VE-oVx"/>
                             <constraint firstItem="Owa-5N-Kg0" firstAttribute="leading" secondItem="3lo-dm-zdq" secondAttribute="leading" id="WWI-CO-K1L"/>
                             <constraint firstAttribute="bottom" secondItem="HFi-j7-h0P" secondAttribute="bottom" constant="25" id="YlU-cX-GZg"/>
+                            <constraint firstItem="9tb-aK-kig" firstAttribute="centerY" secondItem="Yd1-LH-JNd" secondAttribute="centerY" id="dQR-BD-eNX"/>
                             <constraint firstAttribute="trailing" secondItem="V7H-f8-xxu" secondAttribute="trailing" constant="8" id="eDw-Ub-Df1"/>
                             <constraint firstItem="9tb-aK-kig" firstAttribute="leading" secondItem="bVk-sh-vZ5" secondAttribute="trailing" constant="15" id="h6w-Ig-jEd"/>
                             <constraint firstItem="dXa-a7-j6T" firstAttribute="leading" secondItem="bVk-sh-vZ5" secondAttribute="trailing" constant="8" id="k51-mn-6cz"/>
@@ -139,6 +151,7 @@
                             <constraint firstAttribute="bottom" secondItem="Owa-5N-Kg0" secondAttribute="bottom" id="upp-QU-cqb"/>
                             <constraint firstItem="Owa-5N-Kg0" firstAttribute="width" secondItem="3lo-dm-zdq" secondAttribute="width" id="wcZ-Z8-Qgc"/>
                             <constraint firstAttribute="trailing" secondItem="HFi-j7-h0P" secondAttribute="trailing" id="weq-ZQ-kue"/>
+                            <constraint firstItem="9tb-aK-kig" firstAttribute="leading" secondItem="Yd1-LH-JNd" secondAttribute="trailing" constant="5" id="yy8-u2-NEp"/>
                             <constraint firstItem="bVk-sh-vZ5" firstAttribute="top" secondItem="3lo-dm-zdq" secondAttribute="top" id="zZ4-0K-dZ6"/>
                         </constraints>
                     </view>
@@ -158,6 +171,7 @@
                 <outlet property="getBtn" destination="V7H-f8-xxu" id="Kd8-Px-TFF"/>
                 <outlet property="imgV" destination="thW-fe-mTy" id="iri-AI-ZcA"/>
                 <outlet property="overLbl" destination="aC9-ui-dAi" id="RFU-nt-xQP"/>
+                <outlet property="pointLbl" destination="Yd1-LH-JNd" id="O2q-yx-DJi"/>
                 <outlet property="priceLbl" destination="Keg-4c-ucn" id="G1d-jT-yZb"/>
                 <outlet property="stateLbl" destination="dXa-a7-j6T" id="ONu-tP-ftv"/>
                 <outlet property="titleLbl" destination="kZl-t9-ZqQ" id="haX-CA-smm"/>

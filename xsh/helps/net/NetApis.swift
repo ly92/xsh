@@ -57,6 +57,15 @@ let FunctionListApi = "module/list"//post userId
 let FunctionMoreListApi = "module/more"// post userId
 
 
+/************************************ 优惠券 ********************************************/
+//领券中心
+let CouponListApi = "coupon/syslist"// post skip limit
+//我的优惠券列表
+let MyCouponListApi = "coupon/userlist"// post userid bizid：对应商家
+//领取优惠券
+let CouponGetApi = "coupon/sysissue"//post optid userid
+
+
 /************************************ 消息 ********************************************/
 //统计未读消息
 let MessageNewCountApi = "message/new"//post

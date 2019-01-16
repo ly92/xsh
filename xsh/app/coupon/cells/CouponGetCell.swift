@@ -7,11 +7,13 @@
 //
 
 import UIKit
+import SwiftyJSON
 
 class CouponGetCell: UITableViewCell {
     
     @IBOutlet weak var cardLbl: UILabel!
     @IBOutlet weak var priceLbl: UILabel!
+    @IBOutlet weak var pointLbl: UILabel!
     @IBOutlet weak var overLbl: UILabel!
     @IBOutlet weak var titleLbl: UILabel!
     @IBOutlet weak var descLbl: UILabel!
@@ -24,6 +26,8 @@ class CouponGetCell: UITableViewCell {
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
+        self.getBtn.layer.cornerRadius = 10
+        self.pointLbl.layer.cornerRadius = 2.5
     }
 
     override func setSelected(_ selected: Bool, animated: Bool) {
@@ -33,8 +37,29 @@ class CouponGetCell: UITableViewCell {
     }
     
     @IBAction func getAction() {
+        var params : [String : Any] = [:]
+        params["optid"] = self.subJson["optid"].stringValue
+        params["userid"] = LocalData.getCId()
+        NetTools.requestData(type: .post, urlString: CouponGetApi, parameters: params, succeed: { (result) in
+            LYProgressHUD.showSuccess("领取成功！")
+        }) { (error) in
+            LYProgressHUD.showError(error)
+        }
     }
     
+    
+    var subJson = JSON(){
+        didSet{
+            self.cardLbl.isHidden = false
+            self.priceLbl.text = self.subJson["money"].stringValue
+            self.overLbl.text = "满" + self.subJson["issue_max_num"].stringValue + "可用"
+            self.titleLbl.text = self.subJson["name"].stringValue
+            self.descLbl.text = self.subJson["biz_name"].stringValue
+            let scal = self.subJson["issue_cur_num"].stringValue.floatValue * 100 / self.subJson["issue_max_num"].stringValue.floatValue
+            self.stateLbl.text = String.init(format: "已领取%.2f", scal) + "%"
+            self.imgV.setImageUrlStr(self.subJson["imageurl"].stringValue)
+        }
+    }
     
     
 }

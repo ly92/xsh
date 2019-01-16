@@ -59,6 +59,9 @@ func globalFunctionClickAction(_ json : JSON, _ vc : UIViewController){
         }else if json["actionios"].stringValue == "MoreViewController"{
             let moreFuncVC = MoreFunctionViewController()
             vc.navigationController?.pushViewController(moreFuncVC, animated: true)
+        }else if json["actionios"].stringValue == "CouponViewController"{
+            let couponVC = CouponViewController()
+            vc.navigationController?.pushViewController(couponVC, animated: true)
         }
         
     }else if json["actiontype"].intValue == 2{

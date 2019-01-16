@@ -94,7 +94,8 @@ class PersonalViewController: BaseTableViewController {
             self.navigationController?.pushViewController(personalVC, animated: true)
         }else if indexPath.row == 1{
             //我的优惠券
-            
+            let myCouponVC = MyCouponTableViewController()
+            self.navigationController?.pushViewController(myCouponVC, animated: true)
         }else if indexPath.row == 2{
             //我的一卡通
             let myCardVC = MyCardViewController.spwan()
