@@ -11,7 +11,12 @@ import SwiftyJSON
 import DGElasticPullToRefresh
 
 class ShopViewController: BaseViewController {
+    class func spwan() -> ShopViewController{
+        return self.loadFromStoryBoard(storyBoard: "Shop") as! ShopViewController
+    }
     
+    
+    @IBOutlet weak var collectionView: UICollectionView!
     
     
     fileprivate var bannerList : Array<JSON> = []
@@ -30,39 +35,49 @@ class ShopViewController: BaseViewController {
     fileprivate var activityList : Array<JSON> = []
     fileprivate var ActivityView = UIScrollView(frame: CGRect(x: 0, y: 0, width: kScreenW, height: 95))
     
-    //推荐商品
-    fileprivate var collectionView : UICollectionView!//底部推荐商品试图
+   
+
     fileprivate var recommendList : Array<JSON> = [] //底部推荐商品
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        //setup collectionview
-        let layout = UICollectionViewFlowLayout()
-        layout.itemSize = CGSize.init(width: 140, height: 95)
-        layout.scrollDirection = .horizontal
-        layout.minimumLineSpacing = 0
-        layout.minimumInteritemSpacing = 0
-        self.collectionView = UICollectionView.init(frame: CGRect.init(x: 0, y: 0, width: kScreenW, height: 95), collectionViewLayout: layout)
-        self.collectionView.backgroundColor = UIColor.white
-        self.collectionView.delegate = self
-        self.collectionView.dataSource = self
-        self.collectionView.showsHorizontalScrollIndicator = false
-
-        self.collectionView.register(UINib.init(nibName: "RecommendGoodsCell", bundle: Bundle.main), forCellWithReuseIdentifier: "RecommendGoodsCell")
         
+        self.collectionView.register(UINib.init(nibName: "RecommendGoodsCell", bundle: Bundle.main), forCellWithReuseIdentifier: "RecommendGoodsCell")
+        self.collectionView.register(HomeCollectionCell.self, forCellWithReuseIdentifier: "HomeCollectionCell")
+        self.collectionView.register(RecommendReusableView.self, forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader, withReuseIdentifier: "RecommendReusableView")
         
         self.loadData()
-        
-        self.pullToRefre {
-            self.loadData()
-        }
+        self.pullToRefre()
         
         //登录通知
         NotificationCenter.default.addObserver(forName: NSNotification.Name(rawValue: KLoginSuccessNotiName), object: nil, queue: nil) { (noti) in
             self.loadData()
         }
         
+        //视图在导航器中显示默认四边距离
+        self.edgesForExtendedLayout = []
+        if #available(iOS 11.0, *){
+            self.collectionView.contentInsetAdjustmentBehavior = .never
+        }else{
+            self.automaticallyAdjustsScrollViewInsets = false
+        }
+        
+    }
+    
+    
+    
+    
+    
+    func pullToRefre() {
+        let loadingView = DGElasticPullToRefreshLoadingViewCircle()
+        loadingView.tintColor = UIColor.white
+        self.collectionView.dg_addPullToRefreshWithActionHandler({
+            self.loadData()
+            self.collectionView.dg_stopLoading()
+        }, loadingView: loadingView)
+        self.collectionView.dg_setPullToRefreshFillColor(Normal_Color)
+        self.collectionView.dg_setPullToRefreshBackgroundColor(self.collectionView.backgroundColor!)
     }
     
     //加载数据
@@ -201,7 +216,7 @@ class ShopViewController: BaseViewController {
     
     
     
-    //MARK:-活动
+    //MARK:- 活动
     func loadActivity() {
         var params : [String : Any] = [:]
         params["location"] = "mainmiddle"
@@ -220,11 +235,11 @@ class ShopViewController: BaseViewController {
             view.removeFromSuperview()
         }
         
-        self.ActivityView.contentSize = CGSize.init(width: 145 * self.activityList.count, height: self.ActivityView.h)
-        for i in 0..<self.functionList.count{
-            let json = self.functionList[i]
-            let frame = CGRect.init(x: 145 * CGFloat(i), y: 0, width: 140, height: self.ActivityView.h)
-            self.creareAvtivity(json["iconurl"].stringValue, i, frame)
+        self.ActivityView.contentSize = CGSize.init(width: CGFloat(145 * self.activityList.count), height: self.ActivityView.h)
+        for i in 0..<self.activityList.count{
+            let json = self.activityList[i]
+            let frame = CGRect.init(x: 145 * CGFloat(i) + 5, y: 0, width: 140, height: self.ActivityView.h)
+            self.creareAvtivity(json["imageurl"].stringValue, i, frame)
         }
     }
     //创建活动页面
@@ -317,20 +332,21 @@ extension ShopViewController : UICollectionViewDelegate, UICollectionViewDataSou
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+    
         if indexPath.section == 0{
-            var cell = UICollectionViewCell()
-            cell.contentView.addSubview(self.bannerView)
+            let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "HomeCollectionCell", for: indexPath) as! HomeCollectionCell
+            cell.subView.addSubview(self.bannerView)
             return cell
         }else if indexPath.section == 1{
-            var cell = UICollectionViewCell()
-            cell.contentView.addSubview(self.functionView)
+            let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "HomeCollectionCell", for: indexPath) as! HomeCollectionCell
+            cell.subView.addSubview(self.functionView)
             return cell
         }else if indexPath.section == 2{
-            var cell = UICollectionViewCell()
-            cell.contentView.addSubview(self.collectionView)
+            let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "HomeCollectionCell", for: indexPath) as! HomeCollectionCell
+            cell.subView.addSubview(self.ActivityView)
             return cell
         }else if indexPath.section > 2{
-            let cell = collectionView.dequeueReusableCell(withIdentifier: "RecommendGoodsCell", for: indexPath) as! RecommendGoodsCell
+            let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "RecommendGoodsCell", for: indexPath) as! RecommendGoodsCell
             if self.recommendList.count > indexPath.section - 3{
                 let productions = self.recommendList[indexPath.section-3]["productions"].arrayValue
                 if productions.count > indexPath.row{
@@ -364,30 +380,34 @@ extension ShopViewController : UICollectionViewDelegate, UICollectionViewDataSou
         }
     }
     
+    
+    
+
     func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> UICollectionReusableView {
-        let reusableView = collectionView.dequeueReusableSupplementaryView(ofKind: UICollectionView.elementKindSectionHeader, withReuseIdentifier: "RecommendReusableView", for: indexPath) as! RecommendReusableView
-        
-        if self.resultList.count > indexPath.section{
-            let json = self.resultList[indexPath.section]
-            if section == 2{
+        if indexPath.section > 1{
+            let reusableView = collectionView.dequeueReusableSupplementaryView(ofKind: UICollectionView.elementKindSectionHeader, withReuseIdentifier: "RecommendReusableView", for: indexPath) as! RecommendReusableView
+            if indexPath.section == 2{
                 reusableView.titleLbl.text = "最热门"
-            }else if section > 2{
-                if section > 2{
-                    if self.recommendList.count > section - 3{
-                        let recommendJson = self.recommendList[section-3]
+            }else if indexPath.section > 2{
+                if indexPath.section > 2{
+                    if self.recommendList.count > indexPath.section - 3{
+                        let recommendJson = self.recommendList[indexPath.section-3]
                         reusableView.titleLbl.text = recommendJson["name"].stringValue
                     }
                 }
             }
+            return reusableView
         }
-        return reusableView
+        return UICollectionReusableView()
     }
     
-    
-    
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, referenceSizeForHeaderInSection section: Int) -> CGSize {
+        if section > 1{
+            return CGSize.init(width: kScreenW, height: 50)
+        }
+        return CGSize.zero
+    }
 
-
-    
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         if indexPath.section == 0{
@@ -397,17 +417,19 @@ extension ShopViewController : UICollectionViewDelegate, UICollectionViewDataSou
         }else if indexPath.section == 2{
             return CGSize.init(width: kScreenW, height: 95)
         }else if indexPath.section > 2{
-            return CGSize.init(width: kScreenW / 2.0 - 10, height: 120)
+            let w = kScreenW / 2.0 - 1
+            return CGSize.init(width: w, height: w * 1.2)
         }
         return CGSize.zero
     }
     
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
+        return 0
+    }
     
-    
-    
-    
-    
-    
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumInteritemSpacingForSectionAt section: Int) -> CGFloat {
+        return 0
+    }
     
 }
 
@@ -433,9 +455,35 @@ class RecommendReusableView : UICollectionReusableView{
         subView.backgroundColor = Normal_Color
         view.addSubview(subView)
         self.titleLbl.frame = CGRect.init(x: 20, y: 20, width: kScreenW - 20, height: 20)
-        lbl.textColor = UIColor.RGB(r: 59, g: 71, b: 91)
-        lbl.font = UIFont.systemFont(ofSize: 17.0)
-        view.addSubview(lbl)
+        self.titleLbl.textColor = UIColor.RGB(r: 59, g: 71, b: 91)
+        self.titleLbl.font = UIFont.systemFont(ofSize: 17.0)
+        view.addSubview(self.titleLbl)
+        self.addSubview(view)
+    }
+}
+
+
+
+
+
+
+class HomeCollectionCell : UICollectionViewCell{
+    fileprivate var subView = UIView()
+    
+    override init(frame: CGRect) {
+        super.init(frame: frame)
+        self.setUpUI()
     }
     
+    required init?(coder aDecoder: NSCoder) {
+        super.init(coder: aDecoder)
+        self.setUpUI()
+    }
+    //创建功能栏页面
+    func setUpUI() {
+        self.addSubview(self.subView)
+        self.subView.snp.makeConstraints { (make) in
+            make.top.leading.trailing.bottom.equalTo(0)
+        }
+    }
 }

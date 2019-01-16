@@ -31,8 +31,6 @@
 		0819FBBC21C8DB550078EB8D /* TransactionBannerCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0819FBB421C8DB550078EB8D /* TransactionBannerCell.xib */; };
 		0819FBBE21C8DDAE0078EB8D /* Shop.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0819FBBD21C8DDAE0078EB8D /* Shop.storyboard */; };
 		0819FBC221C8E3140078EB8D /* ShopViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0819FBC121C8E3140078EB8D /* ShopViewController.swift */; };
-		0819FBC721C8E3680078EB8D /* RecommendGoodsCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0819FBC521C8E3680078EB8D /* RecommendGoodsCell.swift */; };
-		0819FBC821C8E3680078EB8D /* RecommendGoodsCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0819FBC621C8E3680078EB8D /* RecommendGoodsCell.xib */; };
 		0819FBCB21C8E38A0078EB8D /* GoodsCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0819FBC921C8E38A0078EB8D /* GoodsCell.swift */; };
 		0819FBCC21C8E38A0078EB8D /* GoodsCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0819FBCA21C8E38A0078EB8D /* GoodsCell.xib */; };
 		0819FBCE21C8ED7B0078EB8D /* UIImageView+Category.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0819FBCD21C8ED7A0078EB8D /* UIImageView+Category.swift */; };
@@ -43,6 +41,8 @@
 		083F8F8C21D0D7120026341A /* PayToCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 083F8F8A21D0D7120026341A /* PayToCell.xib */; };
 		083F8F8F21D0D7220026341A /* PayBtnCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 083F8F8D21D0D7220026341A /* PayBtnCell.swift */; };
 		083F8F9021D0D7220026341A /* PayBtnCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 083F8F8E21D0D7220026341A /* PayBtnCell.xib */; };
+		0857EB5121EF72A900D4BC6D /* RecommendGoodsCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0857EB4F21EF72A900D4BC6D /* RecommendGoodsCell.swift */; };
+		0857EB5221EF72A900D4BC6D /* RecommendGoodsCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0857EB5021EF72A900D4BC6D /* RecommendGoodsCell.xib */; };
 		085D6CF221D1348600155895 /* PayPasswordView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 085D6CF121D1348600155895 /* PayPasswordView.swift */; };
 		085D6CF421D3B9A600155895 /* PersonalInfoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 085D6CF321D3B9A600155895 /* PersonalInfoViewController.swift */; };
 		085D6CF621D3C4BB00155895 /* LYPickerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 085D6CF521D3C4BB00155895 /* LYPickerView.swift */; };
@@ -170,8 +170,6 @@
 		0819FBB421C8DB550078EB8D /* TransactionBannerCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TransactionBannerCell.xib; sourceTree = "<group>"; };
 		0819FBBD21C8DDAE0078EB8D /* Shop.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Shop.storyboard; sourceTree = "<group>"; };
 		0819FBC121C8E3140078EB8D /* ShopViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ShopViewController.swift; sourceTree = "<group>"; };
-		0819FBC521C8E3680078EB8D /* RecommendGoodsCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecommendGoodsCell.swift; sourceTree = "<group>"; };
-		0819FBC621C8E3680078EB8D /* RecommendGoodsCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = RecommendGoodsCell.xib; sourceTree = "<group>"; };
 		0819FBC921C8E38A0078EB8D /* GoodsCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GoodsCell.swift; sourceTree = "<group>"; };
 		0819FBCA21C8E38A0078EB8D /* GoodsCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = GoodsCell.xib; sourceTree = "<group>"; };
 		0819FBCD21C8ED7A0078EB8D /* UIImageView+Category.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIImageView+Category.swift"; sourceTree = "<group>"; };
@@ -182,6 +180,8 @@
 		083F8F8A21D0D7120026341A /* PayToCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = PayToCell.xib; sourceTree = "<group>"; };
 		083F8F8D21D0D7220026341A /* PayBtnCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PayBtnCell.swift; sourceTree = "<group>"; };
 		083F8F8E21D0D7220026341A /* PayBtnCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = PayBtnCell.xib; sourceTree = "<group>"; };
+		0857EB4F21EF72A900D4BC6D /* RecommendGoodsCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecommendGoodsCell.swift; sourceTree = "<group>"; };
+		0857EB5021EF72A900D4BC6D /* RecommendGoodsCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = RecommendGoodsCell.xib; sourceTree = "<group>"; };
 		085D6CF121D1348600155895 /* PayPasswordView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PayPasswordView.swift; sourceTree = "<group>"; };
 		085D6CF321D3B9A600155895 /* PersonalInfoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PersonalInfoViewController.swift; sourceTree = "<group>"; };
 		085D6CF521D3C4BB00155895 /* LYPickerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LYPickerView.swift; sourceTree = "<group>"; };
@@ -483,12 +483,12 @@
 		0819FBC421C8E3360078EB8D /* cells */ = {
 			isa = PBXGroup;
 			children = (
-				0819FBC521C8E3680078EB8D /* RecommendGoodsCell.swift */,
-				0819FBC621C8E3680078EB8D /* RecommendGoodsCell.xib */,
 				0819FBC921C8E38A0078EB8D /* GoodsCell.swift */,
 				0819FBCA21C8E38A0078EB8D /* GoodsCell.xib */,
 				08169D7921CA94F10030D863 /* NoticeCell.swift */,
 				08169D7A21CA94F10030D863 /* NoticeCell.xib */,
+				0857EB4F21EF72A900D4BC6D /* RecommendGoodsCell.swift */,
+				0857EB5021EF72A900D4BC6D /* RecommendGoodsCell.xib */,
 			);
 			path = cells;
 			sourceTree = "<group>";
@@ -1021,6 +1021,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				08D7B69921CCC310007D191F /* AlipaySDK.bundle in Resources */,
+				0857EB5221EF72A900D4BC6D /* RecommendGoodsCell.xib in Resources */,
 				0861B83D21C29D0D008795E5 /* Login.storyboard in Resources */,
 				083F8F8821D0D6DB0026341A /* PayWayCell.xib in Resources */,
 				0807CA9A21C7EC3500967692 /* Personal.storyboard in Resources */,
@@ -1031,7 +1032,6 @@
 				08A3A40921C158CE008E071F /* LaunchScreen.storyboard in Resources */,
 				08169D6C21C943B10030D863 /* MyOrderCell.xib in Resources */,
 				083F8F8C21D0D7120026341A /* PayToCell.xib in Resources */,
-				0819FBC821C8E3680078EB8D /* RecommendGoodsCell.xib in Resources */,
 				085D6CFF21E6300600155895 /* CouponGetCell.xib in Resources */,
 				08A3A40621C158CE008E071F /* Assets.xcassets in Resources */,
 				08C9027421D214E50020441E /* Message.storyboard in Resources */,
@@ -1218,6 +1218,7 @@
 				086E2D0421CA2CB800896F25 /* Config.swift in Sources */,
 				0807CA9621C7C47700967692 /* LocalData.swift in Sources */,
 				08A3A46B21C168B6008E071F /* DeviceSystemHelper.swift in Sources */,
+				0857EB5121EF72A900D4BC6D /* RecommendGoodsCell.swift in Sources */,
 				0819FBB721C8DB550078EB8D /* BannerScrollTitleCell.swift in Sources */,
 				08D7B6A021CCC310007D191F /* NSDataEx.m in Sources */,
 				08A3A46821C168B6008E071F /* NSObject+Extension.swift in Sources */,
@@ -1239,7 +1240,6 @@
 				08A3A46E21C168B6008E071F /* LYTabBarController.swift in Sources */,
 				08B0DE9321D4B65400EE7BA8 /* ChanegInfoViewController.swift in Sources */,
 				0861B84021C29D74008795E5 /* BaseViewController.swift in Sources */,
-				0819FBC721C8E3680078EB8D /* RecommendGoodsCell.swift in Sources */,
 				083F8F8B21D0D7120026341A /* PayToCell.swift in Sources */,
 				085D6CF221D1348600155895 /* PayPasswordView.swift in Sources */,
 				08D7B69B21CCC310007D191F /* APAuthV2Info.m in Sources */,

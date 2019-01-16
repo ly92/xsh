@@ -2,8 +2,8 @@
 //  RecommendGoodsCell.swift
 //  xsh
 //
-//  Created by ly on 2018/12/18.
-//  Copyright © 2018年 wwzb. All rights reserved.
+//  Created by 李勇 on 2019/1/16.
+//  Copyright © 2019年 wwzb. All rights reserved.
 //
 
 import UIKit
@@ -11,6 +11,10 @@ import SwiftyJSON
 
 class RecommendGoodsCell: UICollectionViewCell {
     @IBOutlet weak var imgV: UIImageView!
+    @IBOutlet weak var titleLbl: UILabel!
+    @IBOutlet weak var priceLbl: UILabel!
+    @IBOutlet weak var countLbl: UILabel!
+    
     
     
     override func awakeFromNib() {
@@ -20,9 +24,11 @@ class RecommendGoodsCell: UICollectionViewCell {
     
     var subJson = JSON(){
         didSet{
-            self.imgV.setImageUrlStr(self.subJson["imageurl"].stringValue)
+            self.imgV.setImageUrlStr(self.subJson["picurl"].stringValue)
 //            self.titleLbl.text = self.subJson["title"].stringValue
-//            self.descLbl.text = self.subJson["title"].stringValue
+            self.titleLbl.text = self.subJson["recommend"].stringValue
+            self.priceLbl.text = self.subJson["price"].stringValue
+            self.countLbl.text = "已卖出" + self.subJson["salecount"].stringValue + self.subJson["unit"].stringValue
         }
     }
 

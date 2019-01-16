@@ -10,10 +10,10 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--View Controller-->
+        <!--Shop View Controller-->
         <scene sceneID="65V-9i-waa">
             <objects>
-                <viewController id="DCr-0l-6bI" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="ShopViewController" id="DCr-0l-6bI" customClass="ShopViewController" customModule="xsh" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="bvS-ES-qRc">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -52,6 +52,9 @@
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="HPr-xv-VfB"/>
                     </view>
+                    <connections>
+                        <outlet property="collectionView" destination="qTU-V4-71I" id="sRU-oL-hrc"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="t9P-ac-UWS" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
