@@ -240,6 +240,7 @@ extension ShopViewController : LYAnimateBannerViewDelegate{
             //                    LYProgressHUD.showError(error)
             //                }
             //            }
+            
         }
     }
     
