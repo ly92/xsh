@@ -10,7 +10,7 @@ import UIKit
 import SwiftyJSON
 import DGElasticPullToRefresh
 
-class ShopViewController: BaseTableViewController {
+class ShopViewController: BaseViewController {
     
     
     
@@ -22,13 +22,17 @@ class ShopViewController: BaseTableViewController {
         return bannerView
     }()
     
+    //功能栏
     fileprivate var functionList : Array<JSON> = []
     fileprivate let functionView = UIView(frame: CGRect(x: 0, y: 0, width: kScreenW, height: 92))
     
+    //活动
     fileprivate var activityList : Array<JSON> = []
-    fileprivate var collectionView : UICollectionView!
+    fileprivate var ActivityView = UIScrollView(frame: CGRect(x: 0, y: 0, width: kScreenW, height: 95))
     
-    fileprivate var recommendList : Array<JSON> = []
+    //推荐商品
+    fileprivate var collectionView : UICollectionView!//底部推荐商品试图
+    fileprivate var recommendList : Array<JSON> = [] //底部推荐商品
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -44,10 +48,8 @@ class ShopViewController: BaseTableViewController {
         self.collectionView.delegate = self
         self.collectionView.dataSource = self
         self.collectionView.showsHorizontalScrollIndicator = false
-        
-        
-        self.tableView.register(UINib.init(nibName: "GoodsCell", bundle: Bundle.main), forCellReuseIdentifier: "GoodsCell")
-        self.collectionView.register(UINib.init(nibName: "ActivityCell", bundle: Bundle.main), forCellWithReuseIdentifier: "ActivityCell")
+
+        self.collectionView.register(UINib.init(nibName: "RecommendGoodsCell", bundle: Bundle.main), forCellWithReuseIdentifier: "RecommendGoodsCell")
         
         
         self.loadData()
@@ -130,10 +132,7 @@ class ShopViewController: BaseTableViewController {
         var params : [String : Any] = [:]
         params["userid"] = LocalData.getCId()
         NetTools.requestData(type: .post, urlString: FunctionListApi, parameters: params, succeed: { (result) in
-            self.functionList.removeAll()
-            for json in result["list"].arrayValue{
-                self.functionList.append(json)
-            }
+            self.functionList = result["list"].arrayValue
             self.setUpFunctionViews()
         }) { (error) in
             LYProgressHUD.showError(error)
@@ -201,6 +200,59 @@ class ShopViewController: BaseTableViewController {
     }
     
     
+    
+    //MARK:-活动
+    func loadActivity() {
+        var params : [String : Any] = [:]
+        params["location"] = "mainmiddle"
+        params["skip"] = 0
+        params["limit"] = 100
+        NetTools.requestData(type: .post, urlString: AdListApi, parameters: params, succeed: { (result) in
+            self.activityList = result["list"]["list"].arrayValue
+            self.setUpActivityViews()
+        }) { (error) in
+            LYProgressHUD.showError(error)
+        }
+    }
+    //设置活动
+    func setUpActivityViews() {
+        for view in self.ActivityView.subviews{
+            view.removeFromSuperview()
+        }
+        
+        self.ActivityView.contentSize = CGSize.init(width: 145 * self.activityList.count, height: self.ActivityView.h)
+        for i in 0..<self.functionList.count{
+            let json = self.functionList[i]
+            let frame = CGRect.init(x: 145 * CGFloat(i), y: 0, width: 140, height: self.ActivityView.h)
+            self.creareAvtivity(json["iconurl"].stringValue, i, frame)
+        }
+    }
+    //创建活动页面
+    func creareAvtivity(_ iconUrl : String, _ index : Int, _ frame : CGRect) {
+        let imgV = UIImageView.init(frame: frame)
+        imgV.contentMode = .scaleToFill
+        imgV.setImageUrlStr(iconUrl)
+        self.ActivityView.addSubview(imgV)
+        
+        let btn = UIButton(frame: frame)
+        btn.tag = index
+        btn.addTarget(self, action: #selector(ShopViewController.activityClickAction(_:)), for: .touchUpInside)
+        self.ActivityView.addSubview(btn)
+    }
+    //活动点击效果
+    @objc func activityClickAction(_ btn : UIButton) {
+        if self.activityList.count > btn.tag{
+            let json = self.activityList[btn.tag]
+            let webVC = BaseWebViewController()
+            webVC.titleStr = json["title"].stringValue
+            let url = json["outerurl"].stringValue
+            webVC.urlStr = url
+            self.navigationController?.pushViewController(webVC, animated: true)
+        }
+    }
+    
+    
+    
     //MARK:- 推荐商品
     func loadRcommendGoods() {
         NetTools.requestData(type: .post, urlString: RecommendGoodsApi, succeed: { (result) in
@@ -208,7 +260,7 @@ class ShopViewController: BaseTableViewController {
             for json in result["list"].arrayValue{
                 self.recommendList.append(json)
             }
-            self.tableView.reloadData()
+            self.collectionView.reloadData()
         }) { (error) in
             LYProgressHUD.showError(error)
         }
@@ -243,17 +295,17 @@ extension ShopViewController : LYAnimateBannerViewDelegate{
             
         }
     }
-    
 }
 
-//MARK:- UITableView
-extension ShopViewController{
+
+//MARK:- 推荐商品
+extension ShopViewController : UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout{
     
-    override func numberOfSections(in tableView: UITableView) -> Int {
-        return 3 + self.recommendList.count
+    func numberOfSections(in collectionView: UICollectionView) -> Int {
+        return 3 + recommendList.count
     }
     
-    override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         if section > 2{
             if self.recommendList.count > section - 3{
                 let recommendJson = self.recommendList[section-3]
@@ -264,32 +316,21 @@ extension ShopViewController{
         return 1
     }
     
-    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         if indexPath.section == 0{
-            var cell = tableView.dequeueReusableCell(withIdentifier: "shop-headerbannerview")
-            if cell == nil{
-                cell = UITableViewCell.init(style: .default, reuseIdentifier: "shop-headerbannerview")
-            }
-            cell?.contentView.addSubview(self.bannerView)
-            
-            return cell!
+            var cell = UICollectionViewCell()
+            cell.contentView.addSubview(self.bannerView)
+            return cell
         }else if indexPath.section == 1{
-            var cell = tableView.dequeueReusableCell(withIdentifier: "shop-functionview")
-            if cell == nil{
-                cell = UITableViewCell.init(style: .default, reuseIdentifier: "shop-functionview")
-            }
-            cell?.contentView.addSubview(self.functionView)
-            
-            return cell!
+            var cell = UICollectionViewCell()
+            cell.contentView.addSubview(self.functionView)
+            return cell
         }else if indexPath.section == 2{
-            var cell = tableView.dequeueReusableCell(withIdentifier: "shop-activityview")
-            if cell == nil{
-                cell = UITableViewCell.init(style: .default, reuseIdentifier: "shop-activityview")
-            }
-            cell?.contentView.addSubview(self.collectionView)
-            return cell!
+            var cell = UICollectionViewCell()
+            cell.contentView.addSubview(self.collectionView)
+            return cell
         }else if indexPath.section > 2{
-            let cell = tableView.dequeueReusableCell(withIdentifier: "GoodsCell", for: indexPath) as! GoodsCell
+            let cell = collectionView.dequeueReusableCell(withIdentifier: "RecommendGoodsCell", for: indexPath) as! RecommendGoodsCell
             if self.recommendList.count > indexPath.section - 3{
                 let productions = self.recommendList[indexPath.section-3]["productions"].arrayValue
                 if productions.count > indexPath.row{
@@ -300,24 +341,14 @@ extension ShopViewController{
             return cell
         }
         
-        return UITableViewCell()
+        return UICollectionViewCell()
     }
     
-    override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        if indexPath.section == 0{
-            return 190 / 375 * kScreenW
-        }else if indexPath.section == 1{
-            return 92
-        }else if indexPath.section == 2{
-            return 95
-        }else if indexPath.section > 2{
-            return 120
-        }
-        return 0
-    }
     
-    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        tableView.deselectRow(at: indexPath, animated: true)
+    
+    
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        collectionView.deselectItem(at: indexPath, animated: true)
         if indexPath.section > 2{
             if self.recommendList.count > indexPath.section - 3{
                 let productions = self.recommendList[indexPath.section-3]["productions"].arrayValue
@@ -330,103 +361,81 @@ extension ShopViewController{
                     self.navigationController?.pushViewController(webVC, animated: true)
                 }
             }
-            
-            
         }
     }
     
-    override func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+    func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> UICollectionReusableView {
+        let reusableView = collectionView.dequeueReusableSupplementaryView(ofKind: UICollectionView.elementKindSectionHeader, withReuseIdentifier: "RecommendReusableView", for: indexPath) as! RecommendReusableView
         
-        if section == 0 || section == 1{
-            return nil
+        if self.resultList.count > indexPath.section{
+            let json = self.resultList[indexPath.section]
+            if section == 2{
+                reusableView.titleLbl.text = "最热门"
+            }else if section > 2{
+                if section > 2{
+                    if self.recommendList.count > section - 3{
+                        let recommendJson = self.recommendList[section-3]
+                        reusableView.titleLbl.text = recommendJson["name"].stringValue
+                    }
+                }
+            }
         }
-        
+        return reusableView
+    }
+    
+    
+    
+
+
+    
+    
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+        if indexPath.section == 0{
+            return CGSize.init(width: kScreenW, height: 190 / 375 * kScreenW)
+        }else if indexPath.section == 1{
+            return CGSize.init(width: kScreenW, height: 92)
+        }else if indexPath.section == 2{
+            return CGSize.init(width: kScreenW, height: 95)
+        }else if indexPath.section > 2{
+            return CGSize.init(width: kScreenW / 2.0 - 10, height: 120)
+        }
+        return CGSize.zero
+    }
+    
+    
+    
+    
+    
+    
+    
+    
+}
+
+
+
+class RecommendReusableView : UICollectionReusableView{
+    fileprivate let lineView = UIView()
+    let titleLbl = UILabel()
+    
+    override init(frame: CGRect) {
+        super.init(frame: frame)
+        self.setUp()
+    }
+    
+    required init?(coder aDecoder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+    
+    func setUp() {
         let view = UIView.init(frame: CGRect.init(x: 0, y: 0, width: kScreenW, height: 50))
         view.backgroundColor = UIColor.white
         let subView = UIView.init(frame: CGRect.init(x: 12, y: 20, width: 3, height: 20))
         subView.backgroundColor = Normal_Color
         view.addSubview(subView)
-        let lbl = UILabel(frame: CGRect.init(x: 20, y: 20, width: kScreenW - 20, height: 20))
+        self.titleLbl.frame = CGRect.init(x: 20, y: 20, width: kScreenW - 20, height: 20)
         lbl.textColor = UIColor.RGB(r: 59, g: 71, b: 91)
         lbl.font = UIFont.systemFont(ofSize: 17.0)
         view.addSubview(lbl)
-        if section == 2{
-            lbl.text = "最热门"
-            return view
-        }else if section > 2{
-            if section > 2{
-                if self.recommendList.count > section - 3{
-                    let recommendJson = self.recommendList[section-3]
-                    lbl.text = recommendJson["name"].stringValue
-                }
-            }
-            
-            return view
-        }
-        return nil
     }
-    
-    override func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
-        if section >= 2 {
-            return 50
-        }
-        return 0.001
-    }
-    
-    override func tableView(_ tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
-        return 0.001
-    }
-    
-    
-}
-
-//MARK:- 中部活动
-extension ShopViewController : UICollectionViewDelegate, UICollectionViewDataSource{
-    
-    
-    func loadActivity() {
-        var params : [String : Any] = [:]
-        params["location"] = "mainmiddle"
-        params["skip"] = 0
-        params["limit"] = 100
-        NetTools.requestData(type: .post, urlString: AdListApi, parameters: params, succeed: { (result) in
-            self.activityList.removeAll()
-            for json in result["list"]["list"].arrayValue{
-                self.activityList.append(json)
-            }
-            self.collectionView.reloadData()
-        }) { (error) in
-            LYProgressHUD.showError(error)
-        }
-    }
-    
-    
-    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return self.activityList.count
-    }
-    
-    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "ActivityCell", for: indexPath) as! ActivityCell
-        if self.activityList.count > indexPath.row{
-            let json = self.activityList[indexPath.row]
-            cell.subJson = json
-        }
-        return cell
-    }
-    
-    
-    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        collectionView.deselectItem(at: indexPath, animated: true)
-        if self.activityList.count > indexPath.row{
-            let json = self.activityList[indexPath.row]
-            //            globalFunctionClickAction(json, self)
-            let webVC = BaseWebViewController()
-            webVC.titleStr = json["title"].stringValue
-            let url = json["outerurl"].stringValue
-            webVC.urlStr = url
-            self.navigationController?.pushViewController(webVC, animated: true)
-        }
-    }
-    
     
 }

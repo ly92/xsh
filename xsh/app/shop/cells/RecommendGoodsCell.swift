@@ -1,5 +1,5 @@
 //
-//  ActivityCell.swift
+//  RecommendGoodsCell.swift
 //  xsh
 //
 //  Created by ly on 2018/12/18.
@@ -9,7 +9,7 @@
 import UIKit
 import SwiftyJSON
 
-class ActivityCell: UICollectionViewCell {
+class RecommendGoodsCell: UICollectionViewCell {
     @IBOutlet weak var imgV: UIImageView!
     
     
