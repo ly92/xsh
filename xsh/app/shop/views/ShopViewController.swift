@@ -372,7 +372,10 @@ extension ShopViewController : UICollectionViewDelegate, UICollectionViewDataSou
                     let json = productions[indexPath.row]
                     let webVC = BaseWebViewController()
                     webVC.titleStr = "商品"
-                    let url = "http://kkt.wwwcity.net/production/xing_production_frontend/index.html?bid=" + json["bid"].stringValue + "&appid=111&token=10000122#92d00187dce05131265fd02afd582f8d"
+                    let ts = Date.phpTimestamp()
+                    let cmdno = String.randomStr(len: 20) + ts
+                    let sign = (LocalData.getCId() + ts + cmdno + LocalData.getPwd()).md5String()
+                    let url = "http://star.test.wwwcity.net/shopping/index.html?bid=" + json["bid"].stringValue + "&cid=" + LocalData.getCId() + "&ts=" + ts + "&sign=" + sign + "&cmdno=" + cmdno + "&productionId=" + json["productionId"].stringValue
                     webVC.urlStr = url
                     self.navigationController?.pushViewController(webVC, animated: true)
                 }
