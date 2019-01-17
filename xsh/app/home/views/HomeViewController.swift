@@ -235,10 +235,10 @@ class HomeViewController: BaseViewController {
             view.removeFromSuperview()
         }
         
-        self.ActivityView.contentSize = CGSize.init(width: CGFloat(145 * self.activityList.count), height: self.ActivityView.h)
+        self.ActivityView.contentSize = CGSize.init(width: CGFloat(150 * self.activityList.count), height: self.ActivityView.h)
         for i in 0..<self.activityList.count{
             let json = self.activityList[i]
-            let frame = CGRect.init(x: 145 * CGFloat(i) + 5, y: 0, width: 140, height: self.ActivityView.h)
+            let frame = CGRect.init(x: 150 * CGFloat(i) + 10, y: 0, width: 140, height: self.ActivityView.h)
             self.creareAvtivity(json["imageurl"].stringValue, i, frame)
         }
     }
@@ -246,6 +246,8 @@ class HomeViewController: BaseViewController {
     func creareAvtivity(_ iconUrl : String, _ index : Int, _ frame : CGRect) {
         let imgV = UIImageView.init(frame: frame)
         imgV.contentMode = .scaleToFill
+        imgV.clipsToBounds = true
+        imgV.layer.cornerRadius = 5
         imgV.setImageUrlStr(iconUrl)
         self.ActivityView.addSubview(imgV)
         

@@ -10,6 +10,7 @@ import UIKit
 import SwiftyJSON
 
 class RecommendGoodsCell: UICollectionViewCell {
+    @IBOutlet weak var subView: UIView!
     @IBOutlet weak var imgV: UIImageView!
     @IBOutlet weak var titleLbl: UILabel!
     @IBOutlet weak var priceLbl: UILabel!
@@ -20,6 +21,7 @@ class RecommendGoodsCell: UICollectionViewCell {
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
+        self.subView.layer.cornerRadius = 3
     }
     
     var subJson = JSON(){

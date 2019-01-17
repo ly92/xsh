@@ -21,12 +21,13 @@ class PayViewController: BaseTableViewController {
     
     
     
-    fileprivate var selectedPayWay1 = JSON()
-    fileprivate var selectedPayWay2 : [String : JSON] = [:]
+    fileprivate var selectedPayWay1 = JSON()//选择的互斥支付方式
+    fileprivate var selectedPayWay2 : [String : JSON] = [:]//选择的互补支付方式
     fileprivate var selectedCoupon = JSON()//使用的优惠券
-    fileprivate var payWayArray1 : Array<JSON> = []
-    fileprivate var payWayArray2 : Array<JSON> = []
-    
+    fileprivate var payWayArray1 : Array<JSON> = []//可用互斥支付方式
+    fileprivate var payWayArray2 : Array<JSON> = []//可用互补支付方式
+    fileprivate var couponList : Array<JSON> = []//可用优惠券
+    fileprivate var productionList : Array<JSON> = []//订单中的商品
     
     
     
@@ -35,6 +36,7 @@ class PayViewController: BaseTableViewController {
         self.navigationItem.title = "支付"
         
         self.tableView.register(UINib.init(nibName: "PayWayCell", bundle: Bundle.main), forCellReuseIdentifier: "PayWayCell")
+        self.tableView.register(UINib.init(nibName: "PayWayCell", bundle: Bundle.main), forCellReuseIdentifier: "PayWayCell-coupon")
         self.tableView.register(UINib.init(nibName: "PayToCell", bundle: Bundle.main), forCellReuseIdentifier: "PayToCell")
         self.tableView.register(UINib.init(nibName: "PayBtnCell", bundle: Bundle.main), forCellReuseIdentifier: "PayBtnCell")
         
@@ -73,6 +75,11 @@ class PayViewController: BaseTableViewController {
                     self.payWayArray2.append(json)
                 }
             }
+            
+            for json in result["couponList"].arrayValue{
+                self.couponList.append(json)
+            }
+            
             if self.payWayArray1.count > 0{
                 self.selectedPayWay1 = self.payWayArray1.first!
             }
@@ -97,16 +104,12 @@ class PayViewController: BaseTableViewController {
         params["destaccount"] = self.selectedPayWay1["destaccount"].stringValue
         params["orgaccount"] = self.selectedPayWay1["orgaccount"].stringValue
         params["orderno"] = self.orderNo
+        params["couponid"] = self.selectedCoupon["id"].stringValue
         
-        var discount : Float = 0
-        for (_, value) in self.selectedPayWay2{
-            discount += value["money"].floatValue
-        }
-        params["money"] = self.money.floatValue - discount
-        //积分
-        if self.selectedPayWay2.keys.contains("98"){
-            params["points"] = self.selectedPayWay2["98"]!["money"].stringValue
-        }
+        let dict = self.getTotalMoney()
+        params["pointsMoney"] = dict["points"]
+        params["money"] = dict["money"]
+        
         //ptid:支付方式,atid:货币ID,orgaccount:付款账户,destaccount:收款账户,orderno:订单号,money:付款金额,points:积分抵消费金额,coupon:使用优惠券，逗号分隔优惠券码
         NetTools.requestData(type: .post, urlString: PrePayOrderApi, parameters: params, succeed: { (result) in
             let type = result["payinfo"]["paytype"].stringValue
@@ -123,6 +126,82 @@ class PayViewController: BaseTableViewController {
         }
     }
 
+    //MARK:---优惠券，积分，抵扣，支付宝，微信，一卡通
+    func getTotalMoney() -> [String : Float] {
+        var dict : [String : Float] = ["points" : 0, "money" : 0]
+        
+        //除积分，优惠券外的抵扣
+        var discount : Float = 0
+        //可用积分
+        var points : Float = 0
+        for (key, value) in self.selectedPayWay2{
+            if key == "98"{
+                points = value["points"].floatValue
+            }else{
+                discount += value["money"].floatValue
+            }
+        }
+        
+        //相比积分抵扣优选优惠券
+        var coupon : Float = 0
+        if self.selectedCoupon["use_type"].intValue == 1{
+            //特定商品数组
+            var goodsList : Array<String> = []
+            for str in self.selectedCoupon["pid_arr"].arrayValue{
+                goodsList.append(str.stringValue)
+            }
+            var temp_coupon : Float = 0
+            for json in self.productionList{
+                if goodsList.contains(json["pid"].stringValue){
+                    temp_coupon += json["total_price"].floatValue
+                }
+            }
+            //优惠券可抵扣金额
+            if temp_coupon > self.selectedCoupon["money"].floatValue{
+                coupon = self.selectedCoupon["money"].floatValue
+            }else{
+                coupon = temp_coupon
+            }
+        }else{
+            //全品类
+            //其他抵扣不能完全抵消
+            if self.money.floatValue - discount > 0{
+                if self.money.floatValue - discount - self.selectedCoupon["money"].floatValue > 0{
+                    coupon = self.selectedCoupon["money"].floatValue
+                }else{
+                    coupon = self.money.floatValue - discount
+                }
+            }
+        }
+
+        var use_points : Float = 0
+        //如果优惠券和其他抵扣不能全部抵扣且选择使用积分，则积分继续j抵扣
+        if self.selectedPayWay2.keys.contains("98"){
+            if self.money.floatValue - discount - coupon > 0{
+                //全部积分或者部分积分
+                if self.money.floatValue - discount - coupon - points > 0{
+                    use_points = points
+                }else{
+                    use_points = self.money.floatValue - discount - coupon
+                }
+            }
+            
+        }
+        
+        //优惠券
+        dict["coupon"] = coupon
+        //积分
+        dict["points"] = use_points
+        
+        //应支付的钱
+        if self.money.floatValue - discount - coupon - use_points > 0{
+            dict["money"] = self.money.floatValue - discount - coupon - use_points
+        }else{
+            dict["money"] = 0
+        }
+        
+        return dict
+    }
     
     
     //使用支付宝付款
@@ -180,6 +259,8 @@ class PayViewController: BaseTableViewController {
             req.sign = reqJson["sign"].stringValue
             print(WXApi.send(req))
         }else{
+            //取消支付
+            self.cancelOrder()
             LYAlertView.show("提示", "请先安装微信客户端后重试！", "知道了", {
                 if self.payResultBlock != nil{
                     self.payResultBlock!(3)
@@ -316,9 +397,17 @@ extension PayViewController{
             if self.payWayArray2.count > indexPath.row{
                 let json = self.payWayArray2[indexPath.row]
                 cell3.subJson = json
+                
                 if self.selectedPayWay2.keys.contains(json["atid"].stringValue){
-                    cell3.selectedBtn.isSelected = true
-                    cell3.useLbl.text = "-¥" + json["money"].stringValue
+                    if json["atid"].stringValue == "98"{
+                        let dict = self.getTotalMoney()
+                        cell3.selectedBtn.isSelected = true
+                        cell3.useLbl.text = "-¥" + String.init(format: "%.2f", dict["points"]!)
+                    }else{
+                        cell3.selectedBtn.isSelected = true
+                        cell3.useLbl.text = "-¥" + json["money"].stringValue
+                    }
+                    
                 }else{
                     cell3.selectedBtn.isSelected = false
                     cell3.useLbl.text = ""
@@ -326,15 +415,27 @@ extension PayViewController{
             }
             return cell3
         }else if indexPath.section == 3{
-            //
+            //优惠券
+            let cell = tableView.dequeueReusableCell(withIdentifier: "PayWayCell-coupon", for: indexPath) as! PayWayCell
+           cell.imgV.image = UIImage.init(named: "pay_coupon")
+            cell.titleLbl.text = "优惠券"
+            cell.canUseLbl.text = "(可用\(self.couponList.count)张)"
+            if self.selectedCoupon["money"].floatValue > 0{
+                let dict = self.getTotalMoney()
+                cell.useLbl.text = "-¥" + String.init(format: "%.2f", dict["coupon"]!)
+            }else{
+                cell.useLbl.text = ""
+            }
             
+            cell.selectedBtn.setImage(UIImage.init(named: "right_arrow"), for: .normal)
+            
+            return cell
         }else if indexPath.section == 4{
             let cell4 = tableView.dequeueReusableCell(withIdentifier: "PayBtnCell", for: indexPath) as! PayBtnCell
-            var discount : Float = 0
-            for (_, value) in self.selectedPayWay2{
-                discount += value["money"].floatValue
-            }
-            cell4.moneyLbl.text = "¥" + String.init(format: "%.2f", (self.money.floatValue - discount))
+            
+            let dict = self.getTotalMoney()
+            cell4.moneyLbl.text = "¥" + String.init(format: "%.2f", dict["money"]!)
+            
             cell4.payBlock = {() in
                 self.prePayAction()
             }
@@ -396,7 +497,12 @@ extension PayViewController{
             //选择优惠券
             let selectCouponVC = MyCouponTableViewController()
             selectCouponVC.isSelect = true
-            
+            selectCouponVC.couponList = self.couponList
+            selectCouponVC.selectedCoupon = self.selectedCoupon
+            selectCouponVC.selectBlock = {(coupon) in
+                self.selectedCoupon = coupon ?? JSON()
+                self.tableView.reloadData()
+            }
             self.navigationController?.pushViewController(selectCouponVC, animated: true)
         }else if indexPath.section == 4{
             self.prePayAction()

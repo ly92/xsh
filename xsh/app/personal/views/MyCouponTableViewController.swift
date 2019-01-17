@@ -13,12 +13,10 @@ class MyCouponTableViewController: BaseTableViewController {
     
     
     var isSelect = false
-    var bizid = ""//商家ID
-    var selectBlock : ((JSON) -> Void)?
-    fileprivate var selectedCoupon : JSON? //使用的优惠券
+    var selectBlock : ((JSON?) -> Void)?
+    var selectedCoupon : JSON? //使用的优惠券
     
-    
-    fileprivate var couponList : Array<JSON> = []
+    var couponList : Array<JSON> = []
     
     
     override func viewDidLoad() {
@@ -26,22 +24,23 @@ class MyCouponTableViewController: BaseTableViewController {
         if self.isSelect{
             self.navigationItem.title = "可用优惠券"
             self.navigationItem.rightBarButtonItem = UIBarButtonItem.init(title: "确定", target: self, action: #selector(MyCouponTableViewController.rightItemAction))
+//            self.tableView.reloadData()
         }else{
             self.navigationItem.title = "我的优惠券"
+            self.loadMyCoupon()
         }
         
         self.tableView.register(UINib.init(nibName: "CouponCell", bundle: Bundle.main), forCellReuseIdentifier: "CouponCell")
         
-        self.loadMyCoupon()
+        
         
     }
     
     //确定优惠券
     @objc func rightItemAction() {
-        if self.selectedCoupon != nil{
-            if self.selectBlock != nil{
-                self.selectBlock!(self.selectedCoupon!)
-            }
+        if self.selectBlock != nil{
+            self.selectBlock!(self.selectedCoupon)
+            self.navigationController?.popViewController(animated: true)
         }
     }
     
@@ -49,7 +48,7 @@ class MyCouponTableViewController: BaseTableViewController {
     //加载优惠券
     func loadMyCoupon() {
         var params : [String : Any] = [:]
-        params["bizid"] = self.bizid
+        params["bizid"] = ""
         params["userid"] = LocalData.getCId()
         NetTools.requestData(type: .post, urlString: MyCouponListApi, parameters: params, succeed: { (result) in
             self.couponList = result["list"].arrayValue
@@ -74,7 +73,7 @@ class MyCouponTableViewController: BaseTableViewController {
                 cell.selectedBtn.isHidden = false
                 cell.selectedBtn.isSelected = false
                 if self.selectedCoupon != nil{
-                    if self.selectedCoupon![""].stringValue == json[""].stringValue{
+                    if self.selectedCoupon!["id"].stringValue == json["id"].stringValue{
                         cell.selectedBtn.isSelected = true
                     }
                 }
@@ -91,7 +90,7 @@ class MyCouponTableViewController: BaseTableViewController {
             if self.couponList.count > indexPath.row{
                 let json = self.couponList[indexPath.row]
                 if self.selectedCoupon != nil{
-                    if self.selectedCoupon![""].stringValue == json[""].stringValue{
+                    if self.selectedCoupon!["id"].stringValue == json["id"].stringValue{
                         self.selectedCoupon = nil
                     }else{
                         self.selectedCoupon = json
