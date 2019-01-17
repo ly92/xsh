@@ -93,6 +93,9 @@
 		08C7D97821F0791A00A625F1 /* RecommendGoodsCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08C7D97621F0791A00A625F1 /* RecommendGoodsCell.swift */; };
 		08C7D97B21F07AFB00A625F1 /* StoreCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08C7D97921F07AFB00A625F1 /* StoreCell.swift */; };
 		08C7D97C21F07AFB00A625F1 /* StoreCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 08C7D97A21F07AFB00A625F1 /* StoreCell.xib */; };
+		08C7D97E21F085D900A625F1 /* CouponDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08C7D97D21F085D900A625F1 /* CouponDetailViewController.swift */; };
+		08C7D98121F0889000A625F1 /* CouponStoreCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08C7D97F21F0889000A625F1 /* CouponStoreCell.swift */; };
+		08C7D98221F0889000A625F1 /* CouponStoreCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 08C7D98021F0889000A625F1 /* CouponStoreCell.xib */; };
 		08C9027421D214E50020441E /* Message.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 08C9027321D214E50020441E /* Message.storyboard */; };
 		08C9027621D216AC0020441E /* BillPayDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08C9027521D216AC0020441E /* BillPayDetailViewController.swift */; };
 		08D7B63021CC9C5B007D191F /* PayViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08D7B62F21CC9C5B007D191F /* PayViewController.swift */; };
@@ -241,6 +244,9 @@
 		08C7D97621F0791A00A625F1 /* RecommendGoodsCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RecommendGoodsCell.swift; sourceTree = "<group>"; };
 		08C7D97921F07AFB00A625F1 /* StoreCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StoreCell.swift; sourceTree = "<group>"; };
 		08C7D97A21F07AFB00A625F1 /* StoreCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = StoreCell.xib; sourceTree = "<group>"; };
+		08C7D97D21F085D900A625F1 /* CouponDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CouponDetailViewController.swift; sourceTree = "<group>"; };
+		08C7D97F21F0889000A625F1 /* CouponStoreCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CouponStoreCell.swift; sourceTree = "<group>"; };
+		08C7D98021F0889000A625F1 /* CouponStoreCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CouponStoreCell.xib; sourceTree = "<group>"; };
 		08C9027321D214E50020441E /* Message.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Message.storyboard; sourceTree = "<group>"; };
 		08C9027521D216AC0020441E /* BillPayDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BillPayDetailViewController.swift; sourceTree = "<group>"; };
 		08D7B62F21CC9C5B007D191F /* PayViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PayViewController.swift; sourceTree = "<group>"; };
@@ -705,6 +711,8 @@
 				08C7D95721F05DC300A625F1 /* CouponGetCell.xib */,
 				08C7D95821F05DC300A625F1 /* NoticeCell.swift */,
 				08C7D95921F05DC300A625F1 /* NoticeCell.xib */,
+				08C7D97F21F0889000A625F1 /* CouponStoreCell.swift */,
+				08C7D98021F0889000A625F1 /* CouponStoreCell.xib */,
 			);
 			path = cells;
 			sourceTree = "<group>";
@@ -713,6 +721,7 @@
 			isa = PBXGroup;
 			children = (
 				08C7D96921F05EA100A625F1 /* CouponViewController.swift */,
+				08C7D97D21F085D900A625F1 /* CouponDetailViewController.swift */,
 				08C7D96A21F05EA100A625F1 /* HomeViewController.swift */,
 				08C7D96B21F05EA100A625F1 /* MoreFunctionViewController.swift */,
 				08C7D96C21F05EA100A625F1 /* NoticeDetailViewController.swift */,
@@ -1039,6 +1048,7 @@
 				08C7D96021F05DC300A625F1 /* CouponGetCell.xib in Resources */,
 				08169D6C21C943B10030D863 /* MyOrderCell.xib in Resources */,
 				083F8F8C21D0D7120026341A /* PayToCell.xib in Resources */,
+				08C7D98221F0889000A625F1 /* CouponStoreCell.xib in Resources */,
 				08A3A40621C158CE008E071F /* Assets.xcassets in Resources */,
 				08C9027421D214E50020441E /* Message.storyboard in Resources */,
 				083F8F9021D0D7220026341A /* PayBtnCell.xib in Resources */,
@@ -1235,6 +1245,7 @@
 				0819FBAB21C8B13B0078EB8D /* PersonalViewController.swift in Sources */,
 				086E2CFE21C9E78000896F25 /* MyCardViewController.swift in Sources */,
 				08D7B69F21CCC310007D191F /* base64.m in Sources */,
+				08C7D98121F0889000A625F1 /* CouponStoreCell.swift in Sources */,
 				0819FBB521C8DB550078EB8D /* BannerScrollImageCell.swift in Sources */,
 				0861B84221C29DC0008795E5 /* BaseTableViewController.swift in Sources */,
 				0861B84821C52E29008795E5 /* LoginViewController.swift in Sources */,
@@ -1265,6 +1276,7 @@
 				0861B83421C2971A008795E5 /* NetApis.swift in Sources */,
 				08C7D97221F05EA100A625F1 /* NoticeTableViewController.swift in Sources */,
 				08169D7621CA846D0030D863 /* UIBarButtonItem+Extension.swift in Sources */,
+				08C7D97E21F085D900A625F1 /* CouponDetailViewController.swift in Sources */,
 				086E2CFA21C9E71C00896F25 /* MyQrcodeViewController.swift in Sources */,
 				08D7B6A221CCC310007D191F /* RSADataSigner.m in Sources */,
 				08D7B63021CC9C5B007D191F /* PayViewController.swift in Sources */,
