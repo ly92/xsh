@@ -486,8 +486,6 @@
 			children = (
 				0819FBC921C8E38A0078EB8D /* GoodsCell.swift */,
 				0819FBCA21C8E38A0078EB8D /* GoodsCell.xib */,
-				0857EB4F21EF72A900D4BC6D /* RecommendGoodsCell.swift */,
-				0857EB5021EF72A900D4BC6D /* RecommendGoodsCell.xib */,
 			);
 			path = cells;
 			sourceTree = "<group>";
@@ -701,6 +699,8 @@
 		08C7D95521F05DC300A625F1 /* cells */ = {
 			isa = PBXGroup;
 			children = (
+				0857EB4F21EF72A900D4BC6D /* RecommendGoodsCell.swift */,
+				0857EB5021EF72A900D4BC6D /* RecommendGoodsCell.xib */,
 				08C7D95621F05DC300A625F1 /* CouponGetCell.swift */,
 				08C7D95721F05DC300A625F1 /* CouponGetCell.xib */,
 				08C7D95821F05DC300A625F1 /* NoticeCell.swift */,
