@@ -51,7 +51,7 @@ class LYTabBarController: UITabBarController {
             let firstVC = HomeViewController.spwan()
             setUpNavRootViewController(vc: firstVC, title: titles[0], imageName: normalImgs[0], selectedImageName: selectedImgs[0])
         
-        let secVC = ShopViewController()
+        let secVC = ShopViewController.spwan()
         setUpNavRootViewController(vc: secVC, title: titles[1], imageName: normalImgs[1], selectedImageName: selectedImgs[1])
         
         let thirVC = MessageViewController()

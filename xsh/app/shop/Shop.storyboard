@@ -17,9 +17,38 @@
                     <view key="view" contentMode="scaleToFill" id="bvS-ES-qRc">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="9Tj-k6-QE3">
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="50"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="50" id="KxQ-1e-LUw"/>
+                                </constraints>
+                            </view>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="kWh-kx-e33">
+                                <rect key="frame" x="0.0" y="50" width="375" height="617"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <connections>
+                                    <outlet property="dataSource" destination="DCr-0l-6bI" id="Hog-Sr-ALG"/>
+                                    <outlet property="delegate" destination="DCr-0l-6bI" id="Z9T-So-Aoh"/>
+                                </connections>
+                            </tableView>
+                        </subviews>
+                        <color key="backgroundColor" red="0.94117647059999998" green="0.94117647059999998" blue="0.94117647059999998" alpha="1" colorSpace="calibratedRGB"/>
+                        <constraints>
+                            <constraint firstItem="kWh-kx-e33" firstAttribute="trailing" secondItem="HPr-xv-VfB" secondAttribute="trailing" id="0eW-PU-m64"/>
+                            <constraint firstItem="kWh-kx-e33" firstAttribute="leading" secondItem="HPr-xv-VfB" secondAttribute="leading" id="7ue-8A-lzQ"/>
+                            <constraint firstItem="9Tj-k6-QE3" firstAttribute="top" secondItem="bvS-ES-qRc" secondAttribute="top" id="E8o-Nn-r1i"/>
+                            <constraint firstAttribute="bottom" secondItem="kWh-kx-e33" secondAttribute="bottom" id="EQb-Ih-nPQ"/>
+                            <constraint firstItem="9Tj-k6-QE3" firstAttribute="leading" secondItem="HPr-xv-VfB" secondAttribute="leading" id="OOQ-uV-JcQ"/>
+                            <constraint firstItem="kWh-kx-e33" firstAttribute="top" secondItem="9Tj-k6-QE3" secondAttribute="bottom" id="tcK-Sr-uEc"/>
+                            <constraint firstItem="9Tj-k6-QE3" firstAttribute="trailing" secondItem="HPr-xv-VfB" secondAttribute="trailing" id="tnv-MV-n1A"/>
+                        </constraints>
                         <viewLayoutGuide key="safeArea" id="HPr-xv-VfB"/>
                     </view>
+                    <connections>
+                        <outlet property="tableView" destination="kWh-kx-e33" id="Owz-2I-UFm"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="t9P-ac-UWS" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>

@@ -28,8 +28,6 @@
 		0819FBBC21C8DB550078EB8D /* TransactionBannerCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0819FBB421C8DB550078EB8D /* TransactionBannerCell.xib */; };
 		0819FBBE21C8DDAE0078EB8D /* Shop.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0819FBBD21C8DDAE0078EB8D /* Shop.storyboard */; };
 		0819FBC221C8E3140078EB8D /* ShopViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0819FBC121C8E3140078EB8D /* ShopViewController.swift */; };
-		0819FBCB21C8E38A0078EB8D /* GoodsCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0819FBC921C8E38A0078EB8D /* GoodsCell.swift */; };
-		0819FBCC21C8E38A0078EB8D /* GoodsCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0819FBCA21C8E38A0078EB8D /* GoodsCell.xib */; };
 		0819FBCE21C8ED7B0078EB8D /* UIImageView+Category.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0819FBCD21C8ED7A0078EB8D /* UIImageView+Category.swift */; };
 		083F8F8321D0A4020026341A /* AdView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 083F8F8221D0A4020026341A /* AdView.swift */; };
 		083F8F8721D0D6DB0026341A /* PayWayCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 083F8F8521D0D6DB0026341A /* PayWayCell.swift */; };
@@ -38,8 +36,6 @@
 		083F8F8C21D0D7120026341A /* PayToCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 083F8F8A21D0D7120026341A /* PayToCell.xib */; };
 		083F8F8F21D0D7220026341A /* PayBtnCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 083F8F8D21D0D7220026341A /* PayBtnCell.swift */; };
 		083F8F9021D0D7220026341A /* PayBtnCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 083F8F8E21D0D7220026341A /* PayBtnCell.xib */; };
-		0857EB5121EF72A900D4BC6D /* RecommendGoodsCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0857EB4F21EF72A900D4BC6D /* RecommendGoodsCell.swift */; };
-		0857EB5221EF72A900D4BC6D /* RecommendGoodsCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0857EB5021EF72A900D4BC6D /* RecommendGoodsCell.xib */; };
 		085D6CF221D1348600155895 /* PayPasswordView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 085D6CF121D1348600155895 /* PayPasswordView.swift */; };
 		085D6CF421D3B9A600155895 /* PersonalInfoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 085D6CF321D3B9A600155895 /* PersonalInfoViewController.swift */; };
 		085D6CF621D3C4BB00155895 /* LYPickerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 085D6CF521D3C4BB00155895 /* LYPickerView.swift */; };
@@ -93,6 +89,10 @@
 		08C7D97121F05EA100A625F1 /* NoticeDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08C7D96C21F05EA100A625F1 /* NoticeDetailViewController.swift */; };
 		08C7D97221F05EA100A625F1 /* NoticeTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08C7D96D21F05EA100A625F1 /* NoticeTableViewController.swift */; };
 		08C7D97421F05EC300A625F1 /* Home.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 08C7D97321F05EC300A625F1 /* Home.storyboard */; };
+		08C7D97721F0791A00A625F1 /* RecommendGoodsCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 08C7D97521F0791900A625F1 /* RecommendGoodsCell.xib */; };
+		08C7D97821F0791A00A625F1 /* RecommendGoodsCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08C7D97621F0791A00A625F1 /* RecommendGoodsCell.swift */; };
+		08C7D97B21F07AFB00A625F1 /* StoreCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08C7D97921F07AFB00A625F1 /* StoreCell.swift */; };
+		08C7D97C21F07AFB00A625F1 /* StoreCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 08C7D97A21F07AFB00A625F1 /* StoreCell.xib */; };
 		08C9027421D214E50020441E /* Message.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 08C9027321D214E50020441E /* Message.storyboard */; };
 		08C9027621D216AC0020441E /* BillPayDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08C9027521D216AC0020441E /* BillPayDetailViewController.swift */; };
 		08D7B63021CC9C5B007D191F /* PayViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08D7B62F21CC9C5B007D191F /* PayViewController.swift */; };
@@ -169,8 +169,6 @@
 		0819FBB421C8DB550078EB8D /* TransactionBannerCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TransactionBannerCell.xib; sourceTree = "<group>"; };
 		0819FBBD21C8DDAE0078EB8D /* Shop.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Shop.storyboard; sourceTree = "<group>"; };
 		0819FBC121C8E3140078EB8D /* ShopViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ShopViewController.swift; sourceTree = "<group>"; };
-		0819FBC921C8E38A0078EB8D /* GoodsCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GoodsCell.swift; sourceTree = "<group>"; };
-		0819FBCA21C8E38A0078EB8D /* GoodsCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = GoodsCell.xib; sourceTree = "<group>"; };
 		0819FBCD21C8ED7A0078EB8D /* UIImageView+Category.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIImageView+Category.swift"; sourceTree = "<group>"; };
 		083F8F8221D0A4020026341A /* AdView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AdView.swift; sourceTree = "<group>"; };
 		083F8F8521D0D6DB0026341A /* PayWayCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PayWayCell.swift; sourceTree = "<group>"; };
@@ -179,8 +177,6 @@
 		083F8F8A21D0D7120026341A /* PayToCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = PayToCell.xib; sourceTree = "<group>"; };
 		083F8F8D21D0D7220026341A /* PayBtnCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PayBtnCell.swift; sourceTree = "<group>"; };
 		083F8F8E21D0D7220026341A /* PayBtnCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = PayBtnCell.xib; sourceTree = "<group>"; };
-		0857EB4F21EF72A900D4BC6D /* RecommendGoodsCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecommendGoodsCell.swift; sourceTree = "<group>"; };
-		0857EB5021EF72A900D4BC6D /* RecommendGoodsCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = RecommendGoodsCell.xib; sourceTree = "<group>"; };
 		085D6CF121D1348600155895 /* PayPasswordView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PayPasswordView.swift; sourceTree = "<group>"; };
 		085D6CF321D3B9A600155895 /* PersonalInfoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PersonalInfoViewController.swift; sourceTree = "<group>"; };
 		085D6CF521D3C4BB00155895 /* LYPickerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LYPickerView.swift; sourceTree = "<group>"; };
@@ -241,6 +237,10 @@
 		08C7D96C21F05EA100A625F1 /* NoticeDetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NoticeDetailViewController.swift; sourceTree = "<group>"; };
 		08C7D96D21F05EA100A625F1 /* NoticeTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NoticeTableViewController.swift; sourceTree = "<group>"; };
 		08C7D97321F05EC300A625F1 /* Home.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Home.storyboard; sourceTree = "<group>"; };
+		08C7D97521F0791900A625F1 /* RecommendGoodsCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = RecommendGoodsCell.xib; sourceTree = "<group>"; };
+		08C7D97621F0791A00A625F1 /* RecommendGoodsCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RecommendGoodsCell.swift; sourceTree = "<group>"; };
+		08C7D97921F07AFB00A625F1 /* StoreCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StoreCell.swift; sourceTree = "<group>"; };
+		08C7D97A21F07AFB00A625F1 /* StoreCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = StoreCell.xib; sourceTree = "<group>"; };
 		08C9027321D214E50020441E /* Message.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Message.storyboard; sourceTree = "<group>"; };
 		08C9027521D216AC0020441E /* BillPayDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BillPayDetailViewController.swift; sourceTree = "<group>"; };
 		08D7B62F21CC9C5B007D191F /* PayViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PayViewController.swift; sourceTree = "<group>"; };
@@ -484,8 +484,8 @@
 		0819FBC421C8E3360078EB8D /* cells */ = {
 			isa = PBXGroup;
 			children = (
-				0819FBC921C8E38A0078EB8D /* GoodsCell.swift */,
-				0819FBCA21C8E38A0078EB8D /* GoodsCell.xib */,
+				08C7D97921F07AFB00A625F1 /* StoreCell.swift */,
+				08C7D97A21F07AFB00A625F1 /* StoreCell.xib */,
 			);
 			path = cells;
 			sourceTree = "<group>";
@@ -699,8 +699,8 @@
 		08C7D95521F05DC300A625F1 /* cells */ = {
 			isa = PBXGroup;
 			children = (
-				0857EB4F21EF72A900D4BC6D /* RecommendGoodsCell.swift */,
-				0857EB5021EF72A900D4BC6D /* RecommendGoodsCell.xib */,
+				08C7D97621F0791A00A625F1 /* RecommendGoodsCell.swift */,
+				08C7D97521F0791900A625F1 /* RecommendGoodsCell.xib */,
 				08C7D95621F05DC300A625F1 /* CouponGetCell.swift */,
 				08C7D95721F05DC300A625F1 /* CouponGetCell.xib */,
 				08C7D95821F05DC300A625F1 /* NoticeCell.swift */,
@@ -1027,7 +1027,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				08D7B69921CCC310007D191F /* AlipaySDK.bundle in Resources */,
-				0857EB5221EF72A900D4BC6D /* RecommendGoodsCell.xib in Resources */,
 				0861B83D21C29D0D008795E5 /* Login.storyboard in Resources */,
 				083F8F8821D0D6DB0026341A /* PayWayCell.xib in Resources */,
 				0807CA9A21C7EC3500967692 /* Personal.storyboard in Resources */,
@@ -1035,6 +1034,7 @@
 				0819FBBE21C8DDAE0078EB8D /* Shop.storyboard in Resources */,
 				0819FBB821C8DB550078EB8D /* BannerScrollTitleCell.xib in Resources */,
 				08D7B6A521CCC310007D191F /* README.txt in Resources */,
+				08C7D97721F0791A00A625F1 /* RecommendGoodsCell.xib in Resources */,
 				08A3A40921C158CE008E071F /* LaunchScreen.storyboard in Resources */,
 				08C7D96021F05DC300A625F1 /* CouponGetCell.xib in Resources */,
 				08169D6C21C943B10030D863 /* MyOrderCell.xib in Resources */,
@@ -1042,10 +1042,10 @@
 				08A3A40621C158CE008E071F /* Assets.xcassets in Resources */,
 				08C9027421D214E50020441E /* Message.storyboard in Resources */,
 				083F8F9021D0D7220026341A /* PayBtnCell.xib in Resources */,
+				08C7D97C21F07AFB00A625F1 /* StoreCell.xib in Resources */,
 				0819FBBC21C8DB550078EB8D /* TransactionBannerCell.xib in Resources */,
 				08E0D47821CF23500015992B /* MessageCell.xib in Resources */,
 				086E2D0121C9EEBF00896F25 /* CouponCell.xib in Resources */,
-				0819FBCC21C8E38A0078EB8D /* GoodsCell.xib in Resources */,
 				08A3A40121C158CD008E071F /* Main.storyboard in Resources */,
 				08C7D97421F05EC300A625F1 /* Home.storyboard in Resources */,
 				08C7D96221F05DC300A625F1 /* NoticeCell.xib in Resources */,
@@ -1225,13 +1225,13 @@
 				086E2D0421CA2CB800896F25 /* Config.swift in Sources */,
 				0807CA9621C7C47700967692 /* LocalData.swift in Sources */,
 				08A3A46B21C168B6008E071F /* DeviceSystemHelper.swift in Sources */,
-				0857EB5121EF72A900D4BC6D /* RecommendGoodsCell.swift in Sources */,
 				0819FBB721C8DB550078EB8D /* BannerScrollTitleCell.swift in Sources */,
 				08D7B6A021CCC310007D191F /* NSDataEx.m in Sources */,
 				08C7D96121F05DC300A625F1 /* NoticeCell.swift in Sources */,
 				08A3A46821C168B6008E071F /* NSObject+Extension.swift in Sources */,
 				083F8F8321D0A4020026341A /* AdView.swift in Sources */,
 				086E2D0921CA2E0D00896F25 /* LYAlertView.swift in Sources */,
+				08C7D97821F0791A00A625F1 /* RecommendGoodsCell.swift in Sources */,
 				0819FBAB21C8B13B0078EB8D /* PersonalViewController.swift in Sources */,
 				086E2CFE21C9E78000896F25 /* MyCardViewController.swift in Sources */,
 				08D7B69F21CCC310007D191F /* base64.m in Sources */,
@@ -1253,13 +1253,13 @@
 				086E2CFC21C9E75900896F25 /* MyOrderTableViewController.swift in Sources */,
 				08C7D97021F05EA100A625F1 /* MoreFunctionViewController.swift in Sources */,
 				08D7B6A321CCC310007D191F /* RSADataVerifier.m in Sources */,
+				08C7D97B21F07AFB00A625F1 /* StoreCell.swift in Sources */,
 				0861B84A21C53EEB008795E5 /* RegisterViewController.swift in Sources */,
 				08169D7421CA840E0030D863 /* UIBUtton+Extension.swift in Sources */,
 				08169D7E21CAA0A80030D863 /* BindCardTableViewController.swift in Sources */,
 				0819FBBA21C8DB550078EB8D /* LYUpScrollBannerView.swift in Sources */,
 				086E2CF821C9E6F600896F25 /* ChangeCardPwdViewController.swift in Sources */,
 				08C7D96E21F05EA100A625F1 /* CouponViewController.swift in Sources */,
-				0819FBCB21C8E38A0078EB8D /* GoodsCell.swift in Sources */,
 				0819FBB921C8DB550078EB8D /* LYAnimateBannerView.swift in Sources */,
 				08A3A40421C158CD008E071F /* xsh.xcdatamodeld in Sources */,
 				0861B83421C2971A008795E5 /* NetApis.swift in Sources */,
