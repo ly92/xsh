@@ -63,7 +63,7 @@ class ChangePhoneViewController: UITableViewController {
         var params : [String : Any] = [:]
         params["mobile"] = phone
         params["code"] = code
-        params["passwd"] = (pwd.md5String() + phone).md5String()
+        params["passwd"] = (pwd.md5String() + LocalData.getUserPhone()).md5String()
         NetTools.requestData(type: .post, urlString: ChangePhoneApi, parameters: params, succeed: { (result) in
             LocalData.saveUserPhone(phone: phone)
             LYProgressHUD.showSuccess("修改成功，请重新登录！")

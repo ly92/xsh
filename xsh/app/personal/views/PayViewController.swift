@@ -23,6 +23,7 @@ class PayViewController: BaseTableViewController {
     
     fileprivate var selectedPayWay1 = JSON()
     fileprivate var selectedPayWay2 : [String : JSON] = [:]
+    fileprivate var selectedCoupon = JSON()//使用的优惠券
     fileprivate var payWayArray1 : Array<JSON> = []
     fileprivate var payWayArray2 : Array<JSON> = []
     
@@ -106,7 +107,7 @@ class PayViewController: BaseTableViewController {
         if self.selectedPayWay2.keys.contains("98"){
             params["points"] = self.selectedPayWay2["98"]!["money"].stringValue
         }
-        //ptid:支付方式,atid:货币ID,orgaccount:付款账户,destaccount:收款账户,orderno:订单号,money:付款金额,points:积分抵消费金额,coupons:使用优惠券，逗号分隔优惠券码
+        //ptid:支付方式,atid:货币ID,orgaccount:付款账户,destaccount:收款账户,orderno:订单号,money:付款金额,points:积分抵消费金额,coupon:使用优惠券，逗号分隔优惠券码
         NetTools.requestData(type: .post, urlString: PrePayOrderApi, parameters: params, succeed: { (result) in
             let type = result["payinfo"]["paytype"].stringValue
             if type == "alipay"{
@@ -278,11 +279,11 @@ class PayViewController: BaseTableViewController {
 extension PayViewController{
     
     override func numberOfSections(in tableView: UITableView) -> Int {
-        return 4
+        return 5
     }
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        if section == 0 || section == 3{
+        if section == 0 || section == 3 || section == 4{
             return 1
         }else if section == 1{
             return self.payWayArray1.count
@@ -325,6 +326,9 @@ extension PayViewController{
             }
             return cell3
         }else if indexPath.section == 3{
+            //
+            
+        }else if indexPath.section == 4{
             let cell4 = tableView.dequeueReusableCell(withIdentifier: "PayBtnCell", for: indexPath) as! PayBtnCell
             var discount : Float = 0
             for (_, value) in self.selectedPayWay2{
@@ -343,9 +347,9 @@ extension PayViewController{
     override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         if indexPath.section == 0{
             return 140
-        }else if indexPath.section == 1 || indexPath.section == 2{
+        }else if indexPath.section == 1 || indexPath.section == 2 || indexPath.section == 3{
             return 45
-        }else if indexPath.section == 3{
+        }else if indexPath.section == 4{
             return 200
         }
         return 0
@@ -389,6 +393,12 @@ extension PayViewController{
                 self.tableView.reloadData()
             }
         }else if indexPath.section == 3{
+            //选择优惠券
+            let selectCouponVC = MyCouponTableViewController()
+            selectCouponVC.isSelect = true
+            
+            self.navigationController?.pushViewController(selectCouponVC, animated: true)
+        }else if indexPath.section == 4{
             self.prePayAction()
         }
     }

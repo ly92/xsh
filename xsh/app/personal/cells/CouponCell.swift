@@ -44,4 +44,9 @@ class CouponCell: UITableViewCell {
             self.couponIngV.setImageUrlStr(self.subJson["imageurl"].stringValue)
         }
     }
+    
+    
+    override func hitTest(_ point: CGPoint, with event: UIEvent?) -> UIView? {
+        return self
+    }
 }

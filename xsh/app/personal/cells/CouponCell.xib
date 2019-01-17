@@ -89,13 +89,14 @@
                                 <color key="textColor" red="0.40000000000000002" green="0.40000000000000002" blue="0.40000000000000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ogq-gh-UVN">
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ogq-gh-UVN">
                                 <rect key="frame" x="272" y="66" width="20" height="20"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="20" id="dHk-gF-mTe"/>
                                     <constraint firstAttribute="width" constant="20" id="wjI-02-4Ho"/>
                                 </constraints>
-                                <state key="normal" image="gender_select"/>
+                                <state key="normal" image="gender_unselect"/>
+                                <state key="selected" image="gender_select"/>
                             </button>
                             <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="l34-0v-lHb">
                                 <rect key="frame" x="78.5" y="20" width="5" height="5"/>
@@ -166,5 +167,6 @@
     <resources>
         <image name="coupon_bg" width="351" height="94"/>
         <image name="gender_select" width="13" height="13"/>
+        <image name="gender_unselect" width="13" height="13"/>
     </resources>
 </document>
