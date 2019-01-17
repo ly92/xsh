@@ -24,6 +24,8 @@ let KLoginSuccessNotiName = "KLoginSuccessNotiName"
 let KAliPayScheme = "alipayappyssh111"
 let KWechatKey = "wx01e4c37152e4b98f"
 
+let KBmapKey = "VO4wfMvoSvhxqjmGWmADGgN4zvfrF6sE"
+
 
 let NAV_Color = UIColor.white
 let Text_Color = UIColor.RGBS(s: 33)
@@ -35,6 +37,7 @@ func appVersion() -> String {
     let currentVersion = Bundle.main.infoDictionary?["CFBundleShortVersionString"] as! String
     return currentVersion
 }
+
 
 //是否允许消息通知
 func isMessageNotificationServiceOpen() -> Bool{

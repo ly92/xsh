@@ -16,6 +16,17 @@ class BaseViewController: UIViewController {
         // Do any additional setup after loading the view.
     }
     
+    var navHeight : CGFloat{
+        get{
+            let statusFrame = UIApplication.shared.statusBarFrame
+            let navFrame = self.navigationController?.navigationBar.frame
+            let height = statusFrame.size.height + (navFrame?.size.height ?? 42)
+            
+            return height
+        }
+    }
+    
+   
 
     /*
     // MARK: - Navigation

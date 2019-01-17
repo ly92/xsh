@@ -42,6 +42,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         //注册微信
         WXApi.registerApp(KWechatKey)
         
+        //百度地图
+        BaiDuMap.default.startLocation()
+        
+        //激光推送
         let entity = JPUSHRegisterEntity()
         entity.types = Int(JPAuthorizationOptions.alert.rawValue)|Int(JPAuthorizationOptions.badge.rawValue)|Int(JPAuthorizationOptions.sound.rawValue)
         DispatchQueue.main.async {

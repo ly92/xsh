@@ -130,4 +130,8 @@ let CardTransactionDetailApi = "transaction/get"
 //首页推荐商品
 let RecommendGoodsApi = "shop/recommend" //post
 
-
+/************************************ 商家 ********************************************/
+//获取商家列表
+let StoreListApi = "biz/getBizSortList"
+//获取所有行业
+let StoreIndustryApi = "biz/industryall"

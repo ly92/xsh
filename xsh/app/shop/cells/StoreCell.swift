@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import SwiftyJSON
 
 class StoreCell: UITableViewCell {
     @IBOutlet weak var imgV: UIImageView!
@@ -20,13 +21,23 @@ class StoreCell: UITableViewCell {
     
     override func awakeFromNib() {
         super.awakeFromNib()
-        // Initialization code
+
     }
 
     override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
 
-        // Configure the view for the selected state
+        
+    }
+    
+    var subJson = JSON(){
+        didSet{
+            self.imgV.setImageUrlStr(self.subJson["logourl"].stringValue)
+            self.nameLbl.text = self.subJson["name"].stringValue
+            self.addressLbl.text = self.subJson["address"].stringValue
+            self.disLbl.text = self.subJson["distance"].stringValue + "米"
+            self.descLbl.text = self.subJson["memo"].stringValue
+        }
     }
     
 }

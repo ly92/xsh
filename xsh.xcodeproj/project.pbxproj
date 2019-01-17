@@ -36,6 +36,7 @@
 		083F8F8C21D0D7120026341A /* PayToCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 083F8F8A21D0D7120026341A /* PayToCell.xib */; };
 		083F8F8F21D0D7220026341A /* PayBtnCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 083F8F8D21D0D7220026341A /* PayBtnCell.swift */; };
 		083F8F9021D0D7220026341A /* PayBtnCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 083F8F8E21D0D7220026341A /* PayBtnCell.xib */; };
+		0857EB5421F0CF3A00D4BC6D /* BaiDuMap.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0857EB5321F0CF3A00D4BC6D /* BaiDuMap.swift */; };
 		085D6CF221D1348600155895 /* PayPasswordView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 085D6CF121D1348600155895 /* PayPasswordView.swift */; };
 		085D6CF421D3B9A600155895 /* PersonalInfoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 085D6CF321D3B9A600155895 /* PersonalInfoViewController.swift */; };
 		085D6CF621D3C4BB00155895 /* LYPickerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 085D6CF521D3C4BB00155895 /* LYPickerView.swift */; };
@@ -180,6 +181,7 @@
 		083F8F8A21D0D7120026341A /* PayToCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = PayToCell.xib; sourceTree = "<group>"; };
 		083F8F8D21D0D7220026341A /* PayBtnCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PayBtnCell.swift; sourceTree = "<group>"; };
 		083F8F8E21D0D7220026341A /* PayBtnCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = PayBtnCell.xib; sourceTree = "<group>"; };
+		0857EB5321F0CF3A00D4BC6D /* BaiDuMap.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaiDuMap.swift; sourceTree = "<group>"; };
 		085D6CF121D1348600155895 /* PayPasswordView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PayPasswordView.swift; sourceTree = "<group>"; };
 		085D6CF321D3B9A600155895 /* PersonalInfoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PersonalInfoViewController.swift; sourceTree = "<group>"; };
 		085D6CF521D3C4BB00155895 /* LYPickerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LYPickerView.swift; sourceTree = "<group>"; };
@@ -428,6 +430,7 @@
 				083F8F8221D0A4020026341A /* AdView.swift */,
 				085D6CF121D1348600155895 /* PayPasswordView.swift */,
 				085D6CF521D3C4BB00155895 /* LYPickerView.swift */,
+				0857EB5321F0CF3A00D4BC6D /* BaiDuMap.swift */,
 			);
 			path = comment;
 			sourceTree = "<group>";
@@ -932,7 +935,6 @@
 				08A3A3F521C158CD008E071F /* Frameworks */,
 				08A3A3F621C158CD008E071F /* Resources */,
 				F34774E5B653253CF8214B87 /* [CP] Embed Pods Frameworks */,
-				29F69717B06BF5302CE07507 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -1101,28 +1103,6 @@
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
 			showEnvVarsInLog = 0;
 		};
-		29F69717B06BF5302CE07507 /* [CP] Copy Pods Resources */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-			);
-			inputPaths = (
-				"${SRCROOT}/Pods/Target Support Files/Pods-xsh/Pods-xsh-resources.sh",
-				"${PODS_ROOT}/BaiduMapKit/BaiduMapKit/BaiduMapAPI_Map.framework/mapapi.bundle",
-			);
-			name = "[CP] Copy Pods Resources";
-			outputFileListPaths = (
-			);
-			outputPaths = (
-				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/mapapi.bundle",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-xsh/Pods-xsh-resources.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
 		447E96445B089F43C4413DE0 /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -1276,6 +1256,7 @@
 				0861B83421C2971A008795E5 /* NetApis.swift in Sources */,
 				08C7D97221F05EA100A625F1 /* NoticeTableViewController.swift in Sources */,
 				08169D7621CA846D0030D863 /* UIBarButtonItem+Extension.swift in Sources */,
+				0857EB5421F0CF3A00D4BC6D /* BaiDuMap.swift in Sources */,
 				08C7D97E21F085D900A625F1 /* CouponDetailViewController.swift in Sources */,
 				086E2CFA21C9E71C00896F25 /* MyQrcodeViewController.swift in Sources */,
 				08D7B6A221CCC310007D191F /* RSADataSigner.m in Sources */,

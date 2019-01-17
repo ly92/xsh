@@ -26,7 +26,8 @@ target 'xsh' do
   pod 'Bugly'
   
   #百度地图 “, '~> 4.1.0'”
-  pod 'BaiduMapKit'
+  #pod 'BaiduMapKit'
+  pod 'BMKLocationKit'
 
 
   target 'xshTests' do

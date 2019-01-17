@@ -26,10 +26,19 @@ class BaseWebViewController: BaseViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        self.webView.frame = CGRect.init(x: 0, y: 0, width: kScreenW, height: kScreenH-64)
+        
+        self.webView.frame = CGRect.init(x: 0, y: 0, width: kScreenW, height: kScreenH-self.navHeight)
         self.webView.delegate = self
         self.webView.scalesPageToFit = true
         self.view.addSubview(self.webView)
+        
+        //视图在导航器中显示默认四边距离
+        self.edgesForExtendedLayout = []
+        if #available(iOS 11.0, *){
+            self.webView.scrollView.contentInsetAdjustmentBehavior = .never
+        }else{
+            self.automaticallyAdjustsScrollViewInsets = false
+        }
         
         
         if self.isFromAdVC{

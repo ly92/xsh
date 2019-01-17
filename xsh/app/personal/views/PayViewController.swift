@@ -335,7 +335,9 @@ class PayViewController: BaseTableViewController {
                     self.navigationController?.popViewController(animated: true)
                 })
             }) { (error) in
-                LYAlertView.show("提示", "支付失败，请重试！", "知道了", {
+                LYAlertView.show("提示", "支付失败，请重试！", "放弃", "重试", {
+                    self.payByCard(tno)
+                },{
                     if self.payResultBlock != nil{
                         self.payResultBlock!(3)
                     }

@@ -52,6 +52,11 @@ class MyOrderTableViewController: BaseTableViewController {
         params["skip"] = self.shopOrderList.count
         params["limit"] = 10
         NetTools.requestData(type: .post, urlString: ShopOrderListApi, parameters: params, succeed: { (result) in
+            if result["list"].arrayValue.count < 10{
+                self.haveMore = false
+            }else{
+                self.haveMore = true
+            }
             for json in result["list"].arrayValue{
                 self.shopOrderList.append(json)
                 self.tableView.reloadData()
@@ -65,6 +70,11 @@ class MyOrderTableViewController: BaseTableViewController {
     //加载一卡通消费记录
     func loadCardOrder() {
         NetTools.requestData(type: .post, urlString: CardTransactionListApi, succeed: { (result) in
+            if result["list"].arrayValue.count < 10{
+                self.haveMore = false
+            }else{
+                self.haveMore = true
+            }
             for json in result["list"].arrayValue{
                 self.cardOrderList.append(json)
                 self.tableView.reloadData()
