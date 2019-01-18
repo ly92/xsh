@@ -18,7 +18,7 @@ class CouponViewController: BaseTableViewController {
         super.viewDidLoad()
 
         self.tableView.register(UINib.init(nibName: "CouponGetCell", bundle: Bundle.main), forCellReuseIdentifier: "CouponGetCell")
-        
+        self.navigationItem.title = "领券中心"
         
         self.loadCouponData()
         

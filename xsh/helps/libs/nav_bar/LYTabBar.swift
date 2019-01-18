@@ -39,7 +39,6 @@ class LYTabBar: UITabBar {
     
     
     @objc func btnAction() {
-        print("1")
         self.lyTabBarDelegate?.clickAction(tabbar: self)
     }
     

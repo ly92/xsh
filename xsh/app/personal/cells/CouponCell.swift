@@ -40,7 +40,7 @@ class CouponCell: UITableViewCell {
             self.limitLbl.text = "满" + self.subJson["intro"].stringValue + "可用"
             self.titleLbl.text = self.subJson["name"].stringValue
             self.descLbl.text = self.subJson["biz_name"].stringValue
-           self.timeLbl.text = Date.dateStringFromDate(format: Date.timestampFormatString(), timeStamps: self.subJson["use_end_time"].stringValue)
+           self.timeLbl.text = Date.dateStringFromDate(format: Date.timestampFormatString(), timeStamps: self.subJson["use_start_time"].stringValue) + " ~ " + Date.dateStringFromDate(format: Date.timestampFormatString(), timeStamps: self.subJson["use_end_time"].stringValue)
             self.couponIngV.setImageUrlStr(self.subJson["imageurl"].stringValue)
         }
     }

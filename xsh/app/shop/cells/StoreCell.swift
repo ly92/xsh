@@ -35,7 +35,7 @@ class StoreCell: UITableViewCell {
             self.imgV.setImageUrlStr(self.subJson["logourl"].stringValue)
             self.nameLbl.text = self.subJson["name"].stringValue
             self.addressLbl.text = self.subJson["address"].stringValue
-            self.disLbl.text = self.subJson["distance"].stringValue + "米"
+            self.disLbl.text = "\(self.subJson["distance"].stringValue.intValue)米"
             self.descLbl.text = self.subJson["memo"].stringValue
         }
     }

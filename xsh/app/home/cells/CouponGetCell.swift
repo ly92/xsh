@@ -52,10 +52,11 @@ class CouponGetCell: UITableViewCell {
         didSet{
             self.cardLbl.isHidden = false
             self.priceLbl.text = self.subJson["money"].stringValue
-            self.overLbl.text = "满" + self.subJson["issue_max_num"].stringValue + "可用"
+//            self.overLbl.text = "满" + self.subJson["intro"].stringValue + "可用"
+            self.overLbl.text = ""
             self.titleLbl.text = self.subJson["name"].stringValue
             self.descLbl.text = self.subJson["biz_name"].stringValue
-            let scal = self.subJson["issue_cur_num"].stringValue.floatValue * 100 / self.subJson["issue_max_num"].stringValue.floatValue
+            let scal = self.subJson["cur_num"].stringValue.floatValue * 100 / self.subJson["remain_num"].stringValue.floatValue
             self.stateLbl.text = String.init(format: "已领取%.2f", scal) + "%"
             self.imgV.setImageUrlStr(self.subJson["imageurl"].stringValue)
         }

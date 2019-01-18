@@ -105,20 +105,25 @@ extension LYTabBarController{
 
 extension LYTabBarController : LYTabBarDelegate{
     func clickAction(tabbar: LYTabBar) {
+        print("1")
         let scanVC = ScanActionViewController()
         scanVC.scanResultBlock = {(result) in
-            //http://star.wwwcity.net/B/商家id
-            if result.hasPrefix("http://star.wwwcity.net/B"){
-                LYProgressHUD.showInfo("商家支付")
-            }else if result.hasPrefix("http://") || result.hasPrefix("https://"){
-                let webVC = BaseWebViewController()
-                webVC.titleStr = "扫描详情"
-                webVC.urlStr = result
-                self.navigationController?.pushViewController(webVC, animated: true)
-            }else{
-                LYProgressHUD.showInfo(result)
-            }
+            
+            
+            LYProgressHUD.showInfo(result)
+            
+//            //http://star.wwwcity.net/B/商家id
+//            if result.hasPrefix("http://star.wwwcity.net/B"){
+//                LYProgressHUD.showInfo("商家支付")
+//            }else if result.hasPrefix("http://") || result.hasPrefix("https://"){
+//                let webVC = BaseWebViewController()
+//                webVC.titleStr = "扫描详情"
+//                webVC.urlStr = result
+//                self.navigationController?.pushViewController(webVC, animated: true)
+//            }else{
+//                LYProgressHUD.showInfo(result)
+//            }
         }
-        self.navigationController?.pushViewController(scanVC, animated: true)
+        self.selectedViewController?.children.last?.navigationController?.pushViewController(scanVC, animated: true)
     }
 }

@@ -228,18 +228,21 @@ extension ScanActionViewController : AVCaptureMetadataOutputObjectsDelegate{
         self.scanSession.stopRunning()
         
         if !self.haveSoundPlayed{
-            //建立的SystemSoundID对象
-            var soundID:SystemSoundID = 0
             //获取声音地址
             let path = Bundle.main.path(forResource: "scansound", ofType: "wav")
-            //地址转换
-            let baseURL = NSURL(fileURLWithPath: path!)
-            //赋值
-            AudioServicesCreateSystemSoundID(baseURL, &soundID)
-            //提醒
-            AudioServicesPlaySystemSound(soundID)
+            if path != nil{
+                //建立的SystemSoundID对象
+                var soundID:SystemSoundID = 0
+                //地址转换
+                let baseURL = NSURL(fileURLWithPath: path!)
+                //赋值
+                AudioServicesCreateSystemSoundID(baseURL, &soundID)
+                //提醒
+                AudioServicesPlaySystemSound(soundID)
+                
+                self.haveSoundPlayed = true
+            }
             
-            self.haveSoundPlayed = true
         }
         //扫描结果
         if metadataObjects.count > 0{
