@@ -109,21 +109,77 @@ extension LYTabBarController : LYTabBarDelegate{
         let scanVC = ScanActionViewController()
         scanVC.scanResultBlock = {(result) in
             
+            scanVC.navigationController?.popViewController(animated: true)
             
-            LYProgressHUD.showInfo(result)
+            //http://star.wwwcity.net/B/商家id
+            if result.hasPrefix("http://star.wwwcity.net/B"){
+                self.scanCreateOrder(result)
+            }else if result.hasPrefix("http://") || result.hasPrefix("https://"){
+                let webVC = BaseWebViewController()
+                webVC.titleStr = "扫描详情"
+                webVC.urlStr = result
+                self.navigationController?.pushViewController(webVC, animated: true)
+            }else{
+                LYProgressHUD.showInfo(result)
+            }
             
-//            //http://star.wwwcity.net/B/商家id
-//            if result.hasPrefix("http://star.wwwcity.net/B"){
-//                LYProgressHUD.showInfo("商家支付")
-//            }else if result.hasPrefix("http://") || result.hasPrefix("https://"){
-//                let webVC = BaseWebViewController()
-//                webVC.titleStr = "扫描详情"
-//                webVC.urlStr = result
-//                self.navigationController?.pushViewController(webVC, animated: true)
-//            }else{
-//                LYProgressHUD.showInfo(result)
-//            }
         }
         self.selectedViewController?.children.last?.navigationController?.pushViewController(scanVC, animated: true)
+    }
+}
+
+
+extension LYTabBarController{
+    //二维码创建交易
+    func scanCreateOrder(_ str : String) {
+        let bid = str.replacingOccurrences(of: "http://star.wwwcity.net/B/", with: "")
+        
+        
+        
+        let rechargeAlert = UIAlertController.init(title: "支付", message: "请输入金额", preferredStyle: .alert)
+        let cancel = UIAlertAction.init(title: "取消", style: .cancel) { (action) in
+        }
+        let recharge = UIAlertAction.init(title: "确定", style: .default) { (action) in
+            guard let text = rechargeAlert.textFields?.first?.text else{
+                LYProgressHUD.showError("请输入有效充值金额!")
+                return
+            }
+            if text.floatValue <= 0{
+                LYProgressHUD.showError("输入的金额无效!")
+                return
+            }
+            
+            
+            //创建订单
+            let params : [String : Any] = ["money" : text, "bid" : bid, "servicetype" : "qrcodepay"]
+            NetTools.requestData(type: .post, urlString: ShopAddOrderApi, parameters: params, succeed: { (result) in
+                let payVC = PayViewController()
+                payVC.orderNo = result["orderno"].stringValue
+                payVC.money = text
+                payVC.titleStr = "商家支付"
+                payVC.payResultBlock = {(type) in
+                    if type == 1{
+                        //成功
+                        
+                    }else if type == 2{
+                        //取消
+                        
+                    }else if type == 3{
+                        //失败
+                        
+                    }
+                }
+                self.selectedViewController?.children.last?.navigationController?.pushViewController(payVC, animated: true)
+            }, failure: { (error) in
+                LYProgressHUD.showError(error)
+            })
+            
+        }
+        rechargeAlert.addAction(recharge)
+        rechargeAlert.addAction(cancel)
+        rechargeAlert.addTextField { (tf) in
+            tf.placeholder = "请输入支付金额"
+        }
+        self.present(rechargeAlert, animated: true, completion: nil)
     }
 }

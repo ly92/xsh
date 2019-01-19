@@ -106,7 +106,7 @@ let CardResetPayPwdApi = "user/resetPaypwd" // post paypsw, passwd
 //交易记录
 let ShopOrderListApi = "card/listTransaction" // post starttime, stoptime, skip, limit
 //创建交易
-let ShopAddOrderApi = "transaction/order" // post money,bid
+let ShopAddOrderApi = "transaction/order" // post money,bid,servicetype
 //查询充值方式
 let CardRechargeTypeApi = "card/depositType" // post
 //充值
