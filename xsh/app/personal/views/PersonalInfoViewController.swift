@@ -72,22 +72,7 @@ class PersonalInfoViewController: BaseTableViewController {
         }
     }
 
-    
-    //修改手机号信息
-    func updatePersonalPhone() {
-        var params : [String : Any] = [:]
-        params["cid"] = LocalData.getCId()
-        params["mobile"] = LocalData.getCId()
-        params["code"] = LocalData.getCId()
-        params["passwd"] = LocalData.getCId()
-        NetTools.requestData(type: .post, urlString: ChangePhoneApi, parameters: params, succeed: { (result) in
-            
-        }) { (error) in
-            LYProgressHUD.showError(error)
-        }
-    }
-    
-    
+   
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         if indexPath.row == 1{
              //名字

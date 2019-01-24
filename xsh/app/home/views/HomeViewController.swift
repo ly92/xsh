@@ -63,6 +63,9 @@ class HomeViewController: BaseViewController {
             self.automaticallyAdjustsScrollViewInsets = false
         }
         
+        
+
+        
     }
     
     

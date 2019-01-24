@@ -170,13 +170,15 @@ class LYAlertView: UIView {
     //MARK: - 显示
     //2个按钮
     class func show( _ title:String, _ message:String, _ leftTitle:String, _ rightTitle:String, _ rightClick:rightBlock? = nil, _ leftClick:leftBlock? = nil, _ dismissBlock:DelaydismissBlock? = nil)->Void{
-        let alert = LYAlertView.init(frame: CGRect(x:0, y:0, width:UIScreen.main.bounds.width, height:UIScreen.main.bounds.height))
-        alert.initTwoBtn(title: title, message: message, cancelButtonTitle: leftTitle, otherButtonTitle: rightTitle)
-        alert.occur(animation: true)
-        
-        alert.leftblock = leftClick
-        alert.rightblock = rightClick
-        alert.dismissblock = dismissBlock
+        DispatchQueue.main.async {
+            let alert = LYAlertView.init(frame: CGRect(x:0, y:0, width:UIScreen.main.bounds.width, height:UIScreen.main.bounds.height))
+            alert.initTwoBtn(title: title, message: message, cancelButtonTitle: leftTitle, otherButtonTitle: rightTitle)
+            alert.occur(animation: true)
+            
+            alert.leftblock = leftClick
+            alert.rightblock = rightClick
+            alert.dismissblock = dismissBlock
+        }
     }
     
     //1个按钮
