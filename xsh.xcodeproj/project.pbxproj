@@ -60,6 +60,8 @@
 		086E2D0221C9EEBF00896F25 /* CouponCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 086E2D0021C9EEBF00896F25 /* CouponCell.swift */; };
 		086E2D0421CA2CB800896F25 /* Config.swift in Sources */ = {isa = PBXBuildFile; fileRef = 086E2D0321CA2CB800896F25 /* Config.swift */; };
 		086E2D0921CA2E0D00896F25 /* LYAlertView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 086E2D0821CA2E0D00896F25 /* LYAlertView.swift */; };
+		087B012421F9A3FB00CFB3A6 /* HealthKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 087B012321F9A3FB00CFB3A6 /* HealthKit.framework */; };
+		087B012621F9A57B00CFB3A6 /* HealthHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 087B012521F9A57B00CFB3A6 /* HealthHelper.swift */; };
 		08A3A3FC21C158CD008E071F /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08A3A3FB21C158CD008E071F /* AppDelegate.swift */; };
 		08A3A3FE21C158CD008E071F /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08A3A3FD21C158CD008E071F /* ViewController.swift */; };
 		08A3A40121C158CD008E071F /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 08A3A3FF21C158CD008E071F /* Main.storyboard */; };
@@ -207,6 +209,8 @@
 		086E2D0021C9EEBF00896F25 /* CouponCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CouponCell.swift; sourceTree = "<group>"; };
 		086E2D0321CA2CB800896F25 /* Config.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Config.swift; sourceTree = "<group>"; };
 		086E2D0821CA2E0D00896F25 /* LYAlertView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LYAlertView.swift; sourceTree = "<group>"; };
+		087B012321F9A3FB00CFB3A6 /* HealthKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = HealthKit.framework; path = System/Library/Frameworks/HealthKit.framework; sourceTree = SDKROOT; };
+		087B012521F9A57B00CFB3A6 /* HealthHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HealthHelper.swift; sourceTree = "<group>"; };
 		08A3A3F821C158CD008E071F /* xsh.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = xsh.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		08A3A3FB21C158CD008E071F /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		08A3A3FD21C158CD008E071F /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -393,6 +397,7 @@
 				08E0D46421CD44510015992B /* Foundation.framework in Frameworks */,
 				08E0D46221CD44490015992B /* CFNetwork.framework in Frameworks */,
 				08E0D46021CD44400015992B /* libz.tbd in Frameworks */,
+				087B012421F9A3FB00CFB3A6 /* HealthKit.framework in Frameworks */,
 				08E0D45E21CD44370015992B /* libc++.tbd in Frameworks */,
 				08E0D45C21CD43FD0015992B /* CoreMotion.framework in Frameworks */,
 				08E0D45A21CD2A970015992B /* libsqlite3.0.tbd in Frameworks */,
@@ -434,6 +439,7 @@
 				085D6CF121D1348600155895 /* PayPasswordView.swift */,
 				085D6CF521D3C4BB00155895 /* LYPickerView.swift */,
 				0857EB5321F0CF3A00D4BC6D /* BaiDuMap.swift */,
+				087B012521F9A57B00CFB3A6 /* HealthHelper.swift */,
 			);
 			path = comment;
 			sourceTree = "<group>";
@@ -894,6 +900,7 @@
 		58751821874EFABE7E7CB9A3 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				087B012321F9A3FB00CFB3A6 /* HealthKit.framework */,
 				08E0D46F21CD44850015992B /* SystemConfiguration.framework */,
 				08E0D46D21CD447E0015992B /* CoreTelephony.framework */,
 				08E0D46B21CD44740015992B /* QuartzCore.framework */,
@@ -1000,6 +1007,9 @@
 						CreatedOnToolsVersion = 10.1;
 						LastSwiftMigration = 1010;
 						SystemCapabilities = {
+							com.apple.HealthKit = {
+								enabled = 1;
+							};
 							com.apple.Push = {
 								enabled = 1;
 							};
@@ -1195,6 +1205,7 @@
 				08169D7221CA83D30030D863 /* BaseWebViewController.swift in Sources */,
 				08A3A46421C168B6008E071F /* UIViewController+Category.swift in Sources */,
 				08D7B6A121CCC310007D191F /* openssl_wrapper.m in Sources */,
+				087B012621F9A57B00CFB3A6 /* HealthHelper.swift in Sources */,
 				08B0DE9521D4C9E900EE7BA8 /* ScanActionViewController.swift in Sources */,
 				085D6CF621D3C4BB00155895 /* LYPickerView.swift in Sources */,
 				08A3A46D21C168B6008E071F /* LYTabBar.swift in Sources */,
