@@ -86,9 +86,10 @@ class MyCouponTableViewController: BaseTableViewController {
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: false)
-        if self.isSelect{
-            if self.couponList.count > indexPath.row{
-                let json = self.couponList[indexPath.row]
+        
+        if self.couponList.count > indexPath.row{
+            let json = self.couponList[indexPath.row]
+            if self.isSelect{
                 if self.selectedCoupon != nil{
                     if self.selectedCoupon!["id"].stringValue == json["id"].stringValue{
                         self.selectedCoupon = nil
@@ -98,8 +99,12 @@ class MyCouponTableViewController: BaseTableViewController {
                 }else{
                     self.selectedCoupon = json
                 }
+                self.tableView.reloadData()
+            }else{
+                let couponDetailVC = CouponDetailViewController.spwan()
+                couponDetailVC.couponId = json["id"].stringValue
+                self.navigationController?.pushViewController(couponDetailVC, animated: true)
             }
-            self.tableView.reloadData()
         }
     }
     

@@ -375,13 +375,13 @@ extension HomeViewController : UICollectionViewDelegate, UICollectionViewDataSou
                 let productions = self.recommendList[indexPath.section-3]["productions"].arrayValue
                 if productions.count > indexPath.row{
                     let json = productions[indexPath.row]
-                    let webVC = BaseWebViewController()
-                    webVC.titleStr = "商品"
+                    let webVC = StoreViewController()
                     let ts = Date.phpTimestamp()
                     let cmdno = String.randomStr(len: 20) + ts
                     let sign = (LocalData.getCId() + ts + cmdno + LocalData.getPwd()).md5String()
                     let url = "http://star.test.wwwcity.net/shopping/index.html?bid=" + json["bid"].stringValue + "&cid=" + LocalData.getCId() + "&ts=" + ts + "&sign=" + sign + "&cmdno=" + cmdno + "&productionId=" + json["productionId"].stringValue
                     webVC.urlStr = url
+                    webVC.bid = json["bid"].stringValue
                     self.navigationController?.pushViewController(webVC, animated: true)
                 }
             }

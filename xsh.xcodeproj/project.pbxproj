@@ -36,6 +36,7 @@
 		083F8F8C21D0D7120026341A /* PayToCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 083F8F8A21D0D7120026341A /* PayToCell.xib */; };
 		083F8F8F21D0D7220026341A /* PayBtnCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 083F8F8D21D0D7220026341A /* PayBtnCell.swift */; };
 		083F8F9021D0D7220026341A /* PayBtnCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 083F8F8E21D0D7220026341A /* PayBtnCell.xib */; };
+		08445F6921FF3D8E00230F5D /* StoreViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08445F6821FF3D8E00230F5D /* StoreViewController.swift */; };
 		0857EB5421F0CF3A00D4BC6D /* BaiDuMap.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0857EB5321F0CF3A00D4BC6D /* BaiDuMap.swift */; };
 		085D6CF221D1348600155895 /* PayPasswordView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 085D6CF121D1348600155895 /* PayPasswordView.swift */; };
 		085D6CF421D3B9A600155895 /* PersonalInfoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 085D6CF321D3B9A600155895 /* PersonalInfoViewController.swift */; };
@@ -184,6 +185,7 @@
 		083F8F8A21D0D7120026341A /* PayToCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = PayToCell.xib; sourceTree = "<group>"; };
 		083F8F8D21D0D7220026341A /* PayBtnCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PayBtnCell.swift; sourceTree = "<group>"; };
 		083F8F8E21D0D7220026341A /* PayBtnCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = PayBtnCell.xib; sourceTree = "<group>"; };
+		08445F6821FF3D8E00230F5D /* StoreViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StoreViewController.swift; sourceTree = "<group>"; };
 		0857EB5321F0CF3A00D4BC6D /* BaiDuMap.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaiDuMap.swift; sourceTree = "<group>"; };
 		085D6CF121D1348600155895 /* PayPasswordView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PayPasswordView.swift; sourceTree = "<group>"; };
 		085D6CF321D3B9A600155895 /* PersonalInfoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PersonalInfoViewController.swift; sourceTree = "<group>"; };
@@ -495,6 +497,7 @@
 			isa = PBXGroup;
 			children = (
 				0819FBC121C8E3140078EB8D /* ShopViewController.swift */,
+				08445F6821FF3D8E00230F5D /* StoreViewController.swift */,
 			);
 			path = views;
 			sourceTree = "<group>";
@@ -1207,6 +1210,7 @@
 				08D7B6A121CCC310007D191F /* openssl_wrapper.m in Sources */,
 				087B012621F9A57B00CFB3A6 /* HealthHelper.swift in Sources */,
 				08B0DE9521D4C9E900EE7BA8 /* ScanActionViewController.swift in Sources */,
+				08445F6921FF3D8E00230F5D /* StoreViewController.swift in Sources */,
 				085D6CF621D3C4BB00155895 /* LYPickerView.swift in Sources */,
 				08A3A46D21C168B6008E071F /* LYTabBar.swift in Sources */,
 				085D6D0121EE071A00155895 /* ChangePhoneViewController.swift in Sources */,

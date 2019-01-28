@@ -65,7 +65,8 @@ let CouponListApi = "coupon/syslist"// post skip limit
 let MyCouponListApi = "coupon/userlist"// post userid bizid：对应商家
 //领取优惠券
 let CouponGetApi = "coupon/sysissue"//post optid userid
-
+//优惠券详情
+let CouponDetailApi = "coupon/detail" //post id
 
 /************************************ 消息 ********************************************/
 //统计未读消息

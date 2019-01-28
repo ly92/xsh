@@ -13,6 +13,12 @@ class CouponViewController: BaseTableViewController {
 
     fileprivate var couponList : Array<JSON> = []
     
+    //是否为商家领券中心
+    var isStore = false
+    var bid = ""
+    
+    
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -33,11 +39,18 @@ class CouponViewController: BaseTableViewController {
         }
     }
     
-    //
+    //优惠券列表-领券中心
     func loadCouponData() {
         var params : [String : Any] = [:]
         params["limit"] = 10
         params["skip"] = self.couponList.count
+        if self.isStore{
+            params["type"] = "1"
+            params["bid"] = self.bid
+        }else{
+            params["type"] = "0"
+        }
+        
         NetTools.requestData(type: .post, urlString: CouponListApi, parameters: params, succeed: { (result) in
             for json in result["list"].arrayValue{
                 self.couponList.append(json)
