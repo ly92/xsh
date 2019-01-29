@@ -58,7 +58,7 @@ let FunctionListApi = "module/list"//post userId
 //更多功能栏
 let FunctionMoreListApi = "module/more"// post userId
 //打卡记录
-let StepsLogListApi = "user/stepslog" // post skip limit
+let StepsLogListApi = "user/stepsLog" // post skip limit
 //运动步数转积分
 let StepTransToPointApi = "user/steps" // post steps sign_date
 

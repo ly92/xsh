@@ -16,7 +16,7 @@ class HealthHelper: NSObject {
     let healthStore = HKHealthStore()
     
     //请求步数数据
-    func requestStep() {
+    func requestStep(_ date : Date) {
         if !HKHealthStore.isHealthDataAvailable(){
             LYProgressHUD.showError("该设备不支持 健康 功能！")
             return
@@ -30,7 +30,7 @@ class HealthHelper: NSObject {
         
         self.healthStore.requestAuthorization(toShare: nil, read: healthSet) { (success, error) in
             if success {
-                self.getStep()
+                self.getStep(date)
             }else{
                 //失败
                 LYProgressHUD.showInfo("未允许访问健康数据，请您设置App允许访问健康数据！")
@@ -39,7 +39,7 @@ class HealthHelper: NSObject {
     }
     
     //获取步数
-    func getStep() {
+    func getStep(_ date : Date) {
         let time = Date.dateStringFromDate(format: Date.dateFormatString(), timeStamps: Date.dateYesterday().phpTimestamp())
         
         if LocalData.getYesOrNotValue(key: time){

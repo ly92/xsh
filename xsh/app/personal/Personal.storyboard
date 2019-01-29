@@ -1987,6 +1987,9 @@
                                             <constraint firstAttribute="height" constant="33" id="PZw-R5-UcI"/>
                                         </constraints>
                                         <state key="normal" image="back_white"/>
+                                        <connections>
+                                            <action selector="backAction" destination="NBk-Li-QtT" eventType="touchUpInside" id="MyO-gC-n8s"/>
+                                        </connections>
                                     </button>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="运动" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dxH-KK-d6Y">
                                         <rect key="frame" x="169" y="22" width="37" height="22"/>
@@ -1995,13 +1998,13 @@
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="8888" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Yyw-0q-q3f">
-                                        <rect key="frame" x="25" y="59.5" width="145" height="72"/>
+                                        <rect key="frame" x="25" y="68" width="145" height="72"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="60"/>
                                         <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="2018" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="PhC-lg-dyF">
-                                        <rect key="frame" x="25" y="136.5" width="28.5" height="15"/>
+                                        <rect key="frame" x="25" y="145" width="28.5" height="15"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="12"/>
                                         <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <nil key="highlightedColor"/>
@@ -2014,7 +2017,7 @@
                                         </constraints>
                                     </imageView>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="今日步数" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ZPC-Ws-1Kx">
-                                        <rect key="frame" x="170" y="106.5" width="50" height="15"/>
+                                        <rect key="frame" x="170" y="115" width="50" height="15"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="12"/>
                                         <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <nil key="highlightedColor"/>
@@ -2024,15 +2027,15 @@
                                 <constraints>
                                     <constraint firstItem="PhC-lg-dyF" firstAttribute="leading" secondItem="bud-o8-AQc" secondAttribute="leading" constant="25" id="2lK-Mx-LEu"/>
                                     <constraint firstItem="dxH-KK-d6Y" firstAttribute="top" secondItem="bud-o8-AQc" secondAttribute="top" constant="22" id="3vq-If-V5i"/>
-                                    <constraint firstItem="PhC-lg-dyF" firstAttribute="top" secondItem="Yyw-0q-q3f" secondAttribute="bottom" constant="5" id="67h-wx-LBt"/>
                                     <constraint firstAttribute="trailing" secondItem="OUZ-qX-6Xm" secondAttribute="trailing" constant="15" id="CfU-gs-Lf6"/>
                                     <constraint firstItem="dxH-KK-d6Y" firstAttribute="centerY" secondItem="7Hp-d1-ROZ" secondAttribute="centerY" id="HNf-ic-F1c"/>
+                                    <constraint firstItem="PhC-lg-dyF" firstAttribute="top" secondItem="Yyw-0q-q3f" secondAttribute="bottom" constant="5" id="Iqz-ht-KBc"/>
                                     <constraint firstItem="ZPC-Ws-1Kx" firstAttribute="bottom" secondItem="Yyw-0q-q3f" secondAttribute="bottom" constant="-10" id="RIg-JR-Rt2"/>
                                     <constraint firstItem="7Hp-d1-ROZ" firstAttribute="leading" secondItem="bud-o8-AQc" secondAttribute="leading" constant="5" id="UDV-VS-SxO"/>
                                     <constraint firstItem="ZPC-Ws-1Kx" firstAttribute="leading" secondItem="Yyw-0q-q3f" secondAttribute="trailing" id="Vca-as-JzV"/>
+                                    <constraint firstAttribute="bottom" secondItem="PhC-lg-dyF" secondAttribute="bottom" constant="10" id="ZQ7-Gr-jl3"/>
                                     <constraint firstAttribute="height" constant="170" id="bth-eu-5d9"/>
                                     <constraint firstItem="Yyw-0q-q3f" firstAttribute="leading" secondItem="bud-o8-AQc" secondAttribute="leading" constant="25" id="cEB-hS-h89"/>
-                                    <constraint firstItem="Yyw-0q-q3f" firstAttribute="top" secondItem="7Hp-d1-ROZ" secondAttribute="bottom" constant="10" id="izX-Lc-eZw"/>
                                     <constraint firstAttribute="bottom" secondItem="OUZ-qX-6Xm" secondAttribute="bottom" constant="20" id="j85-Ql-ICY"/>
                                     <constraint firstItem="dxH-KK-d6Y" firstAttribute="centerX" secondItem="bud-o8-AQc" secondAttribute="centerX" id="v0J-10-2ht"/>
                                 </constraints>

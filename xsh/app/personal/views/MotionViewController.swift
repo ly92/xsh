@@ -25,6 +25,33 @@ class MotionViewController: BaseViewController {
     fileprivate var stepsLogList : Array<JSON> = []
     fileprivate var haveMore = true
     
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        self.navigationController?.navigationBar.isTranslucent = true
+        self.navigationController?.navigationBar.setBackgroundImage(UIImage(), for: .default)
+        self.navigationController?.navigationBar.shadowImage = UIImage()
+        self.edgesForExtendedLayout = UIRectEdge.top
+        self.navigationController?.navigationBar.titleTextAttributes = [NSAttributedString.Key.foregroundColor: UIColor.clear, NSAttributedString.Key.font:UIFont.italicSystemFont(ofSize: 18.0)]
+        self.navigationController?.setNavigationBarHidden(true, animated: false)
+        
+        print(self.navHeight)
+        if self.navHeight > 64{
+            self.titleTopDis.constant = 44
+        }
+    }
+
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        self.navigationController?.setNavigationBarHidden(false, animated: false)
+        UIApplication.shared.statusBarStyle = .default
+        self.edgesForExtendedLayout = []
+        self.navigationController?.navigationBar.isTranslucent = false
+        self.navigationController?.navigationBar.setBackgroundImage(nil, for: .default)
+        self.navigationController?.navigationBar.shadowImage = nil
+        self.navigationController?.navigationBar.titleTextAttributes = [NSAttributedString.Key.foregroundColor: UIColor.RGBS(s: 33), NSAttributedString.Key.font:UIFont.italicSystemFont(ofSize: 18.0)]
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -72,6 +99,11 @@ class MotionViewController: BaseViewController {
         }
     }
 
+    @IBAction func backAction() {
+        self.navigationController?.popViewController(animated: true)
+    }
+    
+    
 }
 
 

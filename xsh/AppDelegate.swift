@@ -52,13 +52,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             JPUSHService.register(forRemoteNotificationConfig: entity, delegate: nil)
         }
         
-        //保证在广告后弹出，防止盖住广告
-        DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + 10) {
-            //步数转积分
-            HealthHelper.default.requestStep()
-        }
-        
-        
         return true
     }
 
