@@ -122,7 +122,9 @@ class ShopViewController: BaseViewController {
         self.tableView.dg_setPullToRefreshFillColor(Normal_Color)
         self.tableView.dg_setPullToRefreshBackgroundColor(self.tableView.backgroundColor!)
     }
-    
+    deinit {
+        self.tableView.dg_removePullToRefresh()
+    }
     
     
 }

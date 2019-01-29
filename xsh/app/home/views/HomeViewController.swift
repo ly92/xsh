@@ -82,6 +82,9 @@ class HomeViewController: BaseViewController {
         self.collectionView.dg_setPullToRefreshFillColor(Normal_Color)
         self.collectionView.dg_setPullToRefreshBackgroundColor(self.collectionView.backgroundColor!)
     }
+    deinit {
+        self.collectionView.dg_removePullToRefresh()
+    }
     
     //加载数据
     func loadData() {

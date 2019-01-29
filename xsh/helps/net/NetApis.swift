@@ -50,14 +50,17 @@ let CheckVersionApi = "ver" //post platform:终端类型
 let AreaListApi = "area/list" //post
 //获取小区列表
 let CommunityListApi = "community/list"//post areaid
-//运动步数转积分
-let StepTransToPointApi = "user/steps" // post steps sign_date
+
 
 /************************************ 功能栏 ********************************************/
 //首页功能栏
 let FunctionListApi = "module/list"//post userId
 //更多功能栏
 let FunctionMoreListApi = "module/more"// post userId
+//打卡记录
+let StepsLogListApi = "user/stepslog" // post skip limit
+//运动步数转积分
+let StepTransToPointApi = "user/steps" // post steps sign_date
 
 
 /************************************ 优惠券 ********************************************/

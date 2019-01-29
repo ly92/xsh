@@ -37,6 +37,9 @@
 		083F8F8F21D0D7220026341A /* PayBtnCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 083F8F8D21D0D7220026341A /* PayBtnCell.swift */; };
 		083F8F9021D0D7220026341A /* PayBtnCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 083F8F8E21D0D7220026341A /* PayBtnCell.xib */; };
 		08445F6921FF3D8E00230F5D /* StoreViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08445F6821FF3D8E00230F5D /* StoreViewController.swift */; };
+		08445F6B22009D0400230F5D /* MotionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08445F6A22009D0400230F5D /* MotionViewController.swift */; };
+		08445F6E22009DF900230F5D /* MotionStepCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08445F6C22009DF900230F5D /* MotionStepCell.swift */; };
+		08445F6F22009DF900230F5D /* MotionStepCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 08445F6D22009DF900230F5D /* MotionStepCell.xib */; };
 		0857EB5421F0CF3A00D4BC6D /* BaiDuMap.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0857EB5321F0CF3A00D4BC6D /* BaiDuMap.swift */; };
 		085D6CF221D1348600155895 /* PayPasswordView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 085D6CF121D1348600155895 /* PayPasswordView.swift */; };
 		085D6CF421D3B9A600155895 /* PersonalInfoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 085D6CF321D3B9A600155895 /* PersonalInfoViewController.swift */; };
@@ -187,6 +190,9 @@
 		083F8F8D21D0D7220026341A /* PayBtnCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PayBtnCell.swift; sourceTree = "<group>"; };
 		083F8F8E21D0D7220026341A /* PayBtnCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = PayBtnCell.xib; sourceTree = "<group>"; };
 		08445F6821FF3D8E00230F5D /* StoreViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StoreViewController.swift; sourceTree = "<group>"; };
+		08445F6A22009D0400230F5D /* MotionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MotionViewController.swift; sourceTree = "<group>"; };
+		08445F6C22009DF900230F5D /* MotionStepCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MotionStepCell.swift; sourceTree = "<group>"; };
+		08445F6D22009DF900230F5D /* MotionStepCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MotionStepCell.xib; sourceTree = "<group>"; };
 		0857EB5321F0CF3A00D4BC6D /* BaiDuMap.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaiDuMap.swift; sourceTree = "<group>"; };
 		085D6CF121D1348600155895 /* PayPasswordView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PayPasswordView.swift; sourceTree = "<group>"; };
 		085D6CF321D3B9A600155895 /* PersonalInfoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PersonalInfoViewController.swift; sourceTree = "<group>"; };
@@ -457,6 +463,8 @@
 				086E2CFF21C9EEBF00896F25 /* CouponCell.xib */,
 				08169D6921C943B10030D863 /* MyOrderCell.swift */,
 				08169D6A21C943B10030D863 /* MyOrderCell.xib */,
+				08445F6C22009DF900230F5D /* MotionStepCell.swift */,
+				08445F6D22009DF900230F5D /* MotionStepCell.xib */,
 			);
 			path = cells;
 			sourceTree = "<group>";
@@ -477,6 +485,7 @@
 				08D7B62F21CC9C5B007D191F /* PayViewController.swift */,
 				085D6CF721E4F37200155895 /* SelectCommunityViewController.swift */,
 				085D6D0021EE071A00155895 /* ChangePhoneViewController.swift */,
+				08445F6A22009D0400230F5D /* MotionViewController.swift */,
 			);
 			path = views;
 			sourceTree = "<group>";
@@ -1077,6 +1086,7 @@
 				08C7D97C21F07AFB00A625F1 /* StoreCell.xib in Resources */,
 				0819FBBC21C8DB550078EB8D /* TransactionBannerCell.xib in Resources */,
 				08E0D47821CF23500015992B /* MessageCell.xib in Resources */,
+				08445F6F22009DF900230F5D /* MotionStepCell.xib in Resources */,
 				086E2D0121C9EEBF00896F25 /* CouponCell.xib in Resources */,
 				08A3A40121C158CD008E071F /* Main.storyboard in Resources */,
 				08C7D97421F05EC300A625F1 /* Home.storyboard in Resources */,
@@ -1221,6 +1231,7 @@
 				083F8F8721D0D6DB0026341A /* PayWayCell.swift in Sources */,
 				08A3A46521C168B6008E071F /* UIView+Category.swift in Sources */,
 				08C7D96F21F05EA100A625F1 /* HomeViewController.swift in Sources */,
+				08445F6E22009DF900230F5D /* MotionStepCell.swift in Sources */,
 				08C7D95F21F05DC300A625F1 /* CouponGetCell.swift in Sources */,
 				08E0D47721CF23500015992B /* MessageCell.swift in Sources */,
 				08C7D97121F05EA100A625F1 /* NoticeDetailViewController.swift in Sources */,
@@ -1267,6 +1278,7 @@
 				08C7D97021F05EA100A625F1 /* MoreFunctionViewController.swift in Sources */,
 				08D7B6A321CCC310007D191F /* RSADataVerifier.m in Sources */,
 				089A29F3220056AB0072A73F /* TakeOnePhotoHelper.swift in Sources */,
+				08445F6B22009D0400230F5D /* MotionViewController.swift in Sources */,
 				08C7D97B21F07AFB00A625F1 /* StoreCell.swift in Sources */,
 				0861B84A21C53EEB008795E5 /* RegisterViewController.swift in Sources */,
 				08169D7421CA840E0030D863 /* UIBUtton+Extension.swift in Sources */,
