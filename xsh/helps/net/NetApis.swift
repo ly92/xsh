@@ -39,6 +39,8 @@ let ForgetPwdApi = "user/resetpwd" // post mobile,code,passwd
 let GetPersonalInfoApi = "user/get" //post id
 //修改个人信息
 let ChangePersonalInfoApi = "user/modify" //post cid,nickname,gender,idcard,areaid, communityid:所在小区id
+//修改头像
+let ChangePersonIconApi = "user/iconurl" // post iconurl
 //修改手机号
 let ChangePhoneApi = "user/mobile" //post cid:用户内部id，mobile:手机号，code:验证码，passwd:验证密码md5(md5(密码)+手机号)
 //查询最新版本

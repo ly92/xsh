@@ -77,7 +77,11 @@ class PersonalInfoViewController: BaseTableViewController {
         if indexPath.row == 0{
             //头像
             TakeOnePhotoHelper.default.takePhoto(self) { (image) in
-                
+                NetTools.upLoadImage(urlString: ChangePersonIconApi, imgArray: [image], success: { (result) in
+                    print(result)
+                }, failture: { (error) in
+                    LYProgressHUD.showError(error)
+                })
             }
         }else if indexPath.row == 1{
              //名字

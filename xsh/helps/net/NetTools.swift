@@ -77,55 +77,6 @@ class NetTools: NSObject {
 //通用请求方法
 extension NetTools{
     
-    /// 通用请求方法
-    ///
-    /// - Parameters:
-    ///   - type: 请求方式
-    ///   - urlString: 请求地址
-    ///   - parameters: 参数
-    ///   - succeed: 请求成功时的回调
-    ///   - failure: 请求失败时的回调
-    static func registRequest(type: MethodType, urlString: String, parameters: [String : Any]? = nil, succeed: @escaping((_ result : Any?, _ error : Error?) -> Swift.Void), failure:@escaping((_ error : Error) -> Swift.Void)){
-        //1.获取类型
-        let method = type == .get ? HTTPMethod.get : HTTPMethod.post
-        
-        let headers: HTTPHeaders = ["Authorization": "Basic QWxhZGRpbjpvcGVuIHNlc2FtZQ==",
-                                    "Accept": "text/html",
-                                    "application/x-www-form-urlencoded": "charset=utf-8",
-                                    "Content-Type": "application/json",
-                                    "Content-Length": "12130"
-        ]
-        
-        let start = CACurrentMediaTime()
-        
-        let api = usedServer + ""
-        
-        //2.发送网络请求encoding: URLEncoding.default,
-        NetTools.defManager.request(api, method: method, parameters: parameters, encoding: URLEncoding.default, headers: headers).responseJSON { (response) in
-            let end = CACurrentMediaTime()
-            let elapsedTime = end - start
-            debugPrint("请求时间 = \(elapsedTime)")
-            
-            //请求失败
-            if response.result.isFailure{
-                debugPrint(response.result.error ?? "请求失败，错误原因未知！！")
-                failure(response.result.error!)
-            }
-            
-            //请求成功
-            if response.result.isSuccess{
-                //3.获取结果
-                guard let result = response.result.value else{
-                    succeed(nil, response.result.error)
-                    return
-                }
-                //4.将结果回调出去
-                succeed(result,nil)
-            }
-        }
-    }
-    
-    
     /// 通用获取数据请求
     ///
     /// - Parameters:
@@ -203,7 +154,7 @@ extension NetTools{
                 debugPrint("-----------返回数据--------")
                 debugPrint(json)
                 #endif
-
+                
                 
                 if json["code"].stringValue == "0"{
                     //返回正确结果
@@ -231,6 +182,58 @@ extension NetTools{
             }
         }
     }
+    
+    
+    //上传头像
+    static func upLoadImage(urlString: String, imgArray: Array<UIImage>,success : @escaping (_ response : String)->(), failture : @escaping (_ error : String)->()){
+        /**
+         cid:用户id
+         ts：时间戳
+         sign：签名md5(cid+ts+cmdno+passwd)
+         cmdno：
+         */
+        let ts = Date.phpTimestamp()
+        let cmdno = String.randomStr(len: 20) + ts
+        let sign = (LocalData.getCId() + ts + cmdno + LocalData.getPwd()).md5String()
+        
+        //2.设置请求头
+        let headers : HTTPHeaders = [
+            "osType": "ios",
+            "Content-Type" : "multipart/form-data",
+            "form-data" : "file"
+        ]
+        let url = usedServer + urlString
+        NetTools.defManager.upload(
+            multipartFormData: { multipartFormData in
+                for i in 0..<imgArray.count{
+                    let image = imgArray[i]
+                    let imageData = self.resetImgSize(sourceImage: image, maxImageLenght: 500, maxSizeKB: 450)
+                    multipartFormData.append(imageData, withName: "iconurl", fileName: "iconurl", mimeType: "image/jpeg")
+                }
+                
+                multipartFormData.append(ts.data(using: .utf8)!, withName: "ts")
+                multipartFormData.append(sign.data(using: .utf8)!, withName: "sign")
+                multipartFormData.append(cmdno.data(using: .utf8)!, withName: "cmdno")
+                multipartFormData.append(LocalData.getCId().data(using: .utf8)!, withName: "cid")
+        },
+            to: url,
+            method: HTTPMethod.post,
+            headers: headers,
+            encodingCompletion: { encodingResult in
+                switch encodingResult {
+                case .success(let upload, _, _):
+                    upload.responseJSON(completionHandler: { (response) in
+                        let json = JSON(response.result.value ?? ["error":"未请求到数据"])
+                        debugPrint(json)
+                    })
+                case .failure(let encodingError):
+                    failture("\(encodingError)")
+                    debugPrint(encodingError)
+                }
+        })
+    }
+    
+    
     
     
     //登录
@@ -290,8 +293,50 @@ extension NetTools{
         }
     }
     
+    class func resetImgSize(sourceImage : UIImage,maxImageLenght : CGFloat,maxSizeKB : CGFloat) -> Data {
+        var maxSize = maxSizeKB
+        var maxImageSize = maxImageLenght
+        if (maxSize <= 0.0) {
+            maxSize = 1024.0;
+        }
+        if (maxImageSize <= 0.0)  {
+            maxImageSize = 1024.0;
+        }
+        
+        //先调整分辨率
+        var newSize = CGSize.init(width: sourceImage.size.width, height: sourceImage.size.height)
+        let tempHeight = newSize.height / maxImageSize;
+        let tempWidth = newSize.width / maxImageSize;
+        if (tempWidth > 1.0 && tempWidth > tempHeight) {
+            newSize = CGSize.init(width: sourceImage.size.width / tempWidth, height: sourceImage.size.height / tempWidth)
+        }
+        else if (tempHeight > 1.0 && tempWidth < tempHeight){
+            newSize = CGSize.init(width: sourceImage.size.width / tempHeight, height: sourceImage.size.height / tempHeight)
+        }
+        
+        UIGraphicsBeginImageContext(newSize)
+        
+        sourceImage.draw(in: CGRect.init(x: 0, y: 0, width: newSize.width, height: newSize.height))
+        
+        let newImage = UIGraphicsGetImageFromCurrentImageContext()
+        
+        UIGraphicsEndImageContext()
+        
+        var imageData = newImage!.jpegData(compressionQuality: 1.0)
+        var sizeOriginKB : CGFloat = CGFloat((imageData?.count)!) / 1024.0;
+        //调整大小
+        var resizeRate = 0.9;
+        while (sizeOriginKB > maxSize && resizeRate > 0.1) {
+            
+            imageData = newImage!.jpegData(compressionQuality: CGFloat(resizeRate))
+            sizeOriginKB = CGFloat((imageData?.count)!) / 1024.0;
+            resizeRate -= 0.1;
+        }
+        return imageData!
+    }
     
     static func zipImage(currentImage: UIImage,scaleSize:CGFloat,percent: CGFloat) -> Data?{
+        
         //压缩图片尺寸
         UIGraphicsBeginImageContext(CGSize.init(width: currentImage.size.width*scaleSize, height: currentImage.size.height*scaleSize))
         currentImage.draw(in: CGRect(x: 0, y: 0, width: currentImage.size.width*scaleSize, height:currentImage.size.height*scaleSize))
@@ -301,36 +346,6 @@ extension NetTools{
         //UIImageJPEGRepresentation此方法可将图片压缩，但是图片质量基本不变，第二个参数即图片质量参数。
         let imageData = newImage.jpegData(compressionQuality: percent)
         return imageData
-    }
-    
-    
-    
-    
-    //外部接口调用
-    static func requestCustomerApi(type: MethodType, urlString: String, parameters: [String : Any]? = nil, succeed: @escaping((_ result: JSON) -> Swift.Void), failure: @escaping((_ error: String?) -> Swift.Void)){
-        //1.获取类型
-        let method = type == .get ? HTTPMethod.get : HTTPMethod.post
-        //5.获取网络请求
-        NetTools.defManager.request(urlString, method: method, parameters: parameters, encoding: URLEncoding.default).responseJSON { (respose) in
-            //请求成功
-            if respose.result.isSuccess{
-                let json = JSON(respose.result.value ?? ["error":"未请求到数据"])
-                #if DEBUG
-                debugPrint("-----------返回数据--------")
-                debugPrint(json)
-                #endif
-                //返回正确结果
-                succeed(json)
-            }
-            //请求失败
-            if respose.result.isFailure{
-                #if DEBUG
-                debugPrint("-----------错误数据--------")
-                debugPrint(respose.result.error ?? "请求失败！")
-                #endif
-                failure(respose.result.error as? String ?? "请求失败！")
-            }
-        }
     }
     
     
