@@ -74,7 +74,12 @@ class PersonalInfoViewController: BaseTableViewController {
 
    
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        if indexPath.row == 1{
+        if indexPath.row == 0{
+            //头像
+            TakeOnePhotoHelper.default.takePhoto(self) { (image) in
+                
+            }
+        }else if indexPath.row == 1{
              //名字
             let changeVC = ChanegInfoViewController()
             changeVC.changeType = 1

@@ -63,6 +63,7 @@
 		086E2D0921CA2E0D00896F25 /* LYAlertView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 086E2D0821CA2E0D00896F25 /* LYAlertView.swift */; };
 		087B012421F9A3FB00CFB3A6 /* HealthKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 087B012321F9A3FB00CFB3A6 /* HealthKit.framework */; };
 		087B012621F9A57B00CFB3A6 /* HealthHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 087B012521F9A57B00CFB3A6 /* HealthHelper.swift */; };
+		089A29F3220056AB0072A73F /* TakeOnePhotoHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 089A29F2220056AB0072A73F /* TakeOnePhotoHelper.swift */; };
 		08A3A3FC21C158CD008E071F /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08A3A3FB21C158CD008E071F /* AppDelegate.swift */; };
 		08A3A3FE21C158CD008E071F /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08A3A3FD21C158CD008E071F /* ViewController.swift */; };
 		08A3A40121C158CD008E071F /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 08A3A3FF21C158CD008E071F /* Main.storyboard */; };
@@ -213,6 +214,7 @@
 		086E2D0821CA2E0D00896F25 /* LYAlertView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LYAlertView.swift; sourceTree = "<group>"; };
 		087B012321F9A3FB00CFB3A6 /* HealthKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = HealthKit.framework; path = System/Library/Frameworks/HealthKit.framework; sourceTree = SDKROOT; };
 		087B012521F9A57B00CFB3A6 /* HealthHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HealthHelper.swift; sourceTree = "<group>"; };
+		089A29F2220056AB0072A73F /* TakeOnePhotoHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TakeOnePhotoHelper.swift; sourceTree = "<group>"; };
 		08A3A3F821C158CD008E071F /* xsh.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = xsh.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		08A3A3FB21C158CD008E071F /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		08A3A3FD21C158CD008E071F /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -442,6 +444,7 @@
 				085D6CF521D3C4BB00155895 /* LYPickerView.swift */,
 				0857EB5321F0CF3A00D4BC6D /* BaiDuMap.swift */,
 				087B012521F9A57B00CFB3A6 /* HealthHelper.swift */,
+				089A29F2220056AB0072A73F /* TakeOnePhotoHelper.swift */,
 			);
 			path = comment;
 			sourceTree = "<group>";
@@ -1263,6 +1266,7 @@
 				086E2CFC21C9E75900896F25 /* MyOrderTableViewController.swift in Sources */,
 				08C7D97021F05EA100A625F1 /* MoreFunctionViewController.swift in Sources */,
 				08D7B6A321CCC310007D191F /* RSADataVerifier.m in Sources */,
+				089A29F3220056AB0072A73F /* TakeOnePhotoHelper.swift in Sources */,
 				08C7D97B21F07AFB00A625F1 /* StoreCell.swift in Sources */,
 				0861B84A21C53EEB008795E5 /* RegisterViewController.swift in Sources */,
 				08169D7421CA840E0030D863 /* UIBUtton+Extension.swift in Sources */,
