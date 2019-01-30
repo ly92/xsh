@@ -246,6 +246,11 @@ extension Date{
         let components = calendar.dateComponents(unitFlags, from: self)
         return components.minute!
     }
+    //当前分钟
+    func second() -> NSInteger {
+        let components = calendar.dateComponents(unitFlags, from: self)
+        return components.second!
+    }
     
     //本年
     static func currentYear() -> NSInteger {
@@ -401,6 +406,15 @@ extension Date{
         let ts = String(format:"%0.f",interval)
         return ts
     }
+    
+    //时间戳转为当前时间
+    static func timestampToDate(_ timestamp : Double) -> Date{
+        let cur = timestamp + 8 * D_HOUR
+        let date = Date.init(timeIntervalSince1970: TimeInterval(cur))
+        return date
+    }
+    
+    
     
     static func dayCountInYearAndMonth(year:NSInteger, month:NSInteger) -> Int{
         switch month {

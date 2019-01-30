@@ -40,6 +40,9 @@ class BaseTableViewController: UITableViewController {
         self.tableView.dg_setPullToRefreshBackgroundColor(self.tableView.backgroundColor!)
     }
     
+    override var preferredStatusBarStyle: UIStatusBarStyle{
+        return UIStatusBarStyle.default
+    }
     
     deinit {
         self.tableView.dg_removePullToRefresh()

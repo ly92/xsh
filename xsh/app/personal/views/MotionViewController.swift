@@ -34,7 +34,6 @@ class MotionViewController: BaseViewController {
         self.navigationController?.navigationBar.titleTextAttributes = [NSAttributedString.Key.foregroundColor: UIColor.clear, NSAttributedString.Key.font:UIFont.italicSystemFont(ofSize: 18.0)]
         self.navigationController?.setNavigationBarHidden(true, animated: false)
         
-        print(self.navHeight)
         if self.navHeight > 64{
             self.titleTopDis.constant = 44
         }
@@ -44,12 +43,15 @@ class MotionViewController: BaseViewController {
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
         self.navigationController?.setNavigationBarHidden(false, animated: false)
-        UIApplication.shared.statusBarStyle = .default
         self.edgesForExtendedLayout = []
         self.navigationController?.navigationBar.isTranslucent = false
         self.navigationController?.navigationBar.setBackgroundImage(nil, for: .default)
         self.navigationController?.navigationBar.shadowImage = nil
         self.navigationController?.navigationBar.titleTextAttributes = [NSAttributedString.Key.foregroundColor: UIColor.RGBS(s: 33), NSAttributedString.Key.font:UIFont.italicSystemFont(ofSize: 18.0)]
+    }
+    
+    override var preferredStatusBarStyle: UIStatusBarStyle{
+        return UIStatusBarStyle.lightContent
     }
     
     override func viewDidLoad() {
@@ -83,12 +85,13 @@ class MotionViewController: BaseViewController {
     
     //今日步数
     func loadTodayStep() {
-        HealthHelper.default.requestStep(Date()) { (steps) in
-            self.numLbl.text = "\(steps)"
-            self.timeLbl.text = Date.dateStringFromDate(format: Date.timestampFormatString(), timeStamps: Date().phpTimestamp())
+        HealthHelper().requestStep(Date()) { (steps) in
+            DispatchQueue.main.async {
+                self.numLbl.text = "\(steps)"
+                self.timeLbl.text = Date.dateStringFromDate(format: Date.timestampFormatString(), timeStamps: Date().phpTimestamp())
+            }
         }
     }
-    
     
     //打卡记录
     func loadStepsLog() {
@@ -104,12 +107,35 @@ class MotionViewController: BaseViewController {
             for json in result["list"].arrayValue{
                 self.stepsLogList.append(json)
             }
-            self.tableView.reloadData()
+            self.prepareData()
         }) { (error) in
             LYProgressHUD.showError(error)
         }
     }
-
+    
+    //预处理数据
+    func prepareData() {
+        let tempArray = self.stepsLogList
+        for i in 0...tempArray.count - 1{
+            var temp = tempArray[i]
+            //status 0未打卡 1可补卡 2已打卡 3已过期
+            let status = temp["status"].stringValue.intValue
+            let date = Date.timestampToDate(Double(temp["date"].stringValue.intValue))
+            if (status == 0 || status == 1) && temp["steps"].intValue == 0{
+                HealthHelper().requestStep(date) { (steps) in
+                    DispatchQueue.main.async {
+                        temp["steps"] = JSON(steps)
+                        self.stepsLogList.remove(at: i)
+                        self.stepsLogList.insert(temp, at: i)
+                        self.tableView.reloadData()
+                    }
+                }
+            }
+        }
+    }
+    
+    
+    //返回按钮
     @IBAction func backAction() {
         self.navigationController?.popViewController(animated: true)
     }

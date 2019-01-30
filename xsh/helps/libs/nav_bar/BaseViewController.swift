@@ -26,6 +26,9 @@ class BaseViewController: UIViewController {
         }
     }
     
+    override var preferredStatusBarStyle: UIStatusBarStyle{
+        return UIStatusBarStyle.default
+    }
    
 
     /*

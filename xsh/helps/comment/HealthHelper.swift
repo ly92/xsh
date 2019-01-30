@@ -11,7 +11,7 @@ import HealthKit
 
 class HealthHelper: NSObject {
     //单例
-    static let `default` = HealthHelper()
+//    static let `default` = HealthHelper()
     
     let healthStore = HKHealthStore()
     fileprivate var stepsBlock : ((Int) ->Void)?
@@ -22,9 +22,7 @@ class HealthHelper: NSObject {
             LYProgressHUD.showError("该设备不支持 健康 功能！")
             return
         }
-        
         self.stepsBlock = block
-        
         //设置需要获取的权限这里仅设置了步数
         guard let healthType = HKObjectType.quantityType(forIdentifier: .stepCount) else {
             return
@@ -52,9 +50,14 @@ class HealthHelper: NSObject {
         let hour = dateComponent.hour ?? 0
         let minute = dateComponent.minute ?? 0
         let second = dateComponent.second ?? 0
-        let today_start = Date.init(timeIntervalSinceNow: TimeInterval( -hour * 3600 - minute * 60 - second))
-        let today_end = Date.init(timeIntervalSinceNow: TimeInterval( 86400 - hour * 3600 - minute * 60 - second))
-        let predicate = HKQuery.predicateForSamples(withStart: today_start, end: today_end, options: [HKQueryOptions.init(rawValue: 0)])
+        
+        let start_time = date.phpTimestamp().intValue - hour * 3600 - minute * 60 - second
+        let end_time = start_time + 86399
+        
+        let date_start = Date.timestampToDate(Double(start_time))
+        let date_end = Date.timestampToDate(Double(end_time))
+        
+        let predicate = HKQuery.predicateForSamples(withStart: date_start, end: date_end, options: [HKQueryOptions.init(rawValue: 0)])
 
         let start = NSSortDescriptor.init(key: HKSampleSortIdentifierStartDate, ascending: false)
         let end = NSSortDescriptor.init(key: HKSampleSortIdentifierEndDate, ascending: false)
@@ -75,7 +78,6 @@ class HealthHelper: NSObject {
                 if self.stepsBlock != nil{
                     self.stepsBlock!(count)
                 }
-                
             }
         }
         self.healthStore.execute(sampleQuery)
