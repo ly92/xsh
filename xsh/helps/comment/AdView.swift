@@ -10,42 +10,23 @@ import UIKit
 import SwiftyJSON
 
 class AdView: UIView {
-
+    
+    fileprivate var imgV = UIImageView()
+    fileprivate var adArray : Array<JSON> = []
+    fileprivate var index : Int = 0
+    
     //
     func setUpSubViews(_ json : JSON) {
+        
+        self.adArray = json.arrayValue
+        
         self.frame = CGRect.init(x: 0, y: 0, width: kScreenW, height: kScreenH)
         UIApplication.shared.keyWindow?.addSubview(self)
         UIApplication.shared.keyWindow?.bringSubviewToFront(self)
         
         //imageview
-        let imgV = UIImageView.init(frame: CGRect.init(x: 0, y: 0, width: kScreenW, height: kScreenH))
-        var url = json["imageurl"].stringValue
-        if url.isEmpty{
-            url = "http://starlife3c.test.upcdn.net/ads/201812/154544684745.img"
-        }
-        imgV.setImageUrlStrAndPlaceholderImg(url, #imageLiteral(resourceName: "ad_placeholder"))
-        self.addSubview(imgV)
-        
-        /**20190115
-        //webview
-        let webView = UIWebView.init(frame: CGRect.init(x: 0, y: 0, width: kScreenW, height: kScreenH))
-        webView.delegate = self
-        webView.scalesPageToFit = true
-        
-        let content = json["content"].stringValue
-        if content.hasPrefix("这里"){
-            var url = json["imageurl"].stringValue
-            if url.isEmpty{
-                url = "http://starlife3c.test.upcdn.net/ads/201812/154544684745.img"
-            }
-            let request = URLRequest.init(url: URL(string:url)!)
-            webView.loadRequest(request)
-        }else{
-            let html = "<html> <body> " + content + "</body> </html>"
-            webView.loadHTMLString(html, baseURL: URL(string:"www.baidu.com"))
-        }
-        self.addSubview(webView)
-        */
+        self.imgV.frame = CGRect.init(x: 0, y: 0, width: kScreenW, height: kScreenH)
+        self.addSubview(self.imgV)
         
         //跳过btn
         let skipBtn = UIButton(frame:CGRect.init(x: kScreenW - 100, y: 40, width: 80, height: 30))
@@ -60,7 +41,6 @@ class AdView: UIView {
         
         self.addTapActionBlock {
             self.skipAction()
-            //详情
             //跳转外部链接
             let webVC = BaseWebViewController()
             webVC.titleStr = json["title"].stringValue
@@ -71,33 +51,29 @@ class AdView: UIView {
             nav.viewControllers.first?.navigationController?.pushViewController(webVC, animated: true)
         }
         
-        
-        /*20190115
-        webView.addTapActionBlock {
-            //详情
-            //跳转外部链接
-            let webVC = BaseWebViewController()
-            webVC.titleStr = json["title"].stringValue
-            webVC.urlStr = json["imageurl"].stringValue
-            guard let nav = AppDelegate.sharedInstance.tabBar.selectedViewController as? LYNavigationController else{
-                return
-            }
-            nav.viewControllers.first?.present(webVC, animated: true) {
-            }
-        }
-        
-        //视图在导航器中显示默认四边距离
-        if #available(iOS 11.0, *){
-            webView.scrollView.contentInsetAdjustmentBehavior = .never
-        }
-        */
-        
-        
-        DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + 5) {
-            self.skipAction()
-        }
+        self.showImage()
         
     }
+    
+    
+    func showImage() {
+        let json = self.adArray[self.index]
+        var url = json["imageurl"].stringValue
+        if url.isEmpty{
+            url = "http://starlife3c.test.upcdn.net/ads/201812/154544684745.img"
+        }
+        self.imgV.setImageUrlStrAndPlaceholderImg(url, #imageLiteral(resourceName: "ad_placeholder"))
+        DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + 5) {
+            if self.adArray.count > self.index{
+                self.showImage()
+            }else{
+                self.skipAction()
+            }
+        }
+        
+        self.index += 1
+    }
+    
 
     //跳过
     @objc func skipAction(){
@@ -108,14 +84,6 @@ class AdView: UIView {
         }
     }
     
-//    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
-//        let touch = ((touches as NSSet).anyObject() as AnyObject)     //进行类  型转化
-//
-//        let point = touch.location(in:self)     //获取当前点击位置
-//        if
-//
-//    }
-    
     
     //展示
     class func showWithJson(_ json : JSON){
@@ -124,8 +92,3 @@ class AdView: UIView {
     
 }
 
-
-
-extension AdView : UIWebViewDelegate{
-    
-}

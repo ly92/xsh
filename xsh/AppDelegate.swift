@@ -257,16 +257,19 @@ extension AppDelegate {
     
     //启动广告
     func getAdData() {
-        let oldAd = LocalData.getAdJson()
-        if !oldAd["imageurl"].stringValue.isEmpty{
-            AdView.showWithJson(oldAd)
+        let oldAds = LocalData.getAdJson()
+        if oldAds.arrayValue.count > 0{
+            AdView.showWithJson(oldAds)
         }
         
         var params : [String : Any] = [:]
         params["location"] = "start"
-        NetTools.requestData(type: .post, urlString: AdLaunchApi, parameters: params, succeed: { (result) in
-            LocalData.saveAdJson(json: result["ads"])
-            
+        NetTools.requestData(type: .post, urlString: AdListApi, parameters: params, succeed: { (result) in
+            LocalData.saveAdJson(json: result["list"]["list"])
+//            var urlArray : Array<String> = []
+//            for json in result["list"]["list"].arrayValue{
+//                urlArray.append(json["imageurl"].stringValue)
+//            }
         }) { (error) in
             LYProgressHUD.showError(error)
         }

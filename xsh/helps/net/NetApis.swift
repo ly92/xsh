@@ -57,6 +57,8 @@ let CommunityListApi = "community/list"//post areaid
 let FunctionListApi = "module/list"//post userId
 //更多功能栏
 let FunctionMoreListApi = "module/more"// post userId
+//积分兑换规则
+let StepTransPointRuleApi = "stepsOpt" // post
 //打卡记录
 let StepsLogListApi = "user/stepsLog" // post skip limit
 //运动步数转积分

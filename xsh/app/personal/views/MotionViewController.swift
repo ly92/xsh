@@ -24,6 +24,7 @@ class MotionViewController: BaseViewController {
     
     fileprivate var stepsLogList : Array<JSON> = []
     fileprivate var haveMore = true
+    fileprivate var rule = JSON()
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
@@ -60,6 +61,8 @@ class MotionViewController: BaseViewController {
         self.tableView.register(UINib.init(nibName: "MotionStepCell", bundle: Bundle.main), forCellReuseIdentifier: "MotionStepCell")
         
         self.loadStepsLog()
+        self.transPointRule()
+        
         self.pullToRefre()
         
         self.loadTodayStep()
@@ -80,6 +83,15 @@ class MotionViewController: BaseViewController {
     
     deinit {
         self.tableView.dg_removePullToRefresh()
+    }
+    
+    //积分兑换规则
+    func transPointRule() {
+        NetTools.requestData(type: .post, urlString: StepTransPointRuleApi, succeed: { (result) in
+            self.rule = result
+        }) { (error) in
+            LYProgressHUD.showError(error)
+        }
     }
     
     
@@ -153,6 +165,7 @@ extension MotionViewController : UITableViewDelegate, UITableViewDataSource{
         let cell = tableView.dequeueReusableCell(withIdentifier: "MotionStepCell", for: indexPath) as! MotionStepCell
         if self.stepsLogList.count > indexPath.row{
             let json = self.stepsLogList[indexPath.row]
+            cell.rule = self.rule
             cell.subJson = json
         }
         return cell

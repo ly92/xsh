@@ -17,7 +17,7 @@ class MotionStepCell: UITableViewCell {
     @IBOutlet weak var stepLbl: UILabel!
     @IBOutlet weak var btn: UIButton!
     
-    
+    var rule = JSON()
     
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -33,30 +33,45 @@ class MotionStepCell: UITableViewCell {
     var subJson = JSON(){
         didSet{
             self.timeLbl.text = Date.dateStringFromDate(format: Date.dateFormatString(), timeStamps: self.subJson["date"].stringValue)
-            
+
             self.stepLbl.text = "步数:" + self.subJson["steps"].stringValue
-            self.pointLbl.text = self.subJson["steps"].stringValue
+            
             
             //status 0未打卡 1可补卡 2已打卡 3已过期
             let status = self.subJson["status"].stringValue.intValue
             if status == 0{
+                let steps = self.subJson["steps"].intValue
+                var point = (steps - self.rule["start_num"].intValue) / self.rule["part_num"].intValue
+                if point > self.rule["max_points"].intValue{
+                    point = self.rule["max_points"].intValue
+                }
+                
                 self.pointLeftLbl.text = "可兑换"
+                self.pointLbl.text = "\(point)"
                 self.btn.setTitle("打卡", for: .normal)
                 self.btn.backgroundColor = Normal_Color
             }else if status == 1{
+                let steps = self.subJson["steps"].intValue
+                var point = (steps - self.rule["start_num"].intValue) / self.rule["part_num"].intValue
+                if point > self.rule["max_points"].intValue{
+                    point = self.rule["max_points"].intValue
+                }
+                
                 self.pointLeftLbl.text = "可兑换"
+                self.pointLbl.text = "\(point)"
                 self.btn.setTitle("补卡", for: .normal)
                 self.btn.backgroundColor = Normal_Color
             }else if status == 2{
                 self.pointLeftLbl.text = "已兑换"
+                self.pointLbl.text = self.subJson["points"].stringValue
                 self.btn.setTitle("已打卡", for: .normal)
                 self.btn.backgroundColor = UIColor.gray
             }else if status == 3{
                 self.pointLeftLbl.text = "可兑换"
+                self.pointLbl.text = self.subJson["points"].stringValue
                 self.btn.setTitle("已过期", for: .normal)
                 self.btn.backgroundColor = UIColor.RGBS(s: 200)
             }
-            
         }
     }
     

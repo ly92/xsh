@@ -80,12 +80,20 @@ class NoticeTableViewController: BaseTableViewController {
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: false)
-        
         if self.noticeList.count > indexPath.row{
             let json = self.noticeList[indexPath.row]
-            let detailVC = NoticeDetailViewController.spwan()
-            detailVC.noticeId = json["id"].stringValue
-            self.navigationController?.pushViewController(detailVC, animated: true)
+            
+            if json["type"].intValue == 1{
+                let webVC = BaseWebViewController()
+                webVC.titleStr = json["title"].stringValue
+                let url = json["outurl"].stringValue
+                webVC.urlStr = url
+                self.navigationController?.pushViewController(webVC, animated: true)
+            }else{
+                let detailVC = NoticeDetailViewController.spwan()
+                detailVC.noticeId = json["id"].stringValue
+                self.navigationController?.pushViewController(detailVC, animated: true)
+            }
         }
     }
     
