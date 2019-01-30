@@ -36,8 +36,9 @@ class PersonalInfoViewController: BaseTableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         self.navigationItem.title = "个人信息"
+        self.iconImgV.layer.cornerRadius = 22.5
         
-        self.iconImgV.setImageUrlStr(self.personalInfo[""].stringValue)
+        self.iconImgV.setHeadImageUrlStr(self.personalInfo["iconurl"].stringValue)
         self.nameLbl.text = self.personalInfo["nickname"].stringValue
         self.genderLbl.text = self.personalInfo["gender"].stringValue.intValue == 1 ? "男" : "女"
         self.addressLbl.text = self.personalInfo["area"].stringValue + " " + self.personalInfo["community"].stringValue
@@ -66,7 +67,6 @@ class PersonalInfoViewController: BaseTableViewController {
         params["areaid"] = self.areaId
         params["communityid"] = self.communityId
         NetTools.requestData(type: .post, urlString: ChangePersonalInfoApi, parameters: params, succeed: { (result) in
-
         }) { (error) in
             LYProgressHUD.showError(error)
         }
@@ -78,7 +78,8 @@ class PersonalInfoViewController: BaseTableViewController {
             //头像
             TakeOnePhotoHelper.default.takePhoto(self) { (image) in
                 NetTools.upLoadImage(urlString: ChangePersonIconApi, imgArray: [image], success: { (result) in
-                    print(result)
+                    self.iconImgV.image = image
+                    LYProgressHUD.showSuccess("更新成功！")
                 }, failture: { (error) in
                     LYProgressHUD.showError(error)
                 })

@@ -59,6 +59,8 @@ class MotionViewController: BaseViewController {
         
         self.loadStepsLog()
         self.pullToRefre()
+        
+        self.loadTodayStep()
     }
     
     
@@ -76,6 +78,15 @@ class MotionViewController: BaseViewController {
     
     deinit {
         self.tableView.dg_removePullToRefresh()
+    }
+    
+    
+    //今日步数
+    func loadTodayStep() {
+        HealthHelper.default.requestStep(Date()) { (steps) in
+            self.numLbl.text = "\(steps)"
+            self.timeLbl.text = Date.dateStringFromDate(format: Date.timestampFormatString(), timeStamps: Date().phpTimestamp())
+        }
     }
     
     

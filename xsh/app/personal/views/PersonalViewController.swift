@@ -52,6 +52,8 @@ class PersonalViewController: BaseTableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        self.icon.layer.cornerRadius = 30
+        
         //登录通知
         NotificationCenter.default.addObserver(forName: NSNotification.Name(rawValue: KLoginSuccessNotiName), object: nil, queue: nil) { (noti) in
             self.loadPersonalInfo()
@@ -70,7 +72,7 @@ class PersonalViewController: BaseTableViewController {
         NetTools.requestData(type: .post, urlString: GetPersonalInfoApi, parameters: params, succeed: { (result) in
             self.personalInfo = result["user"]
             
-            self.icon.setHeadImageUrlStr(result["user"][""].stringValue)
+            self.icon.setHeadImageUrlStr(result["user"]["iconurl"].stringValue)
             self.nameLbl.text = result["user"]["nickname"].stringValue
             let phone = result["user"]["mobile"].stringValue.trim
             if phone.isMobelPhone(){

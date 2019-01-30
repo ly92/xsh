@@ -208,7 +208,7 @@ extension NetTools{
                 for i in 0..<imgArray.count{
                     let image = imgArray[i]
                     let imageData = self.resetImgSize(sourceImage: image, maxImageLenght: 500, maxSizeKB: 450)
-                    multipartFormData.append(imageData, withName: "iconurl", fileName: "iconurl", mimeType: "image/jpeg")
+                    multipartFormData.append(imageData, withName: "iconurl", fileName: "temp.jpeg", mimeType: "image/jpeg")
                 }
                 
                 multipartFormData.append(ts.data(using: .utf8)!, withName: "ts")

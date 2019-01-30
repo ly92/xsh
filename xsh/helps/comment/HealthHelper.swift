@@ -14,13 +14,16 @@ class HealthHelper: NSObject {
     static let `default` = HealthHelper()
     
     let healthStore = HKHealthStore()
+    fileprivate var stepsBlock : ((Int) ->Void)?
     
     //请求步数数据
-    func requestStep(_ date : Date) {
+    func requestStep(_ date : Date, _ block : @escaping ((Int) ->Void)) {
         if !HKHealthStore.isHealthDataAvailable(){
             LYProgressHUD.showError("该设备不支持 健康 功能！")
             return
         }
+        
+        self.stepsBlock = block
         
         //设置需要获取的权限这里仅设置了步数
         guard let healthType = HKObjectType.quantityType(forIdentifier: .stepCount) else {
@@ -38,29 +41,20 @@ class HealthHelper: NSObject {
         }
     }
     
-    //获取步数
+    //某时间当天 获取步数
     func getStep(_ date : Date) {
-        let time = Date.dateStringFromDate(format: Date.dateFormatString(), timeStamps: Date.dateYesterday().phpTimestamp())
-        
-        if LocalData.getYesOrNotValue(key: time){
-            return
-        }
-        
-        
         guard let sampleType = HKQuantityType.quantityType(forIdentifier: .stepCount) else {
             return
         }
-        
-        let now = Date()
         let calender = Calendar.current
         let components = Set([Calendar.Component.year, Calendar.Component.month, Calendar.Component.day, Calendar.Component.hour, Calendar.Component.minute, Calendar.Component.second])
-        let dateComponent = calender.dateComponents(components, from: now)
+        let dateComponent = calender.dateComponents(components, from: date)
         let hour = dateComponent.hour ?? 0
         let minute = dateComponent.minute ?? 0
         let second = dateComponent.second ?? 0
-        let yesterDay = Date.init(timeIntervalSinceNow: TimeInterval(-(86400 + hour * 3600 + minute * 60 + second)))
-        let nowDay = Date.init(timeIntervalSinceNow: TimeInterval( -hour * 3600 - minute * 60 - second))
-        let predicate = HKQuery.predicateForSamples(withStart: yesterDay, end: nowDay, options: [HKQueryOptions.init(rawValue: 0)])
+        let today_start = Date.init(timeIntervalSinceNow: TimeInterval( -hour * 3600 - minute * 60 - second))
+        let today_end = Date.init(timeIntervalSinceNow: TimeInterval( 86400 - hour * 3600 - minute * 60 - second))
+        let predicate = HKQuery.predicateForSamples(withStart: today_start, end: today_end, options: [HKQueryOptions.init(rawValue: 0)])
 
         let start = NSSortDescriptor.init(key: HKSampleSortIdentifierStartDate, ascending: false)
         let end = NSSortDescriptor.init(key: HKSampleSortIdentifierEndDate, ascending: false)
@@ -68,7 +62,6 @@ class HealthHelper: NSObject {
         
         let sampleQuery = HKSampleQuery.init(sampleType: sampleType, predicate: predicate, limit: 0, sortDescriptors: [start,end]) { (query, results, error) in
             if results != nil{
-                
                 var count = 0
                 for temp in results!{
                     guard let result = temp as? HKQuantitySample else{
@@ -78,30 +71,16 @@ class HealthHelper: NSObject {
                     let step = quantity.description.replacingOccurrences(of: " ", with: "").replacingOccurrences(of: "count", with: "").intValue
                     count += step
                 }
-
-                if count > 0{
-                    let desc = "您昨日共有\(count)步可兑换为积分,明日不可兑换昨日步数"
-                    LYAlertView.show("步数换积分", desc, "暂不兑换", "立即兑换", {
-                        var params : [String : Any] = [:]
-                        params["steps"] = count
-                        params["sign_date"] = time
-                        NetTools.requestData(type: .post, urlString: StepTransToPointApi, parameters: params, succeed: { (result) in
-                            LYProgressHUD.showSuccess("转换成功！")
-                            LocalData.saveYesOrNotValue(value: "1", key: time)
-                        }) { (error) in
-                            LYProgressHUD.showError(error)
-                        }
-                    })
+                
+                if self.stepsBlock != nil{
+                    self.stepsBlock!(count)
                 }
                 
             }
         }
         self.healthStore.execute(sampleQuery)
-        
     }
     
-    
-
     
     
 }
