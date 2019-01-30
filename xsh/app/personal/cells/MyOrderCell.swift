@@ -29,10 +29,17 @@ class MyOrderCell: UITableViewCell {
     
     var subJson = JSON(){
         didSet{
-            self.nameLbl.text = self.subJson["content"].stringValue
-            self.timeLbl.text = Date.dateStringFromDate(format: Date.timestampFormatString(), timeStamps: self.subJson["creationtime"].stringValue)
-            self.moneyLbl.text = "¥" + self.subJson["money"].stringValue
-            
+            self.nameLbl.text = self.subJson["servicetype"].stringValue
+            self.timeLbl.text = self.subJson["creationtime"].stringValue
+            self.moneyLbl.text = "¥" + self.subJson["totalprice"].stringValue
+        }
+    }
+    
+    var subJson2 = JSON(){
+        didSet{
+            self.nameLbl.text = self.subJson2["content"].stringValue
+            self.timeLbl.text = self.subJson2["creationtime"].stringValue
+            self.moneyLbl.text = "¥" + self.subJson2["money"].stringValue
         }
     }
     

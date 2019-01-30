@@ -44,21 +44,21 @@ class MyOrderTableViewController: BaseTableViewController {
     }
     
     
-    //加载商家消费订单
-    func loadShopOrder() {
+    //加载一卡通消费记录
+    func loadCardOrder() {
         var params : [String : Any] = [:]
         params["starttime"] = ""
-        params["stoptime"] = Date.phpTimestamp()
+        params["stoptime"] = ""
         params["skip"] = self.shopOrderList.count
         params["limit"] = 10
-        NetTools.requestData(type: .post, urlString: ShopOrderListApi, parameters: params, succeed: { (result) in
+        NetTools.requestData(type: .post, urlString: CardOrderListApi, parameters: params, succeed: { (result) in
             if result["list"].arrayValue.count < 10{
                 self.haveMore = false
             }else{
                 self.haveMore = true
             }
             for json in result["list"].arrayValue{
-                self.shopOrderList.append(json)
+                self.cardOrderList.append(json)
                 self.tableView.reloadData()
             }
         }) { (error) in
@@ -67,8 +67,8 @@ class MyOrderTableViewController: BaseTableViewController {
     }
     
     
-    //加载一卡通消费记录
-    func loadCardOrder() {
+    //加载商家消费订单
+    func loadShopOrder() {
         NetTools.requestData(type: .post, urlString: CardTransactionListApi, succeed: { (result) in
             if result["list"].arrayValue.count < 10{
                 self.haveMore = false
@@ -76,7 +76,7 @@ class MyOrderTableViewController: BaseTableViewController {
                 self.haveMore = true
             }
             for json in result["list"].arrayValue{
-                self.cardOrderList.append(json)
+                self.shopOrderList.append(json)
                 self.tableView.reloadData()
             }
         }) { (error) in
@@ -98,56 +98,41 @@ class MyOrderTableViewController: BaseTableViewController {
     }
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCell(withIdentifier: "MyOrderCell", for: indexPath) as! MyOrderCell
+        
         if self.orderType == 1{
-            let cell = tableView.dequeueReusableCell(withIdentifier: "MyOrderCell", for: indexPath) as! MyOrderCell
             if self.shopOrderList.count > 0{
                 let json = self.shopOrderList[indexPath.row]
                 cell.subJson = json
             }
-            return cell
         }else if self.orderType == 2{
-            var cell = tableView.dequeueReusableCell(withIdentifier: "CardOrderCell")
-            if cell == nil{
-                cell = UITableViewCell.init(style: .value1, reuseIdentifier: "CardOrderCell")
-            }
-            cell?.selectionStyle = .none
-            cell?.textLabel?.font = UIFont.systemFont(ofSize: 14.0)
-            cell?.textLabel?.textColor = UIColor.RGBS(s: 102)
-            cell?.detailTextLabel?.font = UIFont.systemFont(ofSize: 17.0)
-            cell?.detailTextLabel?.textColor = UIColor.RGBS(s: 51)
             if self.cardOrderList.count > indexPath.row{
                 let json = self.cardOrderList[indexPath.row]
-                cell?.textLabel?.text = Date.dateStringFromDate(format: Date.timestampFormatString(), timeStamps: json["creationtime"].stringValue)
-                cell?.detailTextLabel?.text = "¥" + json["money"].stringValue
+                cell.subJson2 = json
             }
-            
-            return cell!
         }
-        return UITableViewCell()
+        return cell
     }
     
     override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        if self.orderType == 1{
-            return 100
-        }else if self.orderType == 2{
-            return 44
-        }
-        return 0
+        return 100
     }
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         if self.orderType == 1{
             if self.shopOrderList.count > 0{
                 let json = self.shopOrderList[indexPath.row]
-                
+                let detailVC = OrderDetailViewController()
+                detailVC.orderno = json["orderno"].stringValue
+                self.navigationController?.pushViewController(detailVC, animated: true)
             }
         }else if self.orderType == 2{
-            if self.cardOrderList.count > indexPath.row{
-                let json = self.cardOrderList[indexPath.row]
-                let billdetailVC = BillPayDetailViewController.spwan()
-                billdetailVC.billJson = json
-                self.navigationController?.pushViewController(billdetailVC, animated: true)
-            }
+//            if self.cardOrderList.count > indexPath.row{
+//                let json = self.cardOrderList[indexPath.row]
+//                let billdetailVC = BillPayDetailViewController.spwan()
+//                billdetailVC.billJson = json
+//                self.navigationController?.pushViewController(billdetailVC, animated: true)
+//            }
         }
     }
     

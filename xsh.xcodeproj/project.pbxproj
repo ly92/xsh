@@ -40,6 +40,13 @@
 		08445F6B22009D0400230F5D /* MotionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08445F6A22009D0400230F5D /* MotionViewController.swift */; };
 		08445F6E22009DF900230F5D /* MotionStepCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08445F6C22009DF900230F5D /* MotionStepCell.swift */; };
 		08445F6F22009DF900230F5D /* MotionStepCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 08445F6D22009DF900230F5D /* MotionStepCell.xib */; };
+		08445F712202011400230F5D /* OrderDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08445F702202011400230F5D /* OrderDetailViewController.swift */; };
+		08445F752202021100230F5D /* OrderDetailCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08445F732202021100230F5D /* OrderDetailCell.swift */; };
+		08445F762202021100230F5D /* OrderDetailCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 08445F742202021100230F5D /* OrderDetailCell.xib */; };
+		08445F792202022600230F5D /* OrderGoodsCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08445F772202022600230F5D /* OrderGoodsCell.swift */; };
+		08445F7A2202022600230F5D /* OrderGoodsCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 08445F782202022600230F5D /* OrderGoodsCell.xib */; };
+		08445F7D2202024200230F5D /* OrderPayInfoCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08445F7B2202024200230F5D /* OrderPayInfoCell.swift */; };
+		08445F7E2202024200230F5D /* OrderPayInfoCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 08445F7C2202024200230F5D /* OrderPayInfoCell.xib */; };
 		0857EB5421F0CF3A00D4BC6D /* BaiDuMap.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0857EB5321F0CF3A00D4BC6D /* BaiDuMap.swift */; };
 		085D6CF221D1348600155895 /* PayPasswordView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 085D6CF121D1348600155895 /* PayPasswordView.swift */; };
 		085D6CF421D3B9A600155895 /* PersonalInfoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 085D6CF321D3B9A600155895 /* PersonalInfoViewController.swift */; };
@@ -193,6 +200,13 @@
 		08445F6A22009D0400230F5D /* MotionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MotionViewController.swift; sourceTree = "<group>"; };
 		08445F6C22009DF900230F5D /* MotionStepCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MotionStepCell.swift; sourceTree = "<group>"; };
 		08445F6D22009DF900230F5D /* MotionStepCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MotionStepCell.xib; sourceTree = "<group>"; };
+		08445F702202011400230F5D /* OrderDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrderDetailViewController.swift; sourceTree = "<group>"; };
+		08445F732202021100230F5D /* OrderDetailCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrderDetailCell.swift; sourceTree = "<group>"; };
+		08445F742202021100230F5D /* OrderDetailCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = OrderDetailCell.xib; sourceTree = "<group>"; };
+		08445F772202022600230F5D /* OrderGoodsCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrderGoodsCell.swift; sourceTree = "<group>"; };
+		08445F782202022600230F5D /* OrderGoodsCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = OrderGoodsCell.xib; sourceTree = "<group>"; };
+		08445F7B2202024200230F5D /* OrderPayInfoCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrderPayInfoCell.swift; sourceTree = "<group>"; };
+		08445F7C2202024200230F5D /* OrderPayInfoCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = OrderPayInfoCell.xib; sourceTree = "<group>"; };
 		0857EB5321F0CF3A00D4BC6D /* BaiDuMap.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaiDuMap.swift; sourceTree = "<group>"; };
 		085D6CF121D1348600155895 /* PayPasswordView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PayPasswordView.swift; sourceTree = "<group>"; };
 		085D6CF321D3B9A600155895 /* PersonalInfoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PersonalInfoViewController.swift; sourceTree = "<group>"; };
@@ -458,6 +472,7 @@
 		08169D6821C943930030D863 /* cells */ = {
 			isa = PBXGroup;
 			children = (
+				08445F72220201E100230F5D /* order */,
 				083F8F8421D0D6B70026341A /* pay */,
 				086E2D0021C9EEBF00896F25 /* CouponCell.swift */,
 				086E2CFF21C9EEBF00896F25 /* CouponCell.xib */,
@@ -478,6 +493,7 @@
 				086E2CF521C9E6CF00896F25 /* MyCouponTableViewController.swift */,
 				086E2CF921C9E71C00896F25 /* MyQrcodeViewController.swift */,
 				086E2CFB21C9E75900896F25 /* MyOrderTableViewController.swift */,
+				08445F702202011400230F5D /* OrderDetailViewController.swift */,
 				086E2CFD21C9E78000896F25 /* MyCardViewController.swift */,
 				086E2CF721C9E6F600896F25 /* ChangeCardPwdViewController.swift */,
 				08169D7D21CAA0A80030D863 /* BindCardTableViewController.swift */,
@@ -534,6 +550,19 @@
 				083F8F8E21D0D7220026341A /* PayBtnCell.xib */,
 			);
 			path = pay;
+			sourceTree = "<group>";
+		};
+		08445F72220201E100230F5D /* order */ = {
+			isa = PBXGroup;
+			children = (
+				08445F732202021100230F5D /* OrderDetailCell.swift */,
+				08445F742202021100230F5D /* OrderDetailCell.xib */,
+				08445F772202022600230F5D /* OrderGoodsCell.swift */,
+				08445F782202022600230F5D /* OrderGoodsCell.xib */,
+				08445F7B2202024200230F5D /* OrderPayInfoCell.swift */,
+				08445F7C2202024200230F5D /* OrderPayInfoCell.xib */,
+			);
+			path = order;
 			sourceTree = "<group>";
 		};
 		0861B83021C29690008795E5 /* net */ = {
@@ -1065,11 +1094,13 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				08445F762202021100230F5D /* OrderDetailCell.xib in Resources */,
 				08D7B69921CCC310007D191F /* AlipaySDK.bundle in Resources */,
 				0861B83D21C29D0D008795E5 /* Login.storyboard in Resources */,
 				083F8F8821D0D6DB0026341A /* PayWayCell.xib in Resources */,
 				0807CA9A21C7EC3500967692 /* Personal.storyboard in Resources */,
 				0819FBB621C8DB550078EB8D /* BannerScrollImageCell.xib in Resources */,
+				08445F7E2202024200230F5D /* OrderPayInfoCell.xib in Resources */,
 				0819FBBE21C8DDAE0078EB8D /* Shop.storyboard in Resources */,
 				0819FBB821C8DB550078EB8D /* BannerScrollTitleCell.xib in Resources */,
 				08D7B6A521CCC310007D191F /* README.txt in Resources */,
@@ -1083,6 +1114,7 @@
 				08A3A40621C158CE008E071F /* Assets.xcassets in Resources */,
 				08C9027421D214E50020441E /* Message.storyboard in Resources */,
 				083F8F9021D0D7220026341A /* PayBtnCell.xib in Resources */,
+				08445F7A2202022600230F5D /* OrderGoodsCell.xib in Resources */,
 				08C7D97C21F07AFB00A625F1 /* StoreCell.xib in Resources */,
 				0819FBBC21C8DB550078EB8D /* TransactionBannerCell.xib in Resources */,
 				08E0D47821CF23500015992B /* MessageCell.xib in Resources */,
@@ -1222,6 +1254,7 @@
 				08A3A46421C168B6008E071F /* UIViewController+Category.swift in Sources */,
 				08D7B6A121CCC310007D191F /* openssl_wrapper.m in Sources */,
 				087B012621F9A57B00CFB3A6 /* HealthHelper.swift in Sources */,
+				08445F792202022600230F5D /* OrderGoodsCell.swift in Sources */,
 				08B0DE9521D4C9E900EE7BA8 /* ScanActionViewController.swift in Sources */,
 				08445F6921FF3D8E00230F5D /* StoreViewController.swift in Sources */,
 				085D6CF621D3C4BB00155895 /* LYPickerView.swift in Sources */,
@@ -1261,6 +1294,7 @@
 				08C7D98121F0889000A625F1 /* CouponStoreCell.swift in Sources */,
 				0819FBB521C8DB550078EB8D /* BannerScrollImageCell.swift in Sources */,
 				0861B84221C29DC0008795E5 /* BaseTableViewController.swift in Sources */,
+				08445F712202011400230F5D /* OrderDetailViewController.swift in Sources */,
 				0861B84821C52E29008795E5 /* LoginViewController.swift in Sources */,
 				086E2CF621C9E6CF00896F25 /* MyCouponTableViewController.swift in Sources */,
 				0819FBBB21C8DB550078EB8D /* TransactionBannerCell.swift in Sources */,
@@ -1291,11 +1325,13 @@
 				0861B83421C2971A008795E5 /* NetApis.swift in Sources */,
 				08C7D97221F05EA100A625F1 /* NoticeTableViewController.swift in Sources */,
 				08169D7621CA846D0030D863 /* UIBarButtonItem+Extension.swift in Sources */,
+				08445F7D2202024200230F5D /* OrderPayInfoCell.swift in Sources */,
 				0857EB5421F0CF3A00D4BC6D /* BaiDuMap.swift in Sources */,
 				08C7D97E21F085D900A625F1 /* CouponDetailViewController.swift in Sources */,
 				086E2CFA21C9E71C00896F25 /* MyQrcodeViewController.swift in Sources */,
 				08D7B6A221CCC310007D191F /* RSADataSigner.m in Sources */,
 				08D7B63021CC9C5B007D191F /* PayViewController.swift in Sources */,
+				08445F752202021100230F5D /* OrderDetailCell.swift in Sources */,
 				08E0D47421CF23370015992B /* MessageViewController.swift in Sources */,
 				0861B83621C297BF008795E5 /* Date+Category.swift in Sources */,
 				085D6CF421D3B9A600155895 /* PersonalInfoViewController.swift in Sources */,

@@ -112,8 +112,8 @@ let CardDetailApi = "card/get" // post
 let CardChangePwdApi = "user/updatePaypwd" // post oldpasswd, newpasswd
 //
 let CardResetPayPwdApi = "user/resetPaypwd" // post paypsw, passwd
-//交易记录
-let ShopOrderListApi = "card/listTransaction" // post starttime, stoptime, skip, limit
+//一卡通交易记录
+let CardOrderListApi = "card/listTransaction" // post starttime, stoptime, skip, limit
 //创建交易
 let ShopAddOrderApi = "transaction/order" // post money,bid,servicetype
 //查询充值方式
@@ -131,9 +131,9 @@ let CardPayApi = "transaction/pay" //post paysign:md5(cid + ts + cmdno + paypsw)
 //检查支付密码
 let CheckPwdApi = "transaction/checkpwd" // post paysign md5(cid+ts+cmdno+passwd)
 //一卡通交易列表
-let CardTransactionListApi = "transaction/list"
+let CardTransactionListApi = "transaction/list" // post
 //一卡通交易详情
-let CardTransactionDetailApi = "transaction/get"
+let CardTransactionDetailApi = "transaction/get" // post orderno
 
 /************************************ 一卡通 ********************************************/
 //首页推荐商品
