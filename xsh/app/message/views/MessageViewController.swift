@@ -109,6 +109,23 @@ class MessageViewController: BaseTableViewController {
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         if self.messageList.count > indexPath.row{
             let json = self.messageList[indexPath.row]
+            let type = json["type"].stringValue.trim
+            let extra = JSON(json["extra"].stringValue)
+            print(extra["orderno"].stringValue)
+            if type == "trans"{
+                let detailVC = OrderDetailViewController()
+                detailVC.orderno = extra["orderno"].stringValue
+                self.navigationController?.pushViewController(detailVC, animated: true)
+            }else if type == "pay"{
+                
+            }else if type == "coupon"{
+                //我的优惠券
+                let myCouponVC = MyCouponTableViewController()
+                self.navigationController?.pushViewController(myCouponVC, animated: true)
+            }else{
+                
+            }
+            
             let params : [String : Any] = ["id" : json["id"].stringValue]
             NetTools.requestData(type: .post, urlString: MessageDetailApi, parameters: params, succeed: { (result) in
                 
