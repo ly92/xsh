@@ -14,6 +14,7 @@ class OrderPayInfoCell: UITableViewCell {
     @IBOutlet weak var couponLbl: UILabel!
     @IBOutlet weak var pointLbl: UILabel!
     @IBOutlet weak var totalMoneyLbl: UILabel!
+    @IBOutlet weak var orderMoneyLbl: UILabel!
     
     
     
@@ -30,19 +31,10 @@ class OrderPayInfoCell: UITableViewCell {
     
     var subJson = JSON(){
         didSet{
-            var pointM : Float = 0
-            for point in self.subJson["points"].arrayValue{
-                pointM += point["money"].floatValue
-            }
-            
-            var couponM : Float = 0
-            for coupon in self.subJson["coupon"].arrayValue{
-                couponM += coupon["money"].floatValue
-            }
-            
-            self.couponLbl.text = String.init(format: "-%.2f", couponM)
-            self.pointLbl.text = String.init(format: "-%.2f", pointM)
-            self.totalMoneyLbl.text = self.subJson["money"].stringValue
+            self.couponLbl.text = "-¥" + self.subJson["coupon_coupontaxmoney"].stringValue
+            self.pointLbl.text = "-¥" + self.subJson["points_money"].stringValue
+            self.totalMoneyLbl.text = "¥" + self.subJson["totalprice"].stringValue
+            self.orderMoneyLbl.text = "¥" + self.subJson["money"].stringValue
         }
     }
 }

@@ -31,26 +31,26 @@
                                                     <rect key="frame" x="0.0" y="0.0" width="375" height="177"/>
                                                 </imageView>
                                                 <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="YVO-vB-1Ck">
-                                                    <rect key="frame" x="36" y="65" width="60" height="60"/>
+                                                    <rect key="frame" x="26" y="65" width="60" height="60"/>
                                                     <constraints>
                                                         <constraint firstAttribute="height" constant="60" id="Q7D-hj-4iS"/>
                                                         <constraint firstAttribute="width" constant="60" id="bse-3K-SWH"/>
                                                     </constraints>
                                                 </imageView>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gpn-hy-veM">
-                                                    <rect key="frame" x="110" y="76" width="0.0" height="0.0"/>
+                                                    <rect key="frame" x="100" y="76" width="0.0" height="0.0"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="18"/>
                                                     <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="yEj-Qv-5Vi">
-                                                    <rect key="frame" x="115" y="76" width="0.0" height="0.0"/>
+                                                    <rect key="frame" x="105" y="76" width="0.0" height="0.0"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="15"/>
                                                     <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Uo0-xf-rxo">
-                                                    <rect key="frame" x="110" y="84" width="249" height="0.0"/>
+                                                    <rect key="frame" x="100" y="84" width="259" height="0.0"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                     <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                     <nil key="highlightedColor"/>
@@ -77,7 +77,7 @@
                                                 <constraint firstItem="Cpc-gz-UK5" firstAttribute="trailing" secondItem="nYd-w6-OpS" secondAttribute="trailingMargin" id="l0j-vF-uRs"/>
                                                 <constraint firstItem="gpn-hy-veM" firstAttribute="leading" secondItem="YVO-vB-1Ck" secondAttribute="trailing" constant="14" id="mTK-1N-Hnc"/>
                                                 <constraint firstItem="Fct-yY-rbT" firstAttribute="leading" secondItem="nYd-w6-OpS" secondAttribute="leading" id="mUG-yD-KvA"/>
-                                                <constraint firstItem="YVO-vB-1Ck" firstAttribute="leading" secondItem="nYd-w6-OpS" secondAttribute="leadingMargin" constant="20" id="ozN-Dg-9zE"/>
+                                                <constraint firstItem="YVO-vB-1Ck" firstAttribute="leading" secondItem="nYd-w6-OpS" secondAttribute="leadingMargin" constant="10" id="ozN-Dg-9zE"/>
                                                 <constraint firstAttribute="trailing" secondItem="Fct-yY-rbT" secondAttribute="trailing" id="uyA-9f-ibx"/>
                                             </constraints>
                                         </tableViewCellContentView>

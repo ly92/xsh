@@ -12,15 +12,15 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
-        <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" rowHeight="135" id="KGk-i7-Jjw" customClass="OrderPayInfoCell" customModule="xsh" customModuleProvider="target">
-            <rect key="frame" x="0.0" y="0.0" width="320" height="135"/>
+        <tableViewCell contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" rowHeight="160" id="KGk-i7-Jjw" customClass="OrderPayInfoCell" customModule="xsh" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="320" height="162"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
             <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
-                <rect key="frame" x="0.0" y="0.0" width="320" height="134.5"/>
+                <rect key="frame" x="0.0" y="0.0" width="320" height="161.5"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <view clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="RUD-P5-Xp7">
-                        <rect key="frame" x="10" y="8" width="300" height="118.5"/>
+                        <rect key="frame" x="10" y="8" width="300" height="145.5"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="支付信息" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="P2B-cx-dJh">
                                 <rect key="frame" x="8" y="8" width="62" height="18"/>
@@ -29,7 +29,7 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="10" translatesAutoresizingMaskIntoConstraints="NO" id="4EQ-Jd-f9P">
-                                <rect key="frame" x="290" y="51.5" width="0.0" height="0.0"/>
+                                <rect key="frame" x="292" y="51.5" width="0.0" height="0.0"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <color key="textColor" red="0.20000000000000001" green="0.20000000000000001" blue="0.20000000000000001" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
@@ -41,7 +41,7 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="10" translatesAutoresizingMaskIntoConstraints="NO" id="pAc-mp-g1s">
-                                <rect key="frame" x="290" y="76.5" width="0.0" height="0.0"/>
+                                <rect key="frame" x="292" y="76.5" width="0.0" height="0.0"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <color key="textColor" red="0.20000000000000001" green="0.20000000000000001" blue="0.20000000000000001" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
@@ -60,15 +60,27 @@
                                 </constraints>
                             </view>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="10" translatesAutoresizingMaskIntoConstraints="NO" id="88F-QY-hXU">
-                                <rect key="frame" x="290" y="101.5" width="0.0" height="0.0"/>
+                                <rect key="frame" x="292" y="101.5" width="0.0" height="0.0"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <color key="textColor" red="0.20000000000000001" green="0.20000000000000001" blue="0.20000000000000001" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="实付金额" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fOh-2V-YwH">
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="订单总额" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fOh-2V-YwH">
                                 <rect key="frame" x="8" y="93" width="58" height="17"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <color key="textColor" red="0.40000000000000002" green="0.40000000000000002" blue="0.40000000000000002" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="实付金额" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vyX-s5-3e3">
+                                <rect key="frame" x="8" y="118" width="58" height="17"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <color key="textColor" red="0.40000000000000002" green="0.40000000000000002" blue="0.40000000000000002" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="10" translatesAutoresizingMaskIntoConstraints="NO" id="mYL-u6-zdi">
+                                <rect key="frame" x="292" y="126.5" width="0.0" height="0.0"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                                <color key="textColor" red="0.20000000000000001" green="0.20000000000000001" blue="0.20000000000000001" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
                         </subviews>
@@ -83,17 +95,22 @@
                             <constraint firstItem="yPQ-oZ-Pkw" firstAttribute="top" secondItem="UaT-Pj-h3a" secondAttribute="bottom" constant="8" id="DJ4-kt-xXO"/>
                             <constraint firstItem="88F-QY-hXU" firstAttribute="centerY" secondItem="fOh-2V-YwH" secondAttribute="centerY" id="Faq-Ft-BNM"/>
                             <constraint firstAttribute="trailing" secondItem="hbg-uQ-9Pe" secondAttribute="trailing" id="GXB-qD-wcq"/>
-                            <constraint firstAttribute="trailing" secondItem="4EQ-Jd-f9P" secondAttribute="trailing" constant="10" id="JUe-jF-vqg"/>
+                            <constraint firstAttribute="trailing" secondItem="4EQ-Jd-f9P" secondAttribute="trailing" constant="8" id="JUe-jF-vqg"/>
+                            <constraint firstItem="vyX-s5-3e3" firstAttribute="top" secondItem="fOh-2V-YwH" secondAttribute="bottom" constant="8" id="NGP-9f-Tyd"/>
                             <constraint firstItem="4EQ-Jd-f9P" firstAttribute="centerY" secondItem="UaT-Pj-h3a" secondAttribute="centerY" id="Nsr-F9-Fll"/>
                             <constraint firstItem="4EQ-Jd-f9P" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="UaT-Pj-h3a" secondAttribute="trailing" constant="10" id="QVr-AD-51P"/>
                             <constraint firstItem="fOh-2V-YwH" firstAttribute="leading" secondItem="RUD-P5-Xp7" secondAttribute="leading" constant="8" id="ZMs-bl-k1H"/>
                             <constraint firstItem="fOh-2V-YwH" firstAttribute="top" secondItem="yPQ-oZ-Pkw" secondAttribute="bottom" constant="8" id="f4L-oE-Gp7"/>
                             <constraint firstItem="UaT-Pj-h3a" firstAttribute="top" secondItem="hbg-uQ-9Pe" secondAttribute="bottom" constant="8" id="fWa-ud-VfD"/>
                             <constraint firstItem="UaT-Pj-h3a" firstAttribute="leading" secondItem="RUD-P5-Xp7" secondAttribute="leading" constant="8" id="hG6-WU-DZB"/>
+                            <constraint firstItem="mYL-u6-zdi" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="vyX-s5-3e3" secondAttribute="trailing" constant="10" id="hJf-Wm-k4J"/>
+                            <constraint firstAttribute="trailing" secondItem="mYL-u6-zdi" secondAttribute="trailing" constant="8" id="mYj-Yb-vsl"/>
                             <constraint firstItem="P2B-cx-dJh" firstAttribute="leading" secondItem="RUD-P5-Xp7" secondAttribute="leading" constant="8" id="nM0-Lb-JMp"/>
+                            <constraint firstItem="mYL-u6-zdi" firstAttribute="centerY" secondItem="vyX-s5-3e3" secondAttribute="centerY" id="rO9-qO-qS8"/>
                             <constraint firstItem="hbg-uQ-9Pe" firstAttribute="leading" secondItem="RUD-P5-Xp7" secondAttribute="leading" id="rZG-MX-vKD"/>
-                            <constraint firstAttribute="trailing" secondItem="88F-QY-hXU" secondAttribute="trailing" constant="10" id="sKs-va-Ipg"/>
-                            <constraint firstAttribute="trailing" secondItem="pAc-mp-g1s" secondAttribute="trailing" constant="10" id="zij-pe-lj5"/>
+                            <constraint firstAttribute="trailing" secondItem="88F-QY-hXU" secondAttribute="trailing" constant="8" id="sKs-va-Ipg"/>
+                            <constraint firstItem="vyX-s5-3e3" firstAttribute="leading" secondItem="RUD-P5-Xp7" secondAttribute="leading" constant="8" id="ukc-eb-1Z6"/>
+                            <constraint firstAttribute="trailing" secondItem="pAc-mp-g1s" secondAttribute="trailing" constant="8" id="zij-pe-lj5"/>
                         </constraints>
                     </view>
                 </subviews>
@@ -108,11 +125,12 @@
             <viewLayoutGuide key="safeArea" id="njF-e1-oar"/>
             <connections>
                 <outlet property="couponLbl" destination="4EQ-Jd-f9P" id="Gp0-Yp-zZC"/>
+                <outlet property="orderMoneyLbl" destination="mYL-u6-zdi" id="L9e-rK-GFb"/>
                 <outlet property="pointLbl" destination="pAc-mp-g1s" id="Viu-lN-doc"/>
                 <outlet property="subView" destination="RUD-P5-Xp7" id="C9U-B2-zuo"/>
                 <outlet property="totalMoneyLbl" destination="88F-QY-hXU" id="m7C-Wn-i7I"/>
             </connections>
-            <point key="canvasLocation" x="137.59999999999999" y="93.103448275862078"/>
+            <point key="canvasLocation" x="137.59999999999999" y="105.24737631184409"/>
         </tableViewCell>
     </objects>
 </document>
