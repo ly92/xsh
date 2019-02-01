@@ -21,7 +21,9 @@ class BillPayDetailViewController: BaseTableViewController {
     @IBOutlet weak var phoneLbl: UILabel!
     @IBOutlet weak var resultLbl: UILabel!
     
-    var billJson = JSON()
+    
+    var orderno = ""
+    var uuid = ""
     
     
     override func viewDidLoad() {
@@ -29,15 +31,26 @@ class BillPayDetailViewController: BaseTableViewController {
 
         self.navigationItem.title = "缴费详情"
         
-        self.addressLbl.text = self.billJson["memo"].stringValue
-        self.timelbl.text = self.billJson["creationtime"].stringValue
-        self.typeLbl.text = self.billJson["servicetype"].stringValue
-        self.moneyLbl.text = "¥" + self.billJson["money"].stringValue
-        self.phoneLbl.text = LocalData.getUserPhone()
-        self.resultLbl.text = self.billJson["status"].stringValue
+        self.loadOrderDetail()
     }
 
-    
+    //获取详情数据
+    func loadOrderDetail() {
+        var params : [String : Any] = [:]
+        params["orderno"] = self.orderno
+        params["UUID"] = self.uuid
+        NetTools.requestData(type: .post, urlString: PayOrderDetailApi, parameters: params, succeed: { (result) in
+            
+            self.addressLbl.text = result["payInfo"]["HouseAddress"].stringValue
+            self.timelbl.text = result["payInfo"]["order_creationtime"].stringValue
+            self.typeLbl.text = result["payInfo"]["PayCategoryCodeName"].stringValue
+            self.moneyLbl.text = "¥" + result["payInfo"]["TotalMoney"].stringValue
+            self.phoneLbl.text = result["payInfo"]["MobileNo"].stringValue
+            self.resultLbl.text = result["payInfo"]["StatusCodeName"].stringValue
+        }) { (error) in
+            LYProgressHUD.showError(error)
+        }
+    }
 
 
     

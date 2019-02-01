@@ -110,27 +110,24 @@ class MessageViewController: BaseTableViewController {
         if self.messageList.count > indexPath.row{
             let json = self.messageList[indexPath.row]
             let type = json["type"].stringValue.trim
-            let extra = JSON(json["extra"].stringValue)
-            print(extra["orderno"].stringValue)
+            let extra = JSON.init(parseJSON: json["extra"].stringValue)
             if type == "trans"{
                 let detailVC = OrderDetailViewController()
                 detailVC.orderno = extra["orderno"].stringValue
                 self.navigationController?.pushViewController(detailVC, animated: true)
             }else if type == "pay"{
-                
+                let billdetailVC = BillPayDetailViewController.spwan()
+                billdetailVC.orderno = extra["orderno"].stringValue
+                billdetailVC.uuid = extra["uuid"].stringValue
+                self.navigationController?.pushViewController(billdetailVC, animated: true)
             }else if type == "coupon"{
                 //我的优惠券
                 let myCouponVC = MyCouponTableViewController()
                 self.navigationController?.pushViewController(myCouponVC, animated: true)
             }else{
-                
-            }
-            
-            let params : [String : Any] = ["id" : json["id"].stringValue]
-            NetTools.requestData(type: .post, urlString: MessageDetailApi, parameters: params, succeed: { (result) in
-                
-            }) { (error) in
-                LYProgressHUD.showError(error)
+                let detailVC = MessageDetailViewController.spwan()
+                detailVC.messageId = json["id"].stringValue
+                self.navigationController?.pushViewController(detailVC, animated: true)
             }
         }
     }

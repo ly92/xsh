@@ -171,6 +171,14 @@ extension AppDelegate {
     func launchOperation() {
         if LocalData.getYesOrNotValue(key: KIsLoginKey){
             self.checkLogin()
+        }else{
+            guard let nav = self.tabBar.selectedViewController as? LYNavigationController else{
+                return
+            }
+            let loginVC = LoginViewController.spwan()
+            nav.viewControllers.first?.present(loginVC, animated: true) {
+                LocalData.saveYesOrNotValue(value: "0", key: KIsLoginKey)
+            }
         }
         self.checkVersion()
         self.getNewMessage()
@@ -189,6 +197,7 @@ extension AppDelegate {
                 }
                 let loginVC = LoginViewController.spwan()
                 nav.viewControllers.first?.present(loginVC, animated: true) {
+                    LocalData.saveYesOrNotValue(value: "0", key: KIsLoginKey)
                 }
             }else if result["result"].stringValue.intValue == 1{
             }
@@ -198,6 +207,7 @@ extension AppDelegate {
             }
             let loginVC = LoginViewController.spwan()
             nav.viewControllers.first?.present(loginVC, animated: true) {
+                LocalData.saveYesOrNotValue(value: "0", key: KIsLoginKey)
             }
             LYProgressHUD.showError(error)
         }

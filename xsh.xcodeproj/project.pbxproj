@@ -95,6 +95,7 @@
 		08A3A46F21C168B6008E071F /* LYNavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08A3A46321C168B6008E071F /* LYNavigationController.swift */; };
 		08B0DE9321D4B65400EE7BA8 /* ChanegInfoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08B0DE9221D4B65400EE7BA8 /* ChanegInfoViewController.swift */; };
 		08B0DE9521D4C9E900EE7BA8 /* ScanActionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08B0DE9421D4C9E900EE7BA8 /* ScanActionViewController.swift */; };
+		08B1D2BF2203EAC6001A916A /* BillDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08B1D2BE2203EAC6001A916A /* BillDetailViewController.swift */; };
 		08C7D95F21F05DC300A625F1 /* CouponGetCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08C7D95621F05DC300A625F1 /* CouponGetCell.swift */; };
 		08C7D96021F05DC300A625F1 /* CouponGetCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 08C7D95721F05DC300A625F1 /* CouponGetCell.xib */; };
 		08C7D96121F05DC300A625F1 /* NoticeCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08C7D95821F05DC300A625F1 /* NoticeCell.swift */; };
@@ -262,6 +263,7 @@
 		08A3A46321C168B6008E071F /* LYNavigationController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LYNavigationController.swift; sourceTree = "<group>"; };
 		08B0DE9221D4B65400EE7BA8 /* ChanegInfoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChanegInfoViewController.swift; sourceTree = "<group>"; };
 		08B0DE9421D4C9E900EE7BA8 /* ScanActionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScanActionViewController.swift; sourceTree = "<group>"; };
+		08B1D2BE2203EAC6001A916A /* BillDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BillDetailViewController.swift; sourceTree = "<group>"; };
 		08C7D95621F05DC300A625F1 /* CouponGetCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CouponGetCell.swift; sourceTree = "<group>"; };
 		08C7D95721F05DC300A625F1 /* CouponGetCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CouponGetCell.xib; sourceTree = "<group>"; };
 		08C7D95821F05DC300A625F1 /* NoticeCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NoticeCell.swift; sourceTree = "<group>"; };
@@ -928,6 +930,7 @@
 			children = (
 				08E0D47221CF23370015992B /* MessageViewController.swift */,
 				08C9027521D216AC0020441E /* BillPayDetailViewController.swift */,
+				08B1D2BE2203EAC6001A916A /* BillDetailViewController.swift */,
 			);
 			path = views;
 			sourceTree = "<group>";
@@ -1253,6 +1256,7 @@
 				08169D7221CA83D30030D863 /* BaseWebViewController.swift in Sources */,
 				08A3A46421C168B6008E071F /* UIViewController+Category.swift in Sources */,
 				08D7B6A121CCC310007D191F /* openssl_wrapper.m in Sources */,
+				08B1D2BF2203EAC6001A916A /* BillDetailViewController.swift in Sources */,
 				087B012621F9A57B00CFB3A6 /* HealthHelper.swift in Sources */,
 				08445F792202022600230F5D /* OrderGoodsCell.swift in Sources */,
 				08B0DE9521D4C9E900EE7BA8 /* ScanActionViewController.swift in Sources */,

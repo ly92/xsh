@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import LocalAuthentication
 
 class LoginViewController: BaseTableViewController {
     class func spwan() -> LoginViewController{
@@ -30,6 +31,8 @@ class LoginViewController: BaseTableViewController {
     fileprivate var timer = Timer()//
     fileprivate var codeTime : Int = 60
     
+    fileprivate var fingerUseable = false//指纹登录是否可用
+    
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -41,6 +44,16 @@ class LoginViewController: BaseTableViewController {
         if LocalData.getUserPhone().isMobelPhone(){
             self.changePhoneBtn.isHidden = false
         }
+        
+        if !LocalData.getUserPhone().isEmpty && !LocalData.getTruePwd().isEmpty{
+            //是否支持指纹识别
+            let context = LAContext()
+            if context.canEvaluatePolicy(LAPolicy.deviceOwnerAuthenticationWithBiometrics, error: NSErrorPointer.init(nilLiteral: ())){
+                self.fingerUseable = true
+                self.tableView.reloadData()
+            }
+        }
+        
     }
 
     
@@ -51,7 +64,7 @@ class LoginViewController: BaseTableViewController {
             self.loginPhoneTF.text = ""
         case 22:
         //登录
-            self.loginAction()
+            self.loginAction(false)
         case 33:
             //忘记密码
             self.getCodeAction(1)
@@ -93,17 +106,50 @@ class LoginViewController: BaseTableViewController {
         }
     }
     
+    //MARK: 指纹登录
+    @IBAction func fingerPrintAction() {
+        let context = LAContext()
+        context.evaluatePolicy(LAPolicy.deviceOwnerAuthenticationWithBiometrics, localizedReason: "指纹登录") { (success, error) in
+            if success{
+                DispatchQueue.main.async {
+                    self.loginAction(true)
+                }
+            }else{
+                LYProgressHUD.showError("指纹登录失败，请使用帐号密码登录")
+                LocalData.saveTruePwd(pwd: "")
+                self.fingerUseable = false
+                self.tableView.reloadData()
+            }
+        }
+    }
+    
+    
+    
     
     //登录
-    func loginAction() {
+    func loginAction(_ isfinger : Bool) {
         self.view.endEditing(true)
         
-        guard let phone = self.loginPhoneTF.text else {
-            return
+        LYProgressHUD.showLoading()
+        
+        var phone = ""
+        var pwd = ""
+        
+        if isfinger{
+            phone = LocalData.getUserPhone()
+            pwd = LocalData.getTruePwd()
+        }else{
+            guard let temp_phone = self.loginPhoneTF.text else {
+                return
+            }
+            guard let temp_pwd = self.loginPwdTF.text else {
+                return
+            }
+            
+            phone = temp_phone
+            pwd = temp_pwd
         }
-        guard let pwd = self.loginPwdTF.text else {
-            return
-        }
+        
         if !phone.isMobelPhone(){
             LYProgressHUD.showError("请输入正确手机号")
             return
@@ -118,6 +164,7 @@ class LoginViewController: BaseTableViewController {
         NetTools.normalRequest(type: .post, urlString: LoginApi, parameters: params, succeed: { (result) in
             LocalData.saveUserPhone(phone: phone)
             LocalData.savePwd(pwd: (pwd.md5String() + phone).md5String())
+            LocalData.saveTruePwd(pwd: pwd)
             LocalData.saveCId(cid: result["user"]["cid"].stringValue)
             LocalData.saveYesOrNotValue(value: "1", key: KIsLoginKey)
             
@@ -125,8 +172,12 @@ class LoginViewController: BaseTableViewController {
             NotificationCenter.default.post(name: NSNotification.Name(rawValue: KLoginSuccessNotiName), object: nil, userInfo: nil)
             
             self.dismiss(animated: true, completion: nil)
+            LYProgressHUD.dismiss()
         }) { (error) in
             LYProgressHUD.showError(error)
+            self.fingerUseable = false
+            self.tableView.reloadData()
+            LYProgressHUD.dismiss()
         }
     }
     
@@ -212,7 +263,11 @@ class LoginViewController: BaseTableViewController {
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         if section == self.secIndex && self.secIndex == 0{
-            return 4
+            if self.fingerUseable{
+                return 5
+            }else{
+                return 4
+            }
         }else if section == self.secIndex && self.secIndex == 1{
             return 3
         }else if section == self.secIndex && self.secIndex == 2{

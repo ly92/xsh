@@ -130,7 +130,7 @@ class MyOrderTableViewController: BaseTableViewController {
 //            if self.cardOrderList.count > indexPath.row{
 //                let json = self.cardOrderList[indexPath.row]
 //                let billdetailVC = BillPayDetailViewController.spwan()
-//                billdetailVC.billJson = json
+//                billdetailVC.orderno = json[""].stringValue
 //                self.navigationController?.pushViewController(billdetailVC, animated: true)
 //            }
         }

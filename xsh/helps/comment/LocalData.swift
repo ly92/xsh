@@ -43,6 +43,7 @@ import SwiftyJSON
 
 let KUserIdKey = "KUserIdKey"
 let KUserPwdKey = "KUserPwdKey"
+let KUserTruePwdKey = "KUserTruePwdKey"
 let KUserPhoneKey = "KUserPhoneKey"
 let KIsLoginKey = "KLogin" + LocalData.getUserPhone()
 
@@ -91,6 +92,22 @@ class LocalData: NSObject {
             return pwd as! String
         }
     }
+    
+    
+    // MARK: - 获取明文密码
+    class func saveTruePwd(pwd: String){
+        UserDefaults.standard.setValue(pwd, forKey: KUserTruePwdKey)
+        UserDefaults.standard.synchronize()
+    }
+    class func getTruePwd() -> String{
+        let pwd = UserDefaults.standard.value(forKey:KUserTruePwdKey)
+        if (pwd == nil){
+            return ""
+        }else{
+            return pwd as! String
+        }
+    }
+    
     
     // MARK: - 获取cid
     class func saveCId(cid: String){

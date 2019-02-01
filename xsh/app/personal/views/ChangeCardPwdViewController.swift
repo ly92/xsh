@@ -121,7 +121,8 @@ class ChangeCardPwdViewController: BaseTableViewController {
                 params["newpasswd"] = (pwd2.md5String() + LocalData.getUserPhone()).md5String()
                 NetTools.requestData(type: .post, urlString: ChangeLoginPwdApi, parameters: params, succeed: { (result) in
                     LYProgressHUD.showSuccess("密码更改成功！")
-                    LocalData.savePwd(pwd: pwd2)
+                    LocalData.savePwd(pwd: (pwd2.md5String() + LocalData.getUserPhone()).md5String())
+                    LocalData.saveTruePwd(pwd: pwd2)
                     self.navigationController?.popViewController(animated: true)
                 }) { (error) in
                     LYProgressHUD.showError(error)

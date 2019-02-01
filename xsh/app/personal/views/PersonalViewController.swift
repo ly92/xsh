@@ -123,9 +123,10 @@ class PersonalViewController: BaseTableViewController {
             changePwd.isChangeLogin = true
             self.navigationController?.pushViewController(changePwd, animated: true)
         }else if indexPath.row == 7{
-            //设置
+            //退出
             let loginVC = LoginViewController.spwan()
             self.present(loginVC, animated: true) {
+                LocalData.saveYesOrNotValue(value: "0", key: KIsLoginKey)
             }
         }
     }

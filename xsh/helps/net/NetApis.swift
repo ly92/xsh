@@ -110,7 +110,7 @@ let BindCardApi = "card/bindHardCard" // post cardno, code, passwd
 let CardDetailApi = "card/get" // post
 //修改支付密码
 let CardChangePwdApi = "user/updatePaypwd" // post oldpasswd, newpasswd
-//
+//重置支付密码
 let CardResetPayPwdApi = "user/resetPaypwd" // post paypsw, passwd
 //一卡通交易记录
 let CardOrderListApi = "card/listTransaction" // post starttime, stoptime, skip, limit
@@ -128,6 +128,8 @@ let PrePayOrderApi = "transaction/prepay" // post ptid:支付方式,atid:货币I
 let CancelPrePayOrderApi = "transaction/cancel"//post orderno
 //一卡通支付
 let CardPayApi = "transaction/pay" //post paysign:md5(cid + ts + cmdno + paypsw),orderno
+//缴费详情
+let PayOrderDetailApi = "pay/get" //post UUID orderno
 //检查支付密码
 let CheckPwdApi = "transaction/checkpwd" // post paysign md5(cid+ts+cmdno+passwd)
 //一卡通交易列表

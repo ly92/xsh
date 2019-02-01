@@ -165,6 +165,7 @@ extension NetTools{
                     }
                     let loginVC = LoginViewController.spwan()
                     nav.viewControllers.first?.present(loginVC, animated: true) {
+                        LocalData.saveYesOrNotValue(value: "0", key: KIsLoginKey)
                     }
                 }else{
                     failure( json["message"].stringValue)

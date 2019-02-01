@@ -17,6 +17,7 @@ class MotionViewController: BaseViewController {
     }
     
     
+    @IBOutlet weak var topView: UIView!
     @IBOutlet weak var titleTopDis: NSLayoutConstraint!
     @IBOutlet weak var numLbl: UILabel!
     @IBOutlet weak var timeLbl: UILabel!
@@ -66,6 +67,17 @@ class MotionViewController: BaseViewController {
         self.pullToRefre()
         
         self.loadTodayStep()
+        
+        //颜色渐变
+        let layer = CAGradientLayer()
+        let color1 = UIColor.colorHex(hex: "6DDABD").cgColor
+        let color2 = UIColor.colorHex(hex: "50BEA1").cgColor
+        layer.colors = [color1, color2]
+        layer.locations = [0.5, 1.0]
+        layer.startPoint = CGPoint.init(x: 0, y: 0)
+        layer.endPoint = CGPoint.init(x: 0, y: 1)
+        layer.frame = CGRect.init(x: 0, y: 0, width: kScreenW, height: self.topView.h)
+        self.topView.layer.addSublayer(layer)
     }
     
     
@@ -144,6 +156,7 @@ class MotionViewController: BaseViewController {
                 }
             }
         }
+        self.tableView.reloadData()
     }
     
     
@@ -167,6 +180,10 @@ extension MotionViewController : UITableViewDelegate, UITableViewDataSource{
             let json = self.stepsLogList[indexPath.row]
             cell.rule = self.rule
             cell.subJson = json
+            cell.refreshBlock = {() in
+                self.stepsLogList.removeAll()
+                self.loadStepsLog()
+            }
         }
         return cell
     }

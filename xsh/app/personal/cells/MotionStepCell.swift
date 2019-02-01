@@ -18,6 +18,7 @@ class MotionStepCell: UITableViewCell {
     @IBOutlet weak var btn: UIButton!
     
     var rule = JSON()
+    var refreshBlock : (() -> Void)?
     
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -78,6 +79,7 @@ class MotionStepCell: UITableViewCell {
     
     @IBAction func btnAction() {
         if self.subJson["status"].stringValue.intValue == 0 || self.subJson["status"].stringValue.intValue == 1{
+            LYProgressHUD.showLoading()
             var params : [String : Any] = [:]
             params["steps"] = self.subJson["steps"].stringValue
             params["sign_date"] = Date.dateStringFromDate(format: Date.dateFormatString(), timeStamps: self.subJson["date"].stringValue)
@@ -85,8 +87,9 @@ class MotionStepCell: UITableViewCell {
                 LYProgressHUD.showSuccess("兑换成功！")
                 self.pointLeftLbl.text = "已兑换"
                 self.btn.setTitle("已打卡", for: .normal)
-                self.btn.backgroundColor = UIColor.gray
-                self.btn.isEnabled = false
+                if self.refreshBlock != nil{
+                    self.refreshBlock!()
+                }
             }) { (error) in
                 LYProgressHUD.showError(error)
             }
