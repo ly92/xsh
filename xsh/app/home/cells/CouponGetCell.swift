@@ -37,6 +37,9 @@ class CouponGetCell: UITableViewCell {
     }
     
     @IBAction func getAction() {
+        if self.subJson["user_status"].stringValue.intValue == 1 || self.subJson["status"].stringValue.intValue != 0{
+            return
+        }
         var params : [String : Any] = [:]
         params["optid"] = self.subJson["optid"].stringValue
         params["userid"] = LocalData.getCId()
@@ -59,6 +62,18 @@ class CouponGetCell: UITableViewCell {
             let scal = self.subJson["cur_num"].stringValue.floatValue * 100 / self.subJson["remain_num"].stringValue.floatValue
             self.stateLbl.text = String.init(format: "已领取%.2f", scal) + "%"
             self.imgV.setImageUrlStr(self.subJson["imageurl"].stringValue)
+            
+            if self.subJson["user_status"].stringValue.intValue == 1{
+                self.getBtn.setTitle("已领取", for: .normal)
+                self.getBtn.backgroundColor = UIColor.gray
+            }else{
+                self.getBtn.setTitle("立即领取", for: .normal)
+                if self.subJson["status"].stringValue.intValue == 0{
+                    self.getBtn.backgroundColor = Normal_Color
+                }else{
+                    self.getBtn.backgroundColor = UIColor.gray
+                }
+            }
         }
     }
     

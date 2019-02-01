@@ -36,13 +36,16 @@ class MotionStepCell: UITableViewCell {
             self.timeLbl.text = Date.dateStringFromDate(format: Date.dateFormatString(), timeStamps: self.subJson["date"].stringValue)
 
             self.stepLbl.text = "步数:" + self.subJson["steps"].stringValue
-            
+            var part_num : Int = 1
+            if self.rule["part_num"].intValue > 1{
+                part_num = self.rule["part_num"].intValue
+            }
             
             //status 0未打卡 1可补卡 2已打卡 3已过期
             let status = self.subJson["status"].stringValue.intValue
             if status == 0{
                 let steps = self.subJson["steps"].intValue
-                var point = (steps - self.rule["start_num"].intValue) / self.rule["part_num"].intValue
+                var point = (steps - self.rule["start_num"].intValue) / part_num
                 if point > self.rule["max_points"].intValue{
                     point = self.rule["max_points"].intValue
                 }
@@ -53,7 +56,7 @@ class MotionStepCell: UITableViewCell {
                 self.btn.backgroundColor = Normal_Color
             }else if status == 1{
                 let steps = self.subJson["steps"].intValue
-                var point = (steps - self.rule["start_num"].intValue) / self.rule["part_num"].intValue
+                var point = (steps - self.rule["start_num"].intValue) / part_num
                 if point > self.rule["max_points"].intValue{
                     point = self.rule["max_points"].intValue
                 }

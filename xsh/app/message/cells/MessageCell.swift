@@ -33,7 +33,7 @@ class MessageCell: UITableViewCell {
     
     var subJson = JSON(){
         didSet{
-            let type = self.subJson["type"].stringValue
+            let type = self.subJson["type"].stringValue.trim
             if type == "trans"{
                 self.titleLbl.text = "交易通知"
                 self.imgV.image = UIImage.init(named: "message_icon1")
@@ -41,13 +41,13 @@ class MessageCell: UITableViewCell {
                 self.titleLbl.text = "领券通知"
                 self.imgV.image = UIImage.init(named: "message_icon2")
             }else if type == "pay"{
-                self.titleLbl.text = "缴费成功通知"
+                self.titleLbl.text = "缴费通知"
                 self.imgV.image = UIImage.init(named: "message_icon1")
             }else if type == "advice"{
-                self.titleLbl.text = "投诉建议更新通知"
+                self.titleLbl.text = "投诉建议通知"
                 self.imgV.image = UIImage.init(named: "message_icon3")
             }else if type == "maintain"{
-                self.titleLbl.text = "维修更新通知"
+                self.titleLbl.text = "维修通知"
                 self.imgV.image = UIImage.init(named: "message_icon4")
             }else if type == "else"{
                 self.titleLbl.text = "消息通知"

@@ -44,7 +44,7 @@ class StoreViewController: BaseViewController {
         let close = UIBarButtonItem.init(image: #imageLiteral(resourceName: "delete_icon"), target: self, action: #selector(StoreViewController.closeClick))
         self.navigationItem.leftBarButtonItems = [back, close]
         //优惠券
-        self.navigationItem.rightBarButtonItem = UIBarButtonItem.init(title: "优惠券", target: self, action: #selector(StoreViewController.rightItemaction))
+        self.navigationItem.rightBarButtonItem = UIBarButtonItem.init(title: "免费领券", target: self, action: #selector(StoreViewController.rightItemaction))
         
         // Do any additional setup after loading the view.
     }
@@ -114,6 +114,9 @@ extension StoreViewController : UIWebViewDelegate{
         }
         //去支付
         if requestUrl.contains("*payFromHtml5"){
+            
+            self.loadRequest()
+            
             //http://39.108.218.19:8085/html/*payFromHtml5*1812_9c6bba0a4b09874a9a71a865f1e0*%E7%89%A9%E4%B8%9A%E8%B4%B9*0.01
             let arr = requestUrl.components(separatedBy: "*")
             if arr.count == 5{
@@ -127,13 +130,10 @@ extension StoreViewController : UIWebViewDelegate{
                 payVC.payResultBlock = {(type) in
                     if type == 1{
                         //成功
-                        self.loadRequest()
                     }else if type == 2{
                         //取消
-                        
                     }else if type == 3{
                         //失败
-                        
                     }
                 }
                 self.navigationController?.pushViewController(payVC, animated: true)
@@ -142,7 +142,6 @@ extension StoreViewController : UIWebViewDelegate{
             }else{
                 LYProgressHUD.showError("订单信息错误！")
             }
-            
         }
         
         LYProgressHUD.showLoading()
