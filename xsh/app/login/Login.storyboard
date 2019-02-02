@@ -935,7 +935,7 @@
                                                     <color key="textColor" red="0.56470588239999997" green="0.56470588239999997" blue="0.56470588239999997" alpha="1" colorSpace="calibratedRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <button opaque="NO" tag="16" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="2tz-Zt-Df8">
+                                                <button hidden="YES" opaque="NO" tag="16" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="2tz-Zt-Df8">
                                                     <rect key="frame" x="24" y="51" width="100" height="25"/>
                                                     <constraints>
                                                         <constraint firstAttribute="width" constant="100" id="isn-La-H6N"/>
@@ -948,6 +948,19 @@
                                                         <action selector="btnAction:" destination="3wa-iJ-5Bw" eventType="touchUpInside" id="ndS-QS-UpT"/>
                                                     </connections>
                                                 </button>
+                                                <button opaque="NO" tag="20" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="pJY-GM-fZ9">
+                                                    <rect key="frame" x="275" y="46.5" width="100" height="34"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="width" constant="100" id="Hno-ki-suB"/>
+                                                    </constraints>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="18"/>
+                                                    <state key="normal" title="跳过">
+                                                        <color key="titleColor" red="0.28627450980000002" green="0.80392156859999997" blue="0.66666666669999997" alpha="1" colorSpace="calibratedRGB"/>
+                                                    </state>
+                                                    <connections>
+                                                        <action selector="btnAction:" destination="3wa-iJ-5Bw" eventType="touchUpInside" id="of2-Gh-WPq"/>
+                                                    </connections>
+                                                </button>
                                             </subviews>
                                             <constraints>
                                                 <constraint firstItem="Bd8-MK-QWD" firstAttribute="top" secondItem="wve-qF-tYG" secondAttribute="bottom" constant="8" id="1y9-EE-OQo"/>
@@ -955,6 +968,8 @@
                                                 <constraint firstItem="2tz-Zt-Df8" firstAttribute="top" secondItem="Juh-Xv-2si" secondAttribute="topMargin" constant="40" id="OiU-bY-Q7v"/>
                                                 <constraint firstItem="wve-qF-tYG" firstAttribute="leading" secondItem="Juh-Xv-2si" secondAttribute="leadingMargin" constant="8" id="Ry1-QU-Vla"/>
                                                 <constraint firstItem="2tz-Zt-Df8" firstAttribute="leading" secondItem="Juh-Xv-2si" secondAttribute="leadingMargin" constant="8" id="kk7-Wp-Mez"/>
+                                                <constraint firstAttribute="trailing" secondItem="pJY-GM-fZ9" secondAttribute="trailing" id="oDo-7n-UZ9"/>
+                                                <constraint firstItem="pJY-GM-fZ9" firstAttribute="centerY" secondItem="2tz-Zt-Df8" secondAttribute="centerY" id="pgG-9Q-4nC"/>
                                                 <constraint firstItem="Bd8-MK-QWD" firstAttribute="leading" secondItem="Juh-Xv-2si" secondAttribute="leadingMargin" constant="8" id="q7Y-xu-ta7"/>
                                             </constraints>
                                         </tableViewCellContentView>

@@ -38,7 +38,7 @@ class RegisterViewController: BaseTableViewController {
     fileprivate var areaStr = ""
     fileprivate var communityStr = ""
     
-    fileprivate var secIndex = 0//0:记录了手机号，1:更改手机号，2:忘记密码，3:更改密码
+    fileprivate var secIndex = 0//0:手机号，1:验证，2:基本信息，3:详细信息
     fileprivate var timer = Timer()//
     fileprivate var codeTime : Int = 60
     
@@ -120,6 +120,11 @@ class RegisterViewController: BaseTableViewController {
         case 19:
             //完成，返回登录
             self.updatePersonalInfo()
+        case 20:
+            //跳过
+            LYAlertView.show("跳过此步？", "跳过详细信息后可在个人中心补充此信息", "取消", "确定",{
+                self.dismiss(animated: true, completion: nil)
+            })
         default:
             print("bug")
         }
@@ -210,7 +215,10 @@ class RegisterViewController: BaseTableViewController {
         params["code"] = code!
         NetTools.normalRequest(type: .post, urlString: RegisterApi, parameters: params, succeed: { (result) in
             LYProgressHUD.showSuccess("注册成功！")
-            self.dismiss(animated: true, completion: nil)
+            
+            LocalData.saveUserPhone(phone: phone!)
+            LocalData.saveCId(cid: result["user"]["cid"].stringValue)
+            
             self.secIndex = 3
             self.tableView.reloadData()
         }) { (error) in

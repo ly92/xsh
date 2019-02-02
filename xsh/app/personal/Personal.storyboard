@@ -245,7 +245,7 @@
                                             <rect key="frame" x="0.0" y="0.0" width="341" height="45"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="personal_icon4" translatesAutoresizingMaskIntoConstraints="NO" id="6ea-XQ-iAZ">
+                                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="personal_icon9" translatesAutoresizingMaskIntoConstraints="NO" id="6ea-XQ-iAZ">
                                                     <rect key="frame" x="23" y="10" width="25" height="25"/>
                                                     <constraints>
                                                         <constraint firstAttribute="height" constant="25" id="Jyg-9g-Ko2"/>
@@ -2093,6 +2093,7 @@
         <image name="personal_icon6" width="25" height="25"/>
         <image name="personal_icon7" width="12" height="12"/>
         <image name="personal_icon8" width="375" height="176"/>
+        <image name="personal_icon9" width="25" height="25"/>
         <image name="right_arrow" width="12" height="12"/>
         <image name="steps" width="80" height="80"/>
     </resources>

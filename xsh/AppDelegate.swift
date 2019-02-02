@@ -276,10 +276,6 @@ extension AppDelegate {
         params["location"] = "start"
         NetTools.requestData(type: .post, urlString: AdListApi, parameters: params, succeed: { (result) in
             LocalData.saveAdJson(json: result["list"]["list"])
-//            var urlArray : Array<String> = []
-//            for json in result["list"]["list"].arrayValue{
-//                urlArray.append(json["imageurl"].stringValue)
-//            }
         }) { (error) in
             LYProgressHUD.showError(error)
         }

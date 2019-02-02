@@ -16,9 +16,9 @@ class AdView: UIView {
     fileprivate var index : Int = 0
     
     //
-    func setUpSubViews(_ json : JSON) {
+    func setUpSubViews(_ jsonArr : JSON) {
         
-        self.adArray = json.arrayValue
+        self.adArray = jsonArr.arrayValue
         
         self.frame = CGRect.init(x: 0, y: 0, width: kScreenW, height: kScreenH)
         UIApplication.shared.keyWindow?.addSubview(self)
@@ -38,17 +38,26 @@ class AdView: UIView {
         skipBtn.addTarget(self, action: #selector(AdView.skipAction), for: .touchDown)
         self.addSubview(skipBtn)
         
-        
         self.addTapActionBlock {
             self.skipAction()
+            
+            let json = self.adArray[self.index]
+            
             //跳转外部链接
             let webVC = BaseWebViewController()
             webVC.titleStr = json["title"].stringValue
-            webVC.urlStr = json["imageurl"].stringValue
+            webVC.urlStr = json["outerurl"].stringValue
             guard let nav = AppDelegate.sharedInstance.tabBar.selectedViewController as? LYNavigationController else{
                 return
             }
-            nav.viewControllers.first?.navigationController?.pushViewController(webVC, animated: true)
+            if LocalData.getYesOrNotValue(key: KIsLoginKey){
+                nav.viewControllers.first?.navigationController?.pushViewController(webVC, animated: true)
+            }else{
+                webVC.isPresent = true
+                let nav_webVC = LYNavigationController.init(rootViewController: webVC)
+                nav.viewControllers.first?.presentedViewController?.present(nav_webVC, animated: true, completion: {
+                })
+            }
         }
         
         self.showImage()
