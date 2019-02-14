@@ -48,6 +48,8 @@ class MotionStepCell: UITableViewCell {
                 var point = (steps - self.rule["start_num"].intValue) / part_num
                 if point > self.rule["max_points"].intValue{
                     point = self.rule["max_points"].intValue
+                }else if point < 0 {
+                    point = 0
                 }
                 
                 self.pointLeftLbl.text = "可兑换"
@@ -59,6 +61,8 @@ class MotionStepCell: UITableViewCell {
                 var point = (steps - self.rule["start_num"].intValue) / part_num
                 if point > self.rule["max_points"].intValue{
                     point = self.rule["max_points"].intValue
+                }else if point < 0 {
+                    point = 0
                 }
                 
                 self.pointLeftLbl.text = "可兑换"
