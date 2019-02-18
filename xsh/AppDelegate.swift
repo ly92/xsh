@@ -266,8 +266,10 @@ extension AppDelegate {
         NetTools.requestData(type: .post, urlString: MessageNewCountApi, succeed: { (result) in
             let total = result["total"].stringValue.intValue
             if total > 0 {
+                UIApplication.shared.applicationIconBadgeNumber = total
                 self.tabBar.children[2].tabBarItem.badgeValue = "\(total)"
             }else{
+                UIApplication.shared.applicationIconBadgeNumber = 0
                 self.tabBar.children[2].tabBarItem.badgeValue = nil
             }
         }) { (error) in
