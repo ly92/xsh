@@ -8,6 +8,7 @@
 
 import UIKit
 import CoreData
+import Bugly
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -46,14 +47,16 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         BaiDuMap.default.startLocation()
         
         //激光推送
-        let entity = JPUSHRegisterEntity()
-        entity.types = Int(JPAuthorizationOptions.alert.rawValue)|Int(JPAuthorizationOptions.badge.rawValue)|Int(JPAuthorizationOptions.sound.rawValue)
-        DispatchQueue.main.async {
-            JPUSHService.register(forRemoteNotificationConfig: entity, delegate: nil)
+        DispatchQueue.global().async {
+            self.setupJpush(launchOptions)
         }
+        
+        //bugly
+        Bugly.start(withAppId: KBuglyKey)
         
         return true
     }
+    
 
     func applicationWillResignActive(_ application: UIApplication) {
         
@@ -139,10 +142,16 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         return container
     }()
     
+    // Required - 注册 DeviceToken
     func application(_ application: UIApplication, didRegisterForRemoteNotificationsWithDeviceToken deviceToken: Data) {
         
         let token = deviceToken.description.replacingOccurrences(of: ">", with: "").replacingOccurrences(of: "<", with: "").replacingOccurrences(of: " ", with: "")
         LocalData.saveToken(token: token)
+        
+        DispatchQueue.global().async {
+            JPUSHService.registerDeviceToken(deviceToken)
+        }
+        
     }
 
     // MARK: - Core Data Saving support
@@ -164,7 +173,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 }
 
 
-
+//MARK: - 启动时动作
 extension AppDelegate {
     
     //启动时需要执行的动作
@@ -316,5 +325,59 @@ extension AppDelegate : WXApiDelegate{
             LYProgressHUD.showInfo("支付失败！")
         }
     }
+    
+}
+
+
+//MARK: - 极光推送
+extension AppDelegate : JPUSHRegisterDelegate{
+    func jpushNotificationCenter(_ center: UNUserNotificationCenter!, willPresent notification: UNNotification!, withCompletionHandler completionHandler: ((Int) -> Void)!) {
+        
+    }
+    
+    func jpushNotificationCenter(_ center: UNUserNotificationCenter!, didReceive response: UNNotificationResponse!, withCompletionHandler completionHandler: (() -> Void)!) {
+        
+    }
+    
+    func jpushNotificationCenter(_ center: UNUserNotificationCenter!, openSettingsFor notification: UNNotification?) {
+        
+    }
+    
+    
+    //极光推送
+    func setupJpush(_ launchOptions: [UIApplication.LaunchOptionsKey: Any]?) {
+        let entity = JPUSHRegisterEntity()
+        entity.types = Int(JPAuthorizationOptions.alert.rawValue)|Int(JPAuthorizationOptions.badge.rawValue)|Int(JPAuthorizationOptions.sound.rawValue)
+        DispatchQueue.main.async {
+            JPUSHService.register(forRemoteNotificationConfig: entity, delegate: self)
+        }
+        
+        let advertisingIdentifier = ASIdentifierManager.shared().advertisingIdentifier.uuidString
+        if DeBug{
+            JPUSHService.setup(withOption: launchOptions, appKey: KJpushKey, channel: "itms-apps://itunes.apple.com/cn/app/id1049692770?mt=8", apsForProduction: false, advertisingIdentifier : advertisingIdentifier)
+        }else{
+            JPUSHService.setup(withOption: launchOptions, appKey: KJpushKey, channel: "itms-apps://itunes.apple.com/cn/app/id1049692770?mt=8", apsForProduction: true, advertisingIdentifier : advertisingIdentifier)
+        }
+        
+        JPUSHService.registrationIDCompletionHandler { (resCode, registrationID) in
+            if resCode == 0{
+                print("注册极光推送成功---" + registrationID!)
+            }else{
+                print("注册极光推送失败---" + String.init(format: "%d", resCode))
+            }
+        }
+        
+        //设置推送别名
+        if LocalData.getUserPhone().isEmpty{
+            //设置推送的通用标示
+            JPUSHService.setAlias("000000", completion: { (isResCode, alias, seq) in
+            }, seq:0)
+        }else{
+            JPUSHService.setAlias(LocalData.getUserPhone(), completion: { (isResCode, alias, seq) in
+            }, seq:0)
+        }
+    }
+    
+    
     
 }

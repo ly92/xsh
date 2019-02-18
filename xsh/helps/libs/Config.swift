@@ -23,9 +23,9 @@ let KLoginSuccessNotiName = "KLoginSuccessNotiName"
 
 let KAliPayScheme = "alipayappyssh111"
 let KWechatKey = "wx01e4c37152e4b98f"
-
+let KJpushKey = "2423b2f1b952e7e1b8a38be7"
 let KBmapKey = "VO4wfMvoSvhxqjmGWmADGgN4zvfrF6sE"
-
+let KBuglyKey = "b736017019"
 
 let NAV_Color = UIColor.white
 let Text_Color = UIColor.RGBS(s: 33)
@@ -76,6 +76,45 @@ func globalFunctionClickAction(_ json : JSON, _ vc : UIViewController){
     }else if json["actiontype"].intValue == 4{
         //详情页
         
+    }
+    
+}
+
+//首页广告点击效果
+func globalAdClickAction(_ json : JSON, _ vc : UIViewController){
+    if json["actiontype"].intValue == 0{
+        //跳转外部链接
+        let webVC = BaseWebViewController()
+        webVC.titleStr = json["title"].stringValue
+        let url = json["outerurl"].stringValue
+        webVC.urlStr = url
+        vc.navigationController?.pushViewController(webVC, animated: true)
+    }else if json["actiontype"].intValue == 1{
+        //跳转内部页面
+        if json["actionios"].stringValue == "NoticeViewController"{
+            let noticeVC = NoticeTableViewController()
+            vc.navigationController?.pushViewController(noticeVC, animated: true)
+        }else if json["actionios"].stringValue == "MoreViewController"{
+            let moreFuncVC = MoreFunctionViewController()
+            vc.navigationController?.pushViewController(moreFuncVC, animated: true)
+        }else if json["actionios"].stringValue == "CouponViewController"{
+            let couponVC = CouponViewController()
+            vc.navigationController?.pushViewController(couponVC, animated: true)
+        }
+        
+    }else if json["actiontype"].intValue == 2{
+        //第三方应用
+        
+    }else if json["actiontype"].intValue == 3{
+        //保留
+        
+    }else if json["actiontype"].intValue == 4{
+        //详情页
+        let webVC = BaseWebViewController()
+        webVC.isFromAd = true
+        webVC.titleStr = json["title"].stringValue
+        webVC.adId = json["id"].stringValue
+        vc.navigationController?.pushViewController(webVC, animated: true)
     }
     
 }

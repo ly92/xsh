@@ -14,3 +14,8 @@
 
 //百度地图
 #import <BMKLocationkit/BMKLocationComponent.h>
+
+//极光推送
+#import "JPUSHService.h"
+#import <UserNotifications/UserNotifications.h>
+#import <AdSupport/AdSupport.h>

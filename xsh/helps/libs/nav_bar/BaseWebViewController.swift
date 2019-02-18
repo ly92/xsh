@@ -14,6 +14,9 @@ class BaseWebViewController: BaseViewController {
     
     var isPresent = false
     
+    var isFromAd = false
+    var adId = ""
+    
     public var urlStr : String = ""
     public var titleStr: String = ""
     
@@ -45,7 +48,24 @@ class BaseWebViewController: BaseViewController {
             self.automaticallyAdjustsScrollViewInsets = false
         }
         
-        self.loadRequest()
+        if self.isFromAd{
+            self.loadAdDetail()
+        }else{
+            self.loadRequest()
+        }
+    }
+    
+    
+    //查询广告位广告详情
+    func loadAdDetail() {
+        var params : [String : Any] = [:]
+        params["id"] = self.adId
+        NetTools.requestData(type: .post, urlString: AdDetailApi, parameters: params, succeed: { (result) in
+            let content = result["ads"]["content"].stringValue
+            self.webView.loadHTMLString(content, baseURL: URL.init(string: "http://www.wwwcity.net"))
+        }) { (error) in
+            LYProgressHUD.showError(error)
+        }
     }
     
     

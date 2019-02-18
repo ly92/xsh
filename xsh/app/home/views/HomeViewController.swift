@@ -300,24 +300,7 @@ extension HomeViewController : LYAnimateBannerViewDelegate{
     func LY_AnimateBannerViewClick(banner:LYAnimateBannerView, index: NSInteger) {
         if self.bannerList.count > index{
             let json = self.bannerList[index]
-            //            globalFunctionClickAction(json, self)
-            let webVC = BaseWebViewController()
-            webVC.titleStr = json["title"].stringValue
-            let url = json["outerurl"].stringValue
-            webVC.urlStr = url
-            self.navigationController?.pushViewController(webVC, animated: true)
-            
-            //            //查询广告位广告详情
-            //            func loadAdsDetail() {
-            //                var params : [String : Any] = [:]
-            //                params["id"] = json["id"]
-            //                NetTools.requestData(type: .post, urlString: AdDetailApi, parameters: params, succeed: { (result) in
-            //
-            //                }) { (error) in
-            //                    LYProgressHUD.showError(error)
-            //                }
-            //            }
-            
+            globalAdClickAction(json, self)
         }
     }
 }
