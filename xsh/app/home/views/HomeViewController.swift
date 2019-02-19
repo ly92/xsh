@@ -29,7 +29,7 @@ class HomeViewController: BaseViewController {
     
     //功能栏
     fileprivate var functionList : Array<JSON> = []
-    fileprivate let functionView = UIView(frame: CGRect(x: 0, y: 0, width: kScreenW, height: 92))
+    fileprivate let functionView = UIView()
     
     //活动
     fileprivate var activityList : Array<JSON> = []
@@ -163,20 +163,30 @@ class HomeViewController: BaseViewController {
     }
     //设置功能栏
     func setUpFunctionViews() {
+        var row = self.functionList.count / 5
+        if self.functionList.count % 5 > 0{
+            row += 1
+        }
+        let h : CGFloat = 92
+        self.functionView.frame = CGRect(x: 0, y: 0, width: kScreenW, height: h * CGFloat(row))
         for view in self.functionView.subviews{
             view.removeFromSuperview()
         }
-        
-        let w = kScreenW / CGFloat(self.functionList.count)
-        
+        let w = kScreenW / 5
         for i in 0..<self.functionList.count{
             let json = self.functionList[i]
-            
-            let frame = CGRect.init(x: w * CGFloat(i), y: 0, width: w, height: self.functionView.h)
+            var act_row = 0
+            if i > 9{
+                act_row = 2
+            }else if i > 4{
+                act_row = 1
+            }
+            let frame = CGRect.init(x: w * CGFloat(i % 5), y: h * CGFloat(act_row), width: w, height: h)
             self.createfunction(json["name"].stringValue, json["iconurl"].stringValue, i, frame)
         }
-        
     }
+    
+    
     //创建功能栏页面
     func createfunction(_ title : String, _ img : String, _ index : Int, _ frame : CGRect) {
         let view = UIView.init(frame: frame)
@@ -409,7 +419,7 @@ extension HomeViewController : UICollectionViewDelegate, UICollectionViewDataSou
         if indexPath.section == 0{
             return CGSize.init(width: kScreenW, height: 190 / 375 * kScreenW)
         }else if indexPath.section == 1{
-            return CGSize.init(width: kScreenW, height: 92)
+            return CGSize.init(width: kScreenW, height: self.functionView.h)
         }else if indexPath.section == 2{
             return CGSize.init(width: kScreenW, height: 95)
         }else if indexPath.section > 2{
