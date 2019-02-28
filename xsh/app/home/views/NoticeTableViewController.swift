@@ -39,7 +39,7 @@ class NoticeTableViewController: BaseTableViewController {
         params["skip"] = self.noticeList.count
         params["limit"] = "10"
         NetTools.requestData(type: .post, urlString: NoticeListApi, parameters: params, succeed: { (result) in
-            for json in result["list"]["list"].arrayValue{
+            for json in result["list"].arrayValue{
                 self.noticeList.append(json)
             }
             if self.noticeList.count < result["list"]["total"].intValue{

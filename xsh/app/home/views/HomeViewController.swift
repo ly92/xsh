@@ -137,7 +137,7 @@ class HomeViewController: BaseViewController {
             //banner
             var urlArray : Array<String> = []
             self.bannerList.removeAll()
-            for json in result["list"]["list"].arrayValue{
+            for json in result["list"].arrayValue{
                 self.bannerList.append(json)
                 urlArray.append(json["imageurl"].stringValue)
             }
@@ -241,7 +241,7 @@ class HomeViewController: BaseViewController {
         params["skip"] = 0
         params["limit"] = 100
         NetTools.requestData(type: .post, urlString: AdListApi, parameters: params, succeed: { (result) in
-            self.activityList = result["list"]["list"].arrayValue
+            self.activityList = result["list"].arrayValue
             self.setUpActivityViews()
         }) { (error) in
             LYProgressHUD.showError(error)
@@ -253,12 +253,24 @@ class HomeViewController: BaseViewController {
             view.removeFromSuperview()
         }
         
-        self.ActivityView.contentSize = CGSize.init(width: CGFloat(150 * self.activityList.count), height: self.ActivityView.h)
+        var totalW : CGFloat = 0
+        let merge : CGFloat = 10
+        
         for i in 0..<self.activityList.count{
             let json = self.activityList[i]
-            let frame = CGRect.init(x: 150 * CGFloat(i) + 10, y: 0, width: 140, height: self.ActivityView.h)
+            var width : CGFloat = 140
+            let widthScal = CGFloat(json["extra"]["width"].floatValue)
+            if widthScal == 100{
+                width = kScreenW
+            }else if widthScal > 0 && widthScal < 100{
+                width *= widthScal
+            }
+            let frame = CGRect.init(x: totalW + merge, y: 0, width: width, height: self.ActivityView.h)
+            totalW += merge
+            totalW += width
             self.creareAvtivity(json["imageurl"].stringValue, i, frame)
         }
+        self.ActivityView.contentSize = CGSize.init(width: totalW + 10, height: self.ActivityView.h)
     }
     //创建活动页面
     func creareAvtivity(_ iconUrl : String, _ index : Int, _ frame : CGRect) {
@@ -423,7 +435,7 @@ extension HomeViewController : UICollectionViewDelegate, UICollectionViewDataSou
         }else if indexPath.section == 2{
             return CGSize.init(width: kScreenW, height: 95)
         }else if indexPath.section > 2{
-            let w = kScreenW / 2.0 - 1
+            let w = kScreenW / 3.0 - 1
             return CGSize.init(width: w, height: w * 1.2)
         }
         return CGSize.zero
