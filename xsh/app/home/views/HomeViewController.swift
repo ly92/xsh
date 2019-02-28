@@ -435,8 +435,8 @@ extension HomeViewController : UICollectionViewDelegate, UICollectionViewDataSou
         }else if indexPath.section == 2{
             return CGSize.init(width: kScreenW, height: 95)
         }else if indexPath.section > 2{
-            let w = kScreenW / 3.0 - 1
-            return CGSize.init(width: w, height: w * 1.2)
+            let w = (kScreenW - 32) / 3.0
+            return CGSize.init(width: w, height: w + 85)
         }
         return CGSize.zero
     }
@@ -446,7 +446,14 @@ extension HomeViewController : UICollectionViewDelegate, UICollectionViewDataSou
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumInteritemSpacingForSectionAt section: Int) -> CGFloat {
-        return 0
+        return 8
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt section: Int) -> UIEdgeInsets {
+        if section > 2{
+            return UIEdgeInsets.init(top: 0, left: 8, bottom: 0, right: 8)
+        }
+        return UIEdgeInsets.zero
     }
     
 }

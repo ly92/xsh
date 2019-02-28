@@ -86,7 +86,7 @@ class AdView: UIView {
 
     //跳过
     @objc func skipAction(){
-        UIView.animate(withDuration: 1, animations: {
+        UIView.animate(withDuration: 2, animations: {
             self.alpha = 0.3
         }) { (comp) in
             self.removeFromSuperview()
