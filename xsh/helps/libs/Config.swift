@@ -48,9 +48,12 @@ func isMessageNotificationServiceOpen() -> Bool{
 func globalFunctionClickAction(_ json : JSON, _ vc : UIViewController){
     if json["actiontype"].intValue == 0{
         //跳转外部链接
+        let ts = Date.phpTimestamp()
+        let cmdno = String.randomStr(len: 20) + ts
+        let sign = (LocalData.getCId() + ts + cmdno + LocalData.getPwd()).md5String()
         let webVC = BaseWebViewController()
         webVC.titleStr = json["name"].stringValue
-        let url = json["actionurl"].stringValue.replacingOccurrences(of: "$cid$", with: LocalData.getCId())
+        let url = json["actionurl"].stringValue.replacingOccurrences(of: "$cid$", with: LocalData.getCId()).replacingOccurrences(of: "$ts$", with: ts).replacingOccurrences(of: "$sign$", with: sign).replacingOccurrences(of: "$cmdno$", with: cmdno)
         print(url)
         webVC.urlStr = url
         vc.navigationController?.pushViewController(webVC, animated: true)
