@@ -24,10 +24,10 @@
 			<key>CFBundleTypeRole</key>
 			<string>Editor</string>
 			<key>CFBundleURLName</key>
-			<string>com.magicsoft.wt</string>
+			<string>com.magicsoft.appyssh</string>
 			<key>CFBundleURLSchemes</key>
 			<array>
-				<string>WeTown</string>
+				<string>yssh_xsh</string>
 			</array>
 		</dict>
 		<dict>
