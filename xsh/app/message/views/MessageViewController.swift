@@ -42,6 +42,8 @@ class MessageViewController: BaseTableViewController {
             self.messageList.removeAll()
             self.loadMessageData()
         }
+        
+        self.getNewMessage()
     }
     
     @objc func rightItemAction() {

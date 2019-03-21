@@ -68,6 +68,12 @@ func globalFunctionClickAction(_ json : JSON, _ vc : UIViewController){
         }else if json["actionios"].stringValue == "CouponViewController"{
             let couponVC = CouponViewController()
             vc.navigationController?.pushViewController(couponVC, animated: true)
+        }else if json["actionios"].stringValue == "ComplaintController"{
+            let complantVC = ComplaintViewController.spwan()
+            vc.navigationController?.pushViewController(complantVC, animated: true)
+        }else if json["actionios"].stringValue == "RepairController"{
+            let repairVC = RepairViewController.spwan()
+            vc.navigationController?.pushViewController(repairVC, animated: true)
         }
         
     }else if json["actiontype"].intValue == 2{

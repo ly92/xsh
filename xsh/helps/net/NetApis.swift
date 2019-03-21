@@ -146,3 +146,22 @@ let RecommendGoodsApi = "shop/recommend" //post
 let StoreListApi = "biz/getBizSortList"
 //获取所有行业
 let StoreIndustryApi = "biz/industryall"
+
+
+/************************************ 投诉 建议 维修 ********************************************/
+//小区列表
+let HouseListApi = "maintain/getunit"//post
+//创建投诉&建议
+let ComplantSuggestApi = "complain/apply"// post communityid:小区编号  type：类型 content：维修内容 image：配图地址 username：用户名 mobile：联系电话 address：联系地址
+//根据cid获取投诉&建议列表
+let ComplantSuggestListApi = "maintain/listuncomments"// post
+//评价投诉建议
+let EvaluateComplantApi = "complain/comments"// post comments:是否满意 1同意 2不同意 reason原因
+//创建维修
+let CreateRepairApi = "maintain/apply" // post communityid:小区编号  maintype：主维修类型 subtype：子维修类型 content：维修内容 image：配图地址 username：用户名 mobile：联系电话 address：联系地址 unit：报修单元
+//根据cid获取维修列表
+let RepairListApi = "maintain/listuncomments" // post
+//评价维修
+let EvaluateRepairApi = "maintain/comments"// post id:维修编号 comments：是否满意 1满意 2不满意 reason：原因
+//维修类型列表
+let RepairCategoryApi = "maintain/subtypes" // post maintype 1公共维修，2个人维修

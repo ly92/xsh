@@ -56,7 +56,9 @@ class StoreViewController: BaseViewController {
                 urlStr = "http://" + urlStr
             }
             urlStr = urlStr.replacingOccurrences(of: " ", with: "")
-            
+            print("----------------------")
+            print(urlStr)
+            print("----------------------")
             let request = URLRequest.init(url: URL(string:urlStr)!)
             self.webView.loadRequest(request)
         }
