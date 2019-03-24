@@ -152,7 +152,7 @@ let StoreIndustryApi = "biz/industryall"
 //小区列表
 let HouseListApi = "maintain/getunit"//post
 //创建投诉&建议
-let ComplantSuggestApi = "complain/apply"// post communityid:小区编号  type：类型 content：维修内容 image：配图地址 username：用户名 mobile：联系电话 address：联系地址
+let CreateComplantSuggestApi = "complain/apply"// post communityid:小区编号  type：类型 content：维修内容 image：配图地址 username：用户名 mobile：联系电话 address：联系地址
 //根据cid获取投诉&建议列表
 let ComplantSuggestListApi = "maintain/listuncomments"// post
 //评价投诉建议

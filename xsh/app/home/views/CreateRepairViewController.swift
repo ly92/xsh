@@ -58,6 +58,7 @@ class CreateRepairViewController: BaseTableViewController {
     }
 
     
+    //提交报修
     @IBAction func submitAction() {
         let content = self.contentTextView.text
         let image = self.imagV.image
@@ -140,7 +141,9 @@ extension CreateRepairViewController{
         }
     }
     
-    
+    override func scrollViewDidScroll(_ scrollView: UIScrollView) {
+        
+    }
     
 }
 

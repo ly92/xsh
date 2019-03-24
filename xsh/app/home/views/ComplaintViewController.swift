@@ -8,6 +8,8 @@
 
 import UIKit
 import SwiftyJSON
+import DGElasticPullToRefresh
+
 
 class ComplaintViewController: BaseViewController {
     class func spwan() -> ComplaintViewController{
@@ -28,6 +30,13 @@ class ComplaintViewController: BaseViewController {
         self.navigationItem.title = "投诉建议"
         self.tableView.register(UINib.init(nibName: "ComplantCell", bundle: Bundle.main), forCellReuseIdentifier: "ComplantCell")
         
+        
+        //历史单
+        self.loadComplantData()
+        self.pullToRefre {
+            self.loadComplantData()
+        }
+        
         //投诉
         self.complantView.addTapActionBlock {
             let complantVC = CreateComplantViewController.spwan()
@@ -44,6 +53,23 @@ class ComplaintViewController: BaseViewController {
         
         
     }
+    
+    
+    func pullToRefre(_ hander : @escaping RefreshBlock) {
+        let loadingView = DGElasticPullToRefreshLoadingViewCircle()
+        loadingView.tintColor = UIColor.white
+        self.tableView.dg_addPullToRefreshWithActionHandler({
+            hander()
+            self.tableView.dg_stopLoading()
+        }, loadingView: loadingView)
+        self.tableView.dg_setPullToRefreshFillColor(Normal_Color)
+        self.tableView.dg_setPullToRefreshBackgroundColor(self.tableView.backgroundColor!)
+    }
+    
+    deinit {
+        self.tableView.dg_removePullToRefresh()
+    }
+    
     
 
     //拨打电话
