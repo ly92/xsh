@@ -7,12 +7,15 @@
 //
 
 import UIKit
+import SwiftyJSON
 
 class CreateComplantViewController: BaseTableViewController {
     class func spwan() -> CreateComplantViewController{
         return self.loadFromStoryBoard(storyBoard: "Home") as! CreateComplantViewController
     }
     
+    var isDetail = false
+    var detailJson = JSON()
     var type = 1 // 1:投诉 2:建议
     
     
@@ -24,6 +27,8 @@ class CreateComplantViewController: BaseTableViewController {
     @IBOutlet weak var phoneTF: UITextField!
     @IBOutlet weak var addressTextView: UITextView!
     @IBOutlet weak var addressPlaceholderLbl: UILabel!
+    @IBOutlet weak var arrowImgV: UIImageView!
+    @IBOutlet weak var subBtn: UIButton!
     
     
     fileprivate var selectedCommunity = ""
@@ -36,6 +41,17 @@ class CreateComplantViewController: BaseTableViewController {
             self.navigationItem.title = "投诉"
         }else if self.type == 2{
             self.navigationItem.title = "建议"
+        }
+        
+        if self.isDetail{
+            self.arrowImgV.isHidden = true
+            self.subBtn.setTitle("评价", for: .normal)
+            self.contentTextView.isEditable = false
+            self.nameTF.isEnabled = false
+            self.phoneTF.isEnabled = false
+            self.addressPlaceholderLbl.isHidden = true
+            self.contentPlaceholderLbl.isHidden = true
+            self.setUpDetailUI()
         }
         
     }
@@ -71,6 +87,16 @@ class CreateComplantViewController: BaseTableViewController {
         }
         
         
+    }
+    
+    //布局详情页面数据
+    func setUpDetailUI() {
+        self.communityLbl.text = self.detailJson["communityname"].stringValue
+        self.contentTextView.text = self.detailJson["content"].stringValue
+        self.imgV.setImageUrlStr(self.detailJson["image"].stringValue)
+        self.nameTF.text = self.detailJson["username"].stringValue
+        self.phoneTF.text = self.detailJson["mobile"].stringValue
+        self.addressTextView.text = self.detailJson["address"].stringValue
     }
     
 }

@@ -107,7 +107,11 @@ extension RepairViewController : UITableViewDelegate,UITableViewDataSource{
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         if self.repairList.count > indexPath.row{
             let json = self.repairList[indexPath.row]
-            
+            let detailVC = CreateRepairViewController.spwan()
+            detailVC.detailJson = json
+            detailVC.isDetail = true
+            detailVC.type = json["maintype"].intValue
+            self.navigationController?.pushViewController(detailVC, animated: true)
         }
     }
     

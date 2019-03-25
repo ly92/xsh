@@ -7,11 +7,15 @@
 //
 
 import UIKit
+import SwiftyJSON
 
 class CreateRepairViewController: BaseTableViewController {
     class func spwan() -> CreateRepairViewController{
         return self.loadFromStoryBoard(storyBoard: "Home") as! CreateRepairViewController
     }
+    
+    var isDetail = false
+    var detailJson = JSON()
     
     var type = 1 // 1:公共 2:个人
     
@@ -26,6 +30,9 @@ class CreateRepairViewController: BaseTableViewController {
     @IBOutlet weak var phoneTF: UITextField!
     @IBOutlet weak var addressPlaceholderLbl: UILabel!
     @IBOutlet weak var addressTextView: UITextView!
+    @IBOutlet weak var arrowImgV1: UIImageView!
+    @IBOutlet weak var arrowImgV2: UIImageView!
+    @IBOutlet weak var subBtn: UIButton!
     
     
     fileprivate var selectedCommunity = ""
@@ -43,6 +50,18 @@ class CreateRepairViewController: BaseTableViewController {
             self.navigationItem.title = "个人维修"
         }
         
+        if self.isDetail{
+            self.arrowImgV1.isHidden = true
+            self.arrowImgV2.isHidden = true
+            self.subBtn.setTitle("评价", for: .normal)
+            self.contentTextView.isEditable = false
+            self.nameTF.isEnabled = false
+            self.unitTF.isEnabled = false
+            self.phoneTF.isEnabled = false
+            self.addressPlaceholderLbl.isHidden = true
+            self.contentPlaceholderLbl.isHidden = true
+            self.setUpDetailUI()
+        }
         
         self.imagV.addTapActionBlock {
             TakeOnePhotoHelper.default.takePhoto(self) { (image) in
@@ -97,6 +116,17 @@ class CreateRepairViewController: BaseTableViewController {
     }
     
     
+    //布局详情页面数据
+    func setUpDetailUI() {
+        self.communityLbl.text = self.detailJson["communityname"].stringValue
+        self.typeLbl.text = self.detailJson["typename"].stringValue
+        self.unitTF.text = self.detailJson["unit"].stringValue
+        self.contentTextView.text = self.detailJson["content"].stringValue
+        self.imagV.setImageUrlStr(self.detailJson["image"].stringValue)
+        self.nameTF.text = self.detailJson["username"].stringValue
+        self.phoneTF.text = self.detailJson["mobile"].stringValue
+        self.addressTextView.text = self.detailJson["address"].stringValue
+    }
 
 }
 

@@ -115,7 +115,11 @@ extension ComplaintViewController : UITableViewDelegate,UITableViewDataSource{
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         if self.complantList.count > indexPath.row{
             let json = self.complantList[indexPath.row]
-            
+            let detailVC = CreateComplantViewController.spwan()
+            detailVC.detailJson = json
+            detailVC.isDetail = true
+            detailVC.type = json["maintype"].intValue
+            self.navigationController?.pushViewController(detailVC, animated: true)
         }
     }
     

@@ -902,12 +902,15 @@
                     <connections>
                         <outlet property="addressPlaceholderLbl" destination="Uv8-Mc-Lkn" id="RvQ-ve-GeI"/>
                         <outlet property="addressTextView" destination="ASO-Rg-NZW" id="aaU-SV-z9r"/>
+                        <outlet property="arrowImgV1" destination="OkD-eQ-gCV" id="x6K-Gj-coG"/>
+                        <outlet property="arrowImgV2" destination="tPV-Gs-dnX" id="HrS-hB-TI4"/>
                         <outlet property="communityLbl" destination="TQL-W9-JEI" id="hlW-jw-rGC"/>
                         <outlet property="contentPlaceholderLbl" destination="W1u-v5-TWd" id="PE0-rk-hrG"/>
                         <outlet property="contentTextView" destination="I23-2c-UFS" id="jGB-fB-SvY"/>
                         <outlet property="imagV" destination="OJG-Nh-dh4" id="YKr-3m-wwt"/>
                         <outlet property="nameTF" destination="E8s-7I-dz4" id="kGs-8h-HLq"/>
                         <outlet property="phoneTF" destination="uUr-Xi-2ov" id="wF3-YF-dzo"/>
+                        <outlet property="subBtn" destination="OXl-9F-Hsx" id="Owe-9C-m1f"/>
                         <outlet property="typeLbl" destination="ven-cW-nMj" id="vdM-A7-LRb"/>
                         <outlet property="unitTF" destination="q7u-Vq-F4C" id="cVt-H9-LmW"/>
                     </connections>
@@ -1240,12 +1243,14 @@
                     <connections>
                         <outlet property="addressPlaceholderLbl" destination="3dl-XX-JzS" id="2tr-Wl-gU4"/>
                         <outlet property="addressTextView" destination="FH6-Pj-Z2U" id="MIZ-Ly-6dh"/>
+                        <outlet property="arrowImgV" destination="ep7-Nv-NXf" id="dY2-7O-XbP"/>
                         <outlet property="communityLbl" destination="wpx-RI-Da6" id="jub-Ga-7bR"/>
                         <outlet property="contentPlaceholderLbl" destination="0ze-mQ-29f" id="1mk-Oi-2SZ"/>
                         <outlet property="contentTextView" destination="MwX-4U-XEM" id="zhy-jl-nc5"/>
                         <outlet property="imgV" destination="NAq-kF-F0g" id="aoQ-Go-EwW"/>
                         <outlet property="nameTF" destination="cfm-Rw-TuU" id="Fyf-Ce-m0n"/>
                         <outlet property="phoneTF" destination="huW-kq-8V4" id="A98-0e-jbY"/>
+                        <outlet property="subBtn" destination="i3Y-Gp-qf6" id="h2E-Y6-ITK"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="2ek-zG-5LC" userLabel="First Responder" sceneMemberID="firstResponder"/>
