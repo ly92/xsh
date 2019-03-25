@@ -76,8 +76,8 @@ class ComplaintViewController: BaseViewController {
 
     //拨打电话
     @IBAction func phoneAction() {
-        if UIApplication.shared.canOpenURL(URL.init(string: "tel://99988833")!){
-            UIApplication.shared.open(URL.init(string: "tel://99988833")!, options: [:], completionHandler: nil)
+        if UIApplication.shared.canOpenURL(URL.init(string: "tel://01069345067")!){
+            UIApplication.shared.open(URL.init(string: "tel://01069345067")!, options: [:], completionHandler: nil)
         }
     }
     

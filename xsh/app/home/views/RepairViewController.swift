@@ -70,8 +70,8 @@ class RepairViewController: BaseViewController {
     
     //拨打电话
     @IBAction func phoneAction() {
-        if UIApplication.shared.canOpenURL(URL.init(string: "tel://99988833")!){
-            UIApplication.shared.open(URL.init(string: "tel://99988833")!, options: [:], completionHandler: nil)
+        if UIApplication.shared.canOpenURL(URL.init(string: "tel://01069330744")!){
+            UIApplication.shared.open(URL.init(string: "tel://01069330744")!, options: [:], completionHandler: nil)
         }
     }
     
