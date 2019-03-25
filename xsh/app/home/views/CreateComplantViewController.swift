@@ -32,7 +32,7 @@ class CreateComplantViewController: BaseTableViewController {
     
     
     fileprivate var selectedCommunity = ""
-    
+    fileprivate var offsetY : CGFloat = 0
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -47,17 +47,30 @@ class CreateComplantViewController: BaseTableViewController {
             self.arrowImgV.isHidden = true
             self.subBtn.setTitle("评价", for: .normal)
             self.contentTextView.isEditable = false
+            self.addressTextView.isEditable = false
             self.nameTF.isEnabled = false
             self.phoneTF.isEnabled = false
             self.addressPlaceholderLbl.isHidden = true
             self.contentPlaceholderLbl.isHidden = true
             self.setUpDetailUI()
+        }else{
+            self.imgV.addTapActionBlock {
+                TakeOnePhotoHelper.default.takePhoto(self) { (image) in
+                    self.imgV.image = image
+                }
+            }
         }
         
     }
     
     
     @IBAction func submitAction() {
+        if self.isDetail{
+            let evaluateVC = EvaluateViewController.spwan()
+            evaluateVC.id = self.detailJson["id"].stringValue
+            self.navigationController?.pushViewController(evaluateVC, animated: true)
+        }else{
+            
         let content = self.contentTextView.text
         let image = self.imgV.image
         guard let user = self.nameTF.text else {
@@ -68,22 +81,40 @@ class CreateComplantViewController: BaseTableViewController {
             LYProgressHUD.showInfo("请输入联系方式")
             return
         }
+        if !mobile.isMobelPhone(){
+            LYProgressHUD.showInfo("请输入手机号")
+            return
+        }
         let address = self.addressTextView.text
 
         
         
-        var params : [String : Any] = [:]
+        var params : [String : String] = [:]
         params["communityid"] = self.selectedCommunity
-        params["type"] = self.type
+        params["type"] = String(self.type)
         params["content"] = content
-        //        params["image"] = image
         params["username"] = user
         params["mobile"] = mobile
         params["address"] = address
-        NetTools.requestData(type: .post, urlString: CreateComplantSuggestApi, parameters: params, succeed: { (result) in
-            
-        }) { (error) in
-            
+        if image == nil{
+            NetTools.requestData(type: .post, urlString: CreateComplantSuggestApi, parameters: params, succeed: { (result) in
+                LYProgressHUD.showSuccess("提交成功，请耐心等候！")
+                //刷新投诉建议列表
+                NotificationCenter.default.post(name: NSNotification.Name.init("RefreshComplantListKey"), object: nil)
+                self.navigationController?.popViewController(animated: true)
+            }) { (error) in
+                LYProgressHUD.showError(error)
+            }
+        }else{
+            NetTools.requestDataWithImage(type: .post, urlString: CreateComplantSuggestApi, imgArray: [image!], imageName: "image", parameters: params, succeed: { (result) in
+                LYProgressHUD.showSuccess("提交成功，请耐心等候！")
+                //刷新投诉建议列表
+                NotificationCenter.default.post(name: NSNotification.Name.init("RefreshComplantListKey"), object: nil)
+                self.navigationController?.popViewController(animated: true)
+            }) { (error) in
+                LYProgressHUD.showError(error)
+            }
+        }
         }
         
         
@@ -123,8 +154,30 @@ extension CreateComplantViewController : UITextViewDelegate, UITextFieldDelegate
 
 
 extension CreateComplantViewController{
+    
+    override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        if section == 0{
+            return 2
+        }else if section == 1{
+            if self.isDetail{
+                if self.detailJson["image"].stringValue.isEmpty{
+                    return 0
+                }
+            }
+            return 1
+        }else if section == 2{
+            return 2
+        }else if section == 3{
+            return 1
+        }
+        return 0
+    }
+    
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        if indexPath.row == 0{
+        if self.isDetail{
+            return
+        }
+        if indexPath.section == 0 && indexPath.row == 0{
             //选择小区
             let selectVC = SingleSelectTableViewController()
             selectVC.type = 3
@@ -135,5 +188,20 @@ extension CreateComplantViewController{
             self.navigationController?.pushViewController(selectVC, animated: true)
         }
     }
+    
+    override func scrollViewWillBeginDragging(_ scrollView: UIScrollView) {
+        if scrollView == self.tableView{
+            self.offsetY = scrollView.contentOffset.y
+        }
+    }
+    
+    override func scrollViewDidScroll(_ scrollView: UIScrollView) {
+        if scrollView == self.tableView{
+            if self.offsetY > scrollView.contentOffset.y{
+                self.view.endEditing(true)
+            }
+        }
+    }
+    
 }
 

@@ -51,6 +51,8 @@ class ComplaintViewController: BaseViewController {
             self.navigationController?.pushViewController(suggestVC, animated: true)
         }
         
+        //刷新列表通知
+        NotificationCenter.default.addObserver(self, selector: #selector(ComplaintViewController.loadComplantData), name: NSNotification.Name.init("RefreshComplantListKey"), object: nil)
         
     }
     
@@ -81,7 +83,7 @@ class ComplaintViewController: BaseViewController {
     
     
     //历史单
-    func loadComplantData() {
+    @objc func loadComplantData() {
         NetTools.requestData(type: .post, urlString: ComplantSuggestListApi, succeed: { (result) in
             self.complantList = result["list"].arrayValue
             self.tableView.reloadData()
@@ -103,7 +105,7 @@ extension ComplaintViewController : UITableViewDelegate,UITableViewDataSource{
         let cell = tableView.dequeueReusableCell(withIdentifier: "ComplantCell", for: indexPath) as! ComplantCell
         if self.complantList.count > indexPath.row{
             let json = self.complantList[indexPath.row]
-            cell.subJson = json
+            cell.subJson2 = json
         }
         return cell
     }
@@ -118,7 +120,7 @@ extension ComplaintViewController : UITableViewDelegate,UITableViewDataSource{
             let detailVC = CreateComplantViewController.spwan()
             detailVC.detailJson = json
             detailVC.isDetail = true
-            detailVC.type = json["maintype"].intValue
+            detailVC.type = json["type"].intValue
             self.navigationController?.pushViewController(detailVC, animated: true)
         }
     }

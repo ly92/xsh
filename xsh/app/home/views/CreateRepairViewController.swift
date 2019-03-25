@@ -25,7 +25,7 @@ class CreateRepairViewController: BaseTableViewController {
     @IBOutlet weak var typeLbl: UILabel!
     @IBOutlet weak var contentTextView: UITextView!
     @IBOutlet weak var contentPlaceholderLbl: UILabel!
-    @IBOutlet weak var imagV: UIImageView!
+    @IBOutlet weak var imgV: UIImageView!
     @IBOutlet weak var nameTF: UITextField!
     @IBOutlet weak var phoneTF: UITextField!
     @IBOutlet weak var addressPlaceholderLbl: UILabel!
@@ -37,7 +37,7 @@ class CreateRepairViewController: BaseTableViewController {
     
     fileprivate var selectedCommunity = ""
     fileprivate var selectedCategory = ""
-    
+    fileprivate var offsetY : CGFloat = 0
     
     
     
@@ -55,19 +55,21 @@ class CreateRepairViewController: BaseTableViewController {
             self.arrowImgV2.isHidden = true
             self.subBtn.setTitle("评价", for: .normal)
             self.contentTextView.isEditable = false
+            self.addressTextView.isEditable = false
             self.nameTF.isEnabled = false
             self.unitTF.isEnabled = false
             self.phoneTF.isEnabled = false
             self.addressPlaceholderLbl.isHidden = true
             self.contentPlaceholderLbl.isHidden = true
             self.setUpDetailUI()
-        }
-        
-        self.imagV.addTapActionBlock {
-            TakeOnePhotoHelper.default.takePhoto(self) { (image) in
-                self.imagV.image = image
+        }else{
+            self.imgV.addTapActionBlock {
+                TakeOnePhotoHelper.default.takePhoto(self) { (image) in
+                    self.imgV.image = image
+                }
             }
         }
+        
         
     }
     
@@ -79,40 +81,59 @@ class CreateRepairViewController: BaseTableViewController {
     
     //提交报修
     @IBAction func submitAction() {
-        let content = self.contentTextView.text
-        let image = self.imagV.image
-        guard let user = self.nameTF.text else {
-            LYProgressHUD.showInfo("请输入姓名")
-            return
-        }
-        guard let mobile = self.phoneTF.text else {
-            LYProgressHUD.showInfo("请输入联系方式")
-            return
-        }
-        let address = self.addressTextView.text
-        guard let unit = self.unitTF.text else {
-            LYProgressHUD.showInfo("请输入单元号")
-            return
-        }
-        
-        
-        var params : [String : Any] = [:]
-        params["communityid"] = self.selectedCommunity
-        params["unit"] = unit
-        params["maintype"] = self.type
-        params["subtype"] = self.selectedCategory
-        params["content"] = content
-//        params["image"] = image
-        params["username"] = user
-        params["mobile"] = mobile
-        params["address"] = address
-        NetTools.requestData(type: .post, urlString: CreateRepairApi, parameters: params, succeed: { (result) in
+        if self.isDetail{
+            let evaluateVC = EvaluateViewController.spwan()
+            evaluateVC.id = self.detailJson["id"].stringValue
+            evaluateVC.isRepair = true
+            self.navigationController?.pushViewController(evaluateVC, animated: true)
+        }else{
+            let content = self.contentTextView.text
+            let image = self.imgV.image
+            guard let user = self.nameTF.text else {
+                LYProgressHUD.showInfo("请输入姓名")
+                return
+            }
+            guard let mobile = self.phoneTF.text else {
+                LYProgressHUD.showInfo("请输入联系方式")
+                return
+            }
+            let address = self.addressTextView.text
+            guard let unit = self.unitTF.text else {
+                LYProgressHUD.showInfo("请输入单元号")
+                return
+            }
             
-        }) { (error) in
             
+            var params : [String : String] = [:]
+            params["communityid"] = self.selectedCommunity
+            params["unit"] = unit
+            params["maintype"] = String(self.type)
+            params["subtype"] = self.selectedCategory
+            params["content"] = content
+            params["username"] = user
+            params["mobile"] = mobile
+            params["address"] = address
+            
+            if image == nil{
+                NetTools.requestData(type: .post, urlString: CreateRepairApi, parameters: params, succeed: { (result) in
+                    LYProgressHUD.showSuccess("提交成功，请耐心等候！")
+                    //刷新维修列表
+                    NotificationCenter.default.post(name: NSNotification.Name.init("RefreshRepairListKey"), object: nil)
+                    self.navigationController?.popViewController(animated: true)
+                }) { (error) in
+                    LYProgressHUD.showError(error)
+                }
+            }else{
+                NetTools.requestDataWithImage(type: .post, urlString: CreateRepairApi, imgArray: [image!], imageName: "image", parameters: params, succeed: { (result) in
+                    LYProgressHUD.showSuccess("提交成功，请耐心等候！")
+                    //刷新维修列表
+                    NotificationCenter.default.post(name: NSNotification.Name.init("RefreshRepairListKey"), object: nil)
+                    self.navigationController?.popViewController(animated: true)
+                }) { (error) in
+                    LYProgressHUD.showError(error)
+                }
+            }
         }
-        
-        
     }
     
     
@@ -122,7 +143,7 @@ class CreateRepairViewController: BaseTableViewController {
         self.typeLbl.text = self.detailJson["typename"].stringValue
         self.unitTF.text = self.detailJson["unit"].stringValue
         self.contentTextView.text = self.detailJson["content"].stringValue
-        self.imagV.setImageUrlStr(self.detailJson["image"].stringValue)
+        self.imgV.setImageUrlStr(self.detailJson["image"].stringValue)
         self.nameTF.text = self.detailJson["username"].stringValue
         self.phoneTF.text = self.detailJson["mobile"].stringValue
         self.addressTextView.text = self.detailJson["address"].stringValue
@@ -133,7 +154,7 @@ class CreateRepairViewController: BaseTableViewController {
 
 extension CreateRepairViewController{
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        if section == 0{
+        if section == 0 {
             return 1
         }else if section == 1{
             if self.type == 1{
@@ -141,13 +162,30 @@ extension CreateRepairViewController{
             }else{
                 return 1
             }
-        }else{
-            return 5
+        }else if section == 2{
+            return 2
+        }else if section == 3{
+            if self.isDetail{
+                if self.detailJson["image"].stringValue.isEmpty{
+                    return 0
+                }
+            }
+            return 1
+        }else if section == 4{
+            return 2
+        }else if section == 5{
+            return 1
         }
+        
+        return 0
     }
     
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        if self.isDetail{
+            return
+        }
+        
         //选择小区
         if indexPath.section == 0{
             let selectVC = SingleSelectTableViewController()
@@ -171,8 +209,19 @@ extension CreateRepairViewController{
         }
     }
     
+    
+    override func scrollViewWillBeginDragging(_ scrollView: UIScrollView) {
+        if scrollView == self.tableView{
+            self.offsetY = scrollView.contentOffset.y
+        }
+    }
+    
     override func scrollViewDidScroll(_ scrollView: UIScrollView) {
-        
+        if scrollView == self.tableView{
+            if self.offsetY > scrollView.contentOffset.y{
+                self.view.endEditing(true)
+            }
+        }
     }
     
 }

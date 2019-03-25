@@ -47,6 +47,9 @@ class RepairViewController: BaseViewController {
             repairVC.type = 2
             self.navigationController?.pushViewController(repairVC, animated: true)
         }
+        
+        //刷新列表通知
+        NotificationCenter.default.addObserver(self, selector: #selector(RepairViewController.loadRepairData), name: NSNotification.Name.init("RefreshRepairListKey"), object: nil)
     }
     
     
@@ -73,7 +76,7 @@ class RepairViewController: BaseViewController {
     }
     
     //维修列表
-    func loadRepairData() {
+    @objc func loadRepairData() {
         NetTools.requestData(type: .post, urlString: RepairListApi, succeed: { (result) in
             self.repairList = result["list"].arrayValue
             self.tableView.reloadData()

@@ -184,7 +184,57 @@ extension NetTools{
         }
     }
     
-    
+    static func requestDataWithImage(type: MethodType, urlString: String, imgArray: Array<UIImage>, imageName: String, parameters: [String : String], succeed: @escaping((_ result: JSON) -> Swift.Void), failure: @escaping((_ error: String) -> Swift.Void)){
+        /**
+         cid:用户id
+         ts：时间戳
+         sign：签名md5(cid+ts+cmdno+passwd)
+         cmdno：
+         */
+        let ts = Date.phpTimestamp()
+        let cmdno = String.randomStr(len: 20) + ts
+        let sign = (LocalData.getCId() + ts + cmdno + LocalData.getPwd()).md5String()
+        
+        //2.设置请求头
+        let headers : HTTPHeaders = [
+            "osType": "ios",
+            "Content-Type" : "multipart/form-data",
+            "form-data" : "file"
+        ]
+        let url = usedServer + urlString
+        NetTools.defManager.upload(
+            multipartFormData: { multipartFormData in
+                for i in 0..<imgArray.count{
+                    let image = imgArray[i]
+                    let imageData = self.resetImgSize(sourceImage: image, maxImageLenght: 500, maxSizeKB: 450)
+                    multipartFormData.append(imageData, withName: "image", fileName: "temp.jpeg", mimeType: "image/jpeg")
+                }
+                
+                multipartFormData.append(ts.data(using: .utf8)!, withName: "ts")
+                multipartFormData.append(sign.data(using: .utf8)!, withName: "sign")
+                multipartFormData.append(cmdno.data(using: .utf8)!, withName: "cmdno")
+                multipartFormData.append(LocalData.getCId().data(using: .utf8)!, withName: "cid")
+                for key in parameters.keys{
+                    multipartFormData.append(parameters[key]!.data(using: .utf8)!, withName: key)
+                }
+        },
+            to: url,
+            method: HTTPMethod.post,
+            headers: headers,
+            encodingCompletion: { encodingResult in
+                switch encodingResult {
+                case .success(let upload, _, _):
+                    upload.responseJSON(completionHandler: { (response) in
+                        let json = JSON(response.result.value ?? ["error":"未请求到数据"])
+                        debugPrint(json)
+                        succeed(json["content"])
+                    })
+                case .failure(let encodingError):
+                    failure("\(encodingError)")
+                    debugPrint(encodingError)
+                }
+        })
+    }
     //上传头像
     static func upLoadImage(urlString: String, imgArray: Array<UIImage>,success : @escaping (_ response : String)->(), failture : @escaping (_ error : String)->()){
         /**
