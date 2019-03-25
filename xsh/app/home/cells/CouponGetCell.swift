@@ -45,6 +45,8 @@ class CouponGetCell: UITableViewCell {
         params["userid"] = LocalData.getCId()
         NetTools.requestData(type: .post, urlString: CouponGetApi, parameters: params, succeed: { (result) in
             LYProgressHUD.showSuccess("领取成功！")
+            self.getBtn.setTitle("已领取", for: .normal)
+            self.getBtn.backgroundColor = UIColor.gray
         }) { (error) in
             LYProgressHUD.showError(error)
         }
