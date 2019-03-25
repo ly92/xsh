@@ -18,6 +18,7 @@ class PersonalViewController: BaseTableViewController {
     @IBOutlet weak var nameLbl: UILabel!
     @IBOutlet weak var phoneLbl: UILabel!
     @IBOutlet weak var addressLbl: UILabel!
+    @IBOutlet weak var logoutBtn: UIButton!
     
     fileprivate var personalInfo = JSON()
     
@@ -33,6 +34,8 @@ class PersonalViewController: BaseTableViewController {
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         self.loadPersonalInfo()
+        
+        self.logoutBtn.layer.cornerRadius = 20
         
         self.navigationController?.setNavigationBarHidden(true, animated: false)
     }
@@ -89,6 +92,14 @@ class PersonalViewController: BaseTableViewController {
     }
     
     
+    //退出
+    @IBAction func logoutAction() {
+        let loginVC = LoginViewController.spwan()
+        self.present(loginVC, animated: true) {
+            LocalData.saveYesOrNotValue(value: "0", key: KIsLoginKey)
+        }
+    }
+    
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         if indexPath.row == 0{
@@ -109,25 +120,21 @@ class PersonalViewController: BaseTableViewController {
             let myOrderVC = MyOrderTableViewController()
             myOrderVC.orderType = 1
             self.navigationController?.pushViewController(myOrderVC, animated: true)
-        }else if indexPath.row == 4{
-            //我的二维码
-            let codeVC = MyQrcodeViewController()
-            self.navigationController?.pushViewController(codeVC, animated: true)
-        }else if indexPath.row == 5{
+        }
+//        else if indexPath.row == 4{
+//            //我的二维码
+//            let codeVC = MyQrcodeViewController()
+//            self.navigationController?.pushViewController(codeVC, animated: true)
+//        }
+        else if indexPath.row == 4{
             //运动
             let motion = MotionViewController.spwan()
             self.navigationController?.pushViewController(motion, animated: true)
-        }else if indexPath.row == 6{
+        }else if indexPath.row == 5{
             //修改密码
             let changePwd = ChangeCardPwdViewController.spwan()
             changePwd.isChangeLogin = true
             self.navigationController?.pushViewController(changePwd, animated: true)
-        }else if indexPath.row == 7{
-            //退出
-            let loginVC = LoginViewController.spwan()
-            self.present(loginVC, animated: true) {
-                LocalData.saveYesOrNotValue(value: "0", key: KIsLoginKey)
-            }
         }
     }
     

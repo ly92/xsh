@@ -43,7 +43,8 @@ class MessageViewController: BaseTableViewController {
             self.loadMessageData()
         }
         
-        self.getNewMessage()
+        self.tabBarItem.badgeValue = nil
+//        self.getNewMessage()
     }
     
     @objc func rightItemAction() {
@@ -55,18 +56,18 @@ class MessageViewController: BaseTableViewController {
         }
     }
     
-    //新消息数量
-    func getNewMessage(){
-        NetTools.requestData(type: .post, urlString: MessageNewCountApi, succeed: { (result) in
-            let total = result["total"].stringValue.intValue
-            if total > 0 {
-                self.tabBarItem.badgeValue = "\(total)"
-            }else{
-                self.tabBarItem.badgeValue = nil
-            }
-        }) { (error) in
-        }
-    }
+//    //新消息数量
+//    func getNewMessage(){
+//        NetTools.requestData(type: .post, urlString: MessageNewCountApi, succeed: { (result) in
+//            let total = result["total"].stringValue.intValue
+//            if total > 0 {
+//                self.tabBarItem.badgeValue = "\(total)"
+//            }else{
+//                self.tabBarItem.badgeValue = nil
+//            }
+//        }) { (error) in
+//        }
+//    }
     
     //消息列表
     func loadMessageData() {
