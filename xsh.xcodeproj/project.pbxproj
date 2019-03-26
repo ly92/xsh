@@ -48,6 +48,9 @@
 		08445F7A2202022600230F5D /* OrderGoodsCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 08445F782202022600230F5D /* OrderGoodsCell.xib */; };
 		08445F7D2202024200230F5D /* OrderPayInfoCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08445F7B2202024200230F5D /* OrderPayInfoCell.swift */; };
 		08445F7E2202024200230F5D /* OrderPayInfoCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 08445F7C2202024200230F5D /* OrderPayInfoCell.xib */; };
+		085029AD224A323000FA319B /* EvaluateOrderViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 085029AC224A323000FA319B /* EvaluateOrderViewController.swift */; };
+		085029B0224A331000FA319B /* EvaluateOrderGoodsCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 085029AE224A331000FA319B /* EvaluateOrderGoodsCell.swift */; };
+		085029B1224A331000FA319B /* EvaluateOrderGoodsCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 085029AF224A331000FA319B /* EvaluateOrderGoodsCell.xib */; };
 		0857EB5421F0CF3A00D4BC6D /* BaiDuMap.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0857EB5321F0CF3A00D4BC6D /* BaiDuMap.swift */; };
 		085975AC224365D9000AFAD3 /* ComplaintViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 085975AB224365D9000AFAD3 /* ComplaintViewController.swift */; };
 		085975AE22436614000AFAD3 /* RepairViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 085975AD22436614000AFAD3 /* RepairViewController.swift */; };
@@ -217,6 +220,9 @@
 		08445F782202022600230F5D /* OrderGoodsCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = OrderGoodsCell.xib; sourceTree = "<group>"; };
 		08445F7B2202024200230F5D /* OrderPayInfoCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrderPayInfoCell.swift; sourceTree = "<group>"; };
 		08445F7C2202024200230F5D /* OrderPayInfoCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = OrderPayInfoCell.xib; sourceTree = "<group>"; };
+		085029AC224A323000FA319B /* EvaluateOrderViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EvaluateOrderViewController.swift; sourceTree = "<group>"; };
+		085029AE224A331000FA319B /* EvaluateOrderGoodsCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EvaluateOrderGoodsCell.swift; sourceTree = "<group>"; };
+		085029AF224A331000FA319B /* EvaluateOrderGoodsCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = EvaluateOrderGoodsCell.xib; sourceTree = "<group>"; };
 		0857EB5321F0CF3A00D4BC6D /* BaiDuMap.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaiDuMap.swift; sourceTree = "<group>"; };
 		085975AB224365D9000AFAD3 /* ComplaintViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ComplaintViewController.swift; sourceTree = "<group>"; };
 		085975AD22436614000AFAD3 /* RepairViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RepairViewController.swift; sourceTree = "<group>"; };
@@ -512,6 +518,7 @@
 				086E2CF921C9E71C00896F25 /* MyQrcodeViewController.swift */,
 				086E2CFB21C9E75900896F25 /* MyOrderTableViewController.swift */,
 				08445F702202011400230F5D /* OrderDetailViewController.swift */,
+				085029AC224A323000FA319B /* EvaluateOrderViewController.swift */,
 				086E2CFD21C9E78000896F25 /* MyCardViewController.swift */,
 				086E2CF721C9E6F600896F25 /* ChangeCardPwdViewController.swift */,
 				08169D7D21CAA0A80030D863 /* BindCardTableViewController.swift */,
@@ -579,6 +586,8 @@
 				08445F782202022600230F5D /* OrderGoodsCell.xib */,
 				08445F7B2202024200230F5D /* OrderPayInfoCell.swift */,
 				08445F7C2202024200230F5D /* OrderPayInfoCell.xib */,
+				085029AE224A331000FA319B /* EvaluateOrderGoodsCell.swift */,
+				085029AF224A331000FA319B /* EvaluateOrderGoodsCell.xib */,
 			);
 			path = order;
 			sourceTree = "<group>";
@@ -1130,6 +1139,7 @@
 				08445F7E2202024200230F5D /* OrderPayInfoCell.xib in Resources */,
 				0819FBBE21C8DDAE0078EB8D /* Shop.storyboard in Resources */,
 				0819FBB821C8DB550078EB8D /* BannerScrollTitleCell.xib in Resources */,
+				085029B1224A331000FA319B /* EvaluateOrderGoodsCell.xib in Resources */,
 				08D7B6A521CCC310007D191F /* README.txt in Resources */,
 				086AF76621F154F20083D5B5 /* scansound.wav in Resources */,
 				08C7D97721F0791A00A625F1 /* RecommendGoodsCell.xib in Resources */,
@@ -1278,6 +1288,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				085029B0224A331000FA319B /* EvaluateOrderGoodsCell.swift in Sources */,
 				08169D7221CA83D30030D863 /* BaseWebViewController.swift in Sources */,
 				08A3A46421C168B6008E071F /* UIViewController+Category.swift in Sources */,
 				08D7B6A121CCC310007D191F /* openssl_wrapper.m in Sources */,
@@ -1364,6 +1375,7 @@
 				0857EB5421F0CF3A00D4BC6D /* BaiDuMap.swift in Sources */,
 				08C7D97E21F085D900A625F1 /* CouponDetailViewController.swift in Sources */,
 				085975BA2243D091000AFAD3 /* SingleSelectTableViewController.swift in Sources */,
+				085029AD224A323000FA319B /* EvaluateOrderViewController.swift in Sources */,
 				086E2CFA21C9E71C00896F25 /* MyQrcodeViewController.swift in Sources */,
 				08D7B6A221CCC310007D191F /* RSADataSigner.m in Sources */,
 				08D7B63021CC9C5B007D191F /* PayViewController.swift in Sources */,

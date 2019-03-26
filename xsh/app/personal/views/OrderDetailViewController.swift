@@ -10,24 +10,63 @@ import UIKit
 import SwiftyJSON
 
 
-class OrderDetailViewController: BaseTableViewController {
+class OrderDetailViewController: BaseViewController {
 
     var orderno = ""
     
     fileprivate var goodsList : Array<JSON> = []
     fileprivate var orderInfo = JSON()
+    fileprivate var tableView = UITableView()
+    fileprivate var evaluateBtn = UIButton()
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        self.setUpUI()
+        self.navigationItem.title = "订单详情"
+        
+        self.loadDetailData()
+    }
+    
+    //布局
+    func setUpUI() {
+        
+        self.view.addSubview(self.evaluateBtn)
+        self.view.addSubview(self.tableView)
+        
+        self.evaluateBtn.addTarget(self, action: #selector(OrderDetailViewController.evaluateAction), for: .touchUpInside)
+        self.evaluateBtn.setTitle("评价", for: .normal)
+        self.evaluateBtn.backgroundColor = UIColor.white
+        self.evaluateBtn.setTitleColor(Normal_Color, for: .normal)
+        
+        self.tableView.delegate = self
+        self.tableView.dataSource = self
         self.tableView.backgroundColor = BG_Color
         self.tableView.separatorStyle = .none
         self.tableView.register(UINib.init(nibName: "OrderDetailCell", bundle: Bundle.main), forCellReuseIdentifier: "OrderDetailCell")
         self.tableView.register(UINib.init(nibName: "OrderGoodsCell", bundle: Bundle.main), forCellReuseIdentifier: "OrderGoodsCell")
         self.tableView.register(UINib.init(nibName: "OrderPayInfoCell", bundle: Bundle.main), forCellReuseIdentifier: "OrderPayInfoCell")
         self.tableView.register(UINib.init(nibName: "CouponCell", bundle: Bundle.main), forCellReuseIdentifier: "CouponCell")
-        self.navigationItem.title = "订单详情"
         
-        self.loadDetailData()
+        self.evaluateBtn.snp.makeConstraints { (make) in
+            make.bottom.leading.trailing.equalTo(0)
+            make.height.equalTo(44)
+        }
+        self.tableView.snp.makeConstraints { (make) in
+            make.top.leading.trailing.equalTo(0)
+            make.bottom.equalTo(self.evaluateBtn.snp.top)
+        }
+    }
+    
+    
+    @objc func evaluateAction() {
+        let evaluateVC = EvaluateOrderViewController()
+        evaluateVC.goodsList = self.goodsList
+        evaluateVC.orderno = self.orderno
+        evaluateVC.evaluateSuccessBlock = {() in
+            self.loadDetailData()
+        }
+        self.navigationController?.pushViewController(evaluateVC, animated: true)
     }
 
     //加载详情
@@ -36,19 +75,33 @@ class OrderDetailViewController: BaseTableViewController {
         NetTools.requestData(type: .post, urlString: CardTransactionDetailApi, parameters: params, succeed: { (result) in
             self.orderInfo = result["transaction"]
             self.goodsList = result["transaction"]["orderItems"].arrayValue
+            
+            //没有商品的隐藏评价按钮
+            if self.goodsList.count == 0 || result["transaction"]["has_evaluate"].intValue == 1{
+                self.evaluateBtn.snp.makeConstraints { (make) in
+                    make.bottom.leading.trailing.equalTo(0)
+                    make.height.equalTo(0)
+                }
+                self.tableView.snp.makeConstraints { (make) in
+                    make.top.leading.trailing.equalTo(0)
+                    make.bottom.equalTo(self.evaluateBtn.snp.top)
+                }
+            }
+            
             self.tableView.reloadData()
         }) { (error) in
             LYProgressHUD.showError(error)
         }
     }
-    
-    
+}
+
+extension OrderDetailViewController : UITableViewDelegate, UITableViewDataSource{
     // MARK: - Table view data source
-    override func numberOfSections(in tableView: UITableView) -> Int {
+    func numberOfSections(in tableView: UITableView) -> Int {
         return 4
     }
-
-    override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+    
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         if section == 0 || section == 2{
             return 1
         }else if section == 1{
@@ -60,8 +113,8 @@ class OrderDetailViewController: BaseTableViewController {
         }
         return 0
     }
-
-    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         if indexPath.section == 0{
             let cell = tableView.dequeueReusableCell(withIdentifier: "OrderDetailCell", for: indexPath) as! OrderDetailCell
             cell.subJson = self.orderInfo
@@ -89,7 +142,7 @@ class OrderDetailViewController: BaseTableViewController {
         return UITableViewCell()
     }
     
-    override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         if indexPath.section == 0{
             return 200
         }else if indexPath.section == 1{
@@ -102,7 +155,7 @@ class OrderDetailViewController: BaseTableViewController {
         return 0
     }
     
-    override func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+    func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
         if section == 0 || section == 2 || section == 3{
             return nil
         }
@@ -127,7 +180,7 @@ class OrderDetailViewController: BaseTableViewController {
         }
         return nil
     }
-    override func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+    func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
         if section == 1{
             if self.goodsList.count > 0{
                 return 35
@@ -135,5 +188,4 @@ class OrderDetailViewController: BaseTableViewController {
         }
         return 0.001
     }
-
 }
