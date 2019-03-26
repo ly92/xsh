@@ -42,8 +42,20 @@ class PersonalInfoViewController: BaseTableViewController {
         self.nameLbl.text = self.personalInfo["nickname"].stringValue
         self.genderLbl.text = self.personalInfo["gender"].stringValue.intValue == 1 ? "男" : "女"
         self.addressLbl.text = self.personalInfo["area"].stringValue + " " + self.personalInfo["community"].stringValue
-        self.phoneLbl.text = self.personalInfo["mobile"].stringValue
-        self.idLbl.text = self.personalInfo["identityid"].stringValue
+        
+        let phone = self.personalInfo["mobile"].stringValue
+        if phone.isMobelPhone(){
+            self.phoneLbl.text = phone.prefix(3) + "****" + phone.suffix(4)
+        }else{
+            self.phoneLbl.text = "***********"
+        }
+        let idNum = self.personalInfo["identityid"].stringValue
+        if idNum.isIdCard(){
+            self.idLbl.text = idNum.prefix(4) + "**********" + idNum.suffix(4)
+        }else{
+            self.idLbl.text = "******************"
+        }
+        
         self.gender = self.personalInfo["gender"].stringValue
         self.areaId = self.personalInfo["areaid"].stringValue
         self.communityId = self.personalInfo["communityid"].stringValue

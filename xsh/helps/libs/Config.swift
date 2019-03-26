@@ -44,8 +44,20 @@ func isMessageNotificationServiceOpen() -> Bool{
     return UIApplication.shared.isRegisteredForRemoteNotifications
 }
 
-
+//功能栏点击
 func globalFunctionClickAction(_ json : JSON, _ vc : UIViewController){
+    
+    //统计点击
+    DispatchQueue.global().async {
+        var params : [String : Any] = [:]
+        params["platform"] = "ios"
+        params["access_log_type_id"] = json["access_log_type_id"].stringValue
+        NetTools.requestData(type: .post, urlString: ClickFuncStatisticsApi, parameters: params, succeed: { (result) in
+        }, failure: { (error) in
+        })
+        
+    }
+    
     if json["actiontype"].intValue == 0{
         //跳转外部链接
         let ts = Date.phpTimestamp()

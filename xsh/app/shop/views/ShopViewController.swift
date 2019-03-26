@@ -56,7 +56,7 @@ class ShopViewController: BaseViewController {
                 self.industryLbl.text = str
                 if self.industryList.count > index{
                     let json = self.industryList[index]
-                    self.industry = json[""].stringValue
+                    self.industry = json["industryid"].stringValue
                     
                     self.storeList.removeAll()
                     self.loadStoreData()

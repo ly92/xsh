@@ -59,6 +59,8 @@ class CreateComplantViewController: BaseTableViewController {
                     self.imgV.image = image
                 }
             }
+            
+            self.phoneTF.text = LocalData.getUserPhone()
         }
         
     }

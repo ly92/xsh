@@ -143,6 +143,7 @@ class HomeViewController: BaseViewController {
             }
             
             self.bannerView.imageUrlArray = urlArray
+            self.collectionView.reloadData()
         }) { (error) in
             LYProgressHUD.showError(error)
         }
@@ -157,6 +158,7 @@ class HomeViewController: BaseViewController {
         NetTools.requestData(type: .post, urlString: FunctionListApi, parameters: params, succeed: { (result) in
             self.functionList = result["list"].arrayValue
             self.setUpFunctionViews()
+            self.collectionView.reloadData()
         }) { (error) in
             LYProgressHUD.showError(error)
         }
@@ -243,6 +245,7 @@ class HomeViewController: BaseViewController {
         NetTools.requestData(type: .post, urlString: AdListApi, parameters: params, succeed: { (result) in
             self.activityList = result["list"].arrayValue
             self.setUpActivityViews()
+            self.collectionView.reloadData()
         }) { (error) in
             LYProgressHUD.showError(error)
         }
@@ -371,7 +374,6 @@ extension HomeViewController : UICollectionViewDelegate, UICollectionViewDataSou
             }
             return cell
         }
-        
         return UICollectionViewCell()
     }
     

@@ -17,6 +17,7 @@ class CouponGetCell: UITableViewCell {
     @IBOutlet weak var overLbl: UILabel!
     @IBOutlet weak var titleLbl: UILabel!
     @IBOutlet weak var descLbl: UILabel!
+    @IBOutlet weak var nameLbl: UILabel!
     @IBOutlet weak var stateLbl: UILabel!
     @IBOutlet weak var getBtn: UIButton!
     @IBOutlet weak var imgV: UIImageView!
@@ -61,6 +62,7 @@ class CouponGetCell: UITableViewCell {
             self.overLbl.text = ""
             self.titleLbl.text = self.subJson["name"].stringValue
             self.descLbl.text = self.subJson["biz_name"].stringValue
+            self.nameLbl.text = self.subJson["intro"].stringValue
             let scal = self.subJson["cur_num"].stringValue.floatValue * 100 / self.subJson["remain_num"].stringValue.floatValue
             self.stateLbl.text = String.init(format: "已领取%.2f", scal) + "%"
             self.imgV.setImageUrlStr(self.subJson["imageurl"].stringValue)

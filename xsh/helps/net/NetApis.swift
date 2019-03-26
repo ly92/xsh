@@ -63,7 +63,8 @@ let StepTransPointRuleApi = "stepsOpt" // post
 let StepsLogListApi = "user/stepsLog" // post skip limit
 //运动步数转积分
 let StepTransToPointApi = "user/steps" // post steps sign_date
-
+//功能栏点击统计
+let ClickFuncStatisticsApi = "AccessLog/addAccessLogById"// post access_log_type_id platform
 
 /************************************ 优惠券 ********************************************/
 //领券中心

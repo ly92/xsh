@@ -50,7 +50,6 @@ class StoreViewController: BaseViewController {
     }
     
     func loadRequest() {
-        LYProgressHUD.showLoading()
         if !urlStr.isEmpty{
             if !urlStr.hasPrefix("http://") && !urlStr.hasPrefix("https://"){
                 urlStr = "http://" + urlStr
