@@ -51,8 +51,8 @@ class HealthHelper: NSObject {
         let minute = dateComponent.minute ?? 0
         let second = dateComponent.second ?? 0
         
-        let start_time = date.phpTimestamp().intValue - hour * 3600 - minute * 60 - second
-        let end_time = start_time + 86399
+        let start_time = date.phpTimestamp().intValue - hour * 3600 - minute * 60 - second - 8 * 3600
+        let end_time = start_time + 86399 - 8 * 3600
         
         let date_start = Date.timestampToDate(Double(start_time))
         let date_end = Date.timestampToDate(Double(end_time))

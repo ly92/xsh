@@ -55,7 +55,7 @@ class CouponGetCell: UITableViewCell {
     
     var subJson = JSON(){
         didSet{
-            self.cardLbl.isHidden = false
+//            self.cardLbl.isHidden = false
             self.priceLbl.text = self.subJson["money"].stringValue
 //            self.overLbl.text = "满" + self.subJson["intro"].stringValue + "可用"
             self.overLbl.text = ""
