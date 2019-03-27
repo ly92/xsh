@@ -80,10 +80,10 @@ class MessageViewController: BaseTableViewController {
             for json in result["list"].arrayValue{
                 self.messageList.append(json)
             }
-            if self.messageList.count < result["total"].intValue{
-                self.haveMore = true
-            }else{
+            if result["list"].arrayValue.count < 10{
                 self.haveMore = false
+            }else{
+                self.haveMore = true
             }
             self.tableView.reloadData()
         }) { (error) in
@@ -132,6 +132,12 @@ class MessageViewController: BaseTableViewController {
                 detailVC.messageId = json["id"].stringValue
                 self.navigationController?.pushViewController(detailVC, animated: true)
             }
+        }
+    }
+    
+    override func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
+        if indexPath.row == self.messageList.count - 1 && self.haveMore{
+            self.loadMessageData()
         }
     }
     

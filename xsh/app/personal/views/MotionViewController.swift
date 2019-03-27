@@ -25,6 +25,7 @@ class MotionViewController: BaseViewController {
     
     fileprivate var stepsLogList : Array<JSON> = []
     fileprivate var haveMore = true
+    fileprivate var isLoadding = false
     fileprivate var rule = JSON()
     
     override func viewWillAppear(_ animated: Bool) {
@@ -119,6 +120,11 @@ class MotionViewController: BaseViewController {
     
     //打卡记录
     func loadStepsLog() {
+        if self.isLoadding{
+            return
+        }
+        self.isLoadding = true
+        
         var params : [String : Any] = [:]
         params["skip"] = self.stepsLogList.count
         params["limit"] = 10
@@ -132,7 +138,9 @@ class MotionViewController: BaseViewController {
                 self.stepsLogList.append(json)
             }
             self.prepareData()
+            self.isLoadding = false
         }) { (error) in
+            self.isLoadding = false
             LYProgressHUD.showError(error)
         }
     }

@@ -56,7 +56,9 @@ class HealthHelper: NSObject {
         
         let date_start = Date.timestampToDate(Double(start_time))
         let date_end = Date.timestampToDate(Double(end_time))
-        
+        print(date_start)
+        print(date_end)
+        print("---------------------")
         let predicate = HKQuery.predicateForSamples(withStart: date_start, end: date_end, options: [HKQueryOptions.init(rawValue: 0)])
 
         let start = NSSortDescriptor.init(key: HKSampleSortIdentifierStartDate, ascending: false)
