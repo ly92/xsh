@@ -86,6 +86,9 @@ func globalFunctionClickAction(_ json : JSON, _ vc : UIViewController){
         }else if json["actionios"].stringValue == "RepairController"{
             let repairVC = RepairViewController.spwan()
             vc.navigationController?.pushViewController(repairVC, animated: true)
+        }else if json["actionios"].stringValue == "MotionViewController"{
+            let motionVC = MotionViewController.spwan()
+            vc.navigationController?.pushViewController(motionVC, animated: true)
         }
         
     }else if json["actiontype"].intValue == 2{

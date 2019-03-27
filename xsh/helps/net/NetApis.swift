@@ -137,7 +137,7 @@ let CheckPwdApi = "transaction/checkpwd" // post paysign md5(cid+ts+cmdno+passwd
 let CardTransactionListApi = "transaction/list" // post
 //一卡通交易详情
 let CardTransactionDetailApi = "transaction/get" // post orderno
-//
+//订单评价
 let EvaluateOrderApi = "productionEvaluate/create" // post orderno evaluateJson
 
 /************************************ 一卡通 ********************************************/
