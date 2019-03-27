@@ -51,14 +51,17 @@ class HealthHelper: NSObject {
         let minute = dateComponent.minute ?? 0
         let second = dateComponent.second ?? 0
         
-        let start_time = date.phpTimestamp().intValue - hour * 3600 - minute * 60 - second - 8 * 3600
-        let end_time = start_time + 86399 - 8 * 3600
+        var start_time = date.phpTimestamp().intValue - hour * 3600 - minute * 60 - second
+        var end_time = start_time + 86399
+        
+        if date.isToday(){
+            start_time -= 8 * 3600
+            end_time -= 8 * 3600
+        }
         
         let date_start = Date.timestampToDate(Double(start_time))
         let date_end = Date.timestampToDate(Double(end_time))
-        print(date_start)
-        print(date_end)
-        print("---------------------")
+        
         let predicate = HKQuery.predicateForSamples(withStart: date_start, end: date_end, options: [HKQueryOptions.init(rawValue: 0)])
 
         let start = NSSortDescriptor.init(key: HKSampleSortIdentifierStartDate, ascending: false)
