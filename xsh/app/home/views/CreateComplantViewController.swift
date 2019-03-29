@@ -46,6 +46,9 @@ class CreateComplantViewController: BaseTableViewController {
         if self.isDetail{
             self.arrowImgV.isHidden = true
             self.subBtn.setTitle("评价", for: .normal)
+            if self.detailJson["status"].intValue != 3{
+                self.subBtn.isHidden = true
+            }
             self.contentTextView.isEditable = false
             self.addressTextView.isEditable = false
             self.nameTF.isEnabled = false
@@ -73,50 +76,51 @@ class CreateComplantViewController: BaseTableViewController {
             self.navigationController?.pushViewController(evaluateVC, animated: true)
         }else{
             
-        let content = self.contentTextView.text
-        let image = self.imgV.image
-        guard let user = self.nameTF.text else {
-            LYProgressHUD.showInfo("请输入姓名")
-            return
-        }
-        guard let mobile = self.phoneTF.text else {
-            LYProgressHUD.showInfo("请输入联系方式")
-            return
-        }
-        if !mobile.isMobelPhone(){
-            LYProgressHUD.showInfo("请输入手机号")
-            return
-        }
-        let address = self.addressTextView.text
-
-        
-        
-        var params : [String : String] = [:]
-        params["communityid"] = self.selectedCommunity
-        params["type"] = String(self.type)
-        params["content"] = content
-        params["username"] = user
-        params["mobile"] = mobile
-        params["address"] = address
-        if image == nil{
-            NetTools.requestData(type: .post, urlString: CreateComplantSuggestApi, parameters: params, succeed: { (result) in
-                LYProgressHUD.showSuccess("提交成功，请耐心等候！")
-                //刷新投诉建议列表
-                NotificationCenter.default.post(name: NSNotification.Name.init("RefreshComplantListKey"), object: nil)
-                self.navigationController?.popViewController(animated: true)
-            }) { (error) in
-                LYProgressHUD.showError(error)
+            let content = self.contentTextView.text
+            let image = self.imgV.image
+            guard let user = self.nameTF.text else {
+                LYProgressHUD.showInfo("请输入姓名")
+                return
             }
-        }else{
-            NetTools.requestDataWithImage(type: .post, urlString: CreateComplantSuggestApi, imgArray: [image!], imageName: "image", parameters: params, succeed: { (result) in
-                LYProgressHUD.showSuccess("提交成功，请耐心等候！")
-                //刷新投诉建议列表
-                NotificationCenter.default.post(name: NSNotification.Name.init("RefreshComplantListKey"), object: nil)
-                self.navigationController?.popViewController(animated: true)
-            }) { (error) in
-                LYProgressHUD.showError(error)
+            guard let mobile = self.phoneTF.text else {
+                LYProgressHUD.showInfo("请输入联系方式")
+                return
             }
-        }
+            if !mobile.isMobelPhone(){
+                LYProgressHUD.showInfo("请输入手机号")
+                return
+            }
+            let address = self.addressTextView.text
+            
+            
+            
+            var params : [String : String] = [:]
+            params["communityid"] = self.selectedCommunity
+            params["type"] = String(self.type)
+            params["content"] = content
+            params["username"] = user
+            params["mobile"] = mobile
+            params["address"] = address
+            LYProgressHUD.showLoading()
+            if image == nil{
+                NetTools.requestData(type: .post, urlString: CreateComplantSuggestApi, parameters: params, succeed: { (result) in
+                    LYProgressHUD.showSuccess("提交成功，请耐心等候！")
+                    //刷新投诉建议列表
+                    NotificationCenter.default.post(name: NSNotification.Name.init("RefreshComplantListKey"), object: nil)
+                    self.navigationController?.popViewController(animated: true)
+                }) { (error) in
+                    LYProgressHUD.showError(error)
+                }
+            }else{
+                NetTools.requestDataWithImage(type: .post, urlString: CreateComplantSuggestApi, imgArray: [image!], imageName: "image", parameters: params, succeed: { (result) in
+                    LYProgressHUD.showSuccess("提交成功，请耐心等候！")
+                    //刷新投诉建议列表
+                    NotificationCenter.default.post(name: NSNotification.Name.init("RefreshComplantListKey"), object: nil)
+                    self.navigationController?.popViewController(animated: true)
+                }) { (error) in
+                    LYProgressHUD.showError(error)
+                }
+            }
         }
         
         

@@ -58,7 +58,7 @@ class EvaluateOrderViewController: BaseViewController {
         
         self.evaluateBtn.snp.makeConstraints { (make) in
             make.bottom.leading.trailing.equalTo(0)
-            make.height.equalTo(44)
+            make.height.equalTo(50)
         }
         self.tableView.snp.makeConstraints { (make) in
             make.top.leading.trailing.equalTo(0)

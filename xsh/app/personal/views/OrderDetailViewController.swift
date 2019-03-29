@@ -50,7 +50,7 @@ class OrderDetailViewController: BaseViewController {
         
         self.evaluateBtn.snp.makeConstraints { (make) in
             make.bottom.leading.trailing.equalTo(0)
-            make.height.equalTo(44)
+            make.height.equalTo(50)
         }
         self.tableView.snp.makeConstraints { (make) in
             make.top.leading.trailing.equalTo(0)
@@ -77,7 +77,7 @@ class OrderDetailViewController: BaseViewController {
             self.goodsList = result["transaction"]["orderItems"].arrayValue
             
             //没有商品的隐藏评价按钮
-            if self.goodsList.count == 0 || result["transaction"]["has_evaluate"].intValue == 1{
+            if self.goodsList.count == 0 || result["transaction"]["has_evaluate"].intValue == 1 || result["transaction"]["status"].stringValue != "已完成"{
                 self.evaluateBtn.snp.makeConstraints { (make) in
                     make.bottom.leading.trailing.equalTo(0)
                     make.height.equalTo(0)

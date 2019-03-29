@@ -43,7 +43,7 @@ class CreateRepairViewController: BaseTableViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        
         if self.type == 1{
             self.navigationItem.title = "公共维修"
         }else if self.type == 2{
@@ -53,7 +53,11 @@ class CreateRepairViewController: BaseTableViewController {
         if self.isDetail{
             self.arrowImgV1.isHidden = true
             self.arrowImgV2.isHidden = true
+            
             self.subBtn.setTitle("评价", for: .normal)
+            if self.detailJson["status"].intValue != 3{
+                self.subBtn.isHidden = true
+            }
             self.contentTextView.isEditable = false
             self.addressTextView.isEditable = false
             self.nameTF.isEnabled = false
@@ -78,7 +82,7 @@ class CreateRepairViewController: BaseTableViewController {
         super.viewWillDisappear(animated)
         self.view.endEditing(true)
     }
-
+    
     
     //提交报修
     @IBAction func submitAction() {
@@ -114,7 +118,7 @@ class CreateRepairViewController: BaseTableViewController {
             params["username"] = user
             params["mobile"] = mobile
             params["address"] = address
-            
+            LYProgressHUD.showLoading()
             if image == nil{
                 NetTools.requestData(type: .post, urlString: CreateRepairApi, parameters: params, succeed: { (result) in
                     LYProgressHUD.showSuccess("提交成功，请耐心等候！")
@@ -149,7 +153,7 @@ class CreateRepairViewController: BaseTableViewController {
         self.phoneTF.text = self.detailJson["mobile"].stringValue
         self.addressTextView.text = self.detailJson["address"].stringValue
     }
-
+    
 }
 
 
