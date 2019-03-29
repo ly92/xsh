@@ -145,7 +145,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     // Required - 注册 DeviceToken
     func application(_ application: UIApplication, didRegisterForRemoteNotificationsWithDeviceToken deviceToken: Data) {
         
-        let token = deviceToken.description.replacingOccurrences(of: ">", with: "").replacingOccurrences(of: "<", with: "").replacingOccurrences(of: " ", with: "")
+        let token = String.init(format: "%@", deviceToken as CVarArg).replacingOccurrences(of: " ", with: "").replacingOccurrences(of: "<", with: "").replacingOccurrences(of: ">", with: "")
         LocalData.saveToken(token: token)
         
         DispatchQueue.global().async {
