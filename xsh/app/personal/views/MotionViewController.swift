@@ -22,6 +22,7 @@ class MotionViewController: BaseViewController {
     @IBOutlet weak var numLbl: UILabel!
     @IBOutlet weak var timeLbl: UILabel!
     @IBOutlet weak var tableView: UITableView!
+    @IBOutlet weak var descLbl: UILabel!
     
     fileprivate var stepsLogList : Array<JSON> = []
     fileprivate var haveMore = true
@@ -102,6 +103,8 @@ class MotionViewController: BaseViewController {
     func transPointRule() {
         NetTools.requestData(type: .post, urlString: StepTransPointRuleApi, succeed: { (result) in
             self.rule = result
+//            self.descLbl.text = result["remark"].stringValue
+            self.descLbl.text = "每日签到有积分奖励，每周将会对累计打卡步数排名靠前者有额外积分奖励，积分可在积分商城中换购商品。"
         }) { (error) in
             LYProgressHUD.showError(error)
         }
