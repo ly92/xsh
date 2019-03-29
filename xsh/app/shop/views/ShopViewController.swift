@@ -15,13 +15,13 @@ class ShopViewController: BaseViewController {
         return self.loadFromStoryBoard(storyBoard: "Shop") as! ShopViewController
     }
     @IBOutlet weak var tableView: UITableView!
+    @IBOutlet weak var industryLbl: UILabel!
+    @IBOutlet weak var distanceLbl: UILabel!
+    
     
     fileprivate var storeList : Array<JSON> = []
     fileprivate var industryStrList : Array<String> = []
     fileprivate var industryList : Array<JSON> = []
-    
-    @IBOutlet weak var industryLbl: UILabel!
-    @IBOutlet weak var distanceLbl: UILabel!
     
     fileprivate var industry = "0"
     fileprivate var disrance = "2000"
@@ -65,9 +65,9 @@ class ShopViewController: BaseViewController {
         }
         
         self.distanceLbl.addTapActionBlock {
-            LYPickerView.show(titles: ["500m", "1000m", "2000m", "5000m"]) { (str, index) in
+            LYPickerView.show(titles: ["500m", "1km", "2km", "5km"]) { (str, index) in
                 self.distanceLbl.text = str
-                self.disrance = str.replacingOccurrences(of: "m", with: "")
+                self.disrance = str.replacingOccurrences(of: "m", with: "").replacingOccurrences(of: "k", with: "000")
                 
                 self.storeList.removeAll()
                 self.loadStoreData()
@@ -80,10 +80,14 @@ class ShopViewController: BaseViewController {
     func loadFilterData() {
         NetTools.requestData(type: .post, urlString: StoreIndustryApi, succeed: { (result) in
             self.industryList.removeAll()
+            self.industryStrList.removeAll()
+            let temp = JSON(["industryid" : "0", "name" : "全部"])
+            self.industryStrList.append("全部")
             for json in result.arrayValue{
                 self.industryStrList.append(json["name"].stringValue)
             }
             self.industryList = result.arrayValue
+            self.industryList.insert(temp, at: 0)
         }) { (error) in
             LYProgressHUD.showError(error)
         }
