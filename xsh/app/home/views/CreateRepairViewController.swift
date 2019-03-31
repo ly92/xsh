@@ -39,6 +39,7 @@ class CreateRepairViewController: BaseTableViewController {
     fileprivate var selectedCommunity = ""
     fileprivate var selectedCategory = ""
     fileprivate var offsetY : CGFloat = 0
+    fileprivate var image : UIImage?
     
     
     
@@ -71,6 +72,7 @@ class CreateRepairViewController: BaseTableViewController {
             self.imgV.addTapActionBlock {
                 TakeOnePhotoHelper.default.takePhoto(self) { (image) in
                     self.imgV.image = image
+                    self.image = image
                 }
             }
             self.phoneTF.text = LocalData.getUserPhone()
@@ -95,7 +97,6 @@ class CreateRepairViewController: BaseTableViewController {
             self.navigationController?.pushViewController(evaluateVC, animated: true)
         }else{
             let content = self.contentTextView.text
-            let image = self.imgV.image
             guard let user = self.nameTF.text else {
                 LYProgressHUD.showInfo("请输入姓名")
                 return
@@ -121,7 +122,7 @@ class CreateRepairViewController: BaseTableViewController {
             params["mobile"] = mobile
             params["address"] = address
             LYProgressHUD.showLoading()
-            if image == nil{
+            if self.image == nil{
                 NetTools.requestData(type: .post, urlString: CreateRepairApi, parameters: params, succeed: { (result) in
                     LYProgressHUD.showSuccess("提交成功，请耐心等候！")
                     //刷新维修列表
@@ -131,7 +132,7 @@ class CreateRepairViewController: BaseTableViewController {
                     LYProgressHUD.showError(error)
                 }
             }else{
-                NetTools.requestDataWithImage(type: .post, urlString: CreateRepairApi, imgArray: [image!], imageName: "image", parameters: params, succeed: { (result) in
+                NetTools.requestDataWithImage(type: .post, urlString: CreateRepairApi, imgArray: [self.image!], imageName: "image", parameters: params, succeed: { (result) in
                     LYProgressHUD.showSuccess("提交成功，请耐心等候！")
                     //刷新维修列表
                     NotificationCenter.default.post(name: NSNotification.Name.init("RefreshRepairListKey"), object: nil)
@@ -182,9 +183,40 @@ extension CreateRepairViewController{
         }else if section == 4{
             return 2
         }else if section == 5{
+            if self.isDetail{
+                return 0
+            }
             return 1
         }
         
+        return 0
+    }
+    
+    override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        if indexPath.section == 0 || indexPath.section == 1 {
+            return 78
+        }else if indexPath.section == 2{
+            if indexPath.row == 0{
+                return 78
+            }else if indexPath.row == 1{
+                if self.isDetail{
+                    return self.contentTextView.text.sizeFitTextView(width: kScreenW - 30, height: CGFloat(MAXFLOAT), fontSize: 14.0).height + 32
+                }
+                return 113
+            }else if indexPath.row == 2{
+                return 44
+            }
+        }else if indexPath.section == 3{
+            return 128
+        }else if indexPath.section == 4{
+            if indexPath.row == 0{
+                return 208
+            }else if indexPath.row == 1{
+                return 52
+            }
+        }else if indexPath.section == 5{
+            return 360
+        }
         return 0
     }
     
