@@ -87,6 +87,14 @@ class ComplaintViewController: BaseViewController {
         NetTools.requestData(type: .post, urlString: ComplantSuggestListApi, succeed: { (result) in
             self.complantList = result["list"].arrayValue
             self.tableView.reloadData()
+//            if self.complantList.count > 0{
+//                self.hideEmptyView()
+//                self.tableView.reloadData()
+//            }else{
+//                self.showEmptyView(frame: self.tableView.frame) {
+//                    self.loadComplantData()
+//                }
+//            }
         }) { (error) in
             
         }

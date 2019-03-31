@@ -72,7 +72,14 @@ class MessageViewController: BaseTableViewController {
             }else{
                 self.haveMore = true
             }
-            self.tableView.reloadData()
+            if self.messageList.count > 0{
+                self.hideEmptyView()
+                self.tableView.reloadData()
+            }else{
+                self.showEmptyView(frame: self.tableView.frame) {
+                    self.loadMessageData()
+                }
+            }
         }) { (error) in
             LYProgressHUD.showError(error)
         }

@@ -33,7 +33,14 @@ class SingleSelectTableViewController: BaseTableViewController {
     func loadCommunityData() {
         NetTools.requestData(type: .post, urlString: HouseListApi, succeed: { (result) in
             self.communityList = result["communitylist"].arrayValue
-            self.tableView.reloadData()
+            if self.communityList.count > 0{
+                self.hideEmptyView()
+                self.tableView.reloadData()
+            }else{
+                self.showEmptyView(frame: self.tableView.frame) {
+                    self.loadCommunityData()
+                }
+            }
         }) { (error) in
             LYProgressHUD.showError(error)
             self.navigationController?.popViewController(animated: true)
@@ -44,7 +51,14 @@ class SingleSelectTableViewController: BaseTableViewController {
         let params : [String : Any] = ["maintype" : self.type]
         NetTools.requestData(type: .post, urlString: RepairCategoryApi, parameters: params, succeed: { (result) in
             self.repairCategoryList = result.arrayValue
-            self.tableView.reloadData()
+            if self.repairCategoryList.count > 0{
+                self.hideEmptyView()
+                self.tableView.reloadData()
+            }else{
+                self.showEmptyView(frame: self.tableView.frame) {
+                    self.loadRapairData()
+                }
+            }
         }) { (error) in
             LYProgressHUD.showError(error)
             self.navigationController?.popViewController(animated: true)

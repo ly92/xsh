@@ -108,7 +108,14 @@ class ShopViewController: BaseViewController {
                 self.storeList.append(json)
             }
             
-            self.tableView.reloadData()
+            if self.storeList.count > 0{
+                self.hideEmptyView()
+                self.tableView.reloadData()
+            }else{
+                self.showEmptyView(frame: self.tableView.frame) {
+                    self.loadStoreData()
+                }
+            }
         }) { (error) in
             
         }

@@ -140,16 +140,24 @@ class MotionViewController: BaseViewController {
             for json in result["list"].arrayValue{
                 self.stepsLogList.append(json)
             }
-            self.prepareData()
+            
+            
+            if self.stepsLogList.count > 0{
+                self.prepareData()
+                self.hideEmptyView()
+            }else{
+                self.showEmptyView(frame: self.tableView.frame) {
+                    self.loadStepsLog()
+                }
+            }
+
             self.isLoadding = false
         }) { (error) in
             self.isLoadding = false
             LYProgressHUD.showError(error)
         }
         
-        self.showEmptyView(frame: self.tableView.frame) {
-            print("123")
-        }
+        
     }
     
     //预处理数据

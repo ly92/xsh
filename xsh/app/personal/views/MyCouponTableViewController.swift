@@ -52,7 +52,16 @@ class MyCouponTableViewController: BaseTableViewController {
         params["userid"] = LocalData.getCId()
         NetTools.requestData(type: .post, urlString: MyCouponListApi, parameters: params, succeed: { (result) in
             self.couponList = result["list"].arrayValue
-            self.tableView.reloadData()
+            
+            if self.couponList.count > 0{
+                self.hideEmptyView()
+                self.tableView.reloadData()
+            }else{
+                self.showEmptyView(frame: self.tableView.frame) {
+                    self.loadMyCoupon()
+                }
+            }
+            
         }) { (error) in
             LYProgressHUD.showError(error)
         }

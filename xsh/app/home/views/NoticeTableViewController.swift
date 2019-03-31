@@ -47,7 +47,16 @@ class NoticeTableViewController: BaseTableViewController {
             }else{
                 self.haveMore = false
             }
-            self.tableView.reloadData()
+            
+            if self.noticeList.count > 0{
+                self.hideEmptyView()
+                self.tableView.reloadData()
+            }else{
+                self.showEmptyView(frame: self.tableView.frame) {
+                    self.loadNoticesData()
+                }
+            }
+            
         }) { (error) in
             LYProgressHUD.showError(error)
         }

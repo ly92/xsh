@@ -30,7 +30,12 @@ class BaseViewController: UIViewController {
     
     
     func showEmptyView(frame : CGRect, block : @escaping (() -> Void)) {
-        self.emptyView.frame = frame
+        LYProgressHUD.dismiss()
+        if frame.origin.y == 88 {
+            self.emptyView.frame = CGRect.init(x: frame.origin.x, y: frame.origin.y - 88, width: frame.size.width, height: frame.size.height)
+        }else{
+            self.emptyView.frame = frame
+        }
         self.emptyBtn.frame = CGRect.init(x: frame.size.width / 2.0 - 100, y: frame.size.height / 2.0 - 25, width: 200, height: 50)
         self.emptyView.center = self.emptyView.center
         self.emptyView.isHidden = false
@@ -41,10 +46,12 @@ class BaseViewController: UIViewController {
     }
     
     func hideEmptyView() {
+        LYProgressHUD.dismiss()
         self.emptyView.isHidden = true
     }
     
     @objc func refreshAction() {
+        LYProgressHUD.showLoading()
         if self.refreshBlock != nil{
             self.refreshBlock!()
         }

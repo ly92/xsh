@@ -55,7 +55,15 @@ class CouponViewController: BaseTableViewController {
             for json in result["list"].arrayValue{
                 self.couponList.append(json)
             }
-            self.tableView.reloadData()
+            if self.couponList.count > 0{
+                self.hideEmptyView()
+                self.tableView.reloadData()
+            }else{
+                self.showEmptyView(frame: self.tableView.frame) {
+                    self.loadCouponData()
+                }
+            }
+            
         }) { (error) in
             LYProgressHUD.showError(error)
         }

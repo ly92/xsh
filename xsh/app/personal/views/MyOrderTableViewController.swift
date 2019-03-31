@@ -59,7 +59,15 @@ class MyOrderTableViewController: BaseTableViewController {
             }
             for json in result["list"].arrayValue{
                 self.cardOrderList.append(json)
+            }
+            
+            if self.cardOrderList.count > 0{
+                self.hideEmptyView()
                 self.tableView.reloadData()
+            }else{
+                self.showEmptyView(frame: self.tableView.frame) {
+                    self.loadCardOrder()
+                }
             }
         }) { (error) in
             LYProgressHUD.showError(error)
@@ -77,7 +85,14 @@ class MyOrderTableViewController: BaseTableViewController {
             }
             for json in result["list"].arrayValue{
                 self.shopOrderList.append(json)
+            }
+            if self.shopOrderList.count > 0{
+                self.hideEmptyView()
                 self.tableView.reloadData()
+            }else{
+                self.showEmptyView(frame: self.tableView.frame) {
+                    self.loadShopOrder()
+                }
             }
         }) { (error) in
             LYProgressHUD.showError(error)

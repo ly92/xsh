@@ -80,6 +80,14 @@ class RepairViewController: BaseViewController {
         NetTools.requestData(type: .post, urlString: RepairListApi, succeed: { (result) in
             self.repairList = result["list"].arrayValue
             self.tableView.reloadData()
+//            if self.repairList.count > 0{
+//                self.hideEmptyView()
+//                self.tableView.reloadData()
+//            }else{
+//                self.showEmptyView(frame: self.tableView.frame) {
+//                    self.loadRepairData()
+//                }
+//            }
         }) { (error) in
             LYProgressHUD.showError(error)
         }
