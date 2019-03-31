@@ -146,6 +146,10 @@ class MotionViewController: BaseViewController {
             self.isLoadding = false
             LYProgressHUD.showError(error)
         }
+        
+        self.showEmptyView(frame: self.tableView.frame) {
+            print("123")
+        }
     }
     
     //预处理数据
