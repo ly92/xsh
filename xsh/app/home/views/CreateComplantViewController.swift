@@ -29,6 +29,7 @@ class CreateComplantViewController: BaseTableViewController {
     @IBOutlet weak var addressPlaceholderLbl: UILabel!
     @IBOutlet weak var arrowImgV: UIImageView!
     @IBOutlet weak var subBtn: UIButton!
+    @IBOutlet weak var timeLbl: UILabel!
     
     
     fileprivate var selectedCommunity = ""
@@ -64,6 +65,7 @@ class CreateComplantViewController: BaseTableViewController {
             }
             
             self.phoneTF.text = LocalData.getUserPhone()
+            self.timeLbl.text = Date.dateStringFromDate(format: Date.datesFormatString(), timeStamps: Date().phpTimestamp())
         }
         
     }
@@ -134,6 +136,7 @@ class CreateComplantViewController: BaseTableViewController {
         self.nameTF.text = self.detailJson["username"].stringValue
         self.phoneTF.text = self.detailJson["mobile"].stringValue
         self.addressTextView.text = self.detailJson["address"].stringValue
+        self.timeLbl.text = Date.dateStringFromDate(format: Date.datesFormatString(), timeStamps: self.detailJson["creationtime"].stringValue)
     }
     
 }
@@ -163,7 +166,7 @@ extension CreateComplantViewController{
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         if section == 0{
-            return 2
+            return 3
         }else if section == 1{
             if self.isDetail{
                 if self.detailJson["image"].stringValue.isEmpty{

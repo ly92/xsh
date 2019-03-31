@@ -15,6 +15,7 @@ class RecommendGoodsCell: UICollectionViewCell {
     @IBOutlet weak var titleLbl: UILabel!
     @IBOutlet weak var priceLbl: UILabel!
     @IBOutlet weak var countLbl: UILabel!
+    @IBOutlet weak var unitLbl: UILabel!
     
     
     
@@ -30,7 +31,9 @@ class RecommendGoodsCell: UICollectionViewCell {
 //            self.titleLbl.text = self.subJson["title"].stringValue
             self.titleLbl.text = self.subJson["recommend"].stringValue
             self.priceLbl.text = self.subJson["price"].stringValue
-            self.countLbl.text = "已卖出" + self.subJson["salecount"].stringValue + self.subJson["unit"].stringValue
+            self.unitLbl.text = self.subJson["unit"].stringValue
+            self.countLbl.text = "销量：" + self.subJson["salecount"].stringValue
+//                + self.subJson["unit"].stringValue
         }
     }
 

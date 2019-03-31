@@ -33,6 +33,7 @@ class CreateRepairViewController: BaseTableViewController {
     @IBOutlet weak var arrowImgV1: UIImageView!
     @IBOutlet weak var arrowImgV2: UIImageView!
     @IBOutlet weak var subBtn: UIButton!
+    @IBOutlet weak var timeLbl: UILabel!
     
     
     fileprivate var selectedCommunity = ""
@@ -73,6 +74,7 @@ class CreateRepairViewController: BaseTableViewController {
                 }
             }
             self.phoneTF.text = LocalData.getUserPhone()
+            self.timeLbl.text = Date.dateStringFromDate(format: Date.datesFormatString(), timeStamps: Date().phpTimestamp())
         }
         
         
@@ -152,6 +154,7 @@ class CreateRepairViewController: BaseTableViewController {
         self.nameTF.text = self.detailJson["username"].stringValue
         self.phoneTF.text = self.detailJson["mobile"].stringValue
         self.addressTextView.text = self.detailJson["address"].stringValue
+        self.timeLbl.text = Date.dateStringFromDate(format: Date.datesFormatString(), timeStamps: self.detailJson["creationtime"].stringValue)
     }
     
 }
@@ -168,7 +171,7 @@ extension CreateRepairViewController{
                 return 1
             }
         }else if section == 2{
-            return 2
+            return 3
         }else if section == 3{
             if self.isDetail{
                 if self.detailJson["image"].stringValue.isEmpty{
