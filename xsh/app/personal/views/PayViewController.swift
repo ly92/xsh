@@ -436,7 +436,7 @@ extension PayViewController{
             let cell4 = tableView.dequeueReusableCell(withIdentifier: "PayBtnCell", for: indexPath) as! PayBtnCell
             
             let dict = self.getTotalMoney()
-            cell4.moneyLbl.text = "¥" + String.init(format: "%.2f", dict["money"]!)
+            cell4.moneyLbl.text = String.init(format: "%.2f", dict["money"]!)
             
             cell4.payBlock = {() in
                 self.prePayAction()
