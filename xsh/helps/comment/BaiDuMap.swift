@@ -77,9 +77,8 @@ class BaiDuMap: NSObject {
     
     
     func getUserLocal() -> CLLocationCoordinate2D {
-//        let def = CLLocationCoordinate2D.init(latitude: 115.984743, longitude: 39.728246)
         let def = CLLocationCoordinate2D.init(latitude: 39.728246, longitude: 115.984743)
-        return def
+//        return def
         return self.location.location?.coordinate ?? def
     }
 
