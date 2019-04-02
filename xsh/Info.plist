@@ -99,6 +99,8 @@
 	<string>App需要访问您的相册来选择提交的图片</string>
 	<key>NSPhotoLibraryUsageDescription</key>
 	<string>App需要访问您的相册来选择提交的图片</string>
+    <key>NSFaceIDUsageDescription</key>
+    <string>App需要您允许使用面容ID来使用免密登录功能</string>
 	<key>UIMainStoryboardFile</key>
 	<string>Main</string>
 	<key>UIRequiredDeviceCapabilities</key>

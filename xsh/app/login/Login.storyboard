@@ -494,6 +494,7 @@
                         <outlet property="changePhoneBtn" destination="HnY-yV-xHt" id="Ihk-uc-qJf"/>
                         <outlet property="codeBtn" destination="xrM-IS-8JL" id="HvW-pg-IXC"/>
                         <outlet property="codeTF" destination="xiN-8m-jGv" id="KcB-0u-sIg"/>
+                        <outlet property="fingerBtn" destination="u1D-Fb-yLn" id="QCs-A2-r7l"/>
                         <outlet property="loginBtn" destination="NO1-YO-Qx5" id="WZA-kk-OiO"/>
                         <outlet property="loginPhoneTF" destination="DtN-4t-lj3" id="bU6-yQ-AAh"/>
                         <outlet property="loginPwdTF" destination="nmR-Co-taV" id="seg-Tf-3mA"/>

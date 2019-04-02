@@ -25,6 +25,7 @@ class LoginViewController: BaseTableViewController {
     @IBOutlet weak var loginBtn: UIButton!
     @IBOutlet weak var nextBtn: UIButton!
     @IBOutlet weak var resetBtn: UIButton!
+    @IBOutlet weak var fingerBtn: UIButton!
     
 
     fileprivate var secIndex = 0//0:手机号登录，1:忘记密码，2:更改密码
@@ -32,7 +33,7 @@ class LoginViewController: BaseTableViewController {
     fileprivate var codeTime : Int = 60
     
     fileprivate var fingerUseable = false//指纹登录是否可用
-    
+    fileprivate var faceUseable = false//面容登录是否可用
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -49,7 +50,15 @@ class LoginViewController: BaseTableViewController {
             //是否支持指纹识别
             let context = LAContext()
             if context.canEvaluatePolicy(LAPolicy.deviceOwnerAuthenticationWithBiometrics, error: NSErrorPointer.init(nilLiteral: ())){
-                self.fingerUseable = true
+                if #available(iOS 11.0, *) {
+                    if context.biometryType == .faceID{
+                        self.faceUseable = true
+                        self.fingerBtn.setImage(UIImage.init(named: "faceid_lock"), for: .normal)
+                    }
+                } else {
+                    self.fingerUseable = true
+                    self.fingerBtn.setImage(UIImage.init(named: "fingerprint_lock"), for: .normal)
+                }
                 self.tableView.reloadData()
             }
         }
@@ -109,18 +118,21 @@ class LoginViewController: BaseTableViewController {
     //MARK: 指纹登录
     @IBAction func fingerPrintAction() {
         let context = LAContext()
-        context.evaluatePolicy(LAPolicy.deviceOwnerAuthenticationWithBiometrics, localizedReason: "指纹登录") { (success, error) in
+        context.evaluatePolicy(LAPolicy.deviceOwnerAuthenticationWithBiometrics, localizedReason: "免密登录") { (success, error) in
             if success{
                 DispatchQueue.main.async {
                     self.loginAction(true)
                 }
             }else{
-                LYProgressHUD.showError("指纹登录失败，请使用帐号密码登录")
+                LYProgressHUD.showError("登录失败，请使用帐号密码登录")
                 LocalData.saveTruePwd(pwd: "")
                 self.fingerUseable = false
+                self.faceUseable = false
                 self.tableView.reloadData()
             }
         }
+        
+        
     }
     
     
@@ -263,7 +275,7 @@ class LoginViewController: BaseTableViewController {
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         if section == self.secIndex && self.secIndex == 0{
-            if self.fingerUseable{
+            if self.fingerUseable || self.faceUseable{
                 return 5
             }else{
                 return 4
