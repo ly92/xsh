@@ -41,7 +41,7 @@ class AdView: UIView {
         self.addTapActionBlock {
             self.skipAction()
             
-            let json = self.adArray[self.index]
+            let json = self.adArray[self.index - 1]
             
             //跳转外部链接
             let webVC = BaseWebViewController()
@@ -79,7 +79,6 @@ class AdView: UIView {
                 self.skipAction()
             }
         }
-        
         self.index += 1
     }
     

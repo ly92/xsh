@@ -95,7 +95,11 @@ class PayViewController: BaseTableViewController {
     //生成预付单
     @IBAction func prePayAction() {
         var params : [String : Any] = [:]
-        if self.selectedPayWay1["atid"].stringValue.isEmpty{
+        let dict = self.getTotalMoney()
+        params["pointsMoney"] = dict["points"]
+        params["money"] = dict["money"]
+        
+        if self.selectedPayWay1["atid"].stringValue.isEmpty && CGFloat(dict["money"]!) > 0{
             LYProgressHUD.showError("请选择支付方式！")
             return
         }
@@ -106,9 +110,7 @@ class PayViewController: BaseTableViewController {
         params["orderno"] = self.orderNo
         params["couponid"] = self.selectedCoupon["id"].stringValue
         
-        let dict = self.getTotalMoney()
-        params["pointsMoney"] = dict["points"]
-        params["money"] = dict["money"]
+        
         
         //ptid:支付方式,atid:货币ID,orgaccount:付款账户,destaccount:收款账户,orderno:订单号,money:付款金额,points:积分抵消费金额,coupon:使用优惠券，逗号分隔优惠券码
         NetTools.requestData(type: .post, urlString: PrePayOrderApi, parameters: params, succeed: { (result) in
