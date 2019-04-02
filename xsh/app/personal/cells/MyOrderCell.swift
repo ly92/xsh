@@ -31,7 +31,8 @@ class MyOrderCell: UITableViewCell {
         didSet{
             self.nameLbl.text = self.subJson["servicetype"].stringValue
             self.timeLbl.text = self.subJson["creationtime"].stringValue
-            self.moneyLbl.text = "¥" + self.subJson["totalprice"].stringValue
+            self.moneyLbl.text = self.subJson["totalprice"].stringValue
+//            self.moneyLbl.text = "¥" + self.subJson["totalprice"].stringValue
         }
     }
     
@@ -39,7 +40,8 @@ class MyOrderCell: UITableViewCell {
         didSet{
             self.nameLbl.text = self.subJson2["content"].stringValue
             self.timeLbl.text = self.subJson2["creationtime"].stringValue
-            self.moneyLbl.text = "¥" + self.subJson2["money"].stringValue
+//            self.moneyLbl.text = "¥" + self.subJson2["money"].stringValue
+            self.moneyLbl.text = self.subJson2["money"].stringValue
         }
     }
     

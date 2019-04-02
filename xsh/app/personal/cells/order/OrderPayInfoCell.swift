@@ -31,10 +31,14 @@ class OrderPayInfoCell: UITableViewCell {
     
     var subJson = JSON(){
         didSet{
-            self.couponLbl.text = "-¥" + self.subJson["coupon_coupontaxmoney"].stringValue
-            self.pointLbl.text = "-¥" + self.subJson["points_money"].stringValue
-            self.totalMoneyLbl.text = "¥" + self.subJson["totalprice"].stringValue
-            self.orderMoneyLbl.text = "¥" + self.subJson["money"].stringValue
+//            self.couponLbl.text = "-¥" + self.subJson["coupon_coupontaxmoney"].stringValue
+//            self.pointLbl.text = "-¥" + self.subJson["points_money"].stringValue
+//            self.totalMoneyLbl.text = "¥" + self.subJson["totalprice"].stringValue
+//            self.orderMoneyLbl.text = "¥" + self.subJson["money"].stringValue
+            self.couponLbl.text = "-" + self.subJson["coupon_coupontaxmoney"].stringValue
+            self.pointLbl.text = "-" + self.subJson["points_money"].stringValue
+            self.totalMoneyLbl.text = self.subJson["totalprice"].stringValue
+            self.orderMoneyLbl.text = self.subJson["money"].stringValue
         }
     }
 }

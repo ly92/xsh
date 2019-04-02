@@ -90,7 +90,8 @@ class MyCardViewController: BaseViewController {
             self.cardNumLbl.text = result["card"]["ano"].stringValue
             self.cardCountLbl.text = result["card"]["hardcount"].stringValue
             self.creditLbl.text = result["card"]["points"].stringValue
-            self.moneyLbl.text = "¥" + result["card"]["money"].stringValue
+//            self.moneyLbl.text = "¥" + result["card"]["money"].stringValue
+            self.moneyLbl.text = result["card"]["money"].stringValue
         }) { (error) in
             self.haveCard.isHidden = true
             self.noCard.isHidden = false

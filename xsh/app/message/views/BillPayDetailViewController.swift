@@ -44,7 +44,8 @@ class BillPayDetailViewController: BaseTableViewController {
             self.addressLbl.text = result["payInfo"]["HouseAddress"].stringValue
             self.timelbl.text = result["payInfo"]["order_creationtime"].stringValue
             self.typeLbl.text = result["payInfo"]["PayCategoryCodeName"].stringValue
-            self.moneyLbl.text = "¥" + result["payInfo"]["TotalMoney"].stringValue
+            self.moneyLbl.text = result["payInfo"]["TotalMoney"].stringValue
+//            self.moneyLbl.text = "¥" + result["payInfo"]["TotalMoney"].stringValue
             self.phoneLbl.text = result["payInfo"]["MobileNo"].stringValue
             self.resultLbl.text = result["payInfo"]["StatusCodeName"].stringValue
         }) { (error) in

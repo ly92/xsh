@@ -103,10 +103,47 @@ class PayViewController: BaseTableViewController {
             LYProgressHUD.showError("请选择支付方式！")
             return
         }
+        
         params["ptid"] = self.selectedPayWay1["ptid"].stringValue
         params["atid"] = self.selectedPayWay1["atid"].stringValue
         params["destaccount"] = self.selectedPayWay1["destaccount"].stringValue
         params["orgaccount"] = self.selectedPayWay1["orgaccount"].stringValue
+        
+        if CGFloat(dict["money"]!) == 0{
+            if self.selectedPayWay2.keys.contains("98"){
+                //积分抵扣了所有钱，特殊处理
+                let point = self.selectedPayWay2["98"]
+                params["ptid"] = point!["ptid"].stringValue
+                params["atid"] = point!["atid"].stringValue
+                params["destaccount"] = point!["destaccount"].stringValue
+                params["orgaccount"] = point!["orgaccount"].stringValue
+            }else{
+                //优惠券抵消了所有的钱
+                //1.优先使用积分的参数
+                var havePoint = false
+                for json in self.payWayArray2{
+                    if json["atid"].intValue == 98{
+                        havePoint = true
+                        params["ptid"] = json["ptid"].stringValue
+                        params["atid"] = json["atid"].stringValue
+                        params["destaccount"] = json["destaccount"].stringValue
+                        params["orgaccount"] = json["orgaccount"].stringValue
+                    }
+                }
+                //2.没有积分的参数就用一卡通的参数
+                if !havePoint{
+                    for json in self.payWayArray1{
+                        if json["atid"].intValue == 94{
+                            params["ptid"] = json["ptid"].stringValue
+                            params["atid"] = json["atid"].stringValue
+                            params["destaccount"] = json["destaccount"].stringValue
+                            params["orgaccount"] = json["orgaccount"].stringValue
+                        }
+                    }
+                }
+            }
+        }
+        
         params["orderno"] = self.orderNo
         params["couponid"] = self.selectedCoupon["id"].stringValue
         
@@ -406,10 +443,12 @@ extension PayViewController{
                     if json["atid"].stringValue == "98"{
                         let dict = self.getTotalMoney()
                         cell3.selectedBtn.isSelected = true
-                        cell3.useLbl.text = "-¥" + String.init(format: "%.2f", dict["points"]!)
+//                        cell3.useLbl.text = "-¥" + String.init(format: "%.2f", dict["points"]!)
+                        cell3.useLbl.text = "-" + String.init(format: "%.2f", dict["points"]!)
                     }else{
                         cell3.selectedBtn.isSelected = true
-                        cell3.useLbl.text = "-¥" + json["money"].stringValue
+//                        cell3.useLbl.text = "-¥" + json["money"].stringValue
+                        cell3.useLbl.text = "-" + json["money"].stringValue
                     }
                     
                 }else{
@@ -426,7 +465,8 @@ extension PayViewController{
             cell.canUseLbl.text = "(可用\(self.couponList.count)张)"
             if self.selectedCoupon["money"].floatValue > 0{
                 let dict = self.getTotalMoney()
-                cell.useLbl.text = "-¥" + String.init(format: "%.2f", dict["coupon"]!)
+//                cell.useLbl.text = "-¥" + String.init(format: "%.2f", dict["coupon"]!)
+                cell.useLbl.text = "-" + String.init(format: "%.2f", dict["coupon"]!)
             }else{
                 cell.useLbl.text = ""
             }

@@ -60,7 +60,8 @@ class OpenCardViewController: BaseViewController {
         let ts = Date.phpTimestamp()
         let cmdno = String.randomStr(len: 20) + ts
         var params : [String : Any] = [:]
-        params["passwd"] = (LocalData.getUserPhone() + ts + cmdno + (pwd.md5String() + LocalData.getUserPhone()).md5String()).md5String()
+//        params["passwd"] = (LocalData.getCId() + ts + cmdno + (pwd.md5String() + LocalData.getUserPhone()).md5String()).md5String()
+         params["passwd"] = (pwd.md5String() + LocalData.getUserPhone()).md5String()
         params["cmdno"] = cmdno
         params["ts"] = ts
         NetTools.requestData(type: .post, urlString: OpenCardApi, parameters: params, succeed: { (result) in
