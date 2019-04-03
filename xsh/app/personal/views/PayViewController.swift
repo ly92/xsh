@@ -510,7 +510,6 @@ extension PayViewController{
         return 0.0001
     }
     
-    
     override func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
         let view = UIView.init(frame: CGRect.init(x: 0, y: 0, width: kScreenW, height: 5))
         view.backgroundColor = BG_Color

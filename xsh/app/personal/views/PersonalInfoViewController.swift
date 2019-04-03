@@ -89,11 +89,12 @@ class PersonalInfoViewController: BaseTableViewController {
         if indexPath.row == 0{
             //头像
             TakeOnePhotoHelper.default.takePhoto(self) { (image) in
+                LYProgressHUD.showLoading()
                 NetTools.upLoadImage(urlString: ChangePersonIconApi, imgArray: [image], success: { (result) in
                     DispatchQueue.main.async {
                         self.iconImgV.image = image
+                        LYProgressHUD.showSuccess("更新成功！")
                     }
-                    LYProgressHUD.showSuccess("更新成功！")
                 }, failture: { (error) in
                     LYProgressHUD.showError(error)
                 })

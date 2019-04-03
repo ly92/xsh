@@ -236,7 +236,7 @@ extension NetTools{
         })
     }
     //上传头像
-    static func upLoadImage(urlString: String, imgArray: Array<UIImage>,success : @escaping (_ response : String)->(), failture : @escaping (_ error : String)->()){
+    static func upLoadImage(urlString: String, imgArray: Array<UIImage>,success : @escaping((_ result: JSON) -> Swift.Void), failture : @escaping (_ error : String)->()){
         /**
          cid:用户id
          ts：时间戳
@@ -276,6 +276,7 @@ extension NetTools{
                     upload.responseJSON(completionHandler: { (response) in
                         let json = JSON(response.result.value ?? ["error":"未请求到数据"])
                         debugPrint(json)
+                        success(json["content"])
                     })
                 case .failure(let encodingError):
                     failture("\(encodingError)")

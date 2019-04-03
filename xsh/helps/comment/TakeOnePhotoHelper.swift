@@ -80,6 +80,7 @@ extension TakeOnePhotoHelper : UIImagePickerControllerDelegate,UINavigationContr
         let picker : UIImagePickerController = UIImagePickerController()
         picker.sourceType = .camera
         picker.delegate = self
+        picker.allowsEditing = true
         self.vc.present(picker, animated: true, completion: nil)
     }
     
@@ -105,6 +106,7 @@ extension TakeOnePhotoHelper : UIImagePickerControllerDelegate,UINavigationContr
             let picker : UIImagePickerController = UIImagePickerController()
             picker.sourceType = .photoLibrary
             picker.delegate = self
+            picker.allowsEditing = true
             picker.navigationBar.tintColor = UIColor.RGBS(s: 33)
             self.vc.present(picker, animated: true, completion: nil)
         }else{
@@ -116,7 +118,7 @@ extension TakeOnePhotoHelper : UIImagePickerControllerDelegate,UINavigationContr
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
         picker.dismiss(animated: true, completion: nil)
         
-        guard let img = info[UIImagePickerController.InfoKey.originalImage] as? UIImage else {
+        guard let img = info[UIImagePickerController.InfoKey.editedImage] as? UIImage else {
             LYProgressHUD.showError("选中错误，请重试！")
             return
         }
