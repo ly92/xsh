@@ -55,15 +55,15 @@ class MyCardViewController: BaseViewController {
     }
     
     //检查是否开通了一卡通
-    func checkOpenCard() {
-        
-        NetTools.requestData(type: .post, urlString: CardDetailApi, succeed: { (result) in
-            
-        }) { (error) in
-            self.haveCard.isHidden = true
-            self.noCard.isHidden = false
-        }
-        
+//    func checkOpenCard() {
+//
+//        NetTools.requestData(type: .post, urlString: CardDetailApi, succeed: { (result) in
+//
+//        }) { (error) in
+//            self.haveCard.isHidden = true
+//            self.noCard.isHidden = false
+//        }
+//
 //        NetTools.requestData(type: .post, urlString: CheckCardApi, succeed: { (result) in
 //            if result["result"].intValue == 0{
 //                self.haveCard.isHidden = true
@@ -77,7 +77,7 @@ class MyCardViewController: BaseViewController {
 //        }) { (error) in
 //            LYProgressHUD.showError(error)
 //        }
-    }
+//    }
     
     
     //一卡通详情

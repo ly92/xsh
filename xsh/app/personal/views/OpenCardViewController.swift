@@ -45,6 +45,7 @@ class OpenCardViewController: BaseViewController {
         tf6.layer.borderColor = UIColor.RGBS(s: 191).cgColor
         
         self.openBtn.layer.cornerRadius = 25
+        self.pwdTF.becomeFirstResponder()
     }
     
     @IBAction func openCardAction() {
