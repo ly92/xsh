@@ -15,13 +15,16 @@ class MessageViewController: BaseTableViewController {
     fileprivate var messageList : Array<JSON> = []
     fileprivate var haveMore = true
     
+    fileprivate var isSelecting = false
+    fileprivate var selectedIds = Array<String>()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
         
         self.tableView.register(UINib.init(nibName: "MessageCell", bundle: Bundle.main), forCellReuseIdentifier: "MessageCell")
         
-        self.navigationItem.rightBarButtonItem = UIBarButtonItem.init(title: "全部已读", target: self, action: #selector(MessageViewController.rightItemAction))
+        self.navigationItem.rightBarButtonItem = UIBarButtonItem.init(title: "选择", target: self, action: #selector(MessageViewController.rightItemAction))
         
         self.pullToRefre {
             self.messageList.removeAll()
@@ -44,12 +47,39 @@ class MessageViewController: BaseTableViewController {
         }
         
         self.tabBarItem.badgeValue = nil
-//        self.getNewMessage()
+        self.readAllAction()
     }
     
     @objc func rightItemAction() {
+        if self.isSelecting{
+            self.navigationItem.rightBarButtonItem = UIBarButtonItem.init(title: "选择", target: self, action: #selector(MessageViewController.rightItemAction))
+            self.deleteAction()
+        }else{
+            self.navigationItem.rightBarButtonItem = UIBarButtonItem.init(title: "删除", target: self, action: #selector(MessageViewController.rightItemAction))
+            
+        }
+        
+        self.isSelecting = !self.isSelecting
+        self.tableView.reloadData()
+    }
+    
+    
+    //批量删除
+    func deleteAction() {
+        var params : [String : Any] = [:]
+        params["ids"] = self.selectedIds.joined(separator: ",")
+        NetTools.requestData(type: .post, urlString: MessageDeleteApi, parameters: params, succeed: { (result) in
+            self.selectedIds.removeAll()
+            self.messageList.removeAll()
+            self.loadMessageData()
+        }) { (error) in
+            LYProgressHUD.showError(error)
+        }
+    }
+    
+    //全部标记为已读
+    func readAllAction() {
         NetTools.requestData(type: .post, urlString: MessageAllReadApi, succeed: { (result) in
-            LYProgressHUD.showSuccess("标记成功！")
             self.tabBarItem.badgeValue = nil
         }) { (error) in
             LYProgressHUD.showError(error)
@@ -95,6 +125,16 @@ class MessageViewController: BaseTableViewController {
         if self.messageList.count > indexPath.row{
             let json = self.messageList[indexPath.row]
             cell.subJson = json
+            if self.isSelecting{
+                cell.selectImgV.isHidden = false
+                if self.selectedIds.contains(json["id"].stringValue){
+                    cell.selectImgV.image = UIImage.init(named: "gender_select")
+                }else{
+                    cell.selectImgV.image = UIImage.init(named: "gender_unselect")
+                }
+            }else{
+                cell.selectImgV.isHidden = true
+            }
         }
         return cell
     }
@@ -106,25 +146,36 @@ class MessageViewController: BaseTableViewController {
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         if self.messageList.count > indexPath.row{
             let json = self.messageList[indexPath.row]
-            let type = json["type"].stringValue.trim
-            let extra = JSON.init(parseJSON: json["extra"].stringValue)
-            if type == "trans"{
-                let detailVC = OrderDetailViewController()
-                detailVC.orderno = extra["orderno"].stringValue
-                self.navigationController?.pushViewController(detailVC, animated: true)
-            }else if type == "pay"{
-                let billdetailVC = BillPayDetailViewController.spwan()
-                billdetailVC.orderno = extra["orderno"].stringValue
-                billdetailVC.uuid = extra["uuid"].stringValue
-                self.navigationController?.pushViewController(billdetailVC, animated: true)
-            }else if type == "coupon"{
-                //我的优惠券
-                let myCouponVC = MyCouponTableViewController()
-                self.navigationController?.pushViewController(myCouponVC, animated: true)
+            if self.isSelecting{
+                if self.selectedIds.contains(json["id"].stringValue){
+                    if self.selectedIds.firstIndex(of: json["id"].stringValue) != nil{
+                        self.selectedIds.remove(at: self.selectedIds.firstIndex(of: json["id"].stringValue)!)
+                    }
+                }else{
+                    self.selectedIds.append(json["id"].stringValue)
+                }
+                self.tableView.reloadData()
             }else{
-                let detailVC = MessageDetailViewController.spwan()
-                detailVC.messageId = json["id"].stringValue
-                self.navigationController?.pushViewController(detailVC, animated: true)
+                let type = json["type"].stringValue.trim
+                let extra = JSON.init(parseJSON: json["extra"].stringValue)
+                if type == "trans"{
+                    let detailVC = OrderDetailViewController()
+                    detailVC.orderno = extra["orderno"].stringValue
+                    self.navigationController?.pushViewController(detailVC, animated: true)
+                }else if type == "pay"{
+                    let billdetailVC = BillPayDetailViewController.spwan()
+                    billdetailVC.orderno = extra["orderno"].stringValue
+                    billdetailVC.uuid = extra["uuid"].stringValue
+                    self.navigationController?.pushViewController(billdetailVC, animated: true)
+                }else if type == "coupon"{
+                    //我的优惠券
+                    let myCouponVC = MyCouponTableViewController()
+                    self.navigationController?.pushViewController(myCouponVC, animated: true)
+                }else{
+                    let detailVC = MessageDetailViewController.spwan()
+                    detailVC.messageId = json["id"].stringValue
+                    self.navigationController?.pushViewController(detailVC, animated: true)
+                }
             }
         }
     }
@@ -134,5 +185,17 @@ class MessageViewController: BaseTableViewController {
             self.loadMessageData()
         }
     }
+    
+    override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
+        if editingStyle == UITableViewCell.EditingStyle.delete{
+            if self.messageList.count > indexPath.row{
+                let json = self.messageList[indexPath.row]
+                self.selectedIds.append(json["id"].stringValue)
+                self.deleteAction()
+            }
+        }
+    }
+    
+    
     
 }

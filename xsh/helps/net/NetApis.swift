@@ -16,8 +16,8 @@ class NetApis: NSObject {
 
 let officialServer = "http://star.wwwcity.net/app/"//正式服务器
 let testServer = "http://star.test.wwwcity.net/app/"//测试服务器
-let usedServer = officialServer
-//let usedServer = testServer
+//let usedServer = officialServer
+let usedServer = testServer
 let DeBug = false
 
 
@@ -85,7 +85,8 @@ let MessageListApi = "message/search"// post type:消息类型id，默认0则全
 let MessageDetailApi = "message/get"// post id
 //全部标记已读
 let MessageAllReadApi = "message/allread"// post
-
+//删除
+let MessageDeleteApi = "message/delete" // post ids
 
 /************************************ 广告公告 ********************************************/
 //查询广告位广告列表

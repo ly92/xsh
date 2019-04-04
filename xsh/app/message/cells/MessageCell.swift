@@ -15,6 +15,7 @@ class MessageCell: UITableViewCell {
     @IBOutlet weak var titleLbl: UILabel!
     @IBOutlet weak var descLbl: UILabel!
     @IBOutlet weak var timeLbl: UILabel!
+    @IBOutlet weak var selectImgV: UIImageView!
     
     
     
