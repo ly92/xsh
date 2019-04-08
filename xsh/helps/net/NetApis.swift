@@ -16,8 +16,8 @@ class NetApis: NSObject {
 
 let officialServer = "http://star.wwwcity.net/app/"//正式服务器
 let testServer = "http://star.test.wwwcity.net/app/"//测试服务器
-let usedServer = officialServer
-//let usedServer = testServer
+//let usedServer = officialServer
+let usedServer = testServer
 let DeBug = false
 
 
@@ -140,6 +140,10 @@ let CardTransactionListApi = "transaction/list" // post
 let CardTransactionDetailApi = "transaction/get" // post orderno
 //订单评价
 let EvaluateOrderApi = "productionEvaluate/create" // post orderno evaluateJson
+//积分总数
+let GetPointsApi = "points/get" //post
+//积分流水
+let PointsListApi = "points/orderlist" // post skip limit
 
 /************************************ 一卡通 ********************************************/
 //首页推荐商品

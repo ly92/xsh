@@ -39,6 +39,7 @@ class MyCardViewController: BaseViewController {
         
         self.loadCardDetail()
         
+
         
         self.cardNumView.addTapActionBlock {
             //绑定卡
@@ -53,6 +54,8 @@ class MyCardViewController: BaseViewController {
         orderVC.orderType = 2
         self.navigationController?.pushViewController(orderVC, animated: true)
     }
+    
+    
     
     //检查是否开通了一卡通
 //    func checkOpenCard() {

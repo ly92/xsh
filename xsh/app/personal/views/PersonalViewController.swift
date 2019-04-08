@@ -116,6 +116,10 @@ class PersonalViewController: BaseTableViewController {
             let myCardVC = MyCardViewController.spwan()
             self.navigationController?.pushViewController(myCardVC, animated: true)
         }else if indexPath.row == 3{
+            //我的积分
+            let pointsVC = MyPointsViewController.spwan()
+            self.navigationController?.pushViewController(pointsVC, animated: true)
+        }else if indexPath.row == 4{
             //我的交易
             let myOrderVC = MyOrderTableViewController()
             myOrderVC.orderType = 1
@@ -126,11 +130,11 @@ class PersonalViewController: BaseTableViewController {
 //            let codeVC = MyQrcodeViewController()
 //            self.navigationController?.pushViewController(codeVC, animated: true)
 //        }
-        else if indexPath.row == 4{
+        else if indexPath.row == 5{
             //运动
             let motion = MotionViewController.spwan()
             self.navigationController?.pushViewController(motion, animated: true)
-        }else if indexPath.row == 5{
+        }else if indexPath.row == 6{
             //修改密码
             let changePwd = ChangeCardPwdViewController.spwan()
             changePwd.isChangeLogin = true

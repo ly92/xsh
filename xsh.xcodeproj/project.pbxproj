@@ -73,6 +73,9 @@
 		0861B84821C52E29008795E5 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0861B84721C52E29008795E5 /* LoginViewController.swift */; };
 		0861B84A21C53EEB008795E5 /* RegisterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0861B84921C53EEB008795E5 /* RegisterViewController.swift */; };
 		086AF76621F154F20083D5B5 /* scansound.wav in Resources */ = {isa = PBXBuildFile; fileRef = 086AF76521F154F20083D5B5 /* scansound.wav */; };
+		086C52FB225A34810087E70E /* MyPointsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 086C52FA225A34810087E70E /* MyPointsViewController.swift */; };
+		086C52FE225A37B50087E70E /* MyPointsCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 086C52FC225A37B50087E70E /* MyPointsCell.swift */; };
+		086C52FF225A37B50087E70E /* MyPointsCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 086C52FD225A37B50087E70E /* MyPointsCell.xib */; };
 		086E2CF621C9E6CF00896F25 /* MyCouponTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 086E2CF521C9E6CF00896F25 /* MyCouponTableViewController.swift */; };
 		086E2CF821C9E6F600896F25 /* ChangeCardPwdViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 086E2CF721C9E6F600896F25 /* ChangeCardPwdViewController.swift */; };
 		086E2CFA21C9E71C00896F25 /* MyQrcodeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 086E2CF921C9E71C00896F25 /* MyQrcodeViewController.swift */; };
@@ -246,6 +249,9 @@
 		0861B84721C52E29008795E5 /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		0861B84921C53EEB008795E5 /* RegisterViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterViewController.swift; sourceTree = "<group>"; };
 		086AF76521F154F20083D5B5 /* scansound.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = scansound.wav; sourceTree = "<group>"; };
+		086C52FA225A34810087E70E /* MyPointsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyPointsViewController.swift; sourceTree = "<group>"; };
+		086C52FC225A37B50087E70E /* MyPointsCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyPointsCell.swift; sourceTree = "<group>"; };
+		086C52FD225A37B50087E70E /* MyPointsCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MyPointsCell.xib; sourceTree = "<group>"; };
 		086E2CF521C9E6CF00896F25 /* MyCouponTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyCouponTableViewController.swift; sourceTree = "<group>"; };
 		086E2CF721C9E6F600896F25 /* ChangeCardPwdViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChangeCardPwdViewController.swift; sourceTree = "<group>"; };
 		086E2CF921C9E71C00896F25 /* MyQrcodeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyQrcodeViewController.swift; sourceTree = "<group>"; };
@@ -504,6 +510,8 @@
 				08169D6A21C943B10030D863 /* MyOrderCell.xib */,
 				08445F6C22009DF900230F5D /* MotionStepCell.swift */,
 				08445F6D22009DF900230F5D /* MotionStepCell.xib */,
+				086C52FC225A37B50087E70E /* MyPointsCell.swift */,
+				086C52FD225A37B50087E70E /* MyPointsCell.xib */,
 			);
 			path = cells;
 			sourceTree = "<group>";
@@ -527,6 +535,7 @@
 				085D6CF721E4F37200155895 /* SelectCommunityViewController.swift */,
 				085D6D0021EE071A00155895 /* ChangePhoneViewController.swift */,
 				08445F6A22009D0400230F5D /* MotionViewController.swift */,
+				086C52FA225A34810087E70E /* MyPointsViewController.swift */,
 			);
 			path = views;
 			sourceTree = "<group>";
@@ -1134,6 +1143,7 @@
 				08D7B69921CCC310007D191F /* AlipaySDK.bundle in Resources */,
 				0861B83D21C29D0D008795E5 /* Login.storyboard in Resources */,
 				083F8F8821D0D6DB0026341A /* PayWayCell.xib in Resources */,
+				086C52FF225A37B50087E70E /* MyPointsCell.xib in Resources */,
 				0807CA9A21C7EC3500967692 /* Personal.storyboard in Resources */,
 				0819FBB621C8DB550078EB8D /* BannerScrollImageCell.xib in Resources */,
 				08445F7E2202024200230F5D /* OrderPayInfoCell.xib in Resources */,
@@ -1289,6 +1299,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				085029B0224A331000FA319B /* EvaluateOrderGoodsCell.swift in Sources */,
+				086C52FB225A34810087E70E /* MyPointsViewController.swift in Sources */,
 				08169D7221CA83D30030D863 /* BaseWebViewController.swift in Sources */,
 				08A3A46421C168B6008E071F /* UIViewController+Category.swift in Sources */,
 				08D7B6A121CCC310007D191F /* openssl_wrapper.m in Sources */,
@@ -1339,6 +1350,7 @@
 				0819FBB521C8DB550078EB8D /* BannerScrollImageCell.swift in Sources */,
 				0861B84221C29DC0008795E5 /* BaseTableViewController.swift in Sources */,
 				085975B822437F37000AFAD3 /* CreateRepairViewController.swift in Sources */,
+				086C52FE225A37B50087E70E /* MyPointsCell.swift in Sources */,
 				08445F712202011400230F5D /* OrderDetailViewController.swift in Sources */,
 				0861B84821C52E29008795E5 /* LoginViewController.swift in Sources */,
 				086E2CF621C9E6CF00896F25 /* MyCouponTableViewController.swift in Sources */,
