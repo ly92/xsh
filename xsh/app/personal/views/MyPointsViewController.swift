@@ -105,18 +105,17 @@ class MyPointsViewController: BaseViewController {
     //积分流水
     func getPointList() {
         var params : [String : Any] = [:]
-        params["skip"] = self.pointsListArray.count
-        params["limit"] = 100000
         params["type"] = self.type
         if self.monthType == 2{
-            params["starttime"] = Date.phpTimestamp().intValue - 182 * 86400
+            //半年内
+            params["month"] = 6
         }else if self.monthType == 3{
-            params["starttime"] = Date.phpTimestamp().intValue - 365 * 86400
+            //一年内
+            params["month"] = 12
         }else{
             //三月内
-            params["starttime"] = Date.phpTimestamp().intValue - 92 * 86400
+            params["month"] = 3
         }
-        params["stoptime"] = Date.phpTimestamp()
         NetTools.requestData(type: .post, urlString: PointsListApi, parameters: params, succeed: { (result) in
             for json in result["list"].arrayValue{
                 self.pointsListArray.append(json)
