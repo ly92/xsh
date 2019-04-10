@@ -27,9 +27,10 @@ class MyPointsCell: UITableViewCell {
     
     var subJson = JSON(){
         didSet{
-            self.timeLbl.text = Date.dateStringFromDate(format: Date.dateChineseFormatString(), timeStamps: self.subJson["creationtime"].stringValue)
-            self.descLbl.text = "lalalallalaal"
-            self.pointsLbl.text = "+ " + self.subJson["points"].stringValue
+//            self.timeLbl.text = Date.dateStringFromDate(format: Date.dateChineseFormatString(), timeStamps: self.subJson["createtime"].stringValue)
+            self.timeLbl.text = self.subJson["createtime"].stringValue
+            self.descLbl.text = self.subJson["content"].stringValue
+            self.pointsLbl.text = self.subJson["prefix"].stringValue + self.subJson["points"].stringValue
         }
     }
     

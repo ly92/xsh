@@ -146,6 +146,7 @@ extension MyPointsViewController : UITableViewDelegate, UITableViewDataSource{
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        return 67
         if self.pointsListArray.count > indexPath.row{
             let json = self.pointsListArray[indexPath.row]
             let size = json[""].stringValue.sizeFit(width: kScreenW - 16, height: CGFloat(MAXFLOAT), fontSize: 14.0)
