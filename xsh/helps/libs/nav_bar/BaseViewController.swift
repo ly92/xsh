@@ -23,8 +23,8 @@ class BaseViewController: UIViewController {
         self.emptyView.addSubview(self.emptyBtn)
         self.emptyBtn.clipsToBounds = true
         self.emptyBtn.layer.cornerRadius = 5
-        self.emptyBtn.setTitleColor(UIColor.white, for: .normal)
-        self.emptyBtn.backgroundColor = Normal_Color
+        self.emptyBtn.setTitleColor(Normal_Color, for: .normal)
+//        self.emptyBtn.backgroundColor = Normal_Color
         self.emptyView.backgroundColor = BG_Color
     }
     

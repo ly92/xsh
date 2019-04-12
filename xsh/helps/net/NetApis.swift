@@ -144,7 +144,7 @@ let EvaluateOrderApi = "productionEvaluate/create" // post orderno evaluateJson
 //积分总数
 let GetPointsApi = "points/get" //post
 //积分流水
-let PointsListApi = "points/orderlist" // post skip limit
+let PointsListApi = "points/list" // post type:1: 支出 其他：收入  month:月数
 
 /************************************ 一卡通 ********************************************/
 //首页推荐商品

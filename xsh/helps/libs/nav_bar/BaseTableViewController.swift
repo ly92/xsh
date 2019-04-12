@@ -39,16 +39,16 @@ class BaseTableViewController: UITableViewController {
         self.emptyView.addSubview(self.emptyBtn)
         self.emptyBtn.clipsToBounds = true
         self.emptyBtn.layer.cornerRadius = 5
-        self.emptyBtn.setTitleColor(UIColor.white, for: .normal)
-        self.emptyBtn.backgroundColor = Normal_Color
+        self.emptyBtn.setTitleColor(Normal_Color, for: .normal)
+//        self.emptyBtn.backgroundColor = Normal_Color
         self.emptyView.backgroundColor = BG_Color
     }
 
     
     func showEmptyView(frame : CGRect, block : @escaping (() -> Void)) {
         LYProgressHUD.dismiss()
-        if frame.origin.y == 88 {
-            self.emptyView.frame = CGRect.init(x: frame.origin.x, y: frame.origin.y - 88, width: frame.size.width, height: frame.size.height)
+        if frame.origin.y == 88 || frame.origin.y == 64 {
+            self.emptyView.frame = CGRect.init(x: frame.origin.x, y: 0, width: frame.size.width, height: frame.size.height)
         }else{
             self.emptyView.frame = frame
         }
