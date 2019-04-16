@@ -137,6 +137,7 @@ extension OrderDetailViewController : UITableViewDelegate, UITableViewDataSource
             cell.descLbl.text = self.orderInfo["coupon_intro"].stringValue
             cell.couponIngV.setImageUrlStr(self.orderInfo["coupon_imageurl"].stringValue)
             cell.timeLbl.text = "已使用"
+            cell.selectedBtn.isHidden = true
             return cell
         }
         return UITableViewCell()
