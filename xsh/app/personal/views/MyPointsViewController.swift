@@ -25,13 +25,14 @@ class MyPointsViewController: BaseViewController {
     fileprivate var pointsListArray : Array<JSON> = []
     fileprivate var monthType = 1// 1:三月内 2:半年内 3:一年内
     fileprivate var type = 0 // 1: 支出  其他：收入
+    fileprivate var rule = ""//积分规则url
     
     override func viewDidLoad() {
         super.viewDidLoad()
 
         self.navigationItem.title = "我的积分"
         self.tableView.register(UINib.init(nibName: "MyPointsCell", bundle: Bundle.main), forCellReuseIdentifier: "MyPointsCell")
-        
+        self.navigationItem.rightBarButtonItem = UIBarButtonItem.init(title: "规则", target: self, action: #selector(MyPointsViewController.rightItemAction))
         
         self.getPoints()
         self.getPointList()
@@ -55,6 +56,16 @@ class MyPointsViewController: BaseViewController {
     deinit {
         self.tableView.dg_removePullToRefresh()
     }
+    
+    
+    @objc func rightItemAction() {
+        let webVC = BaseWebViewController()
+        webVC.titleStr = "积分规则"
+        webVC.urlStr = self.rule
+        self.navigationController?.pushViewController(webVC, animated: true)
+    }
+    
+    
     @IBAction func btnAction(_ btn: UIButton) {
         if btn.tag == 11{
             //收入
@@ -98,6 +109,7 @@ class MyPointsViewController: BaseViewController {
     func getPoints() {
         NetTools.requestData(type: .post, urlString: GetPointsApi, succeed: { (result) in
             self.pointsLbl.text = result["points"].stringValue
+            self.rule = result["rules"].stringValue
         }) { (error) in
             LYProgressHUD.showError(error)
         }
@@ -146,15 +158,15 @@ extension MyPointsViewController : UITableViewDelegate, UITableViewDataSource{
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return 67
-        if self.pointsListArray.count > indexPath.row{
-            let json = self.pointsListArray[indexPath.row]
-            let size = json[""].stringValue.sizeFit(width: kScreenW - 16, height: CGFloat(MAXFLOAT), fontSize: 14.0)
-            if size.height > 22{
-                return 47 + size.height
-            }else{
-                return 67
-            }
-        }
+//        if self.pointsListArray.count > indexPath.row{
+//            let json = self.pointsListArray[indexPath.row]
+//            let size = json[""].stringValue.sizeFit(width: kScreenW - 16, height: CGFloat(MAXFLOAT), fontSize: 14.0)
+//            if size.height > 22{
+//                return 47 + size.height
+//            }else{
+//                return 67
+//            }
+//        }
         return 0
     }
 }

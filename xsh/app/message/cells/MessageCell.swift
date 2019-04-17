@@ -53,6 +53,9 @@ class MessageCell: UITableViewCell {
             }else if type == "else"{
                 self.titleLbl.text = "消息通知"
                 self.imgV.image = UIImage.init(named: "message_icon5")
+            }else{
+                self.titleLbl.text = "消息通知"
+                self.imgV.image = UIImage.init(named: "message_icon5")
             }
             self.descLbl.text = self.subJson["title"].stringValue
             
