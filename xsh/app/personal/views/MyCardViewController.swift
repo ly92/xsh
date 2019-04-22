@@ -22,7 +22,6 @@ class MyCardViewController: BaseViewController {
     @IBOutlet weak var cardNumLbl: UILabel!
     @IBOutlet weak var cardCountLbl: UILabel!
     @IBOutlet weak var moneyLbl: UILabel!
-    @IBOutlet weak var creditLbl: UILabel!
     @IBOutlet weak var rechargeBtn: UIButton!
     @IBOutlet weak var changePwdBtn: UIButton!
     @IBOutlet weak var cardNumView: UIView!
@@ -92,7 +91,6 @@ class MyCardViewController: BaseViewController {
             
             self.cardNumLbl.text = result["card"]["ano"].stringValue
             self.cardCountLbl.text = result["card"]["hardcount"].stringValue
-            self.creditLbl.text = result["card"]["points"].stringValue
 //            self.moneyLbl.text = "¥" + result["card"]["money"].stringValue
             self.moneyLbl.text = result["card"]["money"].stringValue
         }) { (error) in

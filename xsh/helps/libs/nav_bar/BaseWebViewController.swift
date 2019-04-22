@@ -137,7 +137,15 @@ extension BaseWebViewController : UIWebViewDelegate{
             self.loadRequest()
             
             
-            //http://39.108.218.19:8085/html/*payFromHtml5*1812_9c6bba0a4b09874a9a71a865f1e0*%E7%89%A9%E4%B8%9A%E8%B4%B9*0.01
+           
+             //http://39.108.218.19:8085/html/*payFromHtml5*1812_9c6bba0a4b09874a9a71a865f1e0*%E7%89%A9%E4%B8%9A%E8%B4%B9*0.01
+            /**
+             http://39.108.218.19:8085/html/
+             payFromHtml5
+             1812_9c6bba0a4b09874a9a71a865f1e0
+             %E7%89%A9%E4%B8%9A%E8%B4%B9
+             0.01
+             */
             let arr = requestUrl.components(separatedBy: "*")
             if arr.count == 5{
                 let orderNo = arr[2]
