@@ -113,6 +113,13 @@ func globalAdClickAction(_ json : JSON, _ vc : UIViewController){
         let url = json["outerurl"].stringValue
         webVC.urlStr = url
         vc.navigationController?.pushViewController(webVC, animated: true)
+        
+        DispatchQueue.global().async {
+            let params : [String : Any] = ["id":json["id"].stringValue]
+            NetTools.requestData(type: .post, urlString: AdDetailApi, parameters: params, succeed: { (result) in
+            }) { (error) in
+            }
+        }
     }else if json["actiontype"].intValue == 1{
         //跳转内部页面
         if json["actionios"].stringValue == "NoticeViewController"{

@@ -293,11 +293,12 @@ class HomeViewController: BaseViewController {
     @objc func activityClickAction(_ btn : UIButton) {
         if self.activityList.count > btn.tag{
             let json = self.activityList[btn.tag]
-            let webVC = BaseWebViewController()
-            webVC.titleStr = json["title"].stringValue
-            let url = json["outerurl"].stringValue
-            webVC.urlStr = url
-            self.navigationController?.pushViewController(webVC, animated: true)
+            globalAdClickAction(json, self)
+//            let webVC = BaseWebViewController()
+//            webVC.titleStr = json["title"].stringValue
+//            let url = json["outerurl"].stringValue
+//            webVC.urlStr = url
+//            self.navigationController?.pushViewController(webVC, animated: true)
         }
     }
     
