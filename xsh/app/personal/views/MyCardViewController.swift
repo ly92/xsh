@@ -105,16 +105,25 @@ class MyCardViewController: BaseViewController {
     
     //展示二维码
     func showCode() {
-        let codeView = UIView.init(frame: CGRect.init(x: 0, y: 0, width: kScreenW, height: kScreenH))
-        codeView.backgroundColor = UIColor.white
-        let codeImgV = UIImageView.init(frame: CGRect.init(x: kScreenW / 2.0 - 125, y: kScreenH / 2.0 - 125, width: 250, height: 250))
-        codeImgV.image = UIImageView.createQrcode("1231312312321")
-        codeView.addSubview(codeImgV)
-        
-        AppDelegate.sharedInstance.window?.addSubview(codeView)
-        
-        codeView.addTapActionBlock {
-            codeView.removeFromSuperview()
+        LYProgressHUD.showLoading()
+        NetTools.requestData(type: .post, urlString: CardCodeApi, succeed: { (result) in
+            LYProgressHUD.dismiss()
+            DispatchQueue.main.async {
+                show(result["qrcode"].stringValue)
+            }
+        }) { (error) in
+            LYProgressHUD.showError(error)
+        }
+        func show(_ qrcode : String){
+            let codeView = UIView.init(frame: CGRect.init(x: 0, y: 0, width: kScreenW, height: kScreenH))
+            codeView.backgroundColor = UIColor.white
+            let codeImgV = UIImageView.init(frame: CGRect.init(x: kScreenW / 2.0 - 125, y: kScreenH / 2.0 - 125, width: 250, height: 250))
+            codeImgV.image = UIImageView.createQrcode(qrcode)
+            codeView.addSubview(codeImgV)
+            AppDelegate.sharedInstance.window?.addSubview(codeView)
+            codeView.addTapActionBlock {
+                codeView.removeFromSuperview()
+            }
         }
     }
     

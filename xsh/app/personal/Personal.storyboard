@@ -487,8 +487,8 @@
                                                     <constraint firstAttribute="height" constant="115" id="xr9-XE-buh"/>
                                                 </constraints>
                                             </imageView>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="15" translatesAutoresizingMaskIntoConstraints="NO" id="Bje-rI-F3Q">
-                                                <rect key="frame" x="20" y="75" width="335" height="0.0"/>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="10" translatesAutoresizingMaskIntoConstraints="NO" id="Bje-rI-F3Q">
+                                                <rect key="frame" x="20" y="75" width="275" height="0.0"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="29"/>
                                                 <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <nil key="highlightedColor"/>
@@ -507,8 +507,7 @@
                                             <constraint firstAttribute="trailing" secondItem="kn4-Uz-Fg9" secondAttribute="trailing" constant="10" id="FPD-rm-Q2R"/>
                                             <constraint firstItem="4gy-MI-Kcy" firstAttribute="top" secondItem="RUo-tf-geO" secondAttribute="top" constant="25" id="JQD-K5-QXM"/>
                                             <constraint firstItem="Bje-rI-F3Q" firstAttribute="leading" secondItem="RUo-tf-geO" secondAttribute="leading" constant="20" id="Uzr-gt-sBw"/>
-                                            <constraint firstItem="Bje-rI-F3Q" firstAttribute="centerX" secondItem="RUo-tf-geO" secondAttribute="centerX" id="a5A-wa-5Sc"/>
-                                            <constraint firstAttribute="trailing" secondItem="Bje-rI-F3Q" secondAttribute="trailing" constant="20" id="f94-4H-pg7"/>
+                                            <constraint firstAttribute="trailing" secondItem="Bje-rI-F3Q" secondAttribute="trailing" constant="80" id="f94-4H-pg7"/>
                                             <constraint firstItem="kn4-Uz-Fg9" firstAttribute="leading" secondItem="RUo-tf-geO" secondAttribute="leading" constant="10" id="vlm-oP-4jP"/>
                                             <constraint firstItem="Bje-rI-F3Q" firstAttribute="centerY" secondItem="RUo-tf-geO" secondAttribute="centerY" constant="10" id="yWD-J5-cRe"/>
                                             <constraint firstAttribute="height" constant="130" id="yct-fJ-R1w"/>
