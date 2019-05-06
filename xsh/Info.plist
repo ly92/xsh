@@ -44,7 +44,7 @@
 		</dict>
 	</array>
 	<key>CFBundleVersion</key>
-	<string>2020</string>
+	<string>2024</string>
 	<key>LSApplicationQueriesSchemes</key>
 	<array>
 		<string>mqzone</string>
@@ -80,27 +80,27 @@
 		<true/>
 	</dict>
 	<key>NSCameraUsageDescription</key>
-	<string>请您允许访问相机，相机将用于上传图片时拍照，用户扫描二维码向商家付款</string>
+	<string>请您允许访问相机，相机将用于上传图片时拍照，以及扫描二维码</string>
 	<key>NSFaceIDUsageDescription</key>
-	<string>App需要您允许使用面容ID来使用免密登录功能</string>
+	<string>星生活需要您允许使用面容ID来使用免密登录功能</string>
 	<key>NSHealthShareUsageDescription</key>
-	<string>App需要访问健康数据，获取运动步数兑换积分 </string>
+	<string>星生活需要访问健康数据，获取运动步数来兑换App内积分 </string>
 	<key>NSHealthUpdateUsageDescription</key>
-	<string>App需要访问健康数据，获取运动步数兑换积分 </string>
+	<string>星生活需要访问健康数据，获取运动步数来兑换App内积分 </string>
 	<key>NSLocationAlwaysAndWhenInUseUsageDescription</key>
-	<string>App需要获取您的位置以便于向您推荐附近商家</string>
+	<string>星生活需要获取您的位置以便于向您推荐附近商家</string>
 	<key>NSLocationAlwaysUsageDescription</key>
-	<string>App需要获取您的位置以便于向您推荐附近商家</string>
+	<string>星生活需要获取您的位置以便于向您推荐附近商家</string>
 	<key>NSLocationUsageDescription</key>
-	<string>App需要获取您的位置以便于向您推荐附近商家</string>
+	<string>星生活需要获取您的位置以便于向您推荐附近商家</string>
 	<key>NSLocationWhenInUseUsageDescription</key>
-	<string>App需要获取您的位置以便于向您推荐附近商家</string>
+	<string>星生活需要获取您的位置以便于向您推荐附近商家</string>
 	<key>NSMotionUsageDescription</key>
-	<string>App需要访问健康数据，获取运动步数兑换积分 </string>
+	<string>星生活需要访问健康数据，获取运动步数来兑换App内积分 </string>
 	<key>NSPhotoLibraryAddUsageDescription</key>
-	<string>App需要访问您的相册来选择提交的图片</string>
+	<string>星生活需要访问您的相册来选择提交的图片</string>
 	<key>NSPhotoLibraryUsageDescription</key>
-	<string>App需要访问您的相册来选择提交的图片</string>
+	<string>星生活需要访问您的相册来选择提交的图片</string>
 	<key>UIMainStoryboardFile</key>
 	<string>Main</string>
 	<key>UIRequiredDeviceCapabilities</key>

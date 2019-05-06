@@ -22,8 +22,10 @@ class CouponDetailViewController: BaseViewController {
     @IBOutlet weak var limitLbl: UILabel!
     @IBOutlet weak var timeLbl: UILabel!
     @IBOutlet weak var tableView: UITableView!
+    @IBOutlet weak var useBtn: UIButton!
     
     fileprivate var storeList : Array<JSON> = []
+    fileprivate var couponJson = JSON()
     
     
     override func viewDidLoad() {
@@ -31,6 +33,8 @@ class CouponDetailViewController: BaseViewController {
 
         self.navigationItem.title = "优惠券详情"
         self.tableView.register(UINib.init(nibName: "CouponStoreCell", bundle: Bundle.main), forCellReuseIdentifier: "CouponStoreCell")
+        
+        self.useBtn.layer.cornerRadius = 5
         
         self.loadDetailData()
     }
@@ -41,6 +45,8 @@ class CouponDetailViewController: BaseViewController {
     func loadDetailData() {
         let params : [String : Any] = ["id" : self.couponId]
         NetTools.requestData(type: .post, urlString: CouponDetailApi, parameters: params, succeed: { (result) in
+            
+            self.couponJson = result
             
             self.numLbl.text = result["sncode"].stringValue
             self.moneyLbl.text = result["money"].stringValue
@@ -54,7 +60,22 @@ class CouponDetailViewController: BaseViewController {
             LYProgressHUD.showError(error)
         }
     }
-
+    
+    //展示二维码
+    @IBAction func useCouponAction() {
+        let codeView = UIView.init(frame: CGRect.init(x: 0, y: 0, width: kScreenW, height: kScreenH))
+        codeView.backgroundColor = UIColor.white
+        let codeImgV = UIImageView.init(frame: CGRect.init(x: kScreenW / 2.0 - 125, y: kScreenH / 2.0 - 125, width: 250, height: 250))
+        codeImgV.image = UIImageView.createQrcode(self.couponJson["sncode"].stringValue)
+        codeView.addSubview(codeImgV)
+        
+        AppDelegate.sharedInstance.window?.addSubview(codeView)
+        
+        codeView.addTapActionBlock {
+            codeView.removeFromSuperview()
+        }
+    }
+    
 
 }
 

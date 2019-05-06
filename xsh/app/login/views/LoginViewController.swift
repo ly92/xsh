@@ -50,15 +50,15 @@ class LoginViewController: BaseTableViewController {
             //是否支持指纹识别
             let context = LAContext()
             if context.canEvaluatePolicy(LAPolicy.deviceOwnerAuthenticationWithBiometrics, error: NSErrorPointer.init(nilLiteral: ())){
-                if #available(iOS 11.0, *) {
-                    if context.biometryType == .faceID{
-                        self.faceUseable = true
-                        self.fingerBtn.setImage(UIImage.init(named: "faceid_lock"), for: .normal)
-                    }
-                } else {
+//                if #available(iOS 11.0, *) {
+//                    if context.biometryType == .faceID{
+//                        self.faceUseable = true
+//                        self.fingerBtn.setImage(UIImage.init(named: "faceid_lock"), for: .normal)
+//                    }
+//                } else {
                     self.fingerUseable = true
                     self.fingerBtn.setImage(UIImage.init(named: "fingerprint_lock"), for: .normal)
-                }
+//                }
                 self.tableView.reloadData()
             }
         }

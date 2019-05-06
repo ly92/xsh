@@ -189,8 +189,17 @@ extension AppDelegate {
                 LocalData.saveYesOrNotValue(value: "0", key: KIsLoginKey)
             }
         }
+        
+        
         self.checkVersion()
         self.getNewMessage()
+        
+//        //获取当日步数以达到提示使用健康数据
+//        DispatchQueue.global().async {
+//            HealthHelper().requestStep(Date()) { (steps) in
+//            }
+//        }
+        
     }
     
     

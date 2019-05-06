@@ -25,6 +25,7 @@ class MyCardViewController: BaseViewController {
     @IBOutlet weak var rechargeBtn: UIButton!
     @IBOutlet weak var changePwdBtn: UIButton!
     @IBOutlet weak var cardNumView: UIView!
+    @IBOutlet weak var showCodeView: UIView!
     
     
     override func viewDidLoad() {
@@ -38,7 +39,9 @@ class MyCardViewController: BaseViewController {
         
         self.loadCardDetail()
         
-
+        self.showCodeView.addTapActionBlock {
+            self.showCode()
+        }
         
         self.cardNumView.addTapActionBlock {
             //绑定卡
@@ -99,6 +102,21 @@ class MyCardViewController: BaseViewController {
         }
     }
     
+    
+    //展示二维码
+    func showCode() {
+        let codeView = UIView.init(frame: CGRect.init(x: 0, y: 0, width: kScreenW, height: kScreenH))
+        codeView.backgroundColor = UIColor.white
+        let codeImgV = UIImageView.init(frame: CGRect.init(x: kScreenW / 2.0 - 125, y: kScreenH / 2.0 - 125, width: 250, height: 250))
+        codeImgV.image = UIImageView.createQrcode("1231312312321")
+        codeView.addSubview(codeImgV)
+        
+        AppDelegate.sharedInstance.window?.addSubview(codeView)
+        
+        codeView.addTapActionBlock {
+            codeView.removeFromSuperview()
+        }
+    }
     
     
     

@@ -43,7 +43,7 @@
                                     <constraint firstAttribute="height" constant="20" id="bya-zq-DCF"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" type="system" pointSize="11"/>
-                                <state key="normal" title="立即使用">
+                                <state key="normal" title="去店内">
                                     <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 </state>
                             </button>

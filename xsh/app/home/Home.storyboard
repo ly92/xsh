@@ -136,22 +136,57 @@
                                 </constraints>
                             </view>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="9SQ-Me-vec">
-                                <rect key="frame" x="0.0" y="152" width="375" height="515"/>
+                                <rect key="frame" x="0.0" y="203" width="375" height="464"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <connections>
                                     <outlet property="dataSource" destination="7G9-0a-sYf" id="DsI-ft-5kL"/>
                                     <outlet property="delegate" destination="7G9-0a-sYf" id="xnn-eK-XQy"/>
                                 </connections>
                             </tableView>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="3sn-eB-AXe">
+                                <rect key="frame" x="0.0" y="158" width="375" height="44"/>
+                                <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="可用店铺" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="7kT-am-7dc">
+                                        <rect key="frame" x="15" y="18" width="61.5" height="18"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                                        <color key="textColor" red="0.12941176469999999" green="0.12941176469999999" blue="0.12941176469999999" alpha="1" colorSpace="calibratedRGB"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <button opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="7VA-bg-vga">
+                                        <rect key="frame" x="235" y="8" width="120" height="28"/>
+                                        <color key="backgroundColor" red="0.31372549020000001" green="0.74509803919999995" blue="0.63137254899999995" alpha="1" colorSpace="calibratedRGB"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="120" id="eQh-H4-1xf"/>
+                                        </constraints>
+                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                        <state key="normal" title="立即使用"/>
+                                        <connections>
+                                            <action selector="useCouponAction" destination="7G9-0a-sYf" eventType="touchUpInside" id="fLR-z0-o4M"/>
+                                        </connections>
+                                    </button>
+                                </subviews>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <constraints>
+                                    <constraint firstAttribute="trailing" secondItem="7VA-bg-vga" secondAttribute="trailing" constant="20" id="Iyf-wv-M8K"/>
+                                    <constraint firstItem="7VA-bg-vga" firstAttribute="top" secondItem="3sn-eB-AXe" secondAttribute="top" constant="8" id="K34-LV-RqC"/>
+                                    <constraint firstAttribute="bottom" secondItem="7kT-am-7dc" secondAttribute="bottom" constant="8" id="YPI-c5-6dT"/>
+                                    <constraint firstItem="7kT-am-7dc" firstAttribute="leading" secondItem="3sn-eB-AXe" secondAttribute="leading" constant="15" id="dyd-9Q-n8x"/>
+                                    <constraint firstAttribute="height" constant="44" id="ePp-zt-BsU"/>
+                                    <constraint firstAttribute="bottom" secondItem="7VA-bg-vga" secondAttribute="bottom" constant="8" id="rfc-tb-8zr"/>
+                                </constraints>
+                            </view>
                         </subviews>
                         <color key="backgroundColor" red="0.94117647059999998" green="0.94117647059999998" blue="0.94117647059999998" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
+                            <constraint firstItem="3sn-eB-AXe" firstAttribute="leading" secondItem="Z6W-9k-Xiv" secondAttribute="leading" id="5hG-2o-hxe"/>
+                            <constraint firstItem="3sn-eB-AXe" firstAttribute="trailing" secondItem="Z6W-9k-Xiv" secondAttribute="trailing" id="6ak-fp-W3p"/>
                             <constraint firstAttribute="bottom" secondItem="9SQ-Me-vec" secondAttribute="bottom" id="Afz-it-rzX"/>
                             <constraint firstItem="AyZ-cl-UZz" firstAttribute="leading" secondItem="Z6W-9k-Xiv" secondAttribute="leading" id="IUd-Ty-eat"/>
                             <constraint firstItem="AyZ-cl-UZz" firstAttribute="top" secondItem="LH2-ck-5Sp" secondAttribute="top" id="Jwi-sH-vWj"/>
+                            <constraint firstItem="3sn-eB-AXe" firstAttribute="top" secondItem="AyZ-cl-UZz" secondAttribute="bottom" constant="8" id="N7a-Uk-HQP"/>
                             <constraint firstItem="AyZ-cl-UZz" firstAttribute="trailing" secondItem="Z6W-9k-Xiv" secondAttribute="trailing" id="Rqi-DV-XsF"/>
                             <constraint firstItem="9SQ-Me-vec" firstAttribute="leading" secondItem="Z6W-9k-Xiv" secondAttribute="leading" id="SUS-1A-2ye"/>
-                            <constraint firstItem="9SQ-Me-vec" firstAttribute="top" secondItem="AyZ-cl-UZz" secondAttribute="bottom" constant="2" id="Uuq-6d-rQQ"/>
+                            <constraint firstItem="9SQ-Me-vec" firstAttribute="top" secondItem="3sn-eB-AXe" secondAttribute="bottom" constant="1" id="gmf-9z-0gS"/>
                             <constraint firstItem="9SQ-Me-vec" firstAttribute="trailing" secondItem="Z6W-9k-Xiv" secondAttribute="trailing" id="u3K-dn-HVj"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="Z6W-9k-Xiv"/>
@@ -162,6 +197,7 @@
                         <outlet property="numLbl" destination="snY-FJ-yNu" id="kTr-lA-7w3"/>
                         <outlet property="tableView" destination="9SQ-Me-vec" id="LIZ-xf-cZL"/>
                         <outlet property="timeLbl" destination="zow-sr-wcw" id="CzF-s1-nA5"/>
+                        <outlet property="useBtn" destination="7VA-bg-vga" id="9FO-TC-7DE"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="D99-59-EnE" userLabel="First Responder" sceneMemberID="firstResponder"/>

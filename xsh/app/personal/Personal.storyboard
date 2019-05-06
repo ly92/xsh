@@ -575,7 +575,7 @@
                                         </constraints>
                                     </view>
                                     <button hidden="YES" opaque="NO" clipsSubviews="YES" tag="11" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="25u-hg-8Og">
-                                        <rect key="frame" x="30" y="241" width="0.0" height="49"/>
+                                        <rect key="frame" x="30" y="291" width="0.0" height="49"/>
                                         <color key="backgroundColor" red="0.28627450980000002" green="0.80392156859999997" blue="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <constraints>
                                             <constraint firstAttribute="width" id="He9-qp-yG1"/>
@@ -588,7 +588,7 @@
                                         </connections>
                                     </button>
                                     <button opaque="NO" clipsSubviews="YES" tag="22" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="RFw-bs-XkB">
-                                        <rect key="frame" x="30" y="241" width="315" height="49"/>
+                                        <rect key="frame" x="30" y="291" width="315" height="49"/>
                                         <color key="backgroundColor" red="0.28627450980000002" green="0.80392156859999997" blue="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="49" id="Kma-j7-QIQ"/>
@@ -599,9 +599,27 @@
                                             <action selector="btnAction:" destination="dP1-Fc-C2o" eventType="touchUpInside" id="nmf-6Q-mSV"/>
                                         </connections>
                                     </button>
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="K1f-Tm-47g">
+                                        <rect key="frame" x="0.0" y="202" width="375" height="45"/>
+                                        <subviews>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="展示付款码" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="7vg-8X-BWq">
+                                                <rect key="frame" x="10" y="13.5" width="77" height="18"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                                                <color key="textColor" red="0.12941176469999999" green="0.12941176469999999" blue="0.12941176469999999" alpha="1" colorSpace="calibratedRGB"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                        </subviews>
+                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <constraints>
+                                            <constraint firstItem="7vg-8X-BWq" firstAttribute="centerY" secondItem="K1f-Tm-47g" secondAttribute="centerY" id="Lff-ty-yq0"/>
+                                            <constraint firstItem="7vg-8X-BWq" firstAttribute="leading" secondItem="K1f-Tm-47g" secondAttribute="leading" constant="10" id="e0g-ia-A4L"/>
+                                            <constraint firstAttribute="height" constant="45" id="vtg-eA-xAw"/>
+                                        </constraints>
+                                    </view>
                                 </subviews>
                                 <color key="backgroundColor" red="0.94117647059999998" green="0.94117647059999998" blue="0.94117647059999998" alpha="1" colorSpace="calibratedRGB"/>
                                 <constraints>
+                                    <constraint firstAttribute="trailing" secondItem="K1f-Tm-47g" secondAttribute="trailing" id="2ha-uk-bkN"/>
                                     <constraint firstItem="N27-yO-6Jy" firstAttribute="top" secondItem="RUo-tf-geO" secondAttribute="bottom" constant="1" id="7xf-3a-S28"/>
                                     <constraint firstItem="RUo-tf-geO" firstAttribute="leading" secondItem="ip8-As-tiC" secondAttribute="leading" id="BJN-Dh-czC"/>
                                     <constraint firstItem="2rP-rL-sDM" firstAttribute="leading" secondItem="ip8-As-tiC" secondAttribute="leading" id="EZU-ba-SKX"/>
@@ -609,9 +627,11 @@
                                     <constraint firstItem="N27-yO-6Jy" firstAttribute="leading" secondItem="ip8-As-tiC" secondAttribute="leading" id="QnC-2t-tjP"/>
                                     <constraint firstItem="RFw-bs-XkB" firstAttribute="centerY" secondItem="25u-hg-8Og" secondAttribute="centerY" id="SJf-ux-Fzv"/>
                                     <constraint firstAttribute="trailing" secondItem="N27-yO-6Jy" secondAttribute="trailing" id="XWM-Oh-8ta"/>
+                                    <constraint firstItem="K1f-Tm-47g" firstAttribute="top" secondItem="2rP-rL-sDM" secondAttribute="bottom" constant="1" id="Z9T-ZR-yH5"/>
                                     <constraint firstItem="RUo-tf-geO" firstAttribute="top" secondItem="ip8-As-tiC" secondAttribute="top" constant="20" id="cCn-09-whV"/>
-                                    <constraint firstItem="RFw-bs-XkB" firstAttribute="top" secondItem="2rP-rL-sDM" secondAttribute="bottom" constant="40" id="dQg-Bi-tqD"/>
+                                    <constraint firstItem="RFw-bs-XkB" firstAttribute="top" secondItem="2rP-rL-sDM" secondAttribute="bottom" constant="90" id="dQg-Bi-tqD"/>
                                     <constraint firstItem="2rP-rL-sDM" firstAttribute="top" secondItem="N27-yO-6Jy" secondAttribute="bottom" constant="5" id="dpl-xn-wMm"/>
+                                    <constraint firstItem="K1f-Tm-47g" firstAttribute="leading" secondItem="ip8-As-tiC" secondAttribute="leading" id="iFm-zF-vu7"/>
                                     <constraint firstItem="RFw-bs-XkB" firstAttribute="leading" secondItem="25u-hg-8Og" secondAttribute="trailing" id="l7d-g7-nrS"/>
                                     <constraint firstAttribute="trailing" secondItem="RUo-tf-geO" secondAttribute="trailing" id="nCe-dS-rxh"/>
                                     <constraint firstItem="25u-hg-8Og" firstAttribute="leading" secondItem="ip8-As-tiC" secondAttribute="leading" constant="30" id="v17-Bo-9Jm"/>
@@ -642,6 +662,7 @@
                         <outlet property="noCard" destination="tnj-Jz-mp2" id="GUZ-hp-5SA"/>
                         <outlet property="noCardImgV" destination="45u-GI-gv5" id="Rsl-yv-GEn"/>
                         <outlet property="rechargeBtn" destination="25u-hg-8Og" id="CSF-Re-ATB"/>
+                        <outlet property="showCodeView" destination="K1f-Tm-47g" id="FqQ-46-QAg"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="knC-L6-epk" userLabel="First Responder" sceneMemberID="firstResponder"/>
