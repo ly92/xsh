@@ -34,7 +34,7 @@ class NoticeDetailViewController: BaseTableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         self.navigationItem.title = "公告详情"
-        
+        self.descWeb.scrollView.isScrollEnabled = false
         self.loadNoticeDetail()
     }
 
@@ -53,7 +53,6 @@ class NoticeDetailViewController: BaseTableViewController {
     
     
     func setUpUIData() {
-        
         self.titleLbl.text = self.noticeJson["title"].stringValue
         self.timeLbl.text = Date.dateStringFromDate(format: Date.dateChineseFormatString(), timeStamps: self.noticeJson["creationtime"].stringValue)
         self.readCountLbl.text = "阅读量：" + self.noticeJson["readcount"].stringValue
@@ -65,8 +64,6 @@ class NoticeDetailViewController: BaseTableViewController {
         self.authorLbl.text = self.noticeJson["publisher"].stringValue + "  " + Date.dateStringFromDate(format: Date.dateFormatString(), timeStamps: self.noticeJson["creationtime"].stringValue)
         self.peopleLbl.text = self.noticeJson["contact"].stringValue
         self.phoneBtn.setTitle(self.noticeJson["tel"].stringValue, for: .normal)
-        
-        
         self.tableView.reloadData()
     }
     
@@ -95,8 +92,12 @@ extension NoticeDetailViewController : UIWebViewDelegate{
         return 0
     }
     
+    func webViewDidStartLoad(_ webView: UIWebView) {
+        LYProgressHUD.showLoading()
+    }
     
     func webViewDidFinishLoad(_ webView: UIWebView) {
         self.tableView.reloadData()
+        LYProgressHUD.dismiss()
     }
 }

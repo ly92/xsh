@@ -117,7 +117,9 @@ public extension LYProgressHUD {
      移除HUD,会移除所有
      */
     public static func dismiss() {
-        LYProgressHUD.clear()
+        DispatchQueue.main.async {
+            LYProgressHUD.clear()
+        }
     }
 }
 
