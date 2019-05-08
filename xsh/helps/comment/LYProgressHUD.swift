@@ -143,7 +143,7 @@ public class LYProgressHUD : NSObject {
         return [0, 0, 180, 270, 90][UIApplication.shared.statusBarOrientation.rawValue] as Double
     }
     static public func showWaitWithImages(images : Array<UIImage>, timeInterval : TimeInterval, autoRemove: Bool = true) {
-        self.dismiss()
+        self.clear()
         let frame = CGRect(x: 0, y: 0, width: hudW, height: hudH)
         let imageView = UIImageView()
         imageView.frame = frame
@@ -162,7 +162,7 @@ public class LYProgressHUD : NSObject {
         }
     }
     static public func showWaitingWithText(text: String, autoRemove: Bool) {
-        self.dismiss()
+        self.clear()
         let frame = CGRect(x: 0, y: 0, width: hudW, height: hudH)
         let view = UIView(frame: frame)
         view.backgroundColor = UIColor.clear
@@ -193,7 +193,7 @@ public class LYProgressHUD : NSObject {
     }
     
     static public func showEpWaitingWithText(text: String, autoRemove: Bool) {
-        self.dismiss()
+        self.clear()
         let frame = CGRect(x: 0, y: 0, width: hudW, height: hudH)
         let view = UIView(frame: frame)
         view.backgroundColor = UIColor.white
@@ -224,7 +224,7 @@ public class LYProgressHUD : NSObject {
     }
     
     static public func showStatusBar(text: String, color: UIColor, autoRemove: Bool) {
-        self.dismiss()
+        self.clear()
         var frame = UIApplication.shared.statusBarFrame
         frame.size.height = 64
         let lable = LYProgressHUD.createLable()
@@ -245,7 +245,7 @@ public class LYProgressHUD : NSObject {
         }
     }
     static public func onlyText(text: String, autoRemove: Bool) {
-        self.dismiss()
+        self.clear()
         let view = UIView()
         view.backgroundColor = bgColor
         view.layer.cornerRadius = 10
@@ -266,7 +266,7 @@ public class LYProgressHUD : NSObject {
         }
     }
     static public func showText(type: ShowType, text: String, autoRemove: Bool) {
-        self.dismiss()
+        self.clear()
         let frame = CGRect(x: 0, y: 0, width: hudW, height: hudH)
        
         let view = UIView(frame: frame)

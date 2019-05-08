@@ -18,7 +18,7 @@ let officialServer = "http://star.wwwcity.net/app/"//正式服务器
 let testServer = "http://star.test.wwwcity.net/app/"//测试服务器
 let testServer2 = "http://127.0.0.1/app/"//测试服务器
 let usedServer = officialServer
-//let usedServer = testServer2
+//let usedServer = testServer
 let DeBug = false
 
 
@@ -146,7 +146,7 @@ let GetPointsApi = "points/get" //post
 //积分流水
 let PointsListApi = "points/list" // post type:1: 支出 其他：收入  month:月数
 //获取一卡通支付二维码
-let CardCodeApi = "card/code" // post
+let CardCodeApi = "card/qrcode" // post
 /************************************ 一卡通 ********************************************/
 //首页推荐商品
 let RecommendGoodsApi = "shop/recommend" //post

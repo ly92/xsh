@@ -189,7 +189,6 @@ class LoginViewController: BaseTableViewController {
             LYProgressHUD.showError(error)
             self.fingerUseable = false
             self.tableView.reloadData()
-            LYProgressHUD.dismiss()
         }
     }
     

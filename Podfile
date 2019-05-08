@@ -18,7 +18,7 @@ target 'xsh' do
   pod 'Alamofire'#网络请求
   pod 'AlamofireObjectMapper'
   pod 'SwiftyJSON'#字典转模型 http://www.hangge.com/blog/cache/detail_968.html
-  pod 'DGElasticPullToRefresh'#列表刷新 https://github.com/gontovnik/DGElasticPullToRefresh
+#  pod 'DGElasticPullToRefresh'#列表刷新 https://github.com/gontovnik/DGElasticPullToRefresh
 
   #极光推送
   pod 'JPush'

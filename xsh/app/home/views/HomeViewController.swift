@@ -8,7 +8,6 @@
 
 import UIKit
 import SwiftyJSON
-import DGElasticPullToRefresh
 
 class HomeViewController: BaseViewController {
     class func spwan() -> HomeViewController{

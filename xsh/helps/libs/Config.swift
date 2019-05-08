@@ -22,7 +22,8 @@ let KLoginSuccessNotiName = "KLoginSuccessNotiName"
 
 
 let KAliPayScheme = "alipayappyssh111"
-let KWechatKey = "wx01e4c37152e4b98f"
+//let KWechatKey = "wx01e4c37152e4b98f"//中燕
+let KWechatKey = "wxbff455048a79dd5f"//20190508-ly，北控
 let KJpushKey = "2423b2f1b952e7e1b8a38be7"
 let KBmapKey = "VO4wfMvoSvhxqjmGWmADGgN4zvfrF6sE"
 let KBuglyKey = "b736017019"
