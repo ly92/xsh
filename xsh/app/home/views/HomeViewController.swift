@@ -32,7 +32,7 @@ class HomeViewController: BaseViewController {
     
     //活动
     fileprivate var activityList : Array<JSON> = []
-    fileprivate var ActivityView = UIScrollView(frame: CGRect(x: 0, y: 0, width: kScreenW, height: 95))
+    fileprivate var ActivityView = UIScrollView(frame: CGRect(x: 0, y: 0, width: kScreenW, height: 110))
     
    
 
@@ -435,7 +435,7 @@ extension HomeViewController : UICollectionViewDelegate, UICollectionViewDataSou
         }else if indexPath.section == 1{
             return CGSize.init(width: kScreenW, height: self.functionView.h)
         }else if indexPath.section == 2{
-            return CGSize.init(width: kScreenW, height: 95)
+            return CGSize.init(width: kScreenW, height: self.ActivityView.h)
         }else if indexPath.section > 2{
             let w = (kScreenW - 32) / 3.0
             return CGSize.init(width: w, height: w + 85)
