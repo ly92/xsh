@@ -111,9 +111,26 @@ extension LYTabBarController : LYTabBarDelegate{
             
             scanVC.navigationController?.popViewController(animated: true)
             
-            //http://star.wwwcity.net/B/商家id
-            if result.hasPrefix("http://star.wwwcity.net/B"){
+            let temp = result.replacingOccurrences(of: "http://", with: "").replacingOccurrences(of: "https://", with: "").replacingOccurrences(of: "test.", with: "")
+            
+            if temp.hasPrefix("star.wwwcity.net/B"){
+                //http://star.wwwcity.net/B/商家id
                 self.scanCreateOrder(result)
+            }else if temp.hasPrefix("star.wwwcity.net/Pos"){
+                //扫pos机二维码付款 http://star.wwwcity.net/Pos/{$orderno}/{$money}
+                let order_money = temp.replacingOccurrences(of: "star.wwwcity.net/Pos/", with: "").trim
+                let arr = order_money.components(separatedBy: "/")
+                if arr.count != 2{
+                    LYProgressHUD.showError("此二维码无效！")
+                    return
+                }
+                let order = arr[0].trim
+                let money = arr[1].trim
+                if order.isEmpty || money.isEmpty{
+                    LYProgressHUD.showError("此二维码无效！")
+                    return
+                }
+                self.goPay(order, money, "商家扫码支付")
             }else if result.hasPrefix("http://") || result.hasPrefix("https://"){
                 let webVC = BaseWebViewController()
                 webVC.titleStr = "扫描详情"
@@ -153,23 +170,7 @@ extension LYTabBarController{
             //创建订单
             let params : [String : Any] = ["money" : text, "bid" : bid, "servicetype" : "qrcodepay"]
             NetTools.requestData(type: .post, urlString: ShopAddOrderApi, parameters: params, succeed: { (result) in
-                let payVC = PayViewController()
-                payVC.orderNo = result["orderno"].stringValue
-                payVC.money = text
-                payVC.titleStr = "商家支付"
-                payVC.payResultBlock = {(type) in
-                    if type == 1{
-                        //成功
-                        
-                    }else if type == 2{
-                        //取消
-                        
-                    }else if type == 3{
-                        //失败
-                        
-                    }
-                }
-                self.selectedViewController?.children.last?.navigationController?.pushViewController(payVC, animated: true)
+                self.goPay(result["orderno"].stringValue, text, "商家支付")
             }, failure: { (error) in
                 LYProgressHUD.showError(error)
             })
@@ -179,7 +180,29 @@ extension LYTabBarController{
         rechargeAlert.addAction(cancel)
         rechargeAlert.addTextField { (tf) in
             tf.placeholder = "请输入支付金额"
+            tf.keyboardType = .decimalPad
         }
         self.present(rechargeAlert, animated: true, completion: nil)
+    }
+    
+    
+    func goPay(_ order:String, _ money:String, _ title:String) {
+        let payVC = PayViewController()
+        payVC.orderNo = order
+        payVC.money = money
+        payVC.titleStr = title
+        payVC.payResultBlock = {(type) in
+            if type == 1{
+                //成功
+                
+            }else if type == 2{
+                //取消
+                
+            }else if type == 3{
+                //失败
+                
+            }
+        }
+        self.selectedViewController?.children.last?.navigationController?.pushViewController(payVC, animated: true)
     }
 }
