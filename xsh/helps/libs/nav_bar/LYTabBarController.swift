@@ -108,9 +108,7 @@ extension LYTabBarController : LYTabBarDelegate{
         print("1")
         let scanVC = ScanActionViewController()
         scanVC.scanResultBlock = {(result) in
-            
-            scanVC.navigationController?.popViewController(animated: true)
-            
+                        
             let temp = result.replacingOccurrences(of: "http://", with: "").replacingOccurrences(of: "https://", with: "").replacingOccurrences(of: "test.", with: "")
             
             if temp.hasPrefix("star.wwwcity.net/B"){

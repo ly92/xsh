@@ -65,24 +65,43 @@ class POSViewController: BaseViewController {
 
 extension POSViewController{
     //创建订单
-    
     func createOrder() {
-        
-        
-        
-        
         let url = "http://106.12.211.34:1226/test/testprepay"
         var params : [String:Any] = [:]
         params["type"] = self.type
         
-        
+        //调用扫描
         func scan(){
             let scanVC = ScanActionViewController()
             scanVC.scanResultBlock = {(result) in
-                scanVC.navigationController?.popViewController(animated: true)
                 params["auth_code"] = result
+                //请求金融平台
+                request()
             }
             self.navigationController?.pushViewController(scanVC, animated: true)
+        }
+        
+        //请求金融平台
+        func request(){
+            NetTools.requestCustom(urlString: url, parameters: params, succeed: { (result) in
+                DispatchQueue.main.async {
+                    if self.bnt1.isSelected{
+                        //微信-付款码
+                        
+                    }else if self.bnt2.isSelected{
+                        //微信-二维码
+                        self.showCode("")
+                    }else if self.bnt3.isSelected{
+                        //支付宝-付款码--
+                        
+                    }else if self.bnt4.isSelected{
+                        //支付宝-二维码
+                        self.showCode(result["orderInfo"]["alipay_trade_precreate_response"]["qr_code"].stringValue)
+                    }
+                }
+            }) { (error) in
+                LYProgressHUD.showError(error ?? "请求错误")
+            }
         }
         
         if self.bnt1.isSelected{
@@ -90,32 +109,15 @@ extension POSViewController{
             scan()
         }else if self.bnt2.isSelected{
             //微信-二维码
+            request()
         }else if self.bnt3.isSelected{
             //支付宝-付款码
             scan()
         }else if self.bnt4.isSelected{
             //支付宝-二维码
+            request()
         }
         
-        
-        NetTools.requestCustom(urlString: url, parameters: params, succeed: { (result) in
-            DispatchQueue.main.async {
-                if self.bnt1.isSelected{
-                    //微信-付款码
-                }else if self.bnt2.isSelected{
-                    //微信-二维码
-                    self.showCode("")
-                }else if self.bnt3.isSelected{
-                    //支付宝-付款码
-                }else if self.bnt4.isSelected{
-                    //支付宝-二维码
-                    self.showCode(result["orderInfo"]["alipay_trade_precreate_response"]["qr_code"].stringValue)
-                }
-            }
-            
-        }) { (error) in
-            LYProgressHUD.showError(error ?? "请求错误")
-        }
     }
     
     
