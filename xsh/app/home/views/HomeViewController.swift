@@ -55,7 +55,6 @@ class HomeViewController: BaseViewController {
         }
         
         //视图在导航器中显示默认四边距离
-        self.edgesForExtendedLayout = []
         if #available(iOS 11.0, *){
             self.collectionView.contentInsetAdjustmentBehavior = .never
         }else{

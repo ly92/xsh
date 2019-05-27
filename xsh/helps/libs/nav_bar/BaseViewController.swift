@@ -26,6 +26,7 @@ class BaseViewController: UIViewController {
         self.emptyBtn.setTitleColor(Normal_Color, for: .normal)
 //        self.emptyBtn.backgroundColor = Normal_Color
         self.emptyView.backgroundColor = BG_Color
+        self.edgesForExtendedLayout = []
     }
     
     

@@ -41,7 +41,6 @@ class BaseWebViewController: BaseViewController {
         self.view.addSubview(self.webView)
         
         //视图在导航器中显示默认四边距离
-        self.edgesForExtendedLayout = []
         if #available(iOS 11.0, *){
             self.webView.scrollView.contentInsetAdjustmentBehavior = .never
         }else{

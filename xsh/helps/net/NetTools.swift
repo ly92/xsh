@@ -491,5 +491,62 @@ extension NetTools{
         }
     }
     
+    
+    class func requestCustom(urlString: String, parameters: [String : Any]? = nil, succeed: @escaping((_ result: JSON) -> Swift.Void), failure: @escaping((_ error: String?) -> Swift.Void))
+    {
+        
+        //(2) 创建请求对象
+        let url = URL.init(string: urlString)
+        if url == nil{
+            
+        }
+        var request = URLRequest.init(url: url!)
+        request.timeoutInterval = 10.0
+        request.httpMethod = HTTPMethod.post.rawValue
+        if parameters != nil{
+            var strs : Array<String> = Array<String>()
+            for key in parameters!.keys {
+                let value  = parameters![key]
+                strs.append(key + "=" + "\(value ?? "")")
+            }
+            let str = strs.joined(separator: "&")
+            debugPrint("-----------URL--------")
+            debugPrint(urlString + "?" + str)
+            //设置请求体
+            let param222:NSString = NSString(format:str as NSString)
+            //把拼接后的字符串转换为data，设置请求体
+            request.httpBody = param222.data(using: String.Encoding.utf8.rawValue)
+        }
+        //(3) 发送请求
+//        NSURLConnection.sendAsynchronousRequest(request, queue:OperationQueue()) { (res, data, error)in
+//            //服务器返回：请求方式 = POST，返回数据格式 = JSON，用户名 = 123，密码 = 123
+//            let  str = NSString(data: data!, encoding:String.Encoding.utf8.rawValue)
+//            debugPrint(str!)
+//        }
+
+//        let sessionConfigure = URLSessionConfiguration.default
+//        sessionConfigure.httpAdditionalHeaders = ["Content-Type": "application/json"]
+//        sessionConfigure.timeoutIntervalForRequest = 30
+//        sessionConfigure.requestCachePolicy = .reloadIgnoringLocalCacheData
+//        let session = URLSession(configuration: sessionConfigure)
+        let dataTask = URLSession.shared.dataTask(with: request) { (data, response, error) in
+            if data != nil{
+                let result = JSON(data!)
+                if result.type == .null{
+                    failure("获取数据失败！")
+                }else{
+                    succeed(result)
+                }
+                debugPrint("-----------返回数据--------")
+                debugPrint(result)
+            }else{
+                debugPrint("-----------错误数据--------")
+                debugPrint(error ?? "获取数据失败")
+                failure("获取数据失败！")
+            }
+        }
+        dataTask.resume()
+    }
+    
 }
 
