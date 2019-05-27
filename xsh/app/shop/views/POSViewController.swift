@@ -69,6 +69,7 @@ extension POSViewController{
         let url = "http://106.12.211.34:1226/test/testprepay"
         var params : [String:Any] = [:]
         params["type"] = self.type
+        params["order"] = String.randomStr(len: 15)
         
         //调用扫描
         func scan(){
@@ -92,8 +93,12 @@ extension POSViewController{
                         //微信-二维码
                         self.showCode("")
                     }else if self.bnt3.isSelected{
-                        //支付宝-付款码--
-                        
+                        //支付宝-付款码
+                        if result["orderInfo"]["alipay_trade_pay_response"]["code"].stringValue == "10000"{
+                            LYProgressHUD.showSuccess("收款成功！")
+                        }else{
+                            LYProgressHUD.showError(result["orderInfo"]["alipay_trade_pay_response"]["msg"].stringValue)
+                        }
                     }else if self.bnt4.isSelected{
                         //支付宝-二维码
                         self.showCode(result["orderInfo"]["alipay_trade_precreate_response"]["qr_code"].stringValue)
@@ -112,6 +117,7 @@ extension POSViewController{
             request()
         }else if self.bnt3.isSelected{
             //支付宝-付款码
+            params["scene"] = "bar_code"
             scan()
         }else if self.bnt4.isSelected{
             //支付宝-二维码
