@@ -22,6 +22,7 @@ class MotionViewController: BaseViewController {
     @IBOutlet weak var timeLbl: UILabel!
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var descLbl: UILabel!
+    @IBOutlet weak var signBtn: UIButton!
     
     fileprivate var stepsLogList : Array<JSON> = []
     fileprivate var haveMore = true
@@ -79,6 +80,8 @@ class MotionViewController: BaseViewController {
         layer.endPoint = CGPoint.init(x: 0, y: 1)
         layer.frame = CGRect.init(x: 0, y: 0, width: kScreenW, height: self.topView.h)
         self.topView.layer.addSublayer(layer)
+        
+        self.signBtn.layer.cornerRadius = 15
     }
     
     
@@ -114,7 +117,7 @@ class MotionViewController: BaseViewController {
     func loadTodayStep() {
         HealthHelper().requestStep(Date()) { (steps) in
             DispatchQueue.main.async {
-                self.numLbl.text = "\(steps)"
+//                self.numLbl.text = "\(steps)"
                 self.timeLbl.text = Date.dateStringFromDate(format: Date.timestampFormatString(), timeStamps: Date().phpTimestamp())
             }
         }
