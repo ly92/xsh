@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import SwiftyJSON
 
 class POSViewController: BaseViewController {
     class func spwan() -> POSViewController{
@@ -19,6 +20,8 @@ class POSViewController: BaseViewController {
     @IBOutlet weak var bnt2: UIButton!
     @IBOutlet weak var bnt3: UIButton!
     @IBOutlet weak var bnt4: UIButton!
+    @IBOutlet weak var bnt5: UIButton!
+    @IBOutlet weak var bnt6: UIButton!
     private var selectedBtn = UIButton()
     
     private var type = 1
@@ -53,6 +56,12 @@ class POSViewController: BaseViewController {
         }else if btn.tag == 44{
             //支付宝-二维码
             self.type = 4
+        }else if btn.tag == 55{
+            //支付宝-二维码
+            self.type = 5
+        }else if btn.tag == 66{
+            //支付宝-二维码
+            self.type = 6
         }else if btn.tag == 99{
             //提交
             self.createOrder()
@@ -91,7 +100,7 @@ extension POSViewController{
                         
                     }else if self.bnt2.isSelected{
                         //微信-二维码
-                        self.showCode("")
+                        self.showCode(result["code_url"].stringValue)
                     }else if self.bnt3.isSelected{
                         //支付宝-付款码
                         if result["orderInfo"]["alipay_trade_pay_response"]["code"].stringValue == "10000"{
@@ -102,6 +111,12 @@ extension POSViewController{
                     }else if self.bnt4.isSelected{
                         //支付宝-二维码
                         self.showCode(result["orderInfo"]["alipay_trade_precreate_response"]["qr_code"].stringValue)
+                    }else if self.bnt5.isSelected{
+                        //支付宝-App
+                        self.payByAli(result["orderInfo"].stringValue)
+                    }else if self.bnt6.isSelected{
+                        //微信-App
+                        self.payByWechat(result)
                     }
                 }
             }) { (error) in
@@ -122,6 +137,12 @@ extension POSViewController{
         }else if self.bnt4.isSelected{
             //支付宝-二维码
             request()
+        }else if self.bnt5.isSelected{
+            //支付宝-App
+            request()
+        }else if self.bnt6.isSelected{
+            //微信-App
+            request()
         }
         
     }
@@ -139,6 +160,36 @@ extension POSViewController{
             codeView.removeFromSuperview()
         }
     }
+    
+    
+    
+    
+    //使用支付宝付款
+    func payByAli(_ orderString : String) {
+        AlipaySDK.defaultService().payOrder(orderString, fromScheme: KAliPayScheme) { (resultDict) in
+        }
+    }
+    
+    
+    //使用微信付款
+    func payByWechat(_ reqJson : JSON) {
+        if WXApi.isWXAppInstalled(){
+            let req = PayReq()
+            req.openID = reqJson["appId"].stringValue
+            req.partnerId = reqJson["partnerId"].stringValue
+            req.prepayId = reqJson["prepayId"].stringValue
+            req.nonceStr = reqJson["nonceStr"].stringValue
+            req.timeStamp = UInt32(reqJson["timeStamp"].stringValue)!
+            req.package = reqJson["packageValue"].stringValue
+            req.sign = reqJson["sign"].stringValue
+            print(WXApi.send(req))
+        }else{
+            //取消支付
+            LYAlertView.show("提示", "请先安装微信客户端后重试！", "知道了", {
+            })
+        }
+    }
+    
 }
 
 /**
@@ -168,13 +219,14 @@ extension POSViewController{
  }
  "-----------返回数据--------"
  {
- "sign" : "D4256BA6FC341EEEC30CA145BAB74BE0",
- "appId" : "wxbff455048a79dd5f",
- "partnerId" : "1526857431",
- "packageValue" : "Sign=WXPay",
- "prepayId" : "wx17172855553599eea01eae9c2199506123",
- "timeStamp" : 1558085335,
- "nonceStr" : "xLeI7pGDfoPu4Woe"
+ "code_url": "weixin://wxpay/bizpayurl?pr=cmNoNzr",
+ "sign": "661AFA42D0454D79B808984B810EB4DC",
+ "partnerId": "1539628431",
+ "prepayId": "wx13174931264306c87467361d1442686700",
+ "nonceStr": "7ZiwaYTErCaTiGRY",
+ "timeStamp": 1560419371,
+ "packageValue": "Sign=WXPay",
+ "appId": "wx14b06ec2e4b5d070"
  }
  "-----------错误数据--------"
  Alamofire.AFError.responseSerializationFailed(reason: Alamofire.AFError.ResponseSerializationFailureReason.jsonSerializationFailed(error: Error Domain=NSCocoaErrorDomain Code=3840 "Invalid value around character 0." UserInfo={NSDebugDescription=Invalid value around character 0.}))
