@@ -17,9 +17,9 @@ class NetApis: NSObject {
 let officialServer = "http://star.wwwcity.net/app/"//正式服务器
 let testServer = "http://star.test.wwwcity.net/app/"//测试服务器
 //let testServer = "http://star.pos.wwwcity.net/app/"//测试服务器
-let testServer2 = "http://127.0.0.1/app/"//测试服务器
+let testServer2 = "http://xing.com/app/"//测试服务器
 //let usedServer = officialServer
-let usedServer = testServer
+let usedServer = testServer2
 let DeBug = false
 
 

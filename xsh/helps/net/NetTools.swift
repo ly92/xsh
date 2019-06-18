@@ -530,6 +530,9 @@ extension NetTools{
 //        sessionConfigure.requestCachePolicy = .reloadIgnoringLocalCacheData
 //        let session = URLSession(configuration: sessionConfigure)
         let dataTask = URLSession.shared.dataTask(with: request) { (data, response, error) in
+            
+            debugPrint(data ?? "data null")
+            
             if data != nil{
                 let result = JSON(data!)
                 if result.type == .null{
