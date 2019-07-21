@@ -45,7 +45,7 @@
 		</dict>
 	</array>
 	<key>CFBundleVersion</key>
-	<string>2040</string>
+	<string>2041</string>
 	<key>LSApplicationQueriesSchemes</key>
 	<array>
 		<string>mqzone</string>
@@ -84,10 +84,6 @@
 	<string>请您允许访问相机，相机将用于上传图片时拍照，以及扫描二维码</string>
 	<key>NSFaceIDUsageDescription</key>
 	<string>星生活需要您允许使用面容ID来使用免密登录功能</string>
-<!--    <key>NSHealthShareUsageDescription</key>-->
-<!--    <string>星生活需要访问健康数据，获取运动步数来兑换App内积分 </string>-->
-<!--    <key>NSHealthUpdateUsageDescription</key>-->
-<!--    <string>星生活需要访问健康数据，获取运动步数来兑换App内积分 </string>-->
 	<key>NSLocationAlwaysAndWhenInUseUsageDescription</key>
 	<string>星生活需要获取您的位置以便于向您推荐附近商家</string>
 	<key>NSLocationAlwaysUsageDescription</key>

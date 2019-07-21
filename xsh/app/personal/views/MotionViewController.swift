@@ -40,6 +40,8 @@ class MotionViewController: BaseViewController {
         if self.navHeight > 64{
             self.titleTopDis.constant = 44
         }
+        
+        self.loadTodayStep()
     }
 
     
@@ -67,7 +69,7 @@ class MotionViewController: BaseViewController {
         
         self.pullToRefre()
         
-        self.loadTodayStep()
+        
         
         //颜色渐变
         let layer = CAGradientLayer()
@@ -113,12 +115,12 @@ class MotionViewController: BaseViewController {
     
     //今日步数
     func loadTodayStep() {
-        HealthHelper().requestStep(Date()) { (steps) in
+        HealthHelper().requestStep(Date()) { (step) in
             DispatchQueue.main.async {
-                self.numLbl.text = "\(steps)"
-                self.timeLbl.text = Date.dateStringFromDate(format: Date.timestampFormatString(), timeStamps: Date().phpTimestamp())
+                self.numLbl.text = "\(step)"
             }
         }
+        self.timeLbl.text = Date.dateStringFromDate(format: Date.timestampFormatString(), timeStamps: Date().phpTimestamp())
     }
     
     //打卡记录
@@ -169,14 +171,13 @@ class MotionViewController: BaseViewController {
             let status = temp["status"].stringValue.intValue
             let date = Date.timestampToDate(Double(temp["date"].stringValue.intValue))
             if (status == 0 || status == 1) && temp["steps"].intValue == 0{
-                HealthHelper().requestStep(date) { (steps) in
-                    DispatchQueue.main.async {
-                        temp["steps"] = JSON(steps)
-                        self.stepsLogList.remove(at: i)
-                        self.stepsLogList.insert(temp, at: i)
-                        self.tableView.reloadData()
-                    }
+                HealthHelper().requestStep(date) { (step) in
+                    temp["steps"] = JSON(step)
+                    self.stepsLogList.remove(at: i)
+                    self.stepsLogList.insert(temp, at: i)
+                    self.tableView.reloadData()
                 }
+
             }
         }
         self.tableView.reloadData()
