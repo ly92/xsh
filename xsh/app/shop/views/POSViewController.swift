@@ -22,6 +22,8 @@ class POSViewController: BaseViewController {
     @IBOutlet weak var bnt4: UIButton!
     @IBOutlet weak var bnt5: UIButton!
     @IBOutlet weak var bnt6: UIButton!
+    @IBOutlet weak var bnt7: UIButton!
+    @IBOutlet weak var bnt8: UIButton!
     private var selectedBtn = UIButton()
     
     private var type = 1
@@ -57,11 +59,17 @@ class POSViewController: BaseViewController {
             //支付宝-二维码
             self.type = 4
         }else if btn.tag == 55{
-            //支付宝-二维码
+            //支付宝-App1
             self.type = 5
         }else if btn.tag == 66{
-            //支付宝-二维码
+            //微信-App1
             self.type = 6
+        }else if btn.tag == 77{
+            //支付宝-App2
+            self.type = 7
+        }else if btn.tag == 88{
+            //微信-App2
+            self.type = 8
         }else if btn.tag == 99{
             //提交
             self.createOrder()
@@ -112,10 +120,16 @@ extension POSViewController{
                         //支付宝-二维码
                         self.showCode(result["orderInfo"]["alipay_trade_precreate_response"]["qr_code"].stringValue)
                     }else if self.bnt5.isSelected{
-                        //支付宝-App
+                        //支付宝-App1
                         self.payByAli(result["orderInfo"].stringValue)
                     }else if self.bnt6.isSelected{
-                        //微信-App
+                        //微信-App1
+                        self.payByWechat(result)
+                    }else if self.bnt7.isSelected{
+                        //支付宝-App2
+                        self.payByAli(result["orderInfo"].stringValue)
+                    }else if self.bnt8.isSelected{
+                        //微信-App2
                         self.payByWechat(result)
                     }
                 }
@@ -138,10 +152,16 @@ extension POSViewController{
             //支付宝-二维码
             request()
         }else if self.bnt5.isSelected{
-            //支付宝-App
+            //支付宝-App1
             request()
         }else if self.bnt6.isSelected{
-            //微信-App
+            //微信-App1
+            request()
+        }else if self.bnt7.isSelected{
+            //支付宝-App2
+            request()
+        }else if self.bnt8.isSelected{
+            //微信-App2
             request()
         }
         
@@ -174,6 +194,10 @@ extension POSViewController{
     //使用微信付款
     func payByWechat(_ reqJson : JSON) {
         if WXApi.isWXAppInstalled(){
+            
+            //注册微信
+            WXApi.registerApp(reqJson["appId"].stringValue)
+            
             let req = PayReq()
             req.openID = reqJson["appId"].stringValue
             req.partnerId = reqJson["partnerId"].stringValue

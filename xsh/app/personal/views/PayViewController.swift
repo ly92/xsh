@@ -288,6 +288,10 @@ class PayViewController: BaseTableViewController {
     //使用微信付款
     func payByWechat(_ reqJson : JSON) {
         if WXApi.isWXAppInstalled(){
+            
+            //注册微信
+            WXApi.registerApp(reqJson["appId"].stringValue)
+            
             let req = PayReq()
             req.openID = reqJson["appId"].stringValue
             req.partnerId = reqJson["partnerId"].stringValue
