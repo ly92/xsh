@@ -34,6 +34,14 @@ class POSViewController: BaseViewController {
         self.view.addTapActionBlock {
             self.moneyTF.resignFirstResponder()
         }
+        
+        self.navigationItem.rightBarButtonItem = UIBarButtonItem.init(title: "通讯录", target: self, action: #selector(POSViewController.contact))
+        
+    }
+    
+    @objc func contact(){
+        let contactVC = ContactTableViewController()
+        self.navigationController?.pushViewController(contactVC, animated: true)
     }
     
     @IBAction func btnAction(_ btn: UIButton) {

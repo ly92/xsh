@@ -19,7 +19,7 @@ class HealthHelper: NSObject {
     //请求步数数据
     func requestStep(_ date : Date, _ block : @escaping ((Int) ->Void)) {
         if !CMPedometer.isStepCountingAvailable(){
-            LYProgressHUD.showError("该设备不支持 健康 功能！")
+            LYProgressHUD.showError("该设备不支持 获取步数 功能！")
             return
         }
         self.stepsBlock = block
@@ -43,9 +43,15 @@ class HealthHelper: NSObject {
         let second = date.second()
         
         
+        var scal = 0
+        if date.isToday(){
+            scal = 8 * 3600
+        }
         
-        let start_time = date.phpTimestamp().intValue - hour * 3600 - minute * 60 - second
-        let end_time = start_time + 86399
+        
+        
+        let start_time = date.phpTimestamp().intValue - hour * 3600 - minute * 60 - second - scal
+        let end_time = start_time + 86399 - scal
         
 //        if date.isToday(){
 //            start_time -= 8 * 3600
@@ -58,10 +64,11 @@ class HealthHelper: NSObject {
         
         self.steper.queryPedometerData(from: date_start, to: date_end) { (pedometerData, error) in
             if error != nil{
-                LYProgressHUD.showError(error.debugDescription)
-                return
-            }
-            if (pedometerData != nil){
+//                LYProgressHUD.showError(error.debugDescription)
+                if self.stepsBlock != nil{
+                    self.stepsBlock!(-1)
+                }
+            }else if (pedometerData != nil){
                 let step = pedometerData!.numberOfSteps.intValue
                 if self.stepsBlock != nil{
                     self.stepsBlock!(step)

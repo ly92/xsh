@@ -116,8 +116,17 @@ class MotionViewController: BaseViewController {
     //今日步数
     func loadTodayStep() {
         HealthHelper().requestStep(Date()) { (step) in
-            DispatchQueue.main.async {
-                self.numLbl.text = "\(step)"
+            if step == -1{
+                LYAlertView.show("未允许访问健康数据", "使用此功能请在设置中允许访问健康数据", "取消", "确定",{
+                    let url = URL(string:UIApplication.openSettingsURLString)
+                    if UIApplication.shared.canOpenURL(url!){
+                        UIApplication.shared.open(url!, options: [:], completionHandler: nil)
+                    }
+                })
+            }else{
+                DispatchQueue.main.async {
+                    self.numLbl.text = "\(step)"
+                }
             }
         }
         self.timeLbl.text = Date.dateStringFromDate(format: Date.timestampFormatString(), timeStamps: Date().phpTimestamp())
@@ -172,10 +181,14 @@ class MotionViewController: BaseViewController {
             let date = Date.timestampToDate(Double(temp["date"].stringValue.intValue))
             if (status == 0 || status == 1) && temp["steps"].intValue == 0{
                 HealthHelper().requestStep(date) { (step) in
-                    temp["steps"] = JSON(step)
-                    self.stepsLogList.remove(at: i)
-                    self.stepsLogList.insert(temp, at: i)
-                    self.tableView.reloadData()
+                    if step != -1{
+                        temp["steps"] = JSON(step)
+                        self.stepsLogList.remove(at: i)
+                        self.stepsLogList.insert(temp, at: i)
+                        DispatchQueue.main.async {
+                            self.tableView.reloadData()
+                        }
+                    }
                 }
 
             }
