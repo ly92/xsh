@@ -91,7 +91,6 @@
 		086E2D0421CA2CB800896F25 /* Config.swift in Sources */ = {isa = PBXBuildFile; fileRef = 086E2D0321CA2CB800896F25 /* Config.swift */; };
 		086E2D0921CA2E0D00896F25 /* LYAlertView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 086E2D0821CA2E0D00896F25 /* LYAlertView.swift */; };
 		087B012621F9A57B00CFB3A6 /* HealthHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 087B012521F9A57B00CFB3A6 /* HealthHelper.swift */; };
-		087C07C422E94591000243C6 /* ContactTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 087C07C322E94591000243C6 /* ContactTableViewController.swift */; };
 		089A29F3220056AB0072A73F /* TakeOnePhotoHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 089A29F2220056AB0072A73F /* TakeOnePhotoHelper.swift */; };
 		08A3A3FC21C158CD008E071F /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08A3A3FB21C158CD008E071F /* AppDelegate.swift */; };
 		08A3A3FE21C158CD008E071F /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08A3A3FD21C158CD008E071F /* ViewController.swift */; };
@@ -134,7 +133,6 @@
 		08C7D98221F0889000A625F1 /* CouponStoreCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 08C7D98021F0889000A625F1 /* CouponStoreCell.xib */; };
 		08C9027421D214E50020441E /* Message.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 08C9027321D214E50020441E /* Message.storyboard */; };
 		08C9027621D216AC0020441E /* BillPayDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08C9027521D216AC0020441E /* BillPayDetailViewController.swift */; };
-		08CDC293228E963F000F7489 /* POSViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08CDC292228E963F000F7489 /* POSViewController.swift */; };
 		08D7B63021CC9C5B007D191F /* PayViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08D7B62F21CC9C5B007D191F /* PayViewController.swift */; };
 		08D7B69921CCC310007D191F /* AlipaySDK.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 08D7B63221CCC310007D191F /* AlipaySDK.bundle */; };
 		08D7B69A21CCC310007D191F /* AlipaySDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 08D7B63321CCC310007D191F /* AlipaySDK.framework */; };
@@ -273,7 +271,6 @@
 		086E2D0321CA2CB800896F25 /* Config.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Config.swift; sourceTree = "<group>"; };
 		086E2D0821CA2E0D00896F25 /* LYAlertView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LYAlertView.swift; sourceTree = "<group>"; };
 		087B012521F9A57B00CFB3A6 /* HealthHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HealthHelper.swift; sourceTree = "<group>"; };
-		087C07C322E94591000243C6 /* ContactTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContactTableViewController.swift; sourceTree = "<group>"; };
 		089A29F2220056AB0072A73F /* TakeOnePhotoHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TakeOnePhotoHelper.swift; sourceTree = "<group>"; };
 		08A3A3F821C158CD008E071F /* xsh.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = xsh.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		08A3A3FB21C158CD008E071F /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -322,7 +319,6 @@
 		08C7D98021F0889000A625F1 /* CouponStoreCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CouponStoreCell.xib; sourceTree = "<group>"; };
 		08C9027321D214E50020441E /* Message.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Message.storyboard; sourceTree = "<group>"; };
 		08C9027521D216AC0020441E /* BillPayDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BillPayDetailViewController.swift; sourceTree = "<group>"; };
-		08CDC292228E963F000F7489 /* POSViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = POSViewController.swift; sourceTree = "<group>"; };
 		08D7B62F21CC9C5B007D191F /* PayViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PayViewController.swift; sourceTree = "<group>"; };
 		08D7B63221CCC310007D191F /* AlipaySDK.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = AlipaySDK.bundle; sourceTree = "<group>"; };
 		08D7B63321CCC310007D191F /* AlipaySDK.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = AlipaySDK.framework; sourceTree = "<group>"; };
@@ -571,8 +567,6 @@
 			children = (
 				0819FBC121C8E3140078EB8D /* ShopViewController.swift */,
 				08445F6821FF3D8E00230F5D /* StoreViewController.swift */,
-				08CDC292228E963F000F7489 /* POSViewController.swift */,
-				087C07C322E94591000243C6 /* ContactTableViewController.swift */,
 			);
 			path = views;
 			sourceTree = "<group>";
@@ -1362,13 +1356,11 @@
 				086E2D0421CA2CB800896F25 /* Config.swift in Sources */,
 				0807CA9621C7C47700967692 /* LocalData.swift in Sources */,
 				08A3A46B21C168B6008E071F /* DeviceSystemHelper.swift in Sources */,
-				08CDC293228E963F000F7489 /* POSViewController.swift in Sources */,
 				0819FBB721C8DB550078EB8D /* BannerScrollTitleCell.swift in Sources */,
 				08D7B6A021CCC310007D191F /* NSDataEx.m in Sources */,
 				08C7D96121F05DC300A625F1 /* NoticeCell.swift in Sources */,
 				08A3A46821C168B6008E071F /* NSObject+Extension.swift in Sources */,
 				083F8F8321D0A4020026341A /* AdView.swift in Sources */,
-				087C07C422E94591000243C6 /* ContactTableViewController.swift in Sources */,
 				085975B122437B87000AFAD3 /* ComplantCell.swift in Sources */,
 				086E2D0921CA2E0D00896F25 /* LYAlertView.swift in Sources */,
 				08C7D97821F0791A00A625F1 /* RecommendGoodsCell.swift in Sources */,

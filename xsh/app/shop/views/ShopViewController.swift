@@ -43,16 +43,7 @@ class ShopViewController: BaseViewController {
         }
         
         self.filterAction()
-        
-        if LocalData.getUserPhone() == "18811016533"{
-            self.navigationItem.rightBarButtonItem = UIBarButtonItem.init(title: "收银台", target: self, action: #selector(ShopViewController.posAction))
-        }
-    }
     
-    //pos机收银
-    @objc func posAction() {
-        let posVC = POSViewController.spwan()
-        self.navigationController?.pushViewController(posVC, animated: true)
     }
     
     //筛选事件
