@@ -98,6 +98,8 @@
 	<string>星生活需要访问您的相册来选择提交的图片</string>
 	<key>NSPhotoLibraryUsageDescription</key>
 	<string>星生活需要访问您的相册来选择提交的图片</string>
+    <key>NSContactsUsageDescription</key>
+    <string>星生活需要访问您的通讯录</string>
 	<key>UIMainStoryboardFile</key>
 	<string>Main</string>
 	<key>UIRequiredDeviceCapabilities</key>
