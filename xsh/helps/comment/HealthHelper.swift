@@ -51,7 +51,7 @@ class HealthHelper: NSObject {
         
         
         let start_time = date.phpTimestamp().intValue - hour * 3600 - minute * 60 - second - scal
-        let end_time = start_time + 86399 - scal
+        let end_time = start_time + 86399
         
 //        if date.isToday(){
 //            start_time -= 8 * 3600
@@ -70,6 +70,10 @@ class HealthHelper: NSObject {
                 }
             }else if (pedometerData != nil){
                 let step = pedometerData!.numberOfSteps.intValue
+//                print(pedometerData?.currentPace ?? "123")
+//                print(pedometerData?.averageActivePace ?? "1")
+                
+                
                 if self.stepsBlock != nil{
                     self.stepsBlock!(step)
                 }
