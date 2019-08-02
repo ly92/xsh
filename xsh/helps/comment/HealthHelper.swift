@@ -43,24 +43,30 @@ class HealthHelper: NSObject {
         let second = date.second()
         
         
-        var scal = 0
-        if date.isToday(){
-            scal = 8 * 3600
-        }
+        
+        // 获取系统时区
+        let zone:TimeZone = TimeZone.current
+        // 计算本地时区与 GMT 时区的时间差 28800
+        let scal = zone.secondsFromGMT()
         
         
+//        print("---------------------------------------------------------------")
+//
+//        print("---------------------------------------------------------------")
+//
         
         let start_time = date.phpTimestamp().intValue - hour * 3600 - minute * 60 - second - scal
         let end_time = start_time + 86399
         
-//        if date.isToday(){
-//            start_time -= 8 * 3600
-//            end_time -= 8 * 3600
-//        }
         
         let date_start = Date.timestampToDate(Double(start_time))
         let date_end = Date.timestampToDate(Double(end_time))
-        
+//
+//        print("---------------------------------------------------------------")
+//        print(date_start)
+//        print(date_end)
+//        print("---------------------------------------------------------------")
+//
         
         self.steper.queryPedometerData(from: date_start, to: date_end) { (pedometerData, error) in
             if error != nil{
