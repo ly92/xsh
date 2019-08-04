@@ -46,6 +46,7 @@ class ShopViewController: BaseViewController {
         
         if LocalData.getUserPhone() == "18811016533"{
             self.navigationItem.rightBarButtonItem = UIBarButtonItem.init(title: "收银台", target: self, action: #selector(ShopViewController.posAction))
+            self.navigationItem.leftBarButtonItem = UIBarButtonItem.init(title: "支付测试", target: self, action: #selector(ShopViewController.testPay))
         }
     }
     
@@ -53,6 +54,11 @@ class ShopViewController: BaseViewController {
     @objc func posAction() {
         let posVC = POSViewController.spwan()
         self.navigationController?.pushViewController(posVC, animated: true)
+    }
+    
+    @objc func testPay(){
+        let payVC = TestPayViewController.spwan()
+        self.navigationController?.pushViewController(payVC, animated: true)
     }
     
     //筛选事件

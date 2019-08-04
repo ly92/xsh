@@ -92,6 +92,7 @@
 		086E2D0921CA2E0D00896F25 /* LYAlertView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 086E2D0821CA2E0D00896F25 /* LYAlertView.swift */; };
 		087B012621F9A57B00CFB3A6 /* HealthHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 087B012521F9A57B00CFB3A6 /* HealthHelper.swift */; };
 		087C07C422E94591000243C6 /* ContactTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 087C07C322E94591000243C6 /* ContactTableViewController.swift */; };
+		088DBBA522F723A500B35F58 /* TestPayViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 088DBBA422F723A500B35F58 /* TestPayViewController.swift */; };
 		089A29F3220056AB0072A73F /* TakeOnePhotoHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 089A29F2220056AB0072A73F /* TakeOnePhotoHelper.swift */; };
 		08A3A3FC21C158CD008E071F /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08A3A3FB21C158CD008E071F /* AppDelegate.swift */; };
 		08A3A3FE21C158CD008E071F /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08A3A3FD21C158CD008E071F /* ViewController.swift */; };
@@ -274,6 +275,7 @@
 		086E2D0821CA2E0D00896F25 /* LYAlertView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LYAlertView.swift; sourceTree = "<group>"; };
 		087B012521F9A57B00CFB3A6 /* HealthHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HealthHelper.swift; sourceTree = "<group>"; };
 		087C07C322E94591000243C6 /* ContactTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContactTableViewController.swift; sourceTree = "<group>"; };
+		088DBBA422F723A500B35F58 /* TestPayViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestPayViewController.swift; sourceTree = "<group>"; };
 		089A29F2220056AB0072A73F /* TakeOnePhotoHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TakeOnePhotoHelper.swift; sourceTree = "<group>"; };
 		08A3A3F821C158CD008E071F /* xsh.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = xsh.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		08A3A3FB21C158CD008E071F /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -572,6 +574,7 @@
 				0819FBC121C8E3140078EB8D /* ShopViewController.swift */,
 				08445F6821FF3D8E00230F5D /* StoreViewController.swift */,
 				08CDC292228E963F000F7489 /* POSViewController.swift */,
+				088DBBA422F723A500B35F58 /* TestPayViewController.swift */,
 				087C07C322E94591000243C6 /* ContactTableViewController.swift */,
 			);
 			path = views;
@@ -1384,6 +1387,7 @@
 				0861B84821C52E29008795E5 /* LoginViewController.swift in Sources */,
 				086E2CF621C9E6CF00896F25 /* MyCouponTableViewController.swift in Sources */,
 				0819FBBB21C8DB550078EB8D /* TransactionBannerCell.swift in Sources */,
+				088DBBA522F723A500B35F58 /* TestPayViewController.swift in Sources */,
 				08C9027621D216AC0020441E /* BillPayDetailViewController.swift in Sources */,
 				0819FBCE21C8ED7B0078EB8D /* UIImageView+Category.swift in Sources */,
 				08A3A46621C168B6008E071F /* Array+Category.swift in Sources */,
