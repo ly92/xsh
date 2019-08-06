@@ -43,6 +43,18 @@
 				<string>wx14b06ec2e4b5d070</string>
 			</array>
 		</dict>
+		<dict>
+			<key>CFBundleTypeRole</key>
+			<string>Editor</string>
+			<key>CFBundleURLName</key>
+			<string>yin+</string>
+			<key>CFBundleURLSchemes</key>
+			<array>
+				<string>wx28cdbbacd1cec278</string>
+				<string>alipayappwyy117</string>
+				<string>wx6b854fb487695fa8</string>
+			</array>
+		</dict>
 	</array>
 	<key>CFBundleVersion</key>
 	<string>2041</string>
@@ -82,6 +94,8 @@
 	</dict>
 	<key>NSCameraUsageDescription</key>
 	<string>请您允许访问相机，相机将用于上传图片时拍照，以及扫描二维码</string>
+	<key>NSContactsUsageDescription</key>
+	<string>星生活需要访问您的通讯录</string>
 	<key>NSFaceIDUsageDescription</key>
 	<string>星生活需要您允许使用面容ID来使用免密登录功能</string>
 	<key>NSLocationAlwaysAndWhenInUseUsageDescription</key>
@@ -98,8 +112,6 @@
 	<string>星生活需要访问您的相册来选择提交的图片</string>
 	<key>NSPhotoLibraryUsageDescription</key>
 	<string>星生活需要访问您的相册来选择提交的图片</string>
-    <key>NSContactsUsageDescription</key>
-    <string>星生活需要访问您的通讯录</string>
 	<key>UIMainStoryboardFile</key>
 	<string>Main</string>
 	<key>UIRequiredDeviceCapabilities</key>

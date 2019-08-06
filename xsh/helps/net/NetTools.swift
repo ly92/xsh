@@ -517,6 +517,9 @@ extension NetTools{
             //把拼接后的字符串转换为data，设置请求体
             request.httpBody = param222.data(using: String.Encoding.utf8.rawValue)
         }
+        
+        request.addValue("8091945", forHTTPHeaderField: "CaAppId")
+        
         //(3) 发送请求
 //        NSURLConnection.sendAsynchronousRequest(request, queue:OperationQueue()) { (res, data, error)in
 //            //服务器返回：请求方式 = POST，返回数据格式 = JSON，用户名 = 123，密码 = 123
