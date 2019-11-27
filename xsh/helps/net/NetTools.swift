@@ -164,6 +164,11 @@ extension NetTools{
                         return
                     }
                     let loginVC = LoginViewController.spwan()
+                    if #available(iOS 13.0, *) {
+                        loginVC.modalPresentationStyle = .fullScreen
+                    } else {
+                        // Fallback on earlier versions
+                    }
                     nav.viewControllers.first?.present(loginVC, animated: true) {
                         LocalData.saveYesOrNotValue(value: "0", key: KIsLoginKey)
                     }
@@ -177,7 +182,8 @@ extension NetTools{
             if respose.result.isFailure{
                 #if DEBUG
                 debugPrint("-----------错误数据--------")
-                debugPrint(respose.result.error ?? "请求失败！")
+                debugPrint(URL + "&" + str)
+//                debugPrint(respose.result.error ?? "请求失败！")
                 #endif
                 failure(respose.result.error as? String ?? "数据获取失败,请重试！")
             }
@@ -466,7 +472,12 @@ extension NetTools{
             strs.append(key + "=" + "\(value ?? "")")
         }
         let str = strs.joined(separator: "&")
-        
+        debugPrint("-----------URL--------")
+        if URL.contains("?"){
+            debugPrint(URL + "&" + str)
+        }else{
+            debugPrint(URL + "?" + str)
+        }
         
         //(2) 创建请求对象
         let request:NSMutableURLRequest = NSMutableURLRequest(url: NSURL(string:URL)! as URL) //默认为get请求
@@ -485,6 +496,7 @@ extension NetTools{
         
         //(3) 发送请求
         NSURLConnection.sendAsynchronousRequest(request as URLRequest, queue:OperationQueue()) { (res, data, error)in
+            debugPrint("----------返回数据-----------")
             //服务器返回：请求方式 = POST，返回数据格式 = JSON，用户名 = 123，密码 = 123
             let  str = NSString(data: data!, encoding:String.Encoding.utf8.rawValue)
             debugPrint(str!)

@@ -157,7 +157,7 @@ class PayViewController: BaseTableViewController {
             }else if type == "weixin"{
                 self.payByWechat(result["payinfo"])
             }else{
-                self.payByCard(result["payinfo"]["tno"].stringValue)
+                self.payByCard(result["payinfo"]["tno"].stringValue, dict["money"]!)
             }
             
         }) { (error) in
@@ -346,29 +346,26 @@ class PayViewController: BaseTableViewController {
     }
     
     //使用一卡通付款
-    func payByCard(_ tno : String) {
+    func payByCard(_ tno : String, _ money : Float) {
         
-        let pwdView = PayPasswordView()
-        pwdView.parentVC = self
-        pwdView.show { (pwd) in
-            
+        func pay(_ pwd : String){
             let ts = Date.phpTimestamp()
             let cmdno = String.randomStr(len: 20) + ts
-            
+
             var params : [String : Any] = [:]
             params["orderno"] = self.orderNo
             params["ts"] = ts
             params["cmdno"] = cmdno
             let psw = (pwd.md5String() + LocalData.getUserPhone()).md5String()
             params["paysign"] = (LocalData.getCId() + ts + cmdno + psw).md5String()
-//            print("-----------------------")
-//            print("ts：" + ts)
-//            print("cmdno: " + cmdno)
-//            print("pwd: " + pwd)
-//            print("cid: " + LocalData.getCId())
-//            print(psw)
-//            print((LocalData.getCId() + ts + cmdno + psw).md5String())
-//            print("-----------------------")
+            //            print("-----------------------")
+            //            print("ts：" + ts)
+            //            print("cmdno: " + cmdno)
+            //            print("pwd: " + pwd)
+            //            print("cid: " + LocalData.getCId())
+            //            print(psw)
+            //            print((LocalData.getCId() + ts + cmdno + psw).md5String())
+            //            print("-----------------------")
             NetTools.requestData(type: .post, urlString: CardPayApi, parameters: params, succeed: { (result) in
                 //返回
                 LYAlertView.show("提示", "支付成功！", "知道了", {
@@ -379,7 +376,7 @@ class PayViewController: BaseTableViewController {
                 })
             }) { (error) in
                 LYAlertView.show("提示", "支付失败，请重试！", "放弃", "重试", {
-                    self.payByCard(tno)
+                    self.payByCard(tno, money)
                 },{
                     if self.payResultBlock != nil{
                         self.payResultBlock!(3)
@@ -388,6 +385,18 @@ class PayViewController: BaseTableViewController {
                 })
             }
         }
+        
+        
+        if (money > 0){
+            let pwdView = PayPasswordView()
+            pwdView.parentVC = self
+            pwdView.show { (pwd) in
+                pay(pwd)
+            }
+        }else{
+            pay("")
+        }
+        
     }
     
     //取消单

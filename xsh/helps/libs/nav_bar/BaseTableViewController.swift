@@ -90,7 +90,9 @@ class BaseTableViewController: UITableViewController {
     }
     
     deinit {
-        self.tableView.dg_removePullToRefresh()
+        if (self.tableView != nil){
+            self.tableView.dg_removePullToRefresh()
+        }
     }
     
     

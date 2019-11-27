@@ -95,6 +95,12 @@ class PersonalViewController: BaseTableViewController {
     //退出
     @IBAction func logoutAction() {
         let loginVC = LoginViewController.spwan()
+        
+        if #available(iOS 13.0, *) {
+            loginVC.modalPresentationStyle = .fullScreen
+        } else {
+            // Fallback on earlier versions
+        }
         self.present(loginVC, animated: true) {
             LocalData.saveYesOrNotValue(value: "0", key: KIsLoginKey)
         }

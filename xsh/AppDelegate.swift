@@ -68,7 +68,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     }
 
     func applicationWillEnterForeground(_ application: UIApplication) {
-        self.launchOperation()
+        DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + 0.1) {
+            self.launchOperation()
+        }
     }
 
     func applicationDidBecomeActive(_ application: UIApplication) {
@@ -145,9 +147,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     // Required - 注册 DeviceToken
     func application(_ application: UIApplication, didRegisterForRemoteNotificationsWithDeviceToken deviceToken: Data) {
         
-        let token = String.init(format: "%@", deviceToken as CVarArg).replacingOccurrences(of: " ", with: "").replacingOccurrences(of: "<", with: "").replacingOccurrences(of: ">", with: "")
-        LocalData.saveToken(token: token)
-        
+//        let token = String.init(format: "%@", deviceToken as CVarArg).replacingOccurrences(of: " ", with: "").replacingOccurrences(of: "<", with: "").replacingOccurrences(of: ">", with: "")
+        let token = deviceToken.map { String(format: "%02.2hhx", arguments: [$0]) }.joined()
+        LocalData.saveToken(token: token as String)
         DispatchQueue.global().async {
             JPUSHService.registerDeviceToken(deviceToken)
         }
@@ -179,20 +181,24 @@ extension AppDelegate {
     //启动时需要执行的动作
     func launchOperation() {
         if LocalData.getYesOrNotValue(key: KIsLoginKey){
-            self.checkLogin()
+                self.checkLogin()
         }else{
             guard let nav = self.tabBar.selectedViewController as? LYNavigationController else{
                 return
             }
             let loginVC = LoginViewController.spwan()
+            if #available(iOS 13.0, *) {
+                loginVC.modalPresentationStyle = .fullScreen
+            } else {
+                // Fallback on earlier versions
+            }
             nav.viewControllers.first?.present(loginVC, animated: true) {
                 LocalData.saveYesOrNotValue(value: "0", key: KIsLoginKey)
             }
         }
         
-        
-        self.checkVersion()
-        self.getNewMessage()
+            self.checkVersion()
+            self.getNewMessage()
         
     }
     
@@ -201,6 +207,8 @@ extension AppDelegate {
     func checkLogin() {
         var params : [String : Any] = [:]
         params["device"] = LocalData.getToken()
+    
+        
         NetTools.requestData(type: .post, urlString: CheckTokenApi, parameters: params, succeed: { (result) in
             //0:重新登录，1:正常
             if result["result"].stringValue.intValue == 0{
@@ -208,6 +216,11 @@ extension AppDelegate {
                     return
                 }
                 let loginVC = LoginViewController.spwan()
+                if #available(iOS 13.0, *) {
+                    loginVC.modalPresentationStyle = .fullScreen
+                } else {
+                    // Fallback on earlier versions
+                }
                 nav.viewControllers.first?.present(loginVC, animated: true) {
                     LocalData.saveYesOrNotValue(value: "0", key: KIsLoginKey)
                 }
@@ -218,6 +231,11 @@ extension AppDelegate {
                 return
             }
             let loginVC = LoginViewController.spwan()
+            if #available(iOS 13.0, *) {
+                loginVC.modalPresentationStyle = .fullScreen
+            } else {
+                // Fallback on earlier versions
+            }
             nav.viewControllers.first?.present(loginVC, animated: true) {
                 LocalData.saveYesOrNotValue(value: "0", key: KIsLoginKey)
             }
@@ -230,6 +248,7 @@ extension AppDelegate {
     func checkVersion() {
         var params : [String : Any] = [:]
         params["platform"] = "ios"
+    
         NetTools.requestData(type: .post, urlString: CheckVersionApi, parameters: params, succeed: { (result) in
             let localVersion = appVersion().replacingOccurrences(of: ".", with: "").intValue
             let netVersion = result["ver"]["versionid"].stringValue.intValue
