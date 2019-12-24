@@ -25,7 +25,9 @@ class MessageViewController: BaseTableViewController {
         self.tableView.register(UINib.init(nibName: "MessageCell", bundle: Bundle.main), forCellReuseIdentifier: "MessageCell")
         
         self.navigationItem.rightBarButtonItem = UIBarButtonItem.init(title: "选择", target: self, action: #selector(MessageViewController.rightItemAction))
-        
+        if LocalData.getUserPhone() == "18811016533" || LocalData.getUserPhone() == "18010069751"{
+            self.navigationItem.leftBarButtonItem = UIBarButtonItem.init(title: "拍照", target: self, action: #selector(MessageViewController.leftItemAction))
+        }
         self.pullToRefre {
             self.messageList.removeAll()
             self.loadMessageData()
@@ -61,6 +63,11 @@ class MessageViewController: BaseTableViewController {
         
         self.isSelecting = !self.isSelecting
         self.tableView.reloadData()
+    }
+    
+    @objc func leftItemAction() {
+        let takeVC = XCTakePhotoViewController.spwan()
+        self.navigationController?.pushViewController(takeVC, animated: true)
     }
     
     

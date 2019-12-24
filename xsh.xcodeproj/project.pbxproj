@@ -94,6 +94,7 @@
 		087C07C422E94591000243C6 /* ContactTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 087C07C322E94591000243C6 /* ContactTableViewController.swift */; };
 		088DBBA522F723A500B35F58 /* TestPayViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 088DBBA422F723A500B35F58 /* TestPayViewController.swift */; };
 		089A29F3220056AB0072A73F /* TakeOnePhotoHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 089A29F2220056AB0072A73F /* TakeOnePhotoHelper.swift */; };
+		089F50C423B25D2B0049C05C /* XCTakePhotoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 089F50C323B25D2B0049C05C /* XCTakePhotoViewController.swift */; };
 		08A3A3FC21C158CD008E071F /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08A3A3FB21C158CD008E071F /* AppDelegate.swift */; };
 		08A3A3FE21C158CD008E071F /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08A3A3FD21C158CD008E071F /* ViewController.swift */; };
 		08A3A40121C158CD008E071F /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 08A3A3FF21C158CD008E071F /* Main.storyboard */; };
@@ -277,6 +278,7 @@
 		087C07C322E94591000243C6 /* ContactTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContactTableViewController.swift; sourceTree = "<group>"; };
 		088DBBA422F723A500B35F58 /* TestPayViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestPayViewController.swift; sourceTree = "<group>"; };
 		089A29F2220056AB0072A73F /* TakeOnePhotoHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TakeOnePhotoHelper.swift; sourceTree = "<group>"; };
+		089F50C323B25D2B0049C05C /* XCTakePhotoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = XCTakePhotoViewController.swift; sourceTree = "<group>"; };
 		08A3A3F821C158CD008E071F /* xsh.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = xsh.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		08A3A3FB21C158CD008E071F /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		08A3A3FD21C158CD008E071F /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -1002,6 +1004,7 @@
 				08E0D47221CF23370015992B /* MessageViewController.swift */,
 				08C9027521D216AC0020441E /* BillPayDetailViewController.swift */,
 				08B1D2BE2203EAC6001A916A /* BillDetailViewController.swift */,
+				089F50C323B25D2B0049C05C /* XCTakePhotoViewController.swift */,
 			);
 			path = views;
 			sourceTree = "<group>";
@@ -1394,6 +1397,7 @@
 				08D7B69C21CCC310007D191F /* Order.m in Sources */,
 				08A3A46E21C168B6008E071F /* LYTabBarController.swift in Sources */,
 				08B0DE9321D4B65400EE7BA8 /* ChanegInfoViewController.swift in Sources */,
+				089F50C423B25D2B0049C05C /* XCTakePhotoViewController.swift in Sources */,
 				0861B84021C29D74008795E5 /* BaseViewController.swift in Sources */,
 				083F8F8B21D0D7120026341A /* PayToCell.swift in Sources */,
 				085D6CF221D1348600155895 /* PayPasswordView.swift in Sources */,
@@ -1612,6 +1616,7 @@
 				CODE_SIGN_ENTITLEMENTS = xsh/xsh.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CODE_SIGN_STYLE = Manual;
+				CURRENT_PROJECT_VERSION = 2070;
 				DEVELOPMENT_TEAM = 3BXQF9Q7GT;
 				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = (
@@ -1638,6 +1643,7 @@
 					"$(PROJECT_DIR)/xsh/helps/libs/WeiXin",
 					"$(PROJECT_DIR)/xsh/helps/libs/AliPay",
 				);
+				MARKETING_VERSION = 2.0.7;
 				OTHER_LDFLAGS = (
 					"$(inherited)",
 					"-ObjC",
@@ -1702,6 +1708,7 @@
 				CODE_SIGN_ENTITLEMENTS = xsh/xsh.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Distribution";
 				CODE_SIGN_STYLE = Manual;
+				CURRENT_PROJECT_VERSION = 2070;
 				DEVELOPMENT_TEAM = 3BXQF9Q7GT;
 				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = (
@@ -1728,6 +1735,7 @@
 					"$(PROJECT_DIR)/xsh/helps/libs/WeiXin",
 					"$(PROJECT_DIR)/xsh/helps/libs/AliPay",
 				);
+				MARKETING_VERSION = 2.0.7;
 				OTHER_LDFLAGS = (
 					"$(inherited)",
 					"-ObjC",
