@@ -459,7 +459,7 @@ extension HomeViewController : UICollectionViewDelegate, UICollectionViewDataSou
                         let recommendJson = self.recommendList[indexPath.section-3]
                         reusableView.titleLbl.text = recommendJson["name"].stringValue
                     }else if indexPath.section == self.recommendList.count + 3{
-                        reusableView.titleLbl.text = "改版公告"
+                        reusableView.titleLbl.text = "公告"
                     }
                 }
             }
