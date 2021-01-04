@@ -34,9 +34,11 @@ class HomeViewController: BaseViewController {
     fileprivate var activityList : Array<JSON> = []
     fileprivate var ActivityView = UIScrollView(frame: CGRect(x: 0, y: 0, width: kScreenW, height: 110))
     
-   
-
-    fileprivate var recommendList : Array<JSON> = [] //底部推荐商品
+    //底部推荐商品
+    fileprivate var recommendList : Array<JSON> = []
+    
+    // 底部改版占位
+    fileprivate var placeholderList : Array<JSON> = []
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -60,10 +62,6 @@ class HomeViewController: BaseViewController {
         }else{
             self.automaticallyAdjustsScrollViewInsets = false
         }
-        
-        
-
-        
     }
     
     
@@ -90,6 +88,7 @@ class HomeViewController: BaseViewController {
         self.loadAdsData()
         self.loadActivity()
         self.loadRcommendGoods()
+        self.loadBottomPlaceholder()
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -315,6 +314,23 @@ class HomeViewController: BaseViewController {
         }
     }
     
+    // MARK:- 底部占位通告
+    func loadBottomPlaceholder() {
+        var params : [String : Any] = [:]
+        params["location"] = "bottomplaceholder"
+        params["skip"] = 0
+        params["limit"] = 10
+        NetTools.requestData(type: .post, urlString: AdListApi, parameters: params, succeed: { (result) in
+            self.placeholderList.removeAll()
+            for json in result["list"].arrayValue{
+                self.placeholderList.append(json)
+            }
+            self.collectionView.reloadData()
+        }) { (error) in
+            LYProgressHUD.showError(error)
+        }
+    }
+    
 }
 
 
@@ -334,7 +350,12 @@ extension HomeViewController : LYAnimateBannerViewDelegate{
 extension HomeViewController : UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout{
     
     func numberOfSections(in collectionView: UICollectionView) -> Int {
-        return 3 + recommendList.count
+        // 轮播、功能栏、通告栏 + 商品推荐 + 底部占位
+        if self.placeholderList.count > 0{
+            return 3 + recommendList.count + 1
+        }else{
+            return 3 + recommendList.count
+        }
     }
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
@@ -342,6 +363,8 @@ extension HomeViewController : UICollectionViewDelegate, UICollectionViewDataSou
             if self.recommendList.count > section - 3{
                 let recommendJson = self.recommendList[section-3]
                 return recommendJson["productions"].arrayValue.count
+            }else if section == self.recommendList.count + 3{
+                return self.placeholderList.count
             }
             return 0
         }
@@ -363,15 +386,33 @@ extension HomeViewController : UICollectionViewDelegate, UICollectionViewDataSou
             cell.subView.addSubview(self.ActivityView)
             return cell
         }else if indexPath.section > 2{
-            let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "RecommendGoodsCell", for: indexPath) as! RecommendGoodsCell
             if self.recommendList.count > indexPath.section - 3{
-                let productions = self.recommendList[indexPath.section-3]["productions"].arrayValue
-                if productions.count > indexPath.row{
-                    let json = productions[indexPath.row]
-                    cell.subJson = json
+                // 推荐商品
+                let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "RecommendGoodsCell", for: indexPath) as! RecommendGoodsCell
+                if self.recommendList.count > indexPath.section - 3{
+                    let productions = self.recommendList[indexPath.section-3]["productions"].arrayValue
+                    if productions.count > indexPath.row{
+                        let json = productions[indexPath.row]
+                        cell.subJson = json
+                    }
                 }
+                return cell
+            }else if indexPath.section == self.recommendList.count + 3{
+                // 底部占位
+                let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "HomeCollectionCell", for: indexPath) as! HomeCollectionCell
+                if self.placeholderList.count > indexPath.row{
+                    let json = self.placeholderList[indexPath.row]
+                    let url = json["imageurl"].stringValue
+                    var scale = json["extra"]["scale"].floatValue
+                    if scale == 0{
+                        scale = 1
+                    }
+                    let imgV = UIImageView.init(frame: CGRect.init(x: 0, y: 0, width: kScreenW, height: kScreenW * CGFloat(scale)))
+                    imgV.setImageUrlStr(url)
+                    cell.subView.addSubview(imgV)
+                }
+                return cell
             }
-            return cell
         }
         return UICollectionViewCell()
     }
@@ -395,6 +436,11 @@ extension HomeViewController : UICollectionViewDelegate, UICollectionViewDataSou
                     webVC.bid = json["bid"].stringValue
                     self.navigationController?.pushViewController(webVC, animated: true)
                 }
+            }else if indexPath.section == self.recommendList.count + 3{
+                if self.placeholderList.count > indexPath.row{
+                    let json = self.placeholderList[indexPath.row]
+                    globalAdClickAction(json, self)
+                }
             }
         }
     }
@@ -412,6 +458,8 @@ extension HomeViewController : UICollectionViewDelegate, UICollectionViewDataSou
                     if self.recommendList.count > indexPath.section - 3{
                         let recommendJson = self.recommendList[indexPath.section-3]
                         reusableView.titleLbl.text = recommendJson["name"].stringValue
+                    }else if indexPath.section == self.recommendList.count + 3{
+                        reusableView.titleLbl.text = "改版公告"
                     }
                 }
             }
@@ -436,8 +484,19 @@ extension HomeViewController : UICollectionViewDelegate, UICollectionViewDataSou
         }else if indexPath.section == 2{
             return CGSize.init(width: kScreenW, height: self.ActivityView.h)
         }else if indexPath.section > 2{
-            let w = (kScreenW - 32) / 3.0
-            return CGSize.init(width: w, height: w + 85)
+            if self.recommendList.count > indexPath.section - 3{
+                let w = (kScreenW - 32) / 3.0
+                return CGSize.init(width: w, height: w + 85)
+            }else if indexPath.section == self.recommendList.count + 3{
+                if self.placeholderList.count > indexPath.row{
+                    let json = self.placeholderList[indexPath.row]
+                    var scale = json["extra"]["scale"].floatValue
+                    if scale == 0{
+                        scale = 1
+                    }
+                    return CGSize.init(width: kScreenW, height: kScreenW * CGFloat(scale))
+                }
+            }
         }
         return CGSize.zero
     }

@@ -97,8 +97,8 @@ extension TakeOnePhotoHelper : UIImagePickerControllerDelegate,UINavigationContr
                     UIApplication.shared.open(url!, options: [:], completionHandler: nil)
                 }
             })
-            return
-        case .authorized,.notDetermined:
+            break
+        case .authorized,.notDetermined,.limited:
             break
         }
         
