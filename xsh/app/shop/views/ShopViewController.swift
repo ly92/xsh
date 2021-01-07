@@ -44,10 +44,10 @@ class ShopViewController: BaseViewController {
         
         self.filterAction()
         
-        if LocalData.getUserPhone() == "18811016533"{
-            self.navigationItem.rightBarButtonItem = UIBarButtonItem.init(title: "收银台", target: self, action: #selector(ShopViewController.posAction))
-            self.navigationItem.leftBarButtonItem = UIBarButtonItem.init(title: "支付测试", target: self, action: #selector(ShopViewController.testPay))
-        }
+//        if LocalData.getUserPhone() == "18811016533"{
+//            self.navigationItem.rightBarButtonItem = UIBarButtonItem.init(title: "收银台", target: self, action: #selector(ShopViewController.posAction))
+//            self.navigationItem.leftBarButtonItem = UIBarButtonItem.init(title: "支付测试", target: self, action: #selector(ShopViewController.testPay))
+//        }
     }
     
     //pos机收银
