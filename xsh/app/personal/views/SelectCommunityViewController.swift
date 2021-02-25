@@ -47,6 +47,7 @@ class SelectCommunityViewController: BaseViewController {
             self.selectBlok!(self.areaId, self.areaStr, self.communityId, self.communityStr)
         }
         self.navigationController?.popViewController(animated: true)
+        self.dismiss(animated: true, completion: nil)
     }
     
     
@@ -61,12 +62,14 @@ class SelectCommunityViewController: BaseViewController {
     }
     
     func loadCommunityData() {
-        let params : [String : Any] = ["areaid" : self.areaId]
-        NetTools.requestData(type: .post, urlString: CommunityListApi, parameters: params, succeed: { (result) in
-            self.communityList = result["list"].arrayValue
-            self.tableViewRight.reloadData()
-        }) { (error) in
-            LYProgressHUD.showError(error)
+        if self.areaId != ""{
+            let params : [String : Any] = ["areaid" : self.areaId]
+            NetTools.requestData(type: .post, urlString: CommunityListApi, parameters: params, succeed: { (result) in
+                self.communityList = result["list"].arrayValue
+                self.tableViewRight.reloadData()
+            }) { (error) in
+                LYProgressHUD.showError(error)
+            }
         }
     }
 

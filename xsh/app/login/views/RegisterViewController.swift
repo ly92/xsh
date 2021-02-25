@@ -233,19 +233,22 @@ class RegisterViewController: BaseTableViewController {
         if indexPath.section == 3{
             if indexPath.row == 2{
                 //地址
-                let selectVC = SelectCommunityViewController.spwan()
-                selectVC.areaId = self.areaId
-                selectVC.areaStr = self.areaStr
-                selectVC.communityId = self.communityId
-                selectVC.communityStr = self.communityStr
-                selectVC.selectBlok = {(areaId, areaStr, communityId, communityStr) in
-                    self.areaId = areaId
-                    self.communityId = communityId
-                    self.areaStr = areaStr
-                    self.communityStr = communityStr
-                    self.addressTF.text = areaStr + communityStr
-                }
-                self.navigationController?.pushViewController(selectVC, animated: true)
+                
+                    let selectVC = SelectCommunityViewController.spwan()
+                    selectVC.areaId = self.areaId
+                    selectVC.areaStr = self.areaStr
+                    selectVC.communityId = self.communityId
+                    selectVC.communityStr = self.communityStr
+                    selectVC.selectBlok = {(areaId, areaStr, communityId, communityStr) in
+                        self.areaId = areaId
+                        self.communityId = communityId
+                        self.areaStr = areaStr
+                        self.communityStr = communityStr
+                        self.addressTF.text = areaStr + " " + communityStr
+                    }
+                
+                    let nav = UINavigationController.init(rootViewController: selectVC)
+                    self.present(nav, animated: true, completion: nil)
             }
         }
     }
