@@ -113,10 +113,14 @@ class RegisterViewController: BaseTableViewController {
             //男
             print("男")
             self.gender = "男"
+            self.genderManBtn.isSelected = true
+            self.genderWomanBtn.isSelected = false
         case 18:
             //女
             print("女")
             self.gender = "女"
+            self.genderManBtn.isSelected = false
+            self.genderWomanBtn.isSelected = true
         case 19:
             //完成，返回登录
             self.updatePersonalInfo()

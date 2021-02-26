@@ -1601,7 +1601,7 @@
 				CODE_SIGN_ENTITLEMENTS = xsh/xsh.entitlements;
 				CODE_SIGN_IDENTITY = "Apple Development: Yong Li (9G6SPFW5RD)";
 				CODE_SIGN_STYLE = Manual;
-				CURRENT_PROJECT_VERSION = 2100;
+				CURRENT_PROJECT_VERSION = 2110;
 				DEVELOPMENT_TEAM = 3BXQF9Q7GT;
 				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = (
@@ -1628,7 +1628,7 @@
 					"$(PROJECT_DIR)/xsh/helps/libs/WeiXin",
 					"$(PROJECT_DIR)/xsh/helps/libs/AliPay",
 				);
-				MARKETING_VERSION = 2.1.0;
+				MARKETING_VERSION = 2.1.1;
 				OTHER_LDFLAGS = (
 					"$(inherited)",
 					"-ObjC",
@@ -1693,7 +1693,7 @@
 				CODE_SIGN_ENTITLEMENTS = xsh/xsh.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Distribution";
 				CODE_SIGN_STYLE = Manual;
-				CURRENT_PROJECT_VERSION = 2100;
+				CURRENT_PROJECT_VERSION = 2110;
 				DEVELOPMENT_TEAM = 3BXQF9Q7GT;
 				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = (
@@ -1720,7 +1720,7 @@
 					"$(PROJECT_DIR)/xsh/helps/libs/WeiXin",
 					"$(PROJECT_DIR)/xsh/helps/libs/AliPay",
 				);
-				MARKETING_VERSION = 2.1.0;
+				MARKETING_VERSION = 2.1.1;
 				OTHER_LDFLAGS = (
 					"$(inherited)",
 					"-ObjC",
