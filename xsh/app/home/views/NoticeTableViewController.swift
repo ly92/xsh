@@ -42,7 +42,7 @@ class NoticeTableViewController: BaseTableViewController {
             for json in result["list"].arrayValue{
                 self.noticeList.append(json)
             }
-            if self.noticeList.count < result["list"]["total"].intValue{
+            if self.noticeList.count < result["total"].intValue{
                 self.haveMore = true
             }else{
                 self.haveMore = false
