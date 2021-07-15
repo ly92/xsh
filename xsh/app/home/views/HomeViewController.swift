@@ -377,14 +377,23 @@ extension HomeViewController : UICollectionViewDelegate, UICollectionViewDataSou
     
         if indexPath.section == 0{
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "HomeCollectionCell", for: indexPath) as! HomeCollectionCell
+            for v in cell.subView.subviews {
+                v.removeFromSuperview()
+            }
             cell.subView.addSubview(self.bannerView)
             return cell
         }else if indexPath.section == 1{
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "HomeCollectionCell", for: indexPath) as! HomeCollectionCell
+            for v in cell.subView.subviews {
+                v.removeFromSuperview()
+            }
             cell.subView.addSubview(self.functionView)
             return cell
         }else if indexPath.section == 2{
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "HomeCollectionCell", for: indexPath) as! HomeCollectionCell
+            for v in cell.subView.subviews {
+                v.removeFromSuperview()
+            }
             cell.subView.addSubview(self.ActivityView)
             return cell
         }else if indexPath.section > 2{
@@ -402,6 +411,9 @@ extension HomeViewController : UICollectionViewDelegate, UICollectionViewDataSou
             }else if indexPath.section == self.recommendList.count + 3{
                 // 底部占位
                 let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "HomeCollectionCell", for: indexPath) as! HomeCollectionCell
+                for v in cell.subView.subviews {
+                    v.removeFromSuperview()
+                }
                 if self.placeholderList.count > indexPath.row{
                     let json = self.placeholderList[indexPath.row]
                     let url = json["imageurl"].stringValue

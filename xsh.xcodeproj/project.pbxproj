@@ -1691,7 +1691,7 @@
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_ENTITLEMENTS = xsh/xsh.entitlements;
-				CODE_SIGN_IDENTITY = "iPhone Distribution";
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CODE_SIGN_STYLE = Manual;
 				CURRENT_PROJECT_VERSION = 2110;
 				DEVELOPMENT_TEAM = 3BXQF9Q7GT;
@@ -1765,7 +1765,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.magicsoft.appyssh;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE_SPECIFIER = xsh_dis;
+				PROVISIONING_PROFILE_SPECIFIER = xsh_dev;
 				SWIFT_OBJC_BRIDGING_HEADER = "xsh/helps/libs/xsh-Bridging-Header.h";
 				SWIFT_VERSION = 4.2;
 				TARGETED_DEVICE_FAMILY = 1;
